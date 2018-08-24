@@ -2,6 +2,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import json from 'rollup-plugin-json';
 import {uglify} from 'rollup-plugin-uglify';
 
 // `npm run build` -> `production` is true
@@ -44,6 +45,7 @@ export default {
         }),
         // converts date-fns to ES modules
         commonjs(),
+        json(),
         // minify, but only in production
         production && uglify()
     ]
