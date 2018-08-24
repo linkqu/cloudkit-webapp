@@ -83,7 +83,9 @@ class Button {
         let events = this.options["events"];
         if (events) {
             for (let prop in events) {
-                button.addEventListener(prop, events[prop])
+                if(events.hasOwnProperty(prop)) {
+                    button.addEventListener(prop, events[prop])
+                }
             }
         }
 
@@ -97,7 +99,9 @@ class Button {
         let css = this.options["css"];
         if(css) {
             for (let key in css) {
-                button.style[key] = css[key];
+                if(css.hasOwnProperty(key)) {
+                    button.style[key] = css[key];
+                }
             }
         }
 
