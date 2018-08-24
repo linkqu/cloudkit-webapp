@@ -40,7 +40,7 @@ class Button {
 
         // default setting
         this.defaultSetting = {
-            text: 'Button',
+            text: "Button",
             visible: false,
             width: 0,
             height: 0,
@@ -59,15 +59,15 @@ class Button {
         let fragment = document.createDocumentFragment();
 
         // Add class
-        let classes = this.options['classes'];
+        let classes = this.options["classes"];
         if (classes) {
             classes.forEach(function (value) {
                 button.classList.add(value);
             });
         }
 
-        if (this.options['text']) {
-            let text = document.createTextNode(this.options['text']);
+        if (this.options["text"]) {
+            let text = document.createTextNode(this.options["text"]);
             /**
              * 参考
              * Node.removeChild()
@@ -80,21 +80,21 @@ class Button {
         }
         button.appendChild(fragment);
 
-        let events = this.options['events'];
+        let events = this.options["events"];
         if (events) {
             for (let prop in events) {
                 button.addEventListener(prop, events[prop])
             }
         }
 
-        if (this.options['parent']) {
-            // console.log(this.options['parent']);
-            this.options['parent'].appendChild(button);
+        if (this.options["parent"]) {
+            // console.log(this.options["parent"]);
+            this.options["parent"].appendChild(button);
         } else {
             document.body.appendChild(button);
         }
 
-        let css = this.options['css'];
+        let css = this.options["css"];
         if(css) {
             for (let key in css) {
                 button.style[key] = css[key];

@@ -1,8 +1,11 @@
 // rollup.config.js
 import resolve from 'rollup-plugin-node-resolve';
+import postcss from 'rollup-plugin-postcss';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
+import replace from 'rollup-plugin-replace';
+import {eslint} from 'rollup-plugin-eslint';
 import {uglify} from 'rollup-plugin-uglify';
 
 // `npm run build` -> `production` is true
@@ -19,7 +22,15 @@ export default {
     },
     plugins: [
         // tells Rollup how to find xxx in node_modules
-        resolve(),
+        resolve({
+            jsnext: true,
+            main: true,
+            browser: true
+        }),
+        postcss({
+            extensions: ['.css'],
+
+        }),
         babel({
             babelrc: false,
             presets: [
@@ -46,7 +57,17 @@ export default {
         // converts date-fns to ES modules
         commonjs(),
         json(),
+        eslint({
+            exclude: [
+                'src/stylesheets/**',
+            ]
+
+        }),
+        replace({
+            ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
         // minify, but only in production
+        // (process.env.NODE_ENV === 'production' && uglify()),
         production && uglify()
     ]
 };
