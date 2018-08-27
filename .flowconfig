@@ -1,0 +1,10 @@
+[include]
+
+[ignore]
+.*/dist/.*
+.*/node_modules/.*
+
+[libs]
+flowtype
+
+[options]

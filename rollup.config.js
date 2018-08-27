@@ -34,7 +34,7 @@ export default {
         babel({
             babelrc: false,
             presets: [
-                "es2015-rollup", "stage-2",
+                "es2015-rollup", "stage-2", "flow",
                 // "es2016",
                 // "stage-3",
                 ["env", {
