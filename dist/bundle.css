@@ -10,13 +10,11 @@
     user-select: none;
     touch-action: manipulation;
     cursor: pointer;
-    border: 1px solid transparent;
-    background-image: none;
-    padding: 5px 15px 6px;
-    font-size: 12px;
+    padding: 4px 15px 4px 15px;
+    font-size: 13px;
     line-height: 1.5;
-    background-color: #fff;
-    border-color: #dcdee2;
+    background: #fff none;
+    border: 1px solid #dcdee2;
     transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;
     /*transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
@@ -40,8 +38,7 @@
 .button-dashed {
     color: #515a6e;
     background-color: #fff;
-    border-color: #dcdee2;
-    border-style: dashed;
+    border: dashed #dcdee2;
 }
 
 .button-text {
@@ -76,8 +73,7 @@
 
 .button-outline {
     color: #007bff;
-    background-color: transparent;
-    background-image: none;
+    background: transparent none;
     border-color: #007bff;
 }
 
@@ -132,8 +128,8 @@
     border: 1px solid #dcdee2;
     /*border-radius: 4px;*/
     color: #515a6e;
-    background-color: #fff;
-    background-image: none;
+    background: #fff none;
+    vertical-align: middle;
     position: relative;
     cursor: text;
     transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;

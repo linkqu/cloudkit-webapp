@@ -6,7 +6,7 @@ let button = new Button({
     text: "Button",
     classes: ["button", "button-outline"],
     css: {
-       "fontSize": "12px"
+        "fontSize": "12px"
     },
     parent: document.body
 });

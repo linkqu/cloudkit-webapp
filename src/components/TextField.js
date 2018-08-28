@@ -33,7 +33,6 @@ class TextField {
 
     options: JSON;
 
-
     /**
      * constructor
      *
@@ -46,7 +45,7 @@ class TextField {
             visible: false,
             width: 0,
             height: 0,
-            css:[],
+            css: [],
             // parent: ,
             classes: ["text-field"]
         };
@@ -62,7 +61,7 @@ class TextField {
         let fragment = document.createDocumentFragment();
 
         let width = this.options["width"];
-        if(width) {
+        if (width) {
             input.style["width"] = width;
         }
 
@@ -79,7 +78,7 @@ class TextField {
         let events = this.options["events"];
         if (events) {
             for (let prop in events) {
-                if(events.hasOwnProperty(prop)) {
+                if (events.hasOwnProperty(prop)) {
                     input.addEventListener(prop, events[prop])
                 }
             }
@@ -93,9 +92,9 @@ class TextField {
         }
 
         let css = this.options["css"];
-        if(css) {
+        if (css) {
             for (let key in css) {
-                if(css.hasOwnProperty(key)) {
+                if (css.hasOwnProperty(key)) {
                     input.style[key] = css[key];
                 }
             }

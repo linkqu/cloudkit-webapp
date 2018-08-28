@@ -33,7 +33,6 @@ class Button {
 
     options: JSON;
 
-
     /**
      * constructor
      *
@@ -47,7 +46,7 @@ class Button {
             visible: false,
             width: 0,
             height: 0,
-            css:[],
+            css: [],
             // parent: ,
             classes: ["button"]
         };
@@ -87,7 +86,7 @@ class Button {
         let events = this.options["events"];
         if (events) {
             for (let prop in events) {
-                if(events.hasOwnProperty(prop)) {
+                if (events.hasOwnProperty(prop)) {
                     button.addEventListener(prop, events[prop])
                 }
             }
@@ -101,9 +100,9 @@ class Button {
         }
 
         let css = this.options["css"];
-        if(css) {
+        if (css) {
             for (let key in css) {
-                if(css.hasOwnProperty(key)) {
+                if (css.hasOwnProperty(key)) {
                     button.style[key] = css[key];
                 }
             }
