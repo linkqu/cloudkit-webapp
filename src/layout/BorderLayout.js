@@ -29,24 +29,39 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Button} from "./component/Button";
-import {Color} from "./component/Color";
-import {TextField} from "./component/TextField";
+/**
+ * BorderLayout
+ *
+ * @author hongquanli <hongquanli@qq.com>
+ * @version 1.0 2018-06-16 6:57 PM
+ */
+class BorderLayout {
 
-let button = new Button({
-    text: "Button",
-    classes: ["button", "button-outline"],
-    css: {
-        "fontSize": "12px"
-    },
-    parent: document.body
-});
+    options: JSON;
 
-let textField = new TextField({
-    width: "200px",
-    classes: ["text-field"],
-    css: {
-        "fontSize": "12px"
-    },
-    parent: document.body
-});
+    /**
+     * constructor
+     *
+     * @param options
+     */
+    constructor(options: JSON) {
+
+        // CENTER、EAST、WEST、NORTH、SOUTH
+
+        // default setting
+        this.defaultSetting = {
+
+        };
+        this.options = options;
+        this.build();
+    }
+
+    /**
+     * build
+     */
+    build() {
+
+    }
+}
+
+export {BorderLayout};

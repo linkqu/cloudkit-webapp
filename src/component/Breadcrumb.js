@@ -29,7 +29,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class Button {
+/**
+ * Breadcrumb
+ *
+ * @author hongquanli <hongquanli@qq.com>
+ * @version 1.0 2018-06-16 6:57 PM
+ */
+class Breadcrumb {
 
     options: JSON;
 
@@ -42,13 +48,7 @@ class Button {
 
         // default setting
         this.defaultSetting = {
-            text: "Button",
-            visible: false,
-            width: 0,
-            height: 0,
-            css: [],
-            // parent: ,
-            classes: ["button"]
+
         };
         this.options = options;
         this.build();
@@ -58,64 +58,8 @@ class Button {
      * build
      */
     build() {
-        let button = document.createElement("button");
-        let fragment = document.createDocumentFragment();
 
-        // Add class
-        let classes = this.options["classes"];
-        if (classes) {
-            classes.forEach(function (value) {
-                button.classList.add(value);
-            });
-        }
-
-        if (this.options["text"]) {
-            let text = document.createTextNode(this.options["text"]);
-            /**
-             * 参考
-             * Node.removeChild()
-             * Node.replaceChild()
-             * Node.appendChild()
-             * Node.insertBefore()
-             * Node.hasChildNodes()
-             */
-            fragment.appendChild(text);
-        }
-        button.appendChild(fragment);
-
-        let events = this.options["events"];
-        if (events) {
-            for (let prop in events) {
-                if (events.hasOwnProperty(prop)) {
-                    button.addEventListener(prop, events[prop])
-                }
-            }
-        }
-
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(button);
-        } else {
-            // document.body.appendChild(button);
-        }
-
-        let css = this.options["css"];
-        if (css) {
-            for (let key in css) {
-                if (css.hasOwnProperty(key)) {
-                    button.style[key] = css[key];
-                }
-            }
-        }
-
-        // button.nextElementSibling
-        // button.nextSibling
-        // button.parentElement
-        // button.previousElementSibling
-        // button.previousSibling
-
-        return button;
     }
 }
 
-export {Button};
+export {Breadcrumb};

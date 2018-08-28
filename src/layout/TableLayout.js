@@ -29,7 +29,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class TextField {
+/**
+ * TableLayout
+ *
+ * @author hongquanli <hongquanli@qq.com>
+ * @version 1.0 2018-06-16 6:57 PM
+ */
+class TableLayout {
 
     options: JSON;
 
@@ -42,12 +48,7 @@ class TextField {
 
         // default setting
         this.defaultSetting = {
-            visible: false,
-            width: 0,
-            height: 0,
-            css: [],
-            // parent: ,
-            classes: ["text-field"]
+
         };
         this.options = options;
         this.build();
@@ -57,51 +58,8 @@ class TextField {
      * build
      */
     build() {
-        let input = document.createElement("input");
-        let fragment = document.createDocumentFragment();
 
-        let width = this.options["width"];
-        if (width) {
-            input.style["width"] = width;
-        }
-
-        // Add class
-        let classes = this.options["classes"];
-        if (classes) {
-            classes.forEach(function (value) {
-                input.classList.add(value);
-            });
-        }
-
-        input.appendChild(fragment);
-
-        let events = this.options["events"];
-        if (events) {
-            for (let prop in events) {
-                if (events.hasOwnProperty(prop)) {
-                    input.addEventListener(prop, events[prop])
-                }
-            }
-        }
-
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(input);
-        } else {
-            // document.body.appendChild(button);
-        }
-
-        let css = this.options["css"];
-        if (css) {
-            for (let key in css) {
-                if (css.hasOwnProperty(key)) {
-                    input.style[key] = css[key];
-                }
-            }
-        }
-
-        return input;
     }
 }
 
-export {TextField};
+export {TableLayout};
