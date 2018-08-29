@@ -30,12 +30,12 @@
  */
 
 /**
- * FlowLayout
+ * Text
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class FlowLayout {
+class Text {
 
     options: JSON;
 
@@ -45,6 +45,7 @@ class FlowLayout {
      * @param options
      */
     constructor(options: JSON) {
+        // Horizontal Vertical
 
         // default setting
         this.defaultSetting = {
@@ -62,4 +63,4 @@ class FlowLayout {
     }
 }
 
-export {FlowLayout};
+export {Text};
