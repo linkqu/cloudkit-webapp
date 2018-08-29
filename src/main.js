@@ -36,6 +36,8 @@ import "./component/TextField.css"
 import {TextField} from "./component/TextField";
 import "./component/Table.css"
 import {Table} from "./component/Table";
+import {BorderLayout} from "./layout/BorderLayout";
+import {Checkbox} from "./component/Checkbox";
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
@@ -90,3 +92,31 @@ let table = new Table({
     ]
 });
 
+let borderLayout = new BorderLayout({
+    parent: document.body,
+    items: [{
+        title: 'North Panel',
+        region: 'north',
+        height: 50
+    }, {
+        title: 'West Panel',
+        region: 'west',
+        height: 50
+    }, {
+        title: 'South Panel',
+        region: 'south',
+        height: 50
+    }, {
+        title: 'Center Panel',
+        region: 'center',
+        split: true
+    }, {
+        title: 'East Panel',
+        region: 'east',
+        split: true
+    }]
+});
+
+let checkbox = new Checkbox({
+    parent: document.body
+});

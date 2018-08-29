@@ -47,9 +47,7 @@ class Table {
     constructor(options: JSON) {
 
         // default setting
-        this.defaultSetting = {
-
-        };
+        this.defaultSetting = {};
         this.options = options;
         this.build();
     }
@@ -82,19 +80,19 @@ class Table {
         tableContent.appendChild(tableContentTbody);
 
         let columns = this.options['columns'];
-        if(columns) {
+        if (columns) {
             let tableHeaderTr = document.createElement("tr");
             tableHeaderThead.appendChild(tableHeaderTr);
             let tableContentTr = document.createElement("tr");
             tableContentThead.appendChild(tableContentTr);
 
-            columns.forEach(function(item, index, objs){
+            columns.forEach(function (item, index, objs) {
                 let tableHeaderTh = document.createElement("th");
                 let tableContentTh = document.createElement("th");
                 let text = document.createTextNode(item["text"]);
                 tableHeaderTh.appendChild(text);
                 // tableContentTh.appendChild(document.createTextNode(""));
-                if(item["width"]) {
+                if (item["width"]) {
                     tableHeaderTh.setAttribute("width", item["width"]);
                     tableContentTh.setAttribute("width", item["width"]);
                 }
@@ -104,10 +102,10 @@ class Table {
         }
 
         let data = this.options['data'];
-        if(data) {
-            data.forEach(function(item, index, objs){
+        if (data) {
+            data.forEach(function (item, index, objs) {
                 let tableContentTr = document.createElement("tr");
-                item.forEach(function(item, index, objs){
+                item.forEach(function (item, index, objs) {
                     let tableContentTd = document.createElement("td");
                     // let width = columns[index]["width"];
                     // if(width) {

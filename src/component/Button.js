@@ -72,7 +72,7 @@ class Button {
         button.classList.add("button");
 
         // Add type class
-        if(this.options["type"]) {
+        if (this.options["type"]) {
             button.classList.add("button-" + this.options["type"]);
         }
 

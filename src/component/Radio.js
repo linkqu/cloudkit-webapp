@@ -30,12 +30,12 @@
  */
 
 /**
- * Calendar
+ * Radio
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Calendar {
+class Radio {
 
     options: JSON;
 
@@ -60,4 +60,4 @@ class Calendar {
     }
 }
 
-export {Calendar};
+export {Radio};

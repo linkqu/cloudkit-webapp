@@ -30,12 +30,12 @@
  */
 
 /**
- * BorderLayout
+ * Checkbox
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class BorderLayout {
+class Checkbox {
 
     options: JSON;
 
@@ -45,8 +45,6 @@ class BorderLayout {
      * @param options
      */
     constructor(options: JSON) {
-
-        // CENTER、EAST、WEST、NORTH、SOUTH
 
         // default setting
         this.defaultSetting = {};
@@ -58,56 +56,18 @@ class BorderLayout {
      * build
      */
     build() {
-        let borderLayout = document.createElement("div");
-        borderLayout.setAttribute("layout", "border-layout");
-
-        let items = this.options['items'];
-        items.forEach(function (item, index, objs) {
-            if(item["region"] === "north") {
-                let northPanel = document.createElement("div");
-                northPanel.setAttribute("region", item["region"]);
-                northPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(northPanel);
-            }
-
-            if(item["region"] === "south") {
-                let southPanel = document.createElement("div");
-                southPanel.setAttribute("region", item["region"]);
-                southPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(southPanel);
-            }
-
-            if(item["region"] === "west") {
-                let westPanel = document.createElement("div");
-                westPanel.setAttribute("region", item["region"]);
-                westPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(westPanel);
-            }
-
-            if(item["region"] === "center") {
-                let centerPanel = document.createElement("div");
-                centerPanel.setAttribute("region", item["region"]);
-                centerPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(centerPanel);
-            }
-
-            if(item["region"] === "east") {
-                let eastPanel = document.createElement("div");
-                eastPanel.setAttribute("region", item["region"]);
-                eastPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(eastPanel);
-            }
-        });
+        let input = document.createElement("input");
+        input.setAttribute("type", "checkbox")
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(borderLayout);
+            this.options["parent"].appendChild(input);
         } else {
             // document.body.appendChild(table);
         }
 
-        return borderLayout;
+        return input;
     }
 }
 
-export {BorderLayout};
+export {Checkbox};
