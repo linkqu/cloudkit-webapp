@@ -59,7 +59,8 @@ export default {
         json(),
         eslint({
             exclude: [
-                'src/stylesheets/**',
+                'node_modules/**',
+                'dist/**'
             ]
 
         }),

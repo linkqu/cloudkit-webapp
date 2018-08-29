@@ -1721,7 +1721,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css = ".button {\n    display: inline-block;\n    font-weight: 400;\n    text-align: center;\n    white-space: nowrap;\n    vertical-align: middle;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    touch-action: manipulation;\n    cursor: pointer;\n    padding: 3px 15px 3px 15px;\n    font-size: 13px;\n    line-height: 1.5;\n    background: #fff none;\n    border: 1px solid #dcdee2;\n    transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;\n    /*transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/\n}\n\n.button-round-corner {\n    border-radius: 4px;\n}\n\n.button:hover {\n    color: #57a3f3;\n    background-color: #fff;\n    border-color: #57a3f3\n}\n\n.button-primary {\n    color: #fff;\n    background-color: #2d8cf0;\n    border-color: #2d8cf0;\n}\n\n.button-dashed {\n    color: #515a6e;\n    background-color: #fff;\n    border: dashed #dcdee2;\n}\n\n.button-text {\n    color: #515a6e;\n    background-color: transparent;\n    border-color: transparent;\n}\n\n.button-success {\n    color: #fff;\n    background-color: #19be6b;\n    border-color: #19be6b;\n}\n\n.button-warning {\n    color: #fff;\n    background-color: #f90;\n    border-color: #f90;\n}\n\n.button-error {\n    color: #fff;\n    background-color: #ed4014;\n    border-color: #ed4014;\n}\n\n.button-info {\n    color: #fff;\n    background-color: #2db7f5;\n    border-color: #2db7f5;\n}\n\n.button-outline {\n    color: #007bff;\n    background: transparent none;\n    border-color: #007bff;\n}\n\n.button-circle {\n    /*border-radius: 32px;*/\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    border-radius: 50%;\n}\n\n.button-small {\n    padding: 1px 7px 2px;\n    font-size: 12px;\n    border-radius: 3px;\n}\n\n.button-large {\n    padding: 6px 15px;\n    font-size: 14px;\n    border-radius: 4px;\n}\n\n.button-group {\n    position: relative;\n    display: inline-block;\n    vertical-align: middle;\n}\n\n.button-group:not(.button-group-vertical)>.button:first-child:not(:last-child) {\n    border-bottom-right-radius: 0;\n    border-top-right-radius: 0;\n}\n.button-group:not(.button-group-vertical)>.button:last-child:not(:first-child) {\n    border-bottom-left-radius: 0;\n    border-top-left-radius: 0;\n}\n";
+var css = ".button {\n    display: inline-block;\n    font-weight: 400;\n    text-align: center;\n    white-space: nowrap;\n    vertical-align: middle;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    touch-action: manipulation;\n    cursor: pointer;\n    padding: 3px 15px 3px 15px;\n    font-size: 12px;\n    line-height: 1.5;\n    background: #fff none;\n    border: 1px solid #dcdee2;\n    transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;\n    /*transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/\n}\n\n.button-round-corner {\n    border-radius: 4px;\n}\n\n.button:hover {\n    color: #57a3f3;\n    background-color: #fff;\n    border-color: #57a3f3\n}\n\n.button-primary {\n    color: #fff;\n    background-color: #2d8cf0;\n    border-color: #2d8cf0;\n}\n\n.button-dashed {\n    color: #515a6e;\n    background-color: #fff;\n    border: dashed #dcdee2;\n}\n\n.button-text {\n    color: #515a6e;\n    background-color: transparent;\n    border-color: transparent;\n}\n\n.button-success {\n    color: #fff;\n    background-color: #19be6b;\n    border-color: #19be6b;\n}\n\n.button-warning {\n    color: #fff;\n    background-color: #f90;\n    border-color: #f90;\n}\n\n.button-error {\n    color: #fff;\n    background-color: #ed4014;\n    border-color: #ed4014;\n}\n\n.button-info {\n    color: #fff;\n    background-color: #2db7f5;\n    border-color: #2db7f5;\n}\n\n.button-outline {\n    color: #007bff;\n    background: transparent none;\n    border-color: #007bff;\n}\n\n.button-circle {\n    /*border-radius: 32px;*/\n    width: 32px;\n    height: 32px;\n    padding: 0;\n    border-radius: 50%;\n}\n\n.button-small {\n    padding: 1px 7px 2px;\n    font-size: 12px;\n    border-radius: 3px;\n}\n\n.button-large {\n    padding: 6px 15px;\n    font-size: 14px;\n    border-radius: 4px;\n}\n\n.button-group {\n    position: relative;\n    display: inline-block;\n    vertical-align: middle;\n}\n\n.button-group:not(.button-group-vertical)>.button:first-child:not(:last-child) {\n    border-bottom-right-radius: 0;\n    border-top-right-radius: 0;\n}\n.button-group:not(.button-group-vertical)>.button:last-child:not(:first-child) {\n    border-bottom-left-radius: 0;\n    border-top-left-radius: 0;\n}\n";
 styleInject(css);
 
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
@@ -1818,6 +1818,7 @@ var Button = function () {
 
         // default setting
         this.defaultSetting = {
+            type: null,
             text: "Button",
             visible: false,
             width: 0,
@@ -1841,7 +1842,15 @@ var Button = function () {
             var button = document.createElement("button");
             var fragment = document.createDocumentFragment();
 
-            // Add class
+            // Add default class
+            button.classList.add("button");
+
+            // Add type class
+            if (this.options["type"]) {
+                button.classList.add("button-" + this.options["type"]);
+            }
+
+            // classes
             var classes = this.options["classes"];
             if (classes) {
                 classes.forEach(function (value) {
@@ -1849,6 +1858,7 @@ var Button = function () {
                 });
             }
 
+            // text
             if (this.options["text"]) {
                 var text = document.createTextNode(this.options["text"]);
                 /**
@@ -1863,6 +1873,7 @@ var Button = function () {
             }
             button.appendChild(fragment);
 
+            // events
             var events = this.options["events"];
             if (events) {
                 for (var prop in events) {
@@ -1978,6 +1989,9 @@ var TextField = function () {
                 input.style["width"] = width;
             }
 
+            // Add default class
+            input.classList.add("text-field");
+
             // Add class
             var classes = this.options["classes"];
             if (classes) {
@@ -2018,6 +2032,146 @@ var TextField = function () {
     return TextField;
 }();
 
+var css$2 = ".table-wrapper {\n    box-sizing: border-box;\n    position: relative;\n    background-color: rgb(255, 255, 255);\n    overflow: hidden;\n    border-left: 1px solid rgb(221, 221, 221);\n    border-right: 1px solid rgb(221, 221, 221);\n    border-top: 1px solid rgb(229, 229, 229);\n}\n\n.table {\n    position: relative;\n    table-layout: fixed;\n    width: 100%;\n    border-collapse: separate;\n    box-sizing: border-box;\n    border-spacing: 0px;\n    margin: 0px;\n    padding: 0px;\n}\n\n.table th {\n    vertical-align: middle;\n    box-sizing: border-box;\n    min-height: 2rem;\n    padding-top: 7px;\n    padding-bottom: 7px;\n    background-color: #f7f7f7;\n    color: #333333;\n    border-right: 1px solid #dddddd;\n}\n\n.table tbody tr {\n    height: 33px;\n    color: #333333;\n    font-weight: normal;\n    box-sizing: border-box;\n}\n\n/*.table tr > td:first-child {*/\n    /*border-left: none;*/\n/*}*/\n\n/*.table tr > td:last-child {*/\n    /*border-right: none;*/\n/*}*/\n\n.table tr > td {\n    vertical-align: middle;\n    box-sizing: border-box;\n    border-right: 1px solid #dddddd;\n    border-bottom: 1px solid #e5e5e5;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n    padding: 0 0.5rem;\n    word-wrap: break-word;\n    cursor: text;\n    /*font-size: 0.875rem;*/\n    font-family: \"72\",Arial,Helvetica,sans-serif;\n    line-height: normal;\n    color: #333333;\n}\n\n.table tbody tr:nth-child(2n) td {\n    background-color: #f8f8f9\n}\n\n.table tbody tr:hover td {\n    background-color: #ebf7ff\n}\n";
+styleInject(css$2);
+
+/*
+ * Copyright (c) 2018, Linkqu and/or its affiliates. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   - Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   - Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *
+ *   - Neither the name of Linkqu or the names of its
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Table
+ *
+ * @author hongquanli <hongquanli@qq.com>
+ * @version 1.0 2018-06-16 6:57 PM
+ */
+var Table = function () {
+
+    /**
+     * constructor
+     *
+     * @param options
+     */
+    function Table(options) {
+        _classCallCheck(this, Table);
+
+        // default setting
+        this.defaultSetting = {};
+        this.options = options;
+        this.build();
+    }
+
+    /**
+     * build
+     */
+
+
+    _createClass(Table, [{
+        key: "build",
+        value: function build() {
+            var table = document.createElement("div");
+            table.classList.add("table-wrapper");
+
+            // <colgroup><col width="317"><col width="317"><col width="318"></colgroup>
+
+            var tableHeaderWrapper = document.createElement("div");
+            table.appendChild(tableHeaderWrapper);
+            var tableHeader = document.createElement("table");
+            tableHeader.classList.add("table");
+            tableHeaderWrapper.appendChild(tableHeader);
+            var tableHeaderThead = document.createElement("thead");
+            tableHeader.appendChild(tableHeaderThead);
+
+            var tableContentWrapper = document.createElement("div");
+            table.appendChild(tableContentWrapper);
+            var tableContent = document.createElement("table");
+            tableContent.classList.add("table");
+            tableContentWrapper.appendChild(tableContent);
+            var tableContentThead = document.createElement("thead");
+            tableContent.appendChild(tableContentThead);
+            var tableContentTbody = document.createElement("tbody");
+            tableContent.appendChild(tableContentTbody);
+
+            var columns = this.options['columns'];
+            if (columns) {
+                var tableHeaderTr = document.createElement("tr");
+                tableHeaderThead.appendChild(tableHeaderTr);
+                var tableContentTr = document.createElement("tr");
+                tableContentThead.appendChild(tableContentTr);
+
+                columns.forEach(function (item, index, objs) {
+                    var tableHeaderTh = document.createElement("th");
+                    var tableContentTh = document.createElement("th");
+                    var text = document.createTextNode(item["text"]);
+                    tableHeaderTh.appendChild(text);
+                    // tableContentTh.appendChild(document.createTextNode(""));
+                    if (item["width"]) {
+                        tableHeaderTh.setAttribute("width", item["width"]);
+                        tableContentTh.setAttribute("width", item["width"]);
+                    }
+                    tableHeaderTr.appendChild(tableHeaderTh);
+                    tableContentTr.appendChild(tableContentTh);
+                });
+            }
+
+            var data = this.options['data'];
+            if (data) {
+                data.forEach(function (item, index, objs) {
+                    var tableContentTr = document.createElement("tr");
+                    item.forEach(function (item, index, objs) {
+                        var tableContentTd = document.createElement("td");
+                        // let width = columns[index]["width"];
+                        // if(width) {
+                        //     tableContentTd.setAttribute("width", width);
+                        // }
+                        tableContentTr.appendChild(tableContentTd);
+                        var text = document.createTextNode(item);
+                        tableContentTd.appendChild(text);
+                    });
+                    tableContentTbody.appendChild(tableContentTr);
+                });
+            }
+
+            // footer
+
+            if (this.options["parent"]) {
+                // console.log(this.options["parent"]);
+                this.options["parent"].appendChild(table);
+            }
+            return table;
+        }
+    }]);
+
+    return Table;
+}();
+
 /*
  * Copyright (c) 2018, Linkqu and/or its affiliates. All rights reserved.
  *
@@ -2053,19 +2207,38 @@ var TextField = function () {
 // console.log(`running version ${pkg.version}`);
 
 var button = new Button({
+    type: "primary",
     text: "Button",
-    classes: ["button", "button-outline"],
-    css: {
-        "fontSize": "12px"
-    },
-    parent: document.body
+    // classes: ["button"],
+    // css: {
+    //     "fontSize": "12px"
+    // },
+    parent: document.body,
+    events: {
+        "click": function click() {
+            alert("hello!");
+        }
+    }
 });
 
 var textField = new TextField({
     width: "200px",
-    classes: ["text-field"],
+    // classes: ["text-field"],
     css: {
         "color": Color.RED[9]
     },
+    // renderTo
     parent: document.body
+});
+
+var table = new Table({
+    // width: "200px",
+    // classes: [""],
+    // css: {
+    //     "color": Color.RED[9]
+    // },
+    parent: document.body,
+    title: "Employee Information Table",
+    columns: [{ index: "employee", text: "Employee Name", width: 75, sortable: false, renderer: function renderer() {} }, { index: "sex", text: "Sex", width: 75, sortable: false, renderer: function renderer() {} }, { index: "age", text: "Age", width: 75, sortable: false, renderer: function renderer() {} }, { index: "mobile", text: "Mobile", width: 75, sortable: false, renderer: function renderer() {} }, { index: "email", text: "Email", width: 75, sortable: false, renderer: function renderer() {} }, { index: "birthday", text: "Birthday Date", width: 75, sortable: false, renderer: function renderer() {} }],
+    data: [["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"]]
 });

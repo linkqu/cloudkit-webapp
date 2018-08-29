@@ -58,7 +58,78 @@ class Table {
      * build
      */
     build() {
+        let table = document.createElement("div");
+        table.classList.add("table-wrapper");
 
+        // <colgroup><col width="317"><col width="317"><col width="318"></colgroup>
+
+        let tableHeaderWrapper = document.createElement("div");
+        table.appendChild(tableHeaderWrapper);
+        let tableHeader = document.createElement("table");
+        tableHeader.classList.add("table");
+        tableHeaderWrapper.appendChild(tableHeader);
+        let tableHeaderThead = document.createElement("thead");
+        tableHeader.appendChild(tableHeaderThead);
+
+        let tableContentWrapper = document.createElement("div");
+        table.appendChild(tableContentWrapper);
+        let tableContent = document.createElement("table");
+        tableContent.classList.add("table");
+        tableContentWrapper.appendChild(tableContent);
+        let tableContentThead = document.createElement("thead");
+        tableContent.appendChild(tableContentThead);
+        let tableContentTbody = document.createElement("tbody");
+        tableContent.appendChild(tableContentTbody);
+
+        let columns = this.options['columns'];
+        if(columns) {
+            let tableHeaderTr = document.createElement("tr");
+            tableHeaderThead.appendChild(tableHeaderTr);
+            let tableContentTr = document.createElement("tr");
+            tableContentThead.appendChild(tableContentTr);
+
+            columns.forEach(function(item, index, objs){
+                let tableHeaderTh = document.createElement("th");
+                let tableContentTh = document.createElement("th");
+                let text = document.createTextNode(item["text"]);
+                tableHeaderTh.appendChild(text);
+                // tableContentTh.appendChild(document.createTextNode(""));
+                if(item["width"]) {
+                    tableHeaderTh.setAttribute("width", item["width"]);
+                    tableContentTh.setAttribute("width", item["width"]);
+                }
+                tableHeaderTr.appendChild(tableHeaderTh);
+                tableContentTr.appendChild(tableContentTh);
+            });
+        }
+
+        let data = this.options['data'];
+        if(data) {
+            data.forEach(function(item, index, objs){
+                let tableContentTr = document.createElement("tr");
+                item.forEach(function(item, index, objs){
+                    let tableContentTd = document.createElement("td");
+                    // let width = columns[index]["width"];
+                    // if(width) {
+                    //     tableContentTd.setAttribute("width", width);
+                    // }
+                    tableContentTr.appendChild(tableContentTd);
+                    let text = document.createTextNode(item);
+                    tableContentTd.appendChild(text);
+                });
+                tableContentTbody.appendChild(tableContentTr);
+            });
+        }
+
+        // footer
+
+        if (this.options["parent"]) {
+            // console.log(this.options["parent"]);
+            this.options["parent"].appendChild(table);
+        } else {
+            // document.body.appendChild(table);
+        }
+        return table;
     }
 }
 

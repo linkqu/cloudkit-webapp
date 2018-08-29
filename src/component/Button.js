@@ -48,6 +48,7 @@ class Button {
 
         // default setting
         this.defaultSetting = {
+            type: null,
             text: "Button",
             visible: false,
             width: 0,
@@ -67,7 +68,15 @@ class Button {
         let button = document.createElement("button");
         let fragment = document.createDocumentFragment();
 
-        // Add class
+        // Add default class
+        button.classList.add("button");
+
+        // Add type class
+        if(this.options["type"]) {
+            button.classList.add("button-" + this.options["type"]);
+        }
+
+        // classes
         let classes = this.options["classes"];
         if (classes) {
             classes.forEach(function (value) {
@@ -75,6 +84,7 @@ class Button {
             });
         }
 
+        // text
         if (this.options["text"]) {
             let text = document.createTextNode(this.options["text"]);
             /**
@@ -89,6 +99,7 @@ class Button {
         }
         button.appendChild(fragment);
 
+        // events
         let events = this.options["events"];
         if (events) {
             for (let prop in events) {

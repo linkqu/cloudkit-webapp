@@ -71,6 +71,9 @@ class TextField {
             input.style["width"] = width;
         }
 
+        // Add default class
+        input.classList.add("text-field");
+
         // Add class
         let classes = this.options["classes"];
         if (classes) {

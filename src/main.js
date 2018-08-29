@@ -34,25 +34,59 @@ import "./component/Button.css";
 import {Button} from "./component/Button";
 import "./component/TextField.css"
 import {TextField} from "./component/TextField";
+import "./component/Table.css"
+import {Table} from "./component/Table";
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
 
 let button = new Button({
+    type: "primary",
     text: "Button",
-    classes: ["button", "button-outline"],
-    css: {
-        "fontSize": "12px"
-    },
-    parent: document.body
+    // classes: ["button"],
+    // css: {
+    //     "fontSize": "12px"
+    // },
+    parent: document.body,
+    events: {
+        "click": function () {
+            alert("hello!");
+        }
+    }
 });
 
 let textField = new TextField({
     width: "200px",
-    classes: ["text-field"],
+    // classes: ["text-field"],
     css: {
         "color": Color.RED[9]
     },
+    // renderTo
     parent: document.body
+});
+
+
+let table = new Table({
+    // width: "200px",
+    // classes: [""],
+    // css: {
+    //     "color": Color.RED[9]
+    // },
+    parent: document.body,
+    title: "Employee Information Table",
+    columns: [
+        {index: "employee", text: "Employee Name", width: 75, sortable: false, renderer: function () {}},
+        {index: "sex", text: "Sex", width: 75, sortable: false, renderer: function () {}},
+        {index: "age", text: "Age", width: 75, sortable: false, renderer: function () {}},
+        {index: "mobile", text: "Mobile", width: 75, sortable: false, renderer: function () {}},
+        {index: "email", text: "Email", width: 75, sortable: false, renderer: function () {}},
+        {index: "birthday", text: "Birthday Date", width: 75, sortable: false, renderer: function () {}}
+    ],
+    data: [
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"]
+    ]
 });
 
