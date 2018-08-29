@@ -2182,7 +2182,7 @@ var Table = function () {
     return Table;
 }();
 
-var css$3 = ".border-layout {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    -webkit-box-flex: 1;\n    -ms-flex: auto;\n    flex: auto;\n    background: #f5f7f9;\n}\n\n.border-layout .north, .border-layout .south {\n    -webkit-box-flex: 0;\n    -ms-flex: 0 0 auto;\n    flex: 0 0 auto;\n}\n\n.border-layout .north {\n    /*background: #7cbce9;*/\n    background: #515a6e;\n    color: #fff;\n    padding: 0 50px;\n    /*height: 64px;*/\n    /*line-height: 64px;*/\n}\n\n.border-layout .south {\n    /*background: #e3e91b;*/\n    background: #515a6e;\n    color: #fff;\n    padding: 0 50px;\n    /*height: 64px;*/\n    /*line-height: 64px;*/\n}\n\n.border-layout .has-side {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -ms-flex-direction: row;\n    flex-direction: row;\n}\n\n.border-layout .west, .border-layout .east {\n    position: relative;\n    /*width: 200px;*/\n    /*min-width: 200px;*/\n    /*max-width: 200px;*/\n    /*flex: 0 0 200px;*/\n    /*background: #3a9fe8;*/\n    background: #515a6e;\n    color: #fff;\n    /*min-height: 120px;*/\n    /*line-height: 120px;*/\n    transition: all .2s ease-in-out;\n}\n\n.border-layout .has-side > .center {\n    overflow-x: hidden;\n    /*background: #0f8de9;*/\n}\n\n.border-layout .center {\n    -webkit-box-flex: 1;\n    -ms-flex: auto;\n    flex: auto;\n    /*min-height: 120px;*/\n    /*line-height: 120px;*/\n}\n";
+var css$3 = ".border-layout {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    -webkit-box-flex: 1;\n    -ms-flex: auto;\n    flex: auto;\n    background: #f5f7f9;\n    height: 100%;\n}\n\n.border-layout .north, .border-layout .south {\n    -webkit-box-flex: 0;\n    -ms-flex: 0 0 auto;\n    flex: 0 0 auto;\n}\n\n.border-layout .north, .border-layout .south {\n    background: #7cbce9;\n    /*background: #515a6e;*/\n    color: #fff;\n}\n\n.border-layout .has-side {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -ms-flex-direction: row;\n    flex-direction: row;\n    height: 100%;\n}\n\n.border-layout .west, .border-layout .east {\n    position: relative;\n    height: 100%;\n    /*width: 200px;*/\n    /*min-width: 200px;*/\n    /*max-width: 200px;*/\n    /*flex: 0 0 200px;*/\n    background: #3a9fe8;\n    color: #fff;\n    transition: all .2s ease-in-out;\n}\n\n.border-layout .has-side > .center {\n    overflow-x: hidden;\n}\n\n.border-layout .center {\n    -webkit-box-flex: 1;\n    -ms-flex: auto;\n    flex: auto;\n    background: #8ee8e0;\n}\n";
 styleInject(css$3);
 
 /*
@@ -2249,6 +2249,10 @@ var BorderLayout = function () {
             var borderLayout = document.createElement("div");
 
             borderLayout.setAttribute("layout", "border-layout");
+            var width = this.options["width"],
+                height = this.options["height"];
+            borderLayout.style.width = width ? width + "px" : null;
+            borderLayout.style.height = height ? height + "px" : null;
             borderLayout.classList.add("border-layout");
 
             var panels = {};
@@ -2259,13 +2263,15 @@ var BorderLayout = function () {
 
                 panel.setAttribute("title", item["title"]);
 
-                var text = document.createTextNode(item["title"]);
-                panel.appendChild(text);
+                // let text = document.createTextNode(item["title"]);
+                // panel.appendChild(text);
 
-                // let width = item["width"], height = item["height"];
-                // console.log("width: %d, height: %d", width, height);
-                // panel.style.width = width ? width : null;
-                // panel.style.height = height ? height : null;
+                var width = item["width"],
+                    height = item["height"];
+                console.log("width: %d, height: %d", width, height);
+                panel.style.width = width ? width + "px" : null;
+                panel.style.height = height ? height + "px" : null;
+                console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
 
                 panels[item["region"]] = panel;
             });
@@ -2318,16 +2324,6 @@ var BorderLayout = function () {
                 // console.log(this.options["parent"]);
                 this.options["parent"].appendChild(borderLayout);
             }
-
-            items.forEach(function (item, index, objs) {
-                var panel = panels[item["region"]];
-                var width = item["width"],
-                    height = item["height"];
-                console.log("width: %d, height: %d", width, height);
-                panel.style.width = width ? width : null;
-                panel.style.height = height ? height : null;
-                console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
-            });
 
             return borderLayout;
         }
@@ -2486,31 +2482,35 @@ var table = new Table({
     data: [["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"]]
 });
 
-var borderLayout = new BorderLayout({
-    parent: document.body,
-    items: [{
-        title: 'North Panel',
-        region: 'north',
-        height: 500
-    }, {
-        title: 'West Panel',
-        region: 'west',
-        height: 50
-    }, {
-        title: 'South Panel',
-        region: 'south',
-        height: 50
-    }, {
-        title: 'Center Panel',
-        region: 'center',
-        split: true
-    }, {
-        title: 'East Panel',
-        region: 'east',
-        split: true
-    }]
-});
-
 var checkbox = new Checkbox({
     parent: document.body
+});
+
+var borderLayout = new BorderLayout({
+    parent: document.body,
+    width: 800,
+    height: 300,
+    items: [{
+        title: "North Panel",
+        region: "north",
+        height: 50
+    }, {
+        title: "West Panel",
+        region: "west",
+        width: 184
+        // split: true
+    }, {
+        title: "South Panel",
+        region: "south",
+        height: 50
+    }, {
+        title: "Center Panel",
+        region: "center"
+
+    }, {
+        title: "East Panel",
+        region: "east",
+        width: 184
+        // split: true,
+    }]
 });

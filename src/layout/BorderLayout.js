@@ -57,8 +57,10 @@ class BorderLayout {
     build() {
         let borderLayout = document.createElement("div");
 
-
         borderLayout.setAttribute("layout", "border-layout");
+        let width = this.options["width"], height = this.options["height"];
+        borderLayout.style.width = width ? width + "px" : null;
+        borderLayout.style.height = height ? height + "px" : null;
         borderLayout.classList.add("border-layout");
 
         let panels = {};
@@ -69,13 +71,14 @@ class BorderLayout {
 
             panel.setAttribute("title", item["title"]);
 
-            let text = document.createTextNode(item["title"]);
-            panel.appendChild(text);
+            // let text = document.createTextNode(item["title"]);
+            // panel.appendChild(text);
 
-            // let width = item["width"], height = item["height"];
-            // console.log("width: %d, height: %d", width, height);
-            // panel.style.width = width ? width : null;
-            // panel.style.height = height ? height : null;
+            let width = item["width"], height = item["height"];
+            console.log("width: %d, height: %d", width, height);
+            panel.style.width = width ? width + "px" : null;
+            panel.style.height = height ? height + "px" : null;
+            console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
 
             panels[item["region"]] = panel;
         });
@@ -127,15 +130,6 @@ class BorderLayout {
         } else {
             // document.body.appendChild(table);
         }
-
-        items.forEach(function (item, index, objs) {
-            let panel = panels[item["region"]];
-            let width = item["width"], height = item["height"];
-            console.log("width: %d, height: %d", width, height);
-            panel.style.width = width ? width : null;
-            panel.style.height = height ? height : null;
-            console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
-        });
 
         return borderLayout;
     }

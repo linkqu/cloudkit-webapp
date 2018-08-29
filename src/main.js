@@ -94,31 +94,35 @@ let table = new Table({
     ]
 });
 
-let borderLayout = new BorderLayout({
-    parent: document.body,
-    items: [{
-        title: 'North Panel',
-        region: 'north',
-        height: 500
-    }, {
-        title: 'West Panel',
-        region: 'west',
-        height: 50
-    }, {
-        title: 'South Panel',
-        region: 'south',
-        height: 50
-    }, {
-        title: 'Center Panel',
-        region: 'center',
-        split: true
-    }, {
-        title: 'East Panel',
-        region: 'east',
-        split: true
-    }]
-});
-
 let checkbox = new Checkbox({
     parent: document.body
+});
+
+let borderLayout = new BorderLayout({
+    parent: document.body,
+    width: 800,
+    height: 300,
+    items: [{
+        title: "North Panel",
+        region: "north",
+        height: 50
+    }, {
+        title: "West Panel",
+        region: "west",
+        width: 184
+        // split: true
+    }, {
+        title: "South Panel",
+        region: "south",
+        height: 50
+    }, {
+        title: "Center Panel",
+        region: "center",
+
+    }, {
+        title: "East Panel",
+        region: "east",
+        width: 184
+        // split: true,
+    }]
 });
