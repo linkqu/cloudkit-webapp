@@ -45,9 +45,6 @@ class BorderLayout {
      * @param options
      */
     constructor(options: JSON) {
-
-        // CENTER、EAST、WEST、NORTH、SOUTH
-
         // default setting
         this.defaultSetting = {};
         this.options = options;
@@ -59,45 +56,70 @@ class BorderLayout {
      */
     build() {
         let borderLayout = document.createElement("div");
+
+
         borderLayout.setAttribute("layout", "border-layout");
+        borderLayout.classList.add("border-layout");
 
-        let items = this.options['items'];
+        let panels = {};
+        let items = this.options["items"];
         items.forEach(function (item, index, objs) {
-            if(item["region"] === "north") {
-                let northPanel = document.createElement("div");
-                northPanel.setAttribute("region", item["region"]);
-                northPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(northPanel);
+            let panel = document.createElement("div");
+            panel.setAttribute("region", item["region"]);
+
+            panel.setAttribute("title", item["title"]);
+
+            let text = document.createTextNode(item["title"]);
+            panel.appendChild(text);
+
+            // let width = item["width"], height = item["height"];
+            // console.log("width: %d, height: %d", width, height);
+            // panel.style.width = width ? width : null;
+            // panel.style.height = height ? height : null;
+
+            panels[item["region"]] = panel;
+        });
+
+        // CENTER、EAST、WEST、NORTH、SOUTH
+        let northPanel = panels["north"], southPanel = panels["south"];
+        let westPanel = panels["west"], centerPanel = panels["center"], eastPanel = panels["east"];
+
+        if (northPanel) {
+            northPanel.classList.add("north");
+            borderLayout.appendChild(northPanel);
+        }
+
+        if (westPanel || eastPanel) {
+            let mainPanel = document.createElement("div");
+            mainPanel.classList.add("border-layout");
+            mainPanel.classList.add("has-side");
+            borderLayout.appendChild(mainPanel);
+
+            if (westPanel) {
+                westPanel.classList.add("west");
+                mainPanel.appendChild(westPanel);
             }
 
-            if(item["region"] === "south") {
-                let southPanel = document.createElement("div");
-                southPanel.setAttribute("region", item["region"]);
-                southPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(southPanel);
+            if (centerPanel) {
+                centerPanel.classList.add("center");
+                mainPanel.appendChild(centerPanel);
             }
 
-            if(item["region"] === "west") {
-                let westPanel = document.createElement("div");
-                westPanel.setAttribute("region", item["region"]);
-                westPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(westPanel);
+            if (eastPanel) {
+                eastPanel.classList.add("east");
+                mainPanel.appendChild(eastPanel);
             }
-
-            if(item["region"] === "center") {
-                let centerPanel = document.createElement("div");
-                centerPanel.setAttribute("region", item["region"]);
-                centerPanel.setAttribute("title", item["title"]);
+        } else {
+            if (centerPanel) {
+                centerPanel.classList.add("center");
                 borderLayout.appendChild(centerPanel);
             }
+        }
 
-            if(item["region"] === "east") {
-                let eastPanel = document.createElement("div");
-                eastPanel.setAttribute("region", item["region"]);
-                eastPanel.setAttribute("title", item["title"]);
-                borderLayout.appendChild(eastPanel);
-            }
-        });
+        if (southPanel) {
+            southPanel.classList.add("south");
+            borderLayout.appendChild(southPanel);
+        }
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
@@ -105,6 +127,15 @@ class BorderLayout {
         } else {
             // document.body.appendChild(table);
         }
+
+        items.forEach(function (item, index, objs) {
+            let panel = panels[item["region"]];
+            let width = item["width"], height = item["height"];
+            console.log("width: %d, height: %d", width, height);
+            panel.style.width = width ? width : null;
+            panel.style.height = height ? height : null;
+            console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
+        });
 
         return borderLayout;
     }

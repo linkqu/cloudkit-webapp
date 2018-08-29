@@ -36,7 +36,9 @@ import "./component/TextField.css"
 import {TextField} from "./component/TextField";
 import "./component/Table.css"
 import {Table} from "./component/Table";
+import "./layout/BorderLayout.css";
 import {BorderLayout} from "./layout/BorderLayout";
+import "./component/Checkbox.css";
 import {Checkbox} from "./component/Checkbox";
 // import pkg from "../package.json";
 
@@ -77,12 +79,12 @@ let table = new Table({
     parent: document.body,
     title: "Employee Information Table",
     columns: [
-        {index: "employee", text: "Employee Name", width: 75, sortable: false, renderer: function () {}},
+        {index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function () {}},
         {index: "sex", text: "Sex", width: 75, sortable: false, renderer: function () {}},
         {index: "age", text: "Age", width: 75, sortable: false, renderer: function () {}},
         {index: "mobile", text: "Mobile", width: 75, sortable: false, renderer: function () {}},
         {index: "email", text: "Email", width: 75, sortable: false, renderer: function () {}},
-        {index: "birthday", text: "Birthday Date", width: 75, sortable: false, renderer: function () {}}
+        {index: "birthday", text: "Birthday Date", width: 0, sortable: false, renderer: function () {}}
     ],
     data: [
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
@@ -97,7 +99,7 @@ let borderLayout = new BorderLayout({
     items: [{
         title: 'North Panel',
         region: 'north',
-        height: 50
+        height: 500
     }, {
         title: 'West Panel',
         region: 'west',

@@ -2032,7 +2032,7 @@ var TextField = function () {
     return TextField;
 }();
 
-var css$2 = ".table-wrapper {\n    box-sizing: border-box;\n    position: relative;\n    background-color: rgb(255, 255, 255);\n    overflow: hidden;\n    border-left: 1px solid rgb(221, 221, 221);\n    border-right: 1px solid rgb(221, 221, 221);\n    border-top: 1px solid rgb(229, 229, 229);\n}\n\n.table {\n    position: relative;\n    table-layout: fixed;\n    width: 100%;\n    border-collapse: separate;\n    box-sizing: border-box;\n    border-spacing: 0px;\n    margin: 0px;\n    padding: 0px;\n}\n\n.table th {\n    vertical-align: middle;\n    box-sizing: border-box;\n    min-height: 2rem;\n    padding-top: 7px;\n    padding-bottom: 7px;\n    background-color: #f7f7f7;\n    color: #333333;\n    border-right: 1px solid #dddddd;\n}\n\n.table tbody tr {\n    height: 33px;\n    color: #333333;\n    font-weight: normal;\n    box-sizing: border-box;\n}\n\n/*.table tr > td:first-child {*/\n    /*border-left: none;*/\n/*}*/\n\n/*.table tr > td:last-child {*/\n    /*border-right: none;*/\n/*}*/\n\n.table tr > td {\n    vertical-align: middle;\n    box-sizing: border-box;\n    border-right: 1px solid #dddddd;\n    border-bottom: 1px solid #e5e5e5;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n    padding: 0 0.5rem;\n    word-wrap: break-word;\n    cursor: text;\n    /*font-size: 0.875rem;*/\n    font-family: \"72\",Arial,Helvetica,sans-serif;\n    line-height: normal;\n    color: #333333;\n}\n\n.table tbody tr:nth-child(2n) td {\n    background-color: #f8f8f9\n}\n\n.table tbody tr:hover td {\n    background-color: #ebf7ff\n}\n";
+var css$2 = ".table-wrapper {\n    box-sizing: border-box;\n    position: relative;\n    background-color: rgb(255, 255, 255);\n    overflow: hidden;\n    border-left: 1px solid rgb(221, 221, 221);\n    border-right: 1px solid rgb(221, 221, 221);\n    border-top: 1px solid rgb(229, 229, 229);\n}\n\n.table {\n    position: relative;\n    table-layout: fixed;\n    width: 100%;\n    border-collapse: separate;\n    box-sizing: border-box;\n    border-spacing: 0;\n    margin: 0;\n    padding: 0;\n}\n\n.table tr th {\n    vertical-align: middle;\n    box-sizing: border-box;\n    min-height: 2rem;\n    padding-top: 7px;\n    padding-bottom: 7px;\n    background-color: #f7f7f7;\n    color: #333333;\n    border-right: 1px solid #dddddd;\n    text-overflow: ellipsis;\n}\n\n.table tr th:first-child {\n    border-left: none;\n}\n\n.table tr th:last-child {\n    border-right: none;\n}\n\n.table tbody tr {\n    height: 33px;\n    color: #333333;\n    font-weight: normal;\n    box-sizing: border-box;\n}\n\n.table tr td:first-child {\n    border-left: none;\n}\n\n.table tr td:last-child {\n    border-right: none;\n}\n\n.table tr td {\n    vertical-align: middle;\n    box-sizing: border-box;\n    border-right: 1px solid #dddddd;\n    border-bottom: 1px solid #e5e5e5;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n    padding: 0 0.5rem;\n    word-wrap: break-word;\n    cursor: text;\n    line-height: normal;\n    color: #333333;\n}\n\n.table tbody tr:first-child td {\n    border-top: 1px solid #e5e5e5;\n}\n\n.table tbody tr:nth-child(2n) td {\n    background-color: #f8f8f9\n}\n\n.table tbody tr:hover td {\n    background-color: #ebf7ff\n}\n";
 styleInject(css$2);
 
 /*
@@ -2100,6 +2100,7 @@ var Table = function () {
             table.classList.add("table-wrapper");
 
             var tableHeaderWrapper = document.createElement("div");
+            tableHeaderWrapper.classList.add("table-header");
             table.appendChild(tableHeaderWrapper);
             var tableHeader = document.createElement("table");
             tableHeader.classList.add("table");
@@ -2110,6 +2111,7 @@ var Table = function () {
             tableHeader.appendChild(tableHeaderThead);
 
             var tableContentWrapper = document.createElement("div");
+            tableContentWrapper.classList.add("table-content");
             table.appendChild(tableContentWrapper);
             var tableContent = document.createElement("table");
             tableContent.classList.add("table");
@@ -2180,6 +2182,9 @@ var Table = function () {
     return Table;
 }();
 
+var css$3 = ".border-layout {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -ms-flex-direction: column;\n    flex-direction: column;\n    -webkit-box-flex: 1;\n    -ms-flex: auto;\n    flex: auto;\n    background: #f5f7f9;\n}\n\n.border-layout .north, .border-layout .south {\n    -webkit-box-flex: 0;\n    -ms-flex: 0 0 auto;\n    flex: 0 0 auto;\n}\n\n.border-layout .north {\n    /*background: #7cbce9;*/\n    background: #515a6e;\n    color: #fff;\n    padding: 0 50px;\n    /*height: 64px;*/\n    /*line-height: 64px;*/\n}\n\n.border-layout .south {\n    /*background: #e3e91b;*/\n    background: #515a6e;\n    color: #fff;\n    padding: 0 50px;\n    /*height: 64px;*/\n    /*line-height: 64px;*/\n}\n\n.border-layout .has-side {\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -ms-flex-direction: row;\n    flex-direction: row;\n}\n\n.border-layout .west, .border-layout .east {\n    position: relative;\n    /*width: 200px;*/\n    /*min-width: 200px;*/\n    /*max-width: 200px;*/\n    /*flex: 0 0 200px;*/\n    /*background: #3a9fe8;*/\n    background: #515a6e;\n    color: #fff;\n    /*min-height: 120px;*/\n    /*line-height: 120px;*/\n    transition: all .2s ease-in-out;\n}\n\n.border-layout .has-side > .center {\n    overflow-x: hidden;\n    /*background: #0f8de9;*/\n}\n\n.border-layout .center {\n    -webkit-box-flex: 1;\n    -ms-flex: auto;\n    flex: auto;\n    /*min-height: 120px;*/\n    /*line-height: 120px;*/\n}\n";
+styleInject(css$3);
+
 /*
  * Copyright (c) 2018, Linkqu and/or its affiliates. All rights reserved.
  *
@@ -2227,8 +2232,6 @@ var BorderLayout = function () {
     function BorderLayout(options) {
         _classCallCheck(this, BorderLayout);
 
-        // CENTER、EAST、WEST、NORTH、SOUTH
-
         // default setting
         this.defaultSetting = {};
         this.options = options;
@@ -2244,50 +2247,87 @@ var BorderLayout = function () {
         key: "build",
         value: function build() {
             var borderLayout = document.createElement("div");
+
             borderLayout.setAttribute("layout", "border-layout");
+            borderLayout.classList.add("border-layout");
 
-            var items = this.options['items'];
+            var panels = {};
+            var items = this.options["items"];
             items.forEach(function (item, index, objs) {
-                if (item["region"] === "north") {
-                    var northPanel = document.createElement("div");
-                    northPanel.setAttribute("region", item["region"]);
-                    northPanel.setAttribute("title", item["title"]);
-                    borderLayout.appendChild(northPanel);
+                var panel = document.createElement("div");
+                panel.setAttribute("region", item["region"]);
+
+                panel.setAttribute("title", item["title"]);
+
+                var text = document.createTextNode(item["title"]);
+                panel.appendChild(text);
+
+                // let width = item["width"], height = item["height"];
+                // console.log("width: %d, height: %d", width, height);
+                // panel.style.width = width ? width : null;
+                // panel.style.height = height ? height : null;
+
+                panels[item["region"]] = panel;
+            });
+
+            // CENTER、EAST、WEST、NORTH、SOUTH
+            var northPanel = panels["north"],
+                southPanel = panels["south"];
+            var westPanel = panels["west"],
+                centerPanel = panels["center"],
+                eastPanel = panels["east"];
+
+            if (northPanel) {
+                northPanel.classList.add("north");
+                borderLayout.appendChild(northPanel);
+            }
+
+            if (westPanel || eastPanel) {
+                var mainPanel = document.createElement("div");
+                mainPanel.classList.add("border-layout");
+                mainPanel.classList.add("has-side");
+                borderLayout.appendChild(mainPanel);
+
+                if (westPanel) {
+                    westPanel.classList.add("west");
+                    mainPanel.appendChild(westPanel);
                 }
 
-                if (item["region"] === "south") {
-                    var southPanel = document.createElement("div");
-                    southPanel.setAttribute("region", item["region"]);
-                    southPanel.setAttribute("title", item["title"]);
-                    borderLayout.appendChild(southPanel);
+                if (centerPanel) {
+                    centerPanel.classList.add("center");
+                    mainPanel.appendChild(centerPanel);
                 }
 
-                if (item["region"] === "west") {
-                    var westPanel = document.createElement("div");
-                    westPanel.setAttribute("region", item["region"]);
-                    westPanel.setAttribute("title", item["title"]);
-                    borderLayout.appendChild(westPanel);
+                if (eastPanel) {
+                    eastPanel.classList.add("east");
+                    mainPanel.appendChild(eastPanel);
                 }
-
-                if (item["region"] === "center") {
-                    var centerPanel = document.createElement("div");
-                    centerPanel.setAttribute("region", item["region"]);
-                    centerPanel.setAttribute("title", item["title"]);
+            } else {
+                if (centerPanel) {
+                    centerPanel.classList.add("center");
                     borderLayout.appendChild(centerPanel);
                 }
+            }
 
-                if (item["region"] === "east") {
-                    var eastPanel = document.createElement("div");
-                    eastPanel.setAttribute("region", item["region"]);
-                    eastPanel.setAttribute("title", item["title"]);
-                    borderLayout.appendChild(eastPanel);
-                }
-            });
+            if (southPanel) {
+                southPanel.classList.add("south");
+                borderLayout.appendChild(southPanel);
+            }
 
             if (this.options["parent"]) {
                 // console.log(this.options["parent"]);
                 this.options["parent"].appendChild(borderLayout);
             }
+
+            items.forEach(function (item, index, objs) {
+                var panel = panels[item["region"]];
+                var width = item["width"],
+                    height = item["height"];
+                console.log("width: %d, height: %d", width, height);
+                panel.style.width = width ? width : null;
+                panel.style.height = height ? height : null;
+                console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
+            });
 
             return borderLayout;
         }
@@ -2295,6 +2335,9 @@ var BorderLayout = function () {
 
     return BorderLayout;
 }();
+
+var css$4 = "";
+styleInject(css$4);
 
 /*
  * Copyright (c) 2018, Linkqu and/or its affiliates. All rights reserved.
@@ -2439,7 +2482,7 @@ var table = new Table({
     // },
     parent: document.body,
     title: "Employee Information Table",
-    columns: [{ index: "employee", text: "Employee Name", width: 75, sortable: false, renderer: function renderer() {} }, { index: "sex", text: "Sex", width: 75, sortable: false, renderer: function renderer() {} }, { index: "age", text: "Age", width: 75, sortable: false, renderer: function renderer() {} }, { index: "mobile", text: "Mobile", width: 75, sortable: false, renderer: function renderer() {} }, { index: "email", text: "Email", width: 75, sortable: false, renderer: function renderer() {} }, { index: "birthday", text: "Birthday Date", width: 75, sortable: false, renderer: function renderer() {} }],
+    columns: [{ index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function renderer() {} }, { index: "sex", text: "Sex", width: 75, sortable: false, renderer: function renderer() {} }, { index: "age", text: "Age", width: 75, sortable: false, renderer: function renderer() {} }, { index: "mobile", text: "Mobile", width: 75, sortable: false, renderer: function renderer() {} }, { index: "email", text: "Email", width: 75, sortable: false, renderer: function renderer() {} }, { index: "birthday", text: "Birthday Date", width: 0, sortable: false, renderer: function renderer() {} }],
     data: [["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"], ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"]]
 });
 
@@ -2448,7 +2491,7 @@ var borderLayout = new BorderLayout({
     items: [{
         title: 'North Panel',
         region: 'north',
-        height: 50
+        height: 500
     }, {
         title: 'West Panel',
         region: 'west',

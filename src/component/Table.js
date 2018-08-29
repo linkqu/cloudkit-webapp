@@ -60,6 +60,7 @@ class Table {
         table.classList.add("table-wrapper");
 
         let tableHeaderWrapper = document.createElement("div");
+        tableHeaderWrapper.classList.add("table-header")
         table.appendChild(tableHeaderWrapper);
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
@@ -70,6 +71,7 @@ class Table {
         tableHeader.appendChild(tableHeaderThead);
 
         let tableContentWrapper = document.createElement("div");
+        tableContentWrapper.classList.add("table-content");
         table.appendChild(tableContentWrapper);
         let tableContent = document.createElement("table");
         tableContent.classList.add("table");
