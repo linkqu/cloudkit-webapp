@@ -46,7 +46,8 @@ let textField = new TextField({
     width: "200px",
     classes: ["text-field"],
     css: {
-        "fontSize": "12px"
+        "color": Color.RED[9]
     },
     parent: document.body
 });
+

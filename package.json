@@ -2,11 +2,10 @@
     "name": "cloudkit-webapp",
     "version": "0.0.1",
     "description": "My webapp",
-    "typings": "types/index.d.ts",
+    "typings": "",
     "files": [
         "src",
-        "dist/*.js",
-        "types/*.d.ts"
+        "dist/*.js"
     ],
     "scripts": {
         "flow": "flow",
@@ -16,11 +15,11 @@
         "start": "serve dist",
         "clean": "rimraf dist/*.js && rimraf node_modules"
     },
-    "author": "",
+    "author": "hongquanli",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+[git-url-of-your-project]"
+        "url": "git+[https://github.com/linkqu/cloudkit-webapp.git]"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
