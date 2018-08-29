@@ -2099,6 +2099,7 @@ var Table = function () {
             var table = document.createElement("div");
             table.classList.add("table-wrapper");
 
+            // Table Header
             var tableHeaderWrapper = document.createElement("div");
             tableHeaderWrapper.classList.add("table-header");
             table.appendChild(tableHeaderWrapper);
@@ -2110,6 +2111,7 @@ var Table = function () {
             var tableHeaderThead = document.createElement("thead");
             tableHeader.appendChild(tableHeaderThead);
 
+            // Table Content
             var tableContentWrapper = document.createElement("div");
             tableContentWrapper.classList.add("table-content");
             table.appendChild(tableContentWrapper);
@@ -2141,10 +2143,11 @@ var Table = function () {
                     tableHeaderTh.appendChild(text);
                     // tableContentTh.appendChild(document.createTextNode(""));
                     if (item["width"]) {
-                        // tableHeaderTh.setAttribute("width", item["width"]);
-                        // tableContentTh.setAttribute("width", item["width"]);
                         tableHeaderCol.setAttribute("width", item["width"]);
                         tableContentCol.setAttribute("width", item["width"]);
+
+                        // tableHeaderTh.setAttribute("width", item["width"]);
+                        // tableContentTh.setAttribute("width", item["width"]);
                     }
                     tableHeaderTr.appendChild(tableHeaderTh);
                     tableContentTr.appendChild(tableContentTh);

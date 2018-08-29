@@ -59,6 +59,7 @@ class Table {
         let table = document.createElement("div");
         table.classList.add("table-wrapper");
 
+        // Table Header
         let tableHeaderWrapper = document.createElement("div");
         tableHeaderWrapper.classList.add("table-header")
         table.appendChild(tableHeaderWrapper);
@@ -70,6 +71,7 @@ class Table {
         let tableHeaderThead = document.createElement("thead");
         tableHeader.appendChild(tableHeaderThead);
 
+        // Table Content
         let tableContentWrapper = document.createElement("div");
         tableContentWrapper.classList.add("table-content");
         table.appendChild(tableContentWrapper);
@@ -101,10 +103,11 @@ class Table {
                 tableHeaderTh.appendChild(text);
                 // tableContentTh.appendChild(document.createTextNode(""));
                 if (item["width"]) {
-                    // tableHeaderTh.setAttribute("width", item["width"]);
-                    // tableContentTh.setAttribute("width", item["width"]);
                     tableHeaderCol.setAttribute("width", item["width"]);
                     tableContentCol.setAttribute("width", item["width"]);
+
+                    // tableHeaderTh.setAttribute("width", item["width"]);
+                    // tableContentTh.setAttribute("width", item["width"]);
                 }
                 tableHeaderTr.appendChild(tableHeaderTh);
                 tableContentTr.appendChild(tableContentTh);
