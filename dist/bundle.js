@@ -2117,7 +2117,7 @@ var Table = function () {
             var tableContentColgroup = document.createElement("colgroup");
             tableContent.appendChild(tableContentColgroup);
             var tableContentThead = document.createElement("thead");
-            tableContent.appendChild(tableContentThead);
+            // tableContent.appendChild(tableContentThead);
             var tableContentTbody = document.createElement("tbody");
             tableContent.appendChild(tableContentTbody);
 

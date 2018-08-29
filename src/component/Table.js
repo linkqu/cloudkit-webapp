@@ -77,7 +77,7 @@ class Table {
         let tableContentColgroup = document.createElement("colgroup");
         tableContent.appendChild(tableContentColgroup);
         let tableContentThead = document.createElement("thead");
-        tableContent.appendChild(tableContentThead);
+        // tableContent.appendChild(tableContentThead);
         let tableContentTbody = document.createElement("tbody");
         tableContent.appendChild(tableContentTbody);
 
