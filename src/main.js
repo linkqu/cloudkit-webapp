@@ -29,9 +29,14 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Button} from "./component/Button";
 import {Color} from "./component/Color";
+import "./component/Button.css";
+import {Button} from "./component/Button";
+import "./component/TextField.css"
 import {TextField} from "./component/TextField";
+// import pkg from "../package.json";
+
+// console.log(`running version ${pkg.version}`);
 
 let button = new Button({
     text: "Button",
