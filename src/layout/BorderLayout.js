@@ -75,10 +75,10 @@ class BorderLayout {
             // panel.appendChild(text);
 
             let width = item["width"], height = item["height"];
-            console.log("width: %d, height: %d", width, height);
+            // console.log("width: %d, height: %d", width, height);
             panel.style.width = width ? width + "px" : null;
             panel.style.height = height ? height + "px" : null;
-            console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
+            // console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
 
             panels[item["region"]] = panel;
         });

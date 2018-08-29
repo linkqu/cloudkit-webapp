@@ -56,13 +56,16 @@ class Table {
      * build
      */
     build() {
-        let table = document.createElement("div");
-        table.classList.add("table-wrapper");
+        let tableWrapper = document.createElement("div");
+        let width = this.options["width"], height = this.options["height"];
+        tableWrapper.style.width = width ? width + "px" : null;
+        tableWrapper.style.height = height ? height + "px" : null;
+        tableWrapper.classList.add("table-wrapper");
 
         // Table Header
         let tableHeaderWrapper = document.createElement("div");
-        tableHeaderWrapper.classList.add("table-header")
-        table.appendChild(tableHeaderWrapper);
+        tableHeaderWrapper.classList.add("table-header");
+        tableWrapper.appendChild(tableHeaderWrapper);
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
         tableHeaderWrapper.appendChild(tableHeader);
@@ -73,8 +76,10 @@ class Table {
 
         // Table Content
         let tableContentWrapper = document.createElement("div");
+        tableContentWrapper.style.width = width ? width + "px" : null;
+        tableContentWrapper.style.height = height ? (height - 32) + "px" : null;
         tableContentWrapper.classList.add("table-content");
-        table.appendChild(tableContentWrapper);
+        tableWrapper.appendChild(tableContentWrapper);
         let tableContent = document.createElement("table");
         tableContent.classList.add("table");
         tableContentWrapper.appendChild(tableContent);
@@ -115,7 +120,7 @@ class Table {
         }
 
         let data = this.options['data'];
-        if (data) {
+        if (data && data.length > 0) {
             data.forEach(function (item, index, objs) {
                 let tableContentTr = document.createElement("tr");
                 item.forEach(function (item, index, objs) {
@@ -136,11 +141,11 @@ class Table {
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(table);
+            this.options["parent"].appendChild(tableWrapper);
         } else {
             // document.body.appendChild(table);
         }
-        return table;
+        return tableWrapper;
     }
 }
 

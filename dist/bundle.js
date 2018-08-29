@@ -2032,7 +2032,7 @@ var TextField = function () {
     return TextField;
 }();
 
-var css$2 = ".table-wrapper {\n    box-sizing: border-box;\n    position: relative;\n    background-color: rgb(255, 255, 255);\n    overflow: hidden;\n    border-left: 1px solid rgb(221, 221, 221);\n    border-right: 1px solid rgb(221, 221, 221);\n    border-top: 1px solid rgb(229, 229, 229);\n}\n\n.table {\n    position: relative;\n    table-layout: fixed;\n    width: 100%;\n    border-collapse: separate;\n    box-sizing: border-box;\n    border-spacing: 0;\n    margin: 0;\n    padding: 0;\n}\n\n.table tr th {\n    vertical-align: middle;\n    box-sizing: border-box;\n    min-height: 2rem;\n    padding-top: 7px;\n    padding-bottom: 7px;\n    background-color: #f7f7f7;\n    color: #333333;\n    border-right: 1px solid #dddddd;\n    text-overflow: ellipsis;\n}\n\n.table tr th:first-child {\n    border-left: none;\n}\n\n.table tr th:last-child {\n    border-right: none;\n}\n\n.table tbody tr {\n    height: 33px;\n    color: #333333;\n    font-weight: normal;\n    box-sizing: border-box;\n}\n\n.table tr td:first-child {\n    border-left: none;\n}\n\n.table tr td:last-child {\n    border-right: none;\n}\n\n.table tr td {\n    vertical-align: middle;\n    box-sizing: border-box;\n    border-right: 1px solid #dddddd;\n    border-bottom: 1px solid #e5e5e5;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n    padding: 0 0.5rem;\n    word-wrap: break-word;\n    cursor: text;\n    line-height: normal;\n    color: #333333;\n}\n\n.table tbody tr:first-child td {\n    border-top: 1px solid #e5e5e5;\n}\n\n.table tbody tr:nth-child(2n) td {\n    background-color: #f8f8f9\n}\n\n.table tbody tr:hover td {\n    background-color: #ebf7ff\n}\n";
+var css$2 = ".table-wrapper {\n    box-sizing: border-box;\n    position: relative;\n    background-color: #ffffff;\n    overflow: hidden;\n    border: 1px solid #dddddd;\n}\n\n.table-wrapper .table-header {\n    overflow-x: auto;\n    overflow-y: hidden;\n    border-bottom: 1px solid #dddddd;\n}\n\n.table-wrapper .table {\n    position: relative;\n    table-layout: fixed;\n    width: 100%;\n    border-collapse: separate;\n    box-sizing: border-box;\n    border-spacing: 0;\n    margin: 0;\n    padding: 0;\n}\n\n.table-wrapper .table tr th {\n    vertical-align: middle;\n    box-sizing: border-box;\n    min-height: 2rem;\n    padding-top: 7px;\n    padding-bottom: 7px;\n    background-color: #f7f7f7;\n    color: #333333;\n    border-right: 1px solid #dddddd;\n    text-overflow: ellipsis;\n}\n\n.table-wrapper .table tr th:first-child {\n    border-left: none;\n}\n\n.table-wrapper .table tr th:last-child {\n    border-right: none;\n}\n\n.table-wrapper .table tbody tr {\n    height: 33px;\n    color: #333333;\n    font-weight: normal;\n    box-sizing: border-box;\n}\n\n.table-wrapper .table tr td:first-child {\n    border-left: none;\n}\n\n.table-wrapper .table tr td:last-child {\n    border-right: none;\n}\n\n.table-wrapper .table tr td {\n    vertical-align: middle;\n    box-sizing: border-box;\n    border-right: 1px solid #dddddd;\n    border-bottom: 1px solid #e5e5e5;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n    padding: 0 0.5rem;\n    word-wrap: break-word;\n    cursor: text;\n    line-height: normal;\n    color: #333333;\n}\n\n.table-wrapper .table tbody tr:first-child td {\n    border-top: 1px solid #e5e5e5;\n}\n\n.table-wrapper .table tbody tr:nth-child(2n) td {\n    background-color: #f8f8f9\n}\n\n.table-wrapper .table tbody tr:hover td {\n    background-color: #ebf7ff\n}\n\n.table-wrapper .table-content {\n    overflow: auto;\n}\n";
 styleInject(css$2);
 
 /*
@@ -2096,13 +2096,17 @@ var Table = function () {
     _createClass(Table, [{
         key: "build",
         value: function build() {
-            var table = document.createElement("div");
-            table.classList.add("table-wrapper");
+            var tableWrapper = document.createElement("div");
+            var width = this.options["width"],
+                height = this.options["height"];
+            tableWrapper.style.width = width ? width + "px" : null;
+            tableWrapper.style.height = height ? height + "px" : null;
+            tableWrapper.classList.add("table-wrapper");
 
             // Table Header
             var tableHeaderWrapper = document.createElement("div");
             tableHeaderWrapper.classList.add("table-header");
-            table.appendChild(tableHeaderWrapper);
+            tableWrapper.appendChild(tableHeaderWrapper);
             var tableHeader = document.createElement("table");
             tableHeader.classList.add("table");
             tableHeaderWrapper.appendChild(tableHeader);
@@ -2113,8 +2117,10 @@ var Table = function () {
 
             // Table Content
             var tableContentWrapper = document.createElement("div");
+            tableContentWrapper.style.width = width ? width + "px" : null;
+            tableContentWrapper.style.height = height ? height - 32 + "px" : null;
             tableContentWrapper.classList.add("table-content");
-            table.appendChild(tableContentWrapper);
+            tableWrapper.appendChild(tableContentWrapper);
             var tableContent = document.createElement("table");
             tableContent.classList.add("table");
             tableContentWrapper.appendChild(tableContent);
@@ -2155,7 +2161,7 @@ var Table = function () {
             }
 
             var data = this.options['data'];
-            if (data) {
+            if (data && data.length > 0) {
                 data.forEach(function (item, index, objs) {
                     var tableContentTr = document.createElement("tr");
                     item.forEach(function (item, index, objs) {
@@ -2176,9 +2182,9 @@ var Table = function () {
 
             if (this.options["parent"]) {
                 // console.log(this.options["parent"]);
-                this.options["parent"].appendChild(table);
+                this.options["parent"].appendChild(tableWrapper);
             }
-            return table;
+            return tableWrapper;
         }
     }]);
 
@@ -2271,10 +2277,10 @@ var BorderLayout = function () {
 
                 var width = item["width"],
                     height = item["height"];
-                console.log("width: %d, height: %d", width, height);
+                // console.log("width: %d, height: %d", width, height);
                 panel.style.width = width ? width + "px" : null;
                 panel.style.height = height ? height + "px" : null;
-                console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
+                // console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
 
                 panels[item["region"]] = panel;
             });
@@ -2474,7 +2480,8 @@ var textField = new TextField({
 });
 
 var table = new Table({
-    // width: "200px",
+    width: 800,
+    height: 120,
     // classes: [""],
     // css: {
     //     "color": Color.RED[9]

@@ -71,7 +71,8 @@ let textField = new TextField({
 
 
 let table = new Table({
-    // width: "200px",
+    width: 800,
+    height: 120,
     // classes: [""],
     // css: {
     //     "color": Color.RED[9]
