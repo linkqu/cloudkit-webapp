@@ -59,13 +59,13 @@ class Table {
         let table = document.createElement("div");
         table.classList.add("table-wrapper");
 
-        // <colgroup><col width="317"><col width="317"><col width="318"></colgroup>
-
         let tableHeaderWrapper = document.createElement("div");
         table.appendChild(tableHeaderWrapper);
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
         tableHeaderWrapper.appendChild(tableHeader);
+        let tableHeaderColgroup = document.createElement("colgroup");
+        tableHeader.appendChild(tableHeaderColgroup);
         let tableHeaderThead = document.createElement("thead");
         tableHeader.appendChild(tableHeaderThead);
 
@@ -74,6 +74,8 @@ class Table {
         let tableContent = document.createElement("table");
         tableContent.classList.add("table");
         tableContentWrapper.appendChild(tableContent);
+        let tableContentColgroup = document.createElement("colgroup");
+        tableContent.appendChild(tableContentColgroup);
         let tableContentThead = document.createElement("thead");
         tableContent.appendChild(tableContentThead);
         let tableContentTbody = document.createElement("tbody");
@@ -87,14 +89,20 @@ class Table {
             tableContentThead.appendChild(tableContentTr);
 
             columns.forEach(function (item, index, objs) {
+                let tableHeaderCol = document.createElement("col");
+                tableHeaderColgroup.appendChild(tableHeaderCol);
+                let tableContentCol = document.createElement("col");
+                tableContentColgroup.appendChild(tableContentCol);
                 let tableHeaderTh = document.createElement("th");
                 let tableContentTh = document.createElement("th");
                 let text = document.createTextNode(item["text"]);
                 tableHeaderTh.appendChild(text);
                 // tableContentTh.appendChild(document.createTextNode(""));
                 if (item["width"]) {
-                    tableHeaderTh.setAttribute("width", item["width"]);
-                    tableContentTh.setAttribute("width", item["width"]);
+                    // tableHeaderTh.setAttribute("width", item["width"]);
+                    // tableContentTh.setAttribute("width", item["width"]);
+                    tableHeaderCol.setAttribute("width", item["width"]);
+                    tableContentCol.setAttribute("width", item["width"]);
                 }
                 tableHeaderTr.appendChild(tableHeaderTh);
                 tableContentTr.appendChild(tableContentTh);
