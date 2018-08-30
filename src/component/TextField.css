@@ -1,4 +1,4 @@
-.text-field {
+.widget-text-field {
     display: inline-block;
     width: 100%;
     line-height: 1.5;
@@ -11,38 +11,38 @@
     vertical-align: middle;
     position: relative;
     cursor: text;
-    transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+    transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
 }
 
-.text-field::-moz-placeholder {
+.widget-text-field::-moz-placeholder {
     color: #c5c8ce;
     opacity: 1
 }
 
-.text-field:-ms-input-placeholder {
+.widget-text-field:-ms-input-placeholder {
     color: #c5c8ce
 }
 
-.text-field::-webkit-input-placeholder {
+.widget-text-field::-webkit-input-placeholder {
     color: #c5c8ce
 }
 
-.text-field:focus,.ivu-input:hover {
+.widget-text-field:focus, .ivu-input:hover {
     border-color: #57a3f3
 }
 
-.text-field:focus {
+.widget-text-field:focus {
     outline: 0;
     box-shadow: 0 0 0 2px #2D8CF0
 }
 
-.text-field[disabled],fieldset[disabled] .text-field {
+.widget-text-field[disabled], fieldset[disabled] .text-field {
     background-color: #f3f3f3;
     opacity: 1;
     cursor: not-allowed;
     color: #ccc
 }
 
-.text-field[disabled]:hover,fieldset[disabled] .text-field:hover {
+.widget-text-field[disabled]:hover, fieldset[disabled] .text-field:hover {
     border-color: #e3e5e8
 }

@@ -30,7 +30,7 @@
  */
 
 /**
- * Radio
+ * Checkbox
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
@@ -56,7 +56,43 @@ class Radio {
      * build
      */
     build() {
+        let widgetRadio = document.createElement("div");
+        widgetRadio.classList.add("widget-radio");
 
+        let input = document.createElement("input");
+        input.setAttribute("type", "radio");
+        input.id = this.options["id"] ? this.options["id"] : null;
+        input.name = this.options["name"] ? this.options["name"] : null;
+        widgetRadio.appendChild(input);
+
+        let label = document.createElement("label");
+        label.setAttribute("for", input.id);
+        widgetRadio.appendChild(label);
+
+        let radioCircle = document.createElement("span");
+        radioCircle.classList.add("radio-rectangle");
+        radioCircle.innerHTML =
+            "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"14\" height=\"14\">" +
+            "    <path d=\"M256 152c-57.2 0-104 46.8-104 104s46.8 104 104 104 104-46.8 104-104-46.8-104-104-104zm0-104C141.601 48 48 141.601 48 256s93.601 208 208 208 208-93.601 208-208S370.399 48 256 48zm0 374.4c-91.518 0-166.4-74.883-166.4-166.4S164.482 89.6 256 89.6 422.4 164.482 422.4 256 347.518 422.4 256 422.4z\"" +
+            "        fill=\"none\"" +
+            "    />" +
+            "</svg>";
+        label.appendChild(radioCircle);
+
+        let textSpan = document.createElement("span");
+        textSpan.appendChild(document.createTextNode(
+            " " + (this.options["text"] ? this.options["text"] : "")
+        ));
+        label.appendChild(textSpan);
+
+        if (this.options["parent"]) {
+            // console.log(this.options["parent"]);
+            this.options["parent"].appendChild(widgetRadio);
+        } else {
+            // document.body.appendChild(table);
+        }
+
+        return widgetRadio;
     }
 }
 

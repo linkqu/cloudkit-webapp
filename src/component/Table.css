@@ -1,4 +1,4 @@
-.table-wrapper {
+.widget-table {
     box-sizing: border-box;
     position: relative;
     background-color: #ffffff;
@@ -6,13 +6,13 @@
     border: 1px solid #dddddd;
 }
 
-.table-wrapper .table-header {
+.widget-table .table-header {
     overflow-x: auto;
     overflow-y: hidden;
     border-bottom: 1px solid #dddddd;
 }
 
-.table-wrapper .table {
+.widget-table .table {
     position: relative;
     table-layout: fixed;
     width: 100%;
@@ -23,7 +23,7 @@
     padding: 0;
 }
 
-.table-wrapper .table tr th {
+.widget-table .table tr th {
     vertical-align: middle;
     box-sizing: border-box;
     min-height: 2rem;
@@ -35,30 +35,30 @@
     text-overflow: ellipsis;
 }
 
-.table-wrapper .table tr th:first-child {
+.widget-table .table tr th:first-child {
     border-left: none;
 }
 
-.table-wrapper .table tr th:last-child {
+.widget-table .table tr th:last-child {
     border-right: none;
 }
 
-.table-wrapper .table tbody tr {
+.widget-table .table tbody tr {
     height: 33px;
     color: #333333;
     font-weight: normal;
     box-sizing: border-box;
 }
 
-.table-wrapper .table tr td:first-child {
+.widget-table .table tr td:first-child {
     border-left: none;
 }
 
-.table-wrapper .table tr td:last-child {
+.widget-table .table tr td:last-child {
     border-right: none;
 }
 
-.table-wrapper .table tr td {
+.widget-table .table tr td {
     vertical-align: middle;
     box-sizing: border-box;
     border-right: 1px solid #dddddd;
@@ -73,18 +73,18 @@
     color: #333333;
 }
 
-.table-wrapper .table tbody tr:first-child td {
+.widget-table .table tbody tr:first-child td {
     border-top: 1px solid #e5e5e5;
 }
 
-.table-wrapper .table tbody tr:nth-child(2n) td {
+.widget-table .table tbody tr:nth-child(2n) td {
     background-color: #f8f8f9
 }
 
-.table-wrapper .table tbody tr:hover td {
+.widget-table .table tbody tr:hover td {
     background-color: #ebf7ff
 }
 
-.table-wrapper .table-content {
+.widget-table .table-content {
     overflow: auto;
 }

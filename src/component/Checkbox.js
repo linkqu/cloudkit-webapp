@@ -56,17 +56,42 @@ class Checkbox {
      * build
      */
     build() {
+        let widgetCheckbox = document.createElement("div");
+        widgetCheckbox.classList.add("widget-checkbox");
+
         let input = document.createElement("input");
-        input.setAttribute("type", "checkbox")
+        input.setAttribute("type", "checkbox");
+        input.id = "option";
+        widgetCheckbox.appendChild(input);
+
+        let label = document.createElement("label");
+        label.setAttribute("for", "option");
+        widgetCheckbox.appendChild(label);
+
+        let checkboxRectangle = document.createElement("span");
+        checkboxRectangle.classList.add("checkbox-rectangle");
+        checkboxRectangle.innerHTML =
+            "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"14\" height=\"14\">" +
+            "    <path d=\"M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z\"" +
+            "        fill=\"none\"" +
+            "    />" +
+            "</svg>";
+        label.appendChild(checkboxRectangle);
+
+        let textSpan = document.createElement("span");
+        textSpan.appendChild(document.createTextNode(
+            " " + (this.options["text"] ? this.options["text"] : "")
+        ));
+        label.appendChild(textSpan);
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(input);
+            this.options["parent"].appendChild(widgetCheckbox);
         } else {
             // document.body.appendChild(table);
         }
 
-        return input;
+        return widgetCheckbox;
     }
 }
 

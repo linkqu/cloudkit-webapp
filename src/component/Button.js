@@ -69,7 +69,7 @@ class Button {
         let fragment = document.createDocumentFragment();
 
         // Add default class
-        button.classList.add("button");
+        button.classList.add("widget-button");
 
         // Add type class
         if (this.options["type"]) {

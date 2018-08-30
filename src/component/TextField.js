@@ -53,7 +53,7 @@ class TextField {
             height: 0,
             css: [],
             // parent: ,
-            classes: ["text-field"]
+            classes: ["widget-text-field"]
         };
         this.options = options;
         this.build();
@@ -72,7 +72,7 @@ class TextField {
         }
 
         // Add default class
-        input.classList.add("text-field");
+        input.classList.add("widget-text-field");
 
         // Add class
         let classes = this.options["classes"];

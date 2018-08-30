@@ -40,6 +40,8 @@ import "./layout/BorderLayout.css";
 import {BorderLayout} from "./layout/BorderLayout";
 import "./component/Checkbox.css";
 import {Checkbox} from "./component/Checkbox";
+import "./component/Radio.css";
+import {Radio} from "./component/Radio";
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
@@ -96,6 +98,21 @@ let table = new Table({
 });
 
 let checkbox = new Checkbox({
+    text: "Checkbox",
+    parent: document.body
+});
+
+let radio = new Radio({
+    id: "t1",
+    name: "type",
+    text: "Radio",
+    parent: document.body
+});
+
+new Radio({
+    id: "t2",
+    name: "type",
+    text: "Radio",
     parent: document.body
 });
 
