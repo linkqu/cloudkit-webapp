@@ -10,7 +10,7 @@
     "scripts": {
         "flow": "flow",
         "build:rp": "rollup -c",
-        "build:wp": "webpack",
+        "build:wp": "webpack -c -w",
         "watch": "rollup -c -w",
         "dev": "npm-run-all --parallel start watch",
         "start": "serve dist",
