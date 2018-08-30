@@ -1,23 +1,23 @@
 // rollup.config.js
-import resolve from 'rollup-plugin-node-resolve';
-import postcss from 'rollup-plugin-postcss';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
-import replace from 'rollup-plugin-replace';
-import {eslint} from 'rollup-plugin-eslint';
-import {uglify} from 'rollup-plugin-uglify';
+import resolve from "rollup-plugin-node-resolve";
+import postcss from "rollup-plugin-postcss";
+import babel from "rollup-plugin-babel";
+import commonjs from "rollup-plugin-commonjs";
+import json from "rollup-plugin-json";
+import replace from "rollup-plugin-replace";
+import {eslint} from "rollup-plugin-eslint";
+import {uglify} from "rollup-plugin-uglify";
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-    input: 'src/main.js',
+    input: "src/main.js",
     output: {
-        file: 'dist/bundle.js',
+        file: "dist/bundle.js",
         // 输出的文件类型 (amd, cjs, es, iife, umd)
-        format: 'cjs',
+        format: "cjs",
         sourceMap: true
     },
     plugins: [
@@ -28,46 +28,46 @@ export default {
             browser: true
         }),
         postcss({
-            extensions: ['.css'],
+            extensions: [".css"],
 
         }),
         babel({
             babelrc: false,
             presets: [
-                "es2015-rollup", "stage-2", "flow",
-                // "es2016",
-                // "stage-3",
-                ["env", {
+                // "@babel/preset-stage-2",
+                // "@babel/preset-stage-3",
+                ["@babel/preset-env", {
                     "targets": {
                         "chrome": 68
                     },
                     "modules": false,
                     "loose": true
-                }]
+                }],
+                "@babel/preset-flow"
             ],
             plugins: [
-                'external-helpers',
-                'babel-polyfill',
-                'babel-plugin-transform-runtime'
+                "@babel/plugin-external-helpers",
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-proposal-class-properties"
             ],
             runtimeHelpers: true,
             externalHelpers: true,
-            exclude: 'node_modules/**'
+            exclude: "node_modules/**"
         }),
         // converts date-fns to ES modules
         commonjs(),
         json(),
         eslint({
             exclude: [
-                'node_modules/**',
-                'dist/**'
+                "node_modules/**",
+                "dist/**"
             ]
         }),
         replace({
-            ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-        }),
+            ENV: JSON.stringify(process.env.NODE_ENV || "development"),
+        })
         // minify, but only in production
-        // (process.env.NODE_ENV === 'production' && uglify()),
-        production && uglify()
+        // (process.env.NODE_ENV === "production" && uglify()),
+        // production && uglify()
     ]
 };
