@@ -52,13 +52,27 @@
             -moz-osx-font-smoothing: grayscale
         }
 
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        label svg path {
+            transition: stroke-dashoffset .4s linear;
+        }
+
+        input[type="checkbox"]:checked ~ label svg path {
+            stroke-dashoffset: 0;
+        }
     </style>
     <!--<link rel="stylesheet" media="all" href="bundle.css"/>-->
 </head>
 <body>
-
+<div>
+    <input type="checkbox" id="option"/>
+    <label for="option">Click me <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"></svg></label>
+</div>
 <!--<script src="bundle.js" type="text/javascript" charset="utf-8"></script>-->
-<script type="application/javascript">
+<script type="text/javascript">
 
 </script>
 </body>

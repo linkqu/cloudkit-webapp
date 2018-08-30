@@ -9,8 +9,8 @@
     ],
     "scripts": {
         "flow": "flow",
-        "build": "rollup -c",
-        "build:all": "webpack",
+        "build:rp": "rollup -c",
+        "build:wp": "webpack",
         "watch": "rollup -c -w",
         "dev": "npm-run-all --parallel start watch",
         "start": "serve dist",
