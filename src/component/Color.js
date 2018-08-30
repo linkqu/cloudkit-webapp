@@ -73,7 +73,7 @@ class Color {
     /** Magenta/法式洋红明快、感性 */
     static MAGENTA = ["#fff0f6", "#ffd6e7", "#ffadd2", "#ff85c0", "#f759ab", "#eb2f96", "#c41d7f", "#9e1068", "#780650", "#520339"];
 
-    static colors = new Map([["", ""], ["", "#7FFFAA"]]);
+    // static colors = new Map([["", ""], ["", "#7FFFAA"]]);
 }
 
 export {Color};
