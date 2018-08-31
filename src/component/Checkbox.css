@@ -14,9 +14,7 @@
     position: relative;
     border: 1px solid #dcdee2;
     /*border-radius: 2px;*/
-    background-color: #fff;
-
-    transition: border-color .2s ease-in-out,background-color .2s ease-in-out,box-shadow .2s ease-in-out;
+    background-color: #ffffff;
 }
 
 .widget-checkbox label {
@@ -28,12 +26,23 @@
 }
 
 .widget-checkbox label svg path {
-    transition: stroke-dashoffset .4s linear;
+    transition: fill .4s linear;
+}
+
+.widget-checkbox input[type="checkbox"]:checked {
+    border-color: #2d8cf0;
 }
 
 .widget-checkbox input[type="checkbox"]:checked ~ label svg path {
-    border-color: #2d8cf0;
     fill: #2d8cf0;
+}
+
+.widget-checkbox input[type="checkbox"]:disabled {
+    border-color: #dcdee2;
+}
+
+.widget-checkbox input[type="checkbox"]:disabled ~ label svg path {
+    fill: #dcdee2;
 }
 
 .widget-checkbox input[type="checkbox"] ~ label svg path {

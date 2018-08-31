@@ -4,6 +4,8 @@
     background-color: #ffffff;
     overflow: hidden;
     border: 1px solid #dddddd;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .widget-table .table-header {

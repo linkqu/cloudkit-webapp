@@ -98,6 +98,14 @@ let table = new Table({
 });
 
 let checkbox = new Checkbox({
+    id: "c1",
+    text: "Checkbox",
+    parent: document.body
+});
+
+new Checkbox({
+    id: "c2",
+    disabled: true,
     text: "Checkbox",
     parent: document.body
 });
@@ -112,6 +120,14 @@ let radio = new Radio({
 new Radio({
     id: "t2",
     name: "type",
+    text: "Radio",
+    parent: document.body
+});
+
+new Radio({
+    id: "t3",
+    disabled: true,
+    name: "test",
     text: "Radio",
     parent: document.body
 });

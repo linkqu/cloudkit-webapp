@@ -1,22 +1,16 @@
-.widget-radio {
-
-}
-
 .widget-radio input[type="radio"] {
     display: none;
 }
 
-.widget-radio .radio-rectangle {
+.widget-radio label .radio-circle {
     display: inline-block;
     width: 14px;
     height: 14px;
     vertical-align: middle;
     position: relative;
     border: 1px solid #dcdee2;
-    border-radius: 7px;
-    background-color: #fff;
-
-    transition: border-color .2s ease-in-out,background-color .2s ease-in-out,box-shadow .2s ease-in-out;
+    border-radius: 8px;
+    background-color: #ffffff;
 }
 
 .widget-radio label {
@@ -28,12 +22,30 @@
 }
 
 .widget-radio label svg path {
-    transition: stroke-dashoffset .4s linear;
+    transition: fill .4s linear;
+}
+
+.widget-radio input[type="radio"]:checked {
+    border-color: #2d8cf0;
+}
+
+.widget-radio input[type="radio"]:checked ~ label .radio-circle,
+.widget-radio input[type="radio"]:disabled ~ label .radio-circle {
+    width: 16px;
+    height: 16px;
+    border: 0;
 }
 
 .widget-radio input[type="radio"]:checked ~ label svg path {
-    border-color: #ffffff;
     fill: #2d8cf0;
+}
+
+.widget-radio input[type="radio"]:disabled {
+    border-color: #dcdee2;
+}
+
+.widget-radio input[type="radio"]:disabled ~ label svg path {
+    fill: #dcdee2;
 }
 
 .widget-radio input[type="radio"] ~ label svg path {

@@ -61,11 +61,15 @@ class Checkbox {
 
         let input = document.createElement("input");
         input.setAttribute("type", "checkbox");
-        input.id = "option";
+        input.id = this.options["id"] ? this.options["id"] : null;
+        input.name = this.options["name"] ? this.options["name"] : null;
+        if(this.options["disabled"] != undefined) {
+            input.setAttribute("disabled", this.options["disabled"]);
+        }
         widgetCheckbox.appendChild(input);
 
         let label = document.createElement("label");
-        label.setAttribute("for", "option");
+        label.setAttribute("for", input.id);
         widgetCheckbox.appendChild(label);
 
         let checkboxRectangle = document.createElement("span");

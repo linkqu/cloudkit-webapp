@@ -60,7 +60,7 @@ class Table {
         let width = this.options["width"], height = this.options["height"];
         tableWrapper.style.width = width ? width + "px" : null;
         tableWrapper.style.height = height ? height + "px" : null;
-        tableWrapper.classList.add("table-wrapper");
+        tableWrapper.classList.add("widget-table");
 
         // Table Header
         let tableHeaderWrapper = document.createElement("div");
