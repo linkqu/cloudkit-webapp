@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<link rel="shortcut icon" type="image/x-icon" href="//">-->
-    <!--<link rel="mask-icon" type="" href="//">-->
     <style type="text/css">
-    .accordion-label {
+    .accordion-title {
         font-weight: 700;
         position: relative;
         padding: 0.5em 1em;
@@ -16,13 +14,13 @@
         transition: background-color 0.15s ease-in-out;
     }
 
-    .accordion-input:checked + label,
-    .accordion-label:hover {
+    .accordion-checkbox:checked + label,
+    .accordion-title:hover {
         background-color: #999;
     }
 
-    .accordion-label:after,
-    .accordion-input:checked + .accordion-label:after {
+    .accordion-title:after,
+    .accordion-checkbox:checked + .accordion-title:after {
         content: "+";
         position: absolute;
         display: block;
@@ -36,16 +34,16 @@
         transition: background-color 0.15s ease-in-out;
     }
 
-    .accordion-label:hover:after,
-    .accordion-input:checked + .accordion-label:after {
+    .accordion-title:hover:after,
+    .accordion-checkbox:checked + .accordion-title:after {
         background-color: #b5b5b5;
     }
 
-    .accordion-input:checked + .accordion-label:after {
+    .accordion-checkbox:checked + .accordion-title:after {
         content: "-";
     }
 
-    .accordion-input {
+    .accordion-checkbox {
         display: none;
     }
 
@@ -58,32 +56,32 @@
         overflow: hidden;
     }
 
-    .accordion-input:checked ~ .accordion-text,
-    .accordion-child .accordion-input:checked ~ .accordion-child-text {
+    .accordion-checkbox:checked ~ .accordion-text,
+    .accordion-child .accordion-checkbox:checked ~ .accordion-child-text {
         opacity: 1;
         height: auto;
     }
 
-    .accordion-child .accordion-label {
+    .accordion-child .accordion-title {
         background: none;
         font-weight: 600;
         padding: 0.5em 2em;
         margin-bottom: 0;
     }
 
-    .accordion-child .accordion-label:checked {
+    .accordion-child .accordion-title:checked {
         background: none;
         border-bottom: 1px solid whitesmoke;
     }
 
-    .accordion-child .accordion-label:after,
-    .accordion-child .accordion-input:checked + .accordion-label:after {
+    .accordion-child .accordion-title:after,
+    .accordion-child .accordion-checkbox:checked + .accordion-title:after {
         left: 0;
         background: none;
     }
 
-    .accordion-child .accordion-input:checked + label,
-    .accordion-child .accordion-label:hover {
+    .accordion-child .accordion-checkbox:checked + label,
+    .accordion-child .accordion-title:hover {
         background: none;
     }
 
@@ -100,14 +98,14 @@
 
     <div class="accordion">
 
-        <input class="accordion-input" id="accordion-1" name="accordion-1" type="checkbox">
-        <label class="accordion-label" for="accordion-1">Item 1</label>
+        <input class="accordion-checkbox" id="accordion-1" name="accordion-1" type="checkbox">
+        <label class="accordion-title" for="accordion-1">Item 1</label>
 
         <article class="accordion-text">
 
             <div class="accordion-child">
-                <input class="accordion-input" id="accordion-2" name="accordion-2" type="checkbox">
-                <label class="accordion-label" for="accordion-2">I love jelly donuts</label>
+                <input class="accordion-checkbox" id="accordion-2" name="accordion-2" type="checkbox">
+                <label class="accordion-title" for="accordion-2">I love jelly donuts</label>
                 <article class="accordion-child-text">
                     <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its
                         own off-spring; worse than the Persian host who murdered his own guests; sparing not the
@@ -127,8 +125,8 @@
             </div>
 
             <div class="accordion-child">
-                <input class="accordion-input" id="accordion-3" name="accordion-3" type="checkbox">
-                <label class="accordion-label" for="accordion-3">They are so delicious</label>
+                <input class="accordion-checkbox" id="accordion-3" name="accordion-3" type="checkbox">
+                <label class="accordion-title" for="accordion-3">They are so delicious</label>
                 <article class="accordion-child-text">
                     <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
                         working for an imminent examination, and he heard nothing of the arrival until Saturday morning.
@@ -151,14 +149,14 @@
 
     <div class="accordion">
 
-        <input class="accordion-input" id="accordion-4" name="accordion-4" type="checkbox">
-        <label class="accordion-label" for="accordion-4">Item 2</label>
+        <input class="accordion-checkbox" id="accordion-4" name="accordion-4" type="checkbox">
+        <label class="accordion-title" for="accordion-4">Item 2</label>
 
         <article class="accordion-text">
 
             <div class="accordion-child">
-                <input class="accordion-input" id="accordion-5" name="accordion-5" type="checkbox">
-                <label class="accordion-label" for="accordion-5">I also love regular donuts</label>
+                <input class="accordion-checkbox" id="accordion-5" name="accordion-5" type="checkbox">
+                <label class="accordion-title" for="accordion-5">I also love regular donuts</label>
                 <article class="accordion-child-text">
                     <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its
                         own off-spring; worse than the Persian host who murdered his own guests; sparing not the
@@ -178,8 +176,8 @@
             </div>
 
             <div class="accordion-child">
-                <input class="accordion-input" id="accordion-6" name="accordion-6" type="checkbox">
-                <label class="accordion-label" for="accordion-6">They are also delicious</label>
+                <input class="accordion-checkbox" id="accordion-6" name="accordion-6" type="checkbox">
+                <label class="accordion-title" for="accordion-6">They are also delicious</label>
                 <article class="accordion-child-text">
                     <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
                         working for an imminent examination, and he heard nothing of the arrival until Saturday morning.
