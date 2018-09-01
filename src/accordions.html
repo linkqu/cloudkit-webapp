@@ -50,7 +50,7 @@
     }
 
     .accordion-text,
-    .accordion-sub-text {
+    .accordion-child-text {
         opacity: 0;
         height: 0;
         /*margin-bottom: 0.5em;*/
@@ -59,35 +59,35 @@
     }
 
     .accordion-input:checked ~ .accordion-text,
-    .accordion-sub .accordion-input:checked ~ .accordion-sub-text {
+    .accordion-child .accordion-input:checked ~ .accordion-child-text {
         opacity: 1;
         height: auto;
     }
 
-    .accordion-sub .accordion-label {
+    .accordion-child .accordion-label {
         background: none;
         font-weight: 600;
         padding: 0.5em 2em;
         margin-bottom: 0;
     }
 
-    .accordion-sub .accordion-label:checked {
+    .accordion-child .accordion-label:checked {
         background: none;
         border-bottom: 1px solid whitesmoke;
     }
 
-    .accordion-sub .accordion-label:after,
-    .accordion-sub .accordion-input:checked + .accordion-label:after {
+    .accordion-child .accordion-label:after,
+    .accordion-child .accordion-input:checked + .accordion-label:after {
         left: 0;
         background: none;
     }
 
-    .accordion-sub .accordion-input:checked + label,
-    .accordion-sub .accordion-label:hover {
+    .accordion-child .accordion-input:checked + label,
+    .accordion-child .accordion-label:hover {
         background: none;
     }
 
-    .accordion-sub-text {
+    .accordion-child-text {
         padding: 0 1em 0 2em;
     }
     </style>
@@ -105,10 +105,10 @@
 
         <article class="accordion-text">
 
-            <div class="accordion-sub">
+            <div class="accordion-child">
                 <input class="accordion-input" id="accordion-2" name="accordion-2" type="checkbox">
                 <label class="accordion-label" for="accordion-2">I love jelly donuts</label>
-                <article class="accordion-sub-text">
+                <article class="accordion-child-text">
                     <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its
                         own off-spring; worse than the Persian host who murdered his own guests; sparing not the
                         creatures which itself hath spawned. Like a savage tigress that tossing in the jungle overlays
@@ -126,10 +126,10 @@
                 </article>
             </div>
 
-            <div class="accordion-sub">
+            <div class="accordion-child">
                 <input class="accordion-input" id="accordion-3" name="accordion-3" type="checkbox">
                 <label class="accordion-label" for="accordion-3">They are so delicious</label>
-                <article class="accordion-sub-text">
+                <article class="accordion-child-text">
                     <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
                         working for an imminent examination, and he heard nothing of the arrival until Saturday morning.
                         The morning papers on Saturday contained, in addition to lengthy special articles on the planet
@@ -156,10 +156,10 @@
 
         <article class="accordion-text">
 
-            <div class="accordion-sub">
+            <div class="accordion-child">
                 <input class="accordion-input" id="accordion-5" name="accordion-5" type="checkbox">
                 <label class="accordion-label" for="accordion-5">I also love regular donuts</label>
-                <article class="accordion-sub-text">
+                <article class="accordion-child-text">
                     <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its
                         own off-spring; worse than the Persian host who murdered his own guests; sparing not the
                         creatures which itself hath spawned. Like a savage tigress that tossing in the jungle overlays
@@ -177,10 +177,10 @@
                 </article>
             </div>
 
-            <div class="accordion-sub">
+            <div class="accordion-child">
                 <input class="accordion-input" id="accordion-6" name="accordion-6" type="checkbox">
                 <label class="accordion-label" for="accordion-6">They are also delicious</label>
-                <article class="accordion-sub-text">
+                <article class="accordion-child-text">
                     <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
                         working for an imminent examination, and he heard nothing of the arrival until Saturday morning.
                         The morning papers on Saturday contained, in addition to lengthy special articles on the planet
