@@ -3,91 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <style type="text/css">
-    .accordion-title {
-        font-weight: 700;
-        position: relative;
-        padding: 0.5em 1em;
-        /*margin-bottom: 0.5em;*/
-        display: block;
-        cursor: pointer;
-        background-color: whiteSmoke;
-        transition: background-color 0.15s ease-in-out;
-    }
+        .widget-accordion .accordion-item .title {
+            font-weight: 700;
+            position: relative;
+            padding: 0.5em 1em;
+            /*margin-bottom: 0.5em;*/
+            display: block;
+            cursor: pointer;
+            background-color: whiteSmoke;
+            transition: background-color 0.15s ease-in-out;
+        }
 
-    .accordion-checkbox:checked + label,
-    .accordion-title:hover {
-        background-color: #999;
-    }
+        .widget-accordion .accordion-item .checkbox:checked + label,
+        .widget-accordion .accordion-item .title:hover {
+            background-color: #999;
+        }
 
-    .accordion-title:after,
-    .accordion-checkbox:checked + .accordion-title:after {
-        content: "+";
-        position: absolute;
-        display: block;
-        right: 0;
-        top: 0;
-        width: 2em;
-        height: 100%;
-        line-height: 2.25em;
-        text-align: center;
-        background-color: #e5e5e5;
-        transition: background-color 0.15s ease-in-out;
-    }
+        .widget-accordion .accordion-item .title:after,
+        .widget-accordion .accordion-item .checkbox:checked + .title:after {
+            content: "+";
+            position: absolute;
+            display: block;
+            right: 0;
+            top: 0;
+            width: 2em;
+            height: 100%;
+            line-height: 2.25em;
+            text-align: center;
+            background-color: #e5e5e5;
+            transition: background-color 0.15s ease-in-out;
+        }
 
-    .accordion-title:hover:after,
-    .accordion-checkbox:checked + .accordion-title:after {
-        background-color: #b5b5b5;
-    }
+        .widget-accordion .accordion-item .title:hover:after,
+        .widget-accordion .accordion-item .item-checkbox:checked + .title:after {
+            background-color: #b5b5b5;
+        }
 
-    .accordion-checkbox:checked + .accordion-title:after {
-        content: "-";
-    }
+        .widget-accordion .accordion-item .item-checkbox:checked + .title:after {
+            content: "-";
+        }
 
-    .accordion-checkbox {
-        display: none;
-    }
+        .widget-accordion .accordion-item .item-checkbox {
+            display: none;
+        }
 
-    .accordion-text,
-    .accordion-child-text {
-        opacity: 0;
-        height: 0;
-        /*margin-bottom: 0.5em;*/
-        transition: opacity 0.5s ease-in-out;
-        overflow: hidden;
-    }
+        .widget-accordion .accordion-item .text,
+        .widget-accordion .accordion-item .child-item-text {
+            opacity: 0;
+            height: 0;
+            /*margin-bottom: 0.5em;*/
+            transition: opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
 
-    .accordion-checkbox:checked ~ .accordion-text,
-    .accordion-child .accordion-checkbox:checked ~ .accordion-child-text {
-        opacity: 1;
-        height: auto;
-    }
+        .widget-accordion .accordion-item .item-checkbox:checked ~ .text,
+        .widget-accordion .accordion-item .child-item .item-checkbox:checked ~ .child-item-text {
+            opacity: 1;
+            height: auto;
+        }
 
-    .accordion-child .accordion-title {
-        background: none;
-        font-weight: 600;
-        padding: 0.5em 2em;
-        margin-bottom: 0;
-    }
+        .widget-accordion .accordion-item .child-item .title {
+            background: none;
+            font-weight: 600;
+            padding: 0.5em 2em;
+            margin-bottom: 0;
+        }
 
-    .accordion-child .accordion-title:checked {
-        background: none;
-        border-bottom: 1px solid whitesmoke;
-    }
+        .widget-accordion .accordion-item .child-item .title:checked {
+            background: none;
+            border-bottom: 1px solid whitesmoke;
+        }
 
-    .accordion-child .accordion-title:after,
-    .accordion-child .accordion-checkbox:checked + .accordion-title:after {
-        left: 0;
-        background: none;
-    }
+        .widget-accordion .accordion-item .child-item .title:after,
+        .widget-accordion .accordion-item .child-item .item-checkbox:checked + .title:after {
+            left: 0;
+            background: none;
+        }
 
-    .accordion-child .accordion-checkbox:checked + label,
-    .accordion-child .accordion-title:hover {
-        background: none;
-    }
+        .widget-accordion .accordion-item .child-item .item-checkbox:checked + label,
+        .widget-accordion .accordion-item .child-item .title:hover {
+            background: none;
+        }
 
-    .accordion-child-text {
-        padding: 0 1em 0 2em;
-    }
+        .widget-accordion .accordion-item .child-item-text {
+            padding: 0 1em 0 2em;
+        }
     </style>
 </head>
 <body>
@@ -96,107 +96,131 @@
     <h1>CSS Accordions</h1>
     <h3>Because we can.</h3>
 
-    <div class="accordion">
+    <div class="widget-accordion">
+        <div class="accordion-item">
 
-        <input class="accordion-checkbox" id="accordion-1" name="accordion-1" type="checkbox">
-        <label class="accordion-title" for="accordion-1">Item 1</label>
+            <input class="item-checkbox" id="accordion-1" name="accordion-1" type="checkbox">
+            <label class="title" for="accordion-1">Item 1</label>
 
-        <article class="accordion-text">
+            <article class="text">
 
-            <div class="accordion-child">
-                <input class="accordion-checkbox" id="accordion-2" name="accordion-2" type="checkbox">
-                <label class="accordion-title" for="accordion-2">I love jelly donuts</label>
-                <article class="accordion-child-text">
-                    <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its
-                        own off-spring; worse than the Persian host who murdered his own guests; sparing not the
-                        creatures which itself hath spawned. Like a savage tigress that tossing in the jungle overlays
-                        her own cubs, so the sea dashes even the mightiest whales against the rocks, and leaves them
-                        there side by side with the split wrecks of ships. No mercy, no power but its own controls it.
-                        Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean
-                        overruns the globe.</p>
+                <div class="child-item">
+                    <input class="item-checkbox" id="accordion-2" name="accordion-2" type="checkbox">
+                    <label class="title" for="accordion-2">I love jelly donuts</label>
+                    <article class="child-item-text">
+                        <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to
+                            its
+                            own off-spring; worse than the Persian host who murdered his own guests; sparing not the
+                            creatures which itself hath spawned. Like a savage tigress that tossing in the jungle
+                            overlays
+                            her own cubs, so the sea dashes even the mightiest whales against the rocks, and leaves them
+                            there side by side with the split wrecks of ships. No mercy, no power but its own controls
+                            it.
+                            Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean
+                            overruns the globe.</p>
 
-                    <p>Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent
-                        for the most part, and treacherously hidden beneath the loveliest tints of azure. Consider also
-                        the devilish brilliance and beauty of many of its most remorseless tribes, as the dainty
-                        embellished shape of many species of sharks. Consider, once more, the universal cannibalism of
-                        the sea; all whose creatures prey upon each other, carrying on eternal war since the world
-                        began.</p>
-                </article>
-            </div>
+                        <p>Consider the subtleness of the sea; how its most dreaded creatures glide under water,
+                            unapparent
+                            for the most part, and treacherously hidden beneath the loveliest tints of azure. Consider
+                            also
+                            the devilish brilliance and beauty of many of its most remorseless tribes, as the dainty
+                            embellished shape of many species of sharks. Consider, once more, the universal cannibalism
+                            of
+                            the sea; all whose creatures prey upon each other, carrying on eternal war since the world
+                            began.</p>
+                    </article>
+                </div>
 
-            <div class="accordion-child">
-                <input class="accordion-checkbox" id="accordion-3" name="accordion-3" type="checkbox">
-                <label class="accordion-title" for="accordion-3">They are so delicious</label>
-                <article class="accordion-child-text">
-                    <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
-                        working for an imminent examination, and he heard nothing of the arrival until Saturday morning.
-                        The morning papers on Saturday contained, in addition to lengthy special articles on the planet
-                        Mars, on life in the planets, and so forth, a brief and vaguely worded telegram, all the more
-                        striking for its brevity.</p>
+                <div class="child-item">
+                    <input class="item-checkbox" id="accordion-3" name="accordion-3" type="checkbox">
+                    <label class="title" for="accordion-3">They are so delicious</label>
+                    <article class="child-item-text">
+                        <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
+                            working for an imminent examination, and he heard nothing of the arrival until Saturday
+                            morning.
+                            The morning papers on Saturday contained, in addition to lengthy special articles on the
+                            planet
+                            Mars, on life in the planets, and so forth, a brief and vaguely worded telegram, all the
+                            more
+                            striking for its brevity.</p>
 
-                    <p>The Martians, alarmed by the approach of a crowd, had killed a number of people with a
-                        quick-firing gun, so the story ran. The telegram concluded with the words: "Formidable as they
-                        seem to be, the Martians have not moved from the pit into which they have fallen, and, indeed,
-                        seem incapable of doing so. Probably this is due to the relative strength of the earth's
-                        gravitational energy." On that last text their leader-writer expanded very comfortingly.</p>
-                </article>
-            </div>
-        </article>
-        <!--/accordion-text-->
+                        <p>The Martians, alarmed by the approach of a crowd, had killed a number of people with a
+                            quick-firing gun, so the story ran. The telegram concluded with the words: "Formidable as
+                            they
+                            seem to be, the Martians have not moved from the pit into which they have fallen, and,
+                            indeed,
+                            seem incapable of doing so. Probably this is due to the relative strength of the earth's
+                            gravitational energy." On that last text their leader-writer expanded very comfortingly.</p>
+                    </article>
+                </div>
+            </article>
+            <!--/text-->
+        </div>
+        <!--/accordion-->
+
+
+        <div class="accordion-item">
+
+            <input class="item-checkbox" id="accordion-4" name="accordion-4" type="checkbox">
+            <label class="title" for="accordion-4">Item 2</label>
+
+            <article class="text">
+
+                <div class="child-item">
+                    <input class="item-checkbox" id="accordion-5" name="accordion-5" type="checkbox">
+                    <label class="title" for="accordion-5">I also love regular donuts</label>
+                    <article class="child-item-text">
+                        <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to
+                            its
+                            own off-spring; worse than the Persian host who murdered his own guests; sparing not the
+                            creatures which itself hath spawned. Like a savage tigress that tossing in the jungle
+                            overlays
+                            her own cubs, so the sea dashes even the mightiest whales against the rocks, and leaves them
+                            there side by side with the split wrecks of ships. No mercy, no power but its own controls
+                            it.
+                            Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean
+                            overruns the globe.</p>
+
+                        <p>Consider the subtleness of the sea; how its most dreaded creatures glide under water,
+                            unapparent
+                            for the most part, and treacherously hidden beneath the loveliest tints of azure. Consider
+                            also
+                            the devilish brilliance and beauty of many of its most remorseless tribes, as the dainty
+                            embellished shape of many species of sharks. Consider, once more, the universal cannibalism
+                            of
+                            the sea; all whose creatures prey upon each other, carrying on eternal war since the world
+                            began.</p>
+                    </article>
+                </div>
+
+                <div class="child-item">
+                    <input class="item-checkbox" id="accordion-6" name="accordion-6" type="checkbox">
+                    <label class="title" for="accordion-6">They are also delicious</label>
+                    <article class="child-item-text">
+                        <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
+                            working for an imminent examination, and he heard nothing of the arrival until Saturday
+                            morning.
+                            The morning papers on Saturday contained, in addition to lengthy special articles on the
+                            planet
+                            Mars, on life in the planets, and so forth, a brief and vaguely worded telegram, all the
+                            more
+                            striking for its brevity.</p>
+
+                        <p>The Martians, alarmed by the approach of a crowd, had killed a number of people with a
+                            quick-firing gun, so the story ran. The telegram concluded with the words: "Formidable as
+                            they
+                            seem to be, the Martians have not moved from the pit into which they have fallen, and,
+                            indeed,
+                            seem incapable of doing so. Probably this is due to the relative strength of the earth's
+                            gravitational energy." On that last text their leader-writer expanded very comfortingly.</p>
+                    </article>
+                </div>
+
+            </article>
+            <!--/text-->
+        </div>
+        <!--/accordion-->
     </div>
-    <!--/accordion-->
-
-
-    <div class="accordion">
-
-        <input class="accordion-checkbox" id="accordion-4" name="accordion-4" type="checkbox">
-        <label class="accordion-title" for="accordion-4">Item 2</label>
-
-        <article class="accordion-text">
-
-            <div class="accordion-child">
-                <input class="accordion-checkbox" id="accordion-5" name="accordion-5" type="checkbox">
-                <label class="accordion-title" for="accordion-5">I also love regular donuts</label>
-                <article class="accordion-child-text">
-                    <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its
-                        own off-spring; worse than the Persian host who murdered his own guests; sparing not the
-                        creatures which itself hath spawned. Like a savage tigress that tossing in the jungle overlays
-                        her own cubs, so the sea dashes even the mightiest whales against the rocks, and leaves them
-                        there side by side with the split wrecks of ships. No mercy, no power but its own controls it.
-                        Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean
-                        overruns the globe.</p>
-
-                    <p>Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent
-                        for the most part, and treacherously hidden beneath the loveliest tints of azure. Consider also
-                        the devilish brilliance and beauty of many of its most remorseless tribes, as the dainty
-                        embellished shape of many species of sharks. Consider, once more, the universal cannibalism of
-                        the sea; all whose creatures prey upon each other, carrying on eternal war since the world
-                        began.</p>
-                </article>
-            </div>
-
-            <div class="accordion-child">
-                <input class="accordion-checkbox" id="accordion-6" name="accordion-6" type="checkbox">
-                <label class="accordion-title" for="accordion-6">They are also delicious</label>
-                <article class="accordion-child-text">
-                    <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
-                        working for an imminent examination, and he heard nothing of the arrival until Saturday morning.
-                        The morning papers on Saturday contained, in addition to lengthy special articles on the planet
-                        Mars, on life in the planets, and so forth, a brief and vaguely worded telegram, all the more
-                        striking for its brevity.</p>
-
-                    <p>The Martians, alarmed by the approach of a crowd, had killed a number of people with a
-                        quick-firing gun, so the story ran. The telegram concluded with the words: "Formidable as they
-                        seem to be, the Martians have not moved from the pit into which they have fallen, and, indeed,
-                        seem incapable of doing so. Probably this is due to the relative strength of the earth's
-                        gravitational energy." On that last text their leader-writer expanded very comfortingly.</p>
-                </article>
-            </div>
-
-        </article>
-        <!--/accordion-text-->
-    </div>
-    <!--/accordion-->
 </section>
 </body>
 </html>
