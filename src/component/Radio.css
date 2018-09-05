@@ -35,7 +35,7 @@
 }
 
 .widget-radio label svg path {
-    /*transition: fill .4s linear;*/
+    transition: fill .4s linear;
 }
 
 .widget-radio input[type="radio"]:checked {
