@@ -10,7 +10,9 @@
     position: relative;
     border: 1px solid #dcdee2;
     border-radius: 8px;
-    background-color: #ffffff;
+    /*background: #ffffff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBkPSJNMjU2IDE1MmMtNTcuMiAwLTEwNCA0Ni44LTEwNCAxMDRzNDYuOCAxMDQgMTA0IDEwNCAxMDQtNDYuOCAxMDQtMTA0LTQ2LjgtMTA0LTEwNC0xMDR6bTAtMTA0QzE0MS42MDEgNDggNDggMTQxLjYwMSA0OCAyNTZzOTMuNjAxIDIwOCAyMDggMjA4IDIwOC05My42MDEgMjA4LTIwOFMzNzAuMzk5IDQ4IDI1NiA0OHptMCAzNzQuNGMtOTEuNTE4IDAtMTY2LjQtNzQuODgzLTE2Ni40LTE2Ni40UzE2NC40ODIgODkuNiAyNTYgODkuNiA0MjIuNCAxNjQuNDgyIDQyMi40IDI1NiAzNDcuNTE4IDQyMi40IDI1NiA0MjIuNHoiLz48L3N2Zz4=");*/
+    /*background: #ffffff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 152c-57.2 0-104 46.8-104 104s46.8 104 104 104 104-46.8 104-104-46.8-104-104-104zm0-104C141.601 48 48 141.601 48 256s93.601 208 208 208 208-93.601 208-208S370.399 48 256 48zm0 374.4c-91.518 0-166.4-74.883-166.4-166.4S164.482 89.6 256 89.6 422.4 164.482 422.4 256 347.518 422.4 256 422.4z' fill='none' /></svg>");*/
+    /*background: transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 48C141.601 48 48 141.601 48 256s93.601 208 208 208 208-93.601 208-208S370.399 48 256 48zm0 374.399c-91.518 0-166.399-74.882-166.399-166.399S164.482 89.6 256 89.6 422.4 164.482 422.4 256 347.518 422.399 256 422.399z' fill='#2d8cf0' /></svg>");*/
 }
 
 .widget-radio label {
@@ -21,8 +23,19 @@
     user-select: none;
 }
 
+.widget-radio label svg {
+    vertical-align: text-bottom;
+    display: inline-block;
+    /*vertical-align: text-top;*/
+    fill: currentColor;
+}
+
+.widget-radio label svg {
+    visibility: hidden;
+}
+
 .widget-radio label svg path {
-    transition: fill .4s linear;
+    /*transition: fill .4s linear;*/
 }
 
 .widget-radio input[type="radio"]:checked {
@@ -34,6 +47,11 @@
     width: 16px;
     height: 16px;
     border: 0;
+}
+
+.widget-radio input[type="radio"]:checked ~ label svg,
+.widget-radio input[type="radio"]:disabled ~ label svg {
+    visibility: visible;
 }
 
 .widget-radio input[type="radio"]:checked ~ label svg path {

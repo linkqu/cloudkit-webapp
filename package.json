@@ -10,8 +10,9 @@
     "scripts": {
         "flow": "flow",
         "build:rp": "rollup -c",
-        "build:wp": "webpack -c -w",
-        "watch": "rollup -c -w",
+        "build:wp": "webpack -c",
+        "watch:wp": "webpack -c -w",
+        "watch:rp": "rollup -c -w",
         "dev": "npm-run-all --parallel start watch",
         "start": "serve dist",
         "clean": "rimraf dist/*.js && rimraf node_modules"

@@ -74,11 +74,11 @@ class Radio {
 
         let radioCircle = document.createElement("span");
         radioCircle.classList.add("radio-circle");
-        radioCircle.innerHTML =
-            "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"16\" height=\"16\">" +
-            "    <path d=\"M256 152c-57.2 0-104 46.8-104 104s46.8 104 104 104 104-46.8 104-104-46.8-104-104-104zm0-104C141.601 48 48 141.601 48 256s93.601 208 208 208 208-93.601 208-208S370.399 48 256 48zm0 374.4c-91.518 0-166.4-74.883-166.4-166.4S164.482 89.6 256 89.6 422.4 164.482 422.4 256 347.518 422.4 256 422.4z\"" +
-            "        fill=\"none\"" +
-            "    />" +
+        radioCircle.innerHTML = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"" +
+            " viewBox=\"0 0 16 16\">" +
+            "<path fill=\"#040000\" d=\"M8,4C5.8,4,4,5.8,4,8s1.8,4,4,4s4-1.8,4-4S10.2,4,8,4z M8,0C3.6,0,0,3.6,0,8c0,4.4,3.6,8,8,8" +
+            "c4.4,0,8-3.6,8-8C16,3.6,12.4,0,8,0z M8,14.4c-3.52,0-6.4-2.881-6.4-6.4c0-3.52,2.88-6.4,6.4-6.4c3.52,0,6.4,2.88,6.4,6.4" +
+            "C14.4,11.52,11.52,14.4,8,14.4z\"/>" +
             "</svg>";
         label.appendChild(radioCircle);
 
