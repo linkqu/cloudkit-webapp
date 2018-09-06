@@ -83,13 +83,13 @@ class Table {
         tableWrapper.appendChild(tableContentWrapper);
         tableContentWrapper.addEventListener("scroll", function (e) {
             /*
-            console.log("offsetLeft: s%, offsetTop: s%", tableContentWrapper.offsetLeft, tableContentWrapper.offsetTop);
-            console.log("scrollX: s%, scrollY: s%", window.scrollX, window.scrollY);
-            console.log("pageXOffset: s%, pageYOffset: s%", window.pageXOffset, window.pageYOffset);
-            console.log("offsetWidth: s%, offsetHeight: s%", tableContentWrapper.offsetWidth, tableContentWrapper.offsetHeight);
-            console.log("scrollWidth: s%, scrollHeight: s%", tableContentWrapper.scrollWidth, tableContentWrapper.scrollHeight);
-            console.log("clientWidth: s%, clientHeight: s%", tableContentWrapper.clientWidth, tableContentWrapper.clientHeight);
-            console.log("scrollLeft: s%, scrollTop: s%", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
+            console.log("offsetLeft: %s, offsetTop: %s", tableContentWrapper.offsetLeft, tableContentWrapper.offsetTop);
+            console.log("scrollX: %s, scrollY: %s", window.scrollX, window.scrollY);
+            console.log("pageXOffset: %s, pageYOffset: %s", window.pageXOffset, window.pageYOffset);
+            console.log("offsetWidth: %s, offsetHeight: %s", tableContentWrapper.offsetWidth, tableContentWrapper.offsetHeight);
+            console.log("scrollWidth: %s, scrollHeight: %s", tableContentWrapper.scrollWidth, tableContentWrapper.scrollHeight);
+            console.log("clientWidth: %s, clientHeight: %s", tableContentWrapper.clientWidth, tableContentWrapper.clientHeight);
+            console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
             let scrollWidth = tableContentWrapper.scrollWidth;
