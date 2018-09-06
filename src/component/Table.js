@@ -64,8 +64,8 @@ class Table {
 
         // Table Header
         let tableHeaderWrapper = document.createElement("div");
-        tableHeaderWrapper.classList.add("table-header");
         tableHeaderWrapper.style.width = width ? width + "px" : null;
+        tableHeaderWrapper.classList.add("table-header");
         tableWrapper.appendChild(tableHeaderWrapper);
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
@@ -77,8 +77,7 @@ class Table {
 
         // Table Content
         let tableContentWrapper = document.createElement("div");
-        tableContentWrapper.style.width = width ? width + "px" : null;
-        tableContentWrapper.style.height = height ? (height - 30) + "px" : null;
+        tableContentWrapper.style.width = width? width + "px" : null;
         tableContentWrapper.classList.add("table-content");
         tableWrapper.appendChild(tableContentWrapper);
         tableContentWrapper.addEventListener("scroll", function (e) {
@@ -188,6 +187,10 @@ class Table {
         } else {
             // document.body.appendChild(table);
         }
+
+        // console.debug(tableHeaderWrapper.clientHeight);
+        tableContentWrapper.style.height = height? (height - tableHeaderWrapper.clientHeight) + "px" : null;
+
         return tableWrapper;
     }
 }
