@@ -73,8 +73,8 @@ let textField = new TextField({
 
 
 let table = new Table({
-    width: 800,
-    height: 120,
+    width: 1024,
+    height: 200,
     // classes: [""],
     // css: {
     //     "color": Color.RED[9]
@@ -90,6 +90,11 @@ let table = new Table({
         {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: function () {}}
     ],
     data: [
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+        ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
@@ -134,7 +139,7 @@ new Radio({
 
 let borderLayout = new BorderLayout({
     parent: document.body,
-    width: 800,
+    width: 1024,
     height: 300,
     items: [{
         title: "North Panel",
