@@ -29,7 +29,7 @@
     transition: fill .4s linear;
 }
 
-.widget-checkbox input[type="checkbox"]:checked {
+.widget-checkbox input[type="checkbox"]:checked ~ label .checkbox-rectangle {
     border-color: #2d8cf0;
 }
 

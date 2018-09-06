@@ -65,6 +65,7 @@ class Table {
         // Table Header
         let tableHeaderWrapper = document.createElement("div");
         tableHeaderWrapper.classList.add("table-header");
+        tableHeaderWrapper.style.width = width ? width + "px" : null;
         tableWrapper.appendChild(tableHeaderWrapper);
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
@@ -77,9 +78,39 @@ class Table {
         // Table Content
         let tableContentWrapper = document.createElement("div");
         tableContentWrapper.style.width = width ? width + "px" : null;
-        tableContentWrapper.style.height = height ? (height - 32) + "px" : null;
+        tableContentWrapper.style.height = height ? (height - 30) + "px" : null;
         tableContentWrapper.classList.add("table-content");
         tableWrapper.appendChild(tableContentWrapper);
+        tableContentWrapper.addEventListener("scroll", function (e) {
+            /*
+            console.log("offsetLeft: s%, offsetTop: s%", tableContentWrapper.offsetLeft, tableContentWrapper.offsetTop);
+            console.log("scrollX: s%, scrollY: s%", window.scrollX, window.scrollY);
+            console.log("pageXOffset: s%, pageYOffset: s%", window.pageXOffset, window.pageYOffset);
+            console.log("offsetWidth: s%, offsetHeight: s%", tableContentWrapper.offsetWidth, tableContentWrapper.offsetHeight);
+            console.log("scrollWidth: s%, scrollHeight: s%", tableContentWrapper.scrollWidth, tableContentWrapper.scrollHeight);
+            console.log("clientWidth: s%, clientHeight: s%", tableContentWrapper.clientWidth, tableContentWrapper.clientHeight);
+            console.log("scrollLeft: s%, scrollTop: s%", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
+            */
+
+            let scrollWidth = tableContentWrapper.scrollWidth;
+            let scrollHeight = tableContentWrapper.scrollHeight;
+
+            if(scrollWidth && scrollHeight){
+                if(!tableHeader.querySelector('.table-patch')){
+                    // 补丁元素
+                    let patchElement = document.createElement("th");
+                    patchElement.classList.add("table-patch");
+                    // patchElement.width = tableContent.scrollWidth - tableHeader.scrollWidth;
+                    patchElement.width = 17;
+                    tableHeader.querySelector('tr').appendChild(patchElement);
+                }
+            } else {
+                tableHeader.querySelector('.table-patch').remove();
+            }
+
+            tableHeaderWrapper.scrollTo(tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
+        });
+
         let tableContent = document.createElement("table");
         tableContent.classList.add("table");
         tableContentWrapper.appendChild(tableContent);
@@ -103,7 +134,10 @@ class Table {
                 let tableContentCol = document.createElement("col");
                 tableContentColgroup.appendChild(tableContentCol);
                 let tableHeaderTh = document.createElement("th");
+                tableHeaderTh.setAttribute("title", item["text"]);
                 let tableContentTh = document.createElement("th");
+                tableHeaderTr.appendChild(tableHeaderTh);
+                tableContentTr.appendChild(tableContentTh);
                 let text = document.createTextNode(item["text"]);
                 tableHeaderTh.appendChild(text);
                 // tableContentTh.appendChild(document.createTextNode(""));
@@ -114,9 +148,18 @@ class Table {
                     // tableHeaderTh.setAttribute("width", item["width"]);
                     // tableContentTh.setAttribute("width", item["width"]);
                 }
-                tableHeaderTr.appendChild(tableHeaderTh);
-                tableContentTr.appendChild(tableContentTh);
+
             });
+
+            // let tableHeaderCol = document.createElement("col");
+            // // tableHeaderCol.setAttribute("width", 0);
+            // tableHeaderColgroup.appendChild(tableHeaderCol);
+            // let tableContentCol = document.createElement("col");
+            // tableContentColgroup.appendChild(tableContentCol);
+            // let tableHeaderTh = document.createElement("th");
+            // tableHeaderTr.appendChild(tableHeaderTh);
+            // let tableContentTh = document.createElement("th");
+            // tableContentTr.appendChild(tableContentTh);
         }
 
         let data = this.options['data'];

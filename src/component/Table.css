@@ -2,16 +2,13 @@
     box-sizing: border-box;
     position: relative;
     background-color: #ffffff;
-    overflow: hidden;
     border: 1px solid #dddddd;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .widget-table .table-header {
-    overflow-x: auto;
-    overflow-y: hidden;
     border-bottom: 1px solid #dddddd;
+    overflow: hidden;
 }
 
 .widget-table .table {
@@ -35,6 +32,8 @@
     color: #333333;
     border-right: 1px solid #dddddd;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .widget-table .table tr th:first-child {
@@ -88,5 +87,7 @@
 }
 
 .widget-table .table-content {
+    box-sizing: border-box;
+    position: relative;
     overflow: auto;
 }

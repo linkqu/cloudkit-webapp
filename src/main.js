@@ -85,9 +85,9 @@ let table = new Table({
         {index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function () {}},
         {index: "sex", text: "Sex", width: 75, sortable: false, renderer: function () {}},
         {index: "age", text: "Age", width: 75, sortable: false, renderer: function () {}},
-        {index: "mobile", text: "Mobile", width: 75, sortable: false, renderer: function () {}},
-        {index: "email", text: "Email", width: 75, sortable: false, renderer: function () {}},
-        {index: "birthday", text: "Birthday Date", width: 0, sortable: false, renderer: function () {}}
+        {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: function () {}},
+        {index: "email", text: "Email", width: 800, sortable: false, renderer: function () {}},
+        {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: function () {}}
     ],
     data: [
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
