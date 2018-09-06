@@ -56,6 +56,8 @@ class Table {
      * build
      */
     build() {
+        let scrollWidth = this.getScrollWidth();
+
         let tableWrapper = document.createElement("div");
         let width = this.options["width"], height = this.options["height"];
         tableWrapper.style.width = width ? width + "px" : null;
@@ -80,7 +82,7 @@ class Table {
 
         // Table Content
         let tableContentWrapper = document.createElement("div");
-        tableContentWrapper.style.width = width? width + "px" : null;
+        tableContentWrapper.style.width = width ? width + "px" : null;
         tableContentWrapper.classList.add("table-content");
         tableWrapper.appendChild(tableContentWrapper);
         tableContentWrapper.addEventListener("scroll", function (e) {
@@ -94,20 +96,28 @@ class Table {
             console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
-            let scrollWidth = tableContentWrapper.scrollWidth;
-            let scrollHeight = tableContentWrapper.scrollHeight;
+            let scrollWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
+            let scrollHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
+            console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
 
-            if(scrollWidth && scrollHeight){
-                if(!tableHeader.querySelector('.table-patch')){
+            if (scrollWidth && scrollHeight) {
+                if (!tableHeader.querySelector('.table-patch')) {
+                    // let patchWidth = tableHeader.scrollWidth - scrollWidth;
+                    // let patchHeight = tableHeader.scrollHeight - scrollHeight;
+                    // console.log("patch width: %d, patch height: %d", patchWidth, patchHeight);
+
                     // 补丁元素
                     let patchElement = document.createElement("th");
                     patchElement.classList.add("table-patch");
-                    // patchElement.width = tableContent.scrollWidth - tableHeader.scrollWidth;
-                    patchElement.width = 17;
+
+                    patchElement.width = scrollWidth;
                     tableHeader.querySelector('tr').appendChild(patchElement);
                 }
             } else {
-                tableHeader.querySelector('.table-patch').remove();
+                let tablePatch = tableHeader.querySelector('.table-patch');
+                if(tablePatch) {
+                    tablePatch.remove();
+                }
             }
 
             tableHeaderWrapper.scrollTo(tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
@@ -158,18 +168,18 @@ class Table {
                 }
             });
 
-            let tableHeaderCol = document.createElement("col");
-            // tableHeaderCol.setAttribute("width", 0);
-            tableHeaderColgroup.appendChild(tableHeaderCol);
-
-            let tableContentCol = document.createElement("col");
-            tableContentColgroup.appendChild(tableContentCol);
-
-            let tableHeaderTh = document.createElement("th");
-            tableHeaderTr.appendChild(tableHeaderTh);
-
-            let tableContentTh = document.createElement("th");
-            tableContentTr.appendChild(tableContentTh);
+            // let tableHeaderCol = document.createElement("col");
+            // // tableHeaderCol.setAttribute("width", 0);
+            // tableHeaderColgroup.appendChild(tableHeaderCol);
+            //
+            // let tableContentCol = document.createElement("col");
+            // tableContentColgroup.appendChild(tableContentCol);
+            //
+            // let tableHeaderTh = document.createElement("th");
+            // tableHeaderTr.appendChild(tableHeaderTh);
+            //
+            // let tableContentTh = document.createElement("th");
+            // tableContentTr.appendChild(tableContentTh);
         }
 
         let data = this.options['data'];
@@ -185,7 +195,7 @@ class Table {
                     tableContentTr.appendChild(tableContentTd);
 
                     let renderer = columns[index]["renderer"];
-                    if(renderer) {
+                    if (renderer) {
                         tableContentTd.innerHTML = renderer(item);
                     } else {
                         let text = document.createTextNode(item);
@@ -206,9 +216,19 @@ class Table {
         }
 
         // console.debug(tableHeaderWrapper.clientHeight);
-        tableContentWrapper.style.height = height? (height - tableHeaderWrapper.clientHeight) + "px" : null;
+        tableContentWrapper.style.height = height ? (height - tableHeaderWrapper.clientHeight) + "px" : null;
 
         return tableWrapper;
+    }
+
+    getScrollWidth() {
+        let noScroll, scroll, scrollView = document.createElement("div");
+        scrollView.style.cssText = "position:absolute;top:-1000px;width:100px;height:100px; overflow:hidden;";
+        noScroll = document.body.appendChild(scrollView).clientWidth;
+        scrollView.style.overflowY = "scroll";
+        scroll = scrollView.clientWidth;
+        document.body.removeChild(scrollView);
+        return noScroll - scroll;
     }
 }
 
