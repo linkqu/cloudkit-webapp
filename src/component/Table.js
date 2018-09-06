@@ -67,11 +67,14 @@ class Table {
         tableHeaderWrapper.style.width = width ? width + "px" : null;
         tableHeaderWrapper.classList.add("table-header");
         tableWrapper.appendChild(tableHeaderWrapper);
+
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
         tableHeaderWrapper.appendChild(tableHeader);
+
         let tableHeaderColgroup = document.createElement("colgroup");
         tableHeader.appendChild(tableHeaderColgroup);
+
         let tableHeaderThead = document.createElement("thead");
         tableHeader.appendChild(tableHeaderThead);
 
@@ -113,10 +116,13 @@ class Table {
         let tableContent = document.createElement("table");
         tableContent.classList.add("table");
         tableContentWrapper.appendChild(tableContent);
+
         let tableContentColgroup = document.createElement("colgroup");
         tableContent.appendChild(tableContentColgroup);
+
         let tableContentThead = document.createElement("thead");
         // tableContent.appendChild(tableContentThead);
+
         let tableContentTbody = document.createElement("tbody");
         tableContent.appendChild(tableContentTbody);
 
@@ -155,10 +161,13 @@ class Table {
             let tableHeaderCol = document.createElement("col");
             // tableHeaderCol.setAttribute("width", 0);
             tableHeaderColgroup.appendChild(tableHeaderCol);
+
             let tableContentCol = document.createElement("col");
             tableContentColgroup.appendChild(tableContentCol);
+
             let tableHeaderTh = document.createElement("th");
             tableHeaderTr.appendChild(tableHeaderTh);
+
             let tableContentTh = document.createElement("th");
             tableContentTr.appendChild(tableContentTh);
         }
