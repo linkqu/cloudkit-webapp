@@ -82,12 +82,17 @@ let table = new Table({
     parent: document.body,
     title: "Employee Information Table",
     columns: [
-        {index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function () {}},
-        {index: "sex", text: "Sex", width: 75, sortable: false, renderer: function () {}},
-        {index: "age", text: "Age", width: 75, sortable: false, renderer: function () {}},
-        {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: function () {}},
-        {index: "email", text: "Email", width: 800, sortable: false, renderer: function () {}},
-        {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: function () {}}
+        {
+            index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
+                // language=HTML
+                return `<a href='index.html'>Hello ${value}!</a>`;
+            }
+        },
+        {index: "sex", text: "Sex", width: 75, sortable: false, renderer: undefined},
+        {index: "age", text: "Age", width: 75, sortable: false, renderer: undefined},
+        {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: undefined},
+        {index: "email", text: "Email", width: 120, sortable: false, renderer: undefined},
+        {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: undefined}
     ],
     data: [
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],

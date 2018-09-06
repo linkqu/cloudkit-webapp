@@ -132,14 +132,17 @@ class Table {
                 tableHeaderColgroup.appendChild(tableHeaderCol);
                 let tableContentCol = document.createElement("col");
                 tableContentColgroup.appendChild(tableContentCol);
+
                 let tableHeaderTh = document.createElement("th");
                 tableHeaderTh.setAttribute("title", item["text"]);
                 let tableContentTh = document.createElement("th");
                 tableHeaderTr.appendChild(tableHeaderTh);
                 tableContentTr.appendChild(tableContentTh);
+
                 let text = document.createTextNode(item["text"]);
                 tableHeaderTh.appendChild(text);
                 // tableContentTh.appendChild(document.createTextNode(""));
+
                 if (item["width"]) {
                     tableHeaderCol.setAttribute("width", item["width"]);
                     tableContentCol.setAttribute("width", item["width"]);
@@ -147,18 +150,17 @@ class Table {
                     // tableHeaderTh.setAttribute("width", item["width"]);
                     // tableContentTh.setAttribute("width", item["width"]);
                 }
-
             });
 
-            // let tableHeaderCol = document.createElement("col");
-            // // tableHeaderCol.setAttribute("width", 0);
-            // tableHeaderColgroup.appendChild(tableHeaderCol);
-            // let tableContentCol = document.createElement("col");
-            // tableContentColgroup.appendChild(tableContentCol);
-            // let tableHeaderTh = document.createElement("th");
-            // tableHeaderTr.appendChild(tableHeaderTh);
-            // let tableContentTh = document.createElement("th");
-            // tableContentTr.appendChild(tableContentTh);
+            let tableHeaderCol = document.createElement("col");
+            // tableHeaderCol.setAttribute("width", 0);
+            tableHeaderColgroup.appendChild(tableHeaderCol);
+            let tableContentCol = document.createElement("col");
+            tableContentColgroup.appendChild(tableContentCol);
+            let tableHeaderTh = document.createElement("th");
+            tableHeaderTr.appendChild(tableHeaderTh);
+            let tableContentTh = document.createElement("th");
+            tableContentTr.appendChild(tableContentTh);
         }
 
         let data = this.options['data'];
@@ -172,8 +174,14 @@ class Table {
                     //     tableContentTd.setAttribute("width", width);
                     // }
                     tableContentTr.appendChild(tableContentTd);
-                    let text = document.createTextNode(item);
-                    tableContentTd.appendChild(text);
+
+                    let renderer = columns[index]["renderer"];
+                    if(renderer) {
+                        tableContentTd.innerHTML = renderer(item);
+                    } else {
+                        let text = document.createTextNode(item);
+                        tableContentTd.appendChild(text);
+                    }
                 });
                 tableContentTbody.appendChild(tableContentTr);
             });
