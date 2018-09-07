@@ -29,15 +29,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import "./Checkbox.css";
-
 /**
- * Checkbox
+ * ComboBox
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Checkbox {
+class ComboBox {
 
     options: JSON;
 
@@ -49,7 +47,9 @@ class Checkbox {
     constructor(options: JSON) {
 
         // default setting
-        this.defaultSetting = {};
+        this.defaultSetting = {
+
+        };
         this.options = options;
         this.build();
     }
@@ -58,48 +58,12 @@ class Checkbox {
      * build
      */
     build() {
-        let widgetCheckbox = document.createElement("div");
-        widgetCheckbox.classList.add("widget-checkbox");
-
-        let input = document.createElement("input");
-        input.setAttribute("type", "checkbox");
-        input.id = this.options["id"] ? this.options["id"] : null;
-        input.name = this.options["name"] ? this.options["name"] : null;
-        if(this.options["disabled"] !== undefined) {
-            input.setAttribute("disabled", this.options["disabled"]);
-        }
-        widgetCheckbox.appendChild(input);
-
-        let label = document.createElement("label");
-        label.setAttribute("for", input.id);
-        widgetCheckbox.appendChild(label);
-
-        let checkboxRectangle = document.createElement("span");
-        checkboxRectangle.classList.add("checkbox-rectangle");
-        // language=HTML
-        checkboxRectangle.innerHTML =
-            "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"14\" height=\"14\">" +
-            "    <path d=\"M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z\"" +
-            "        fill=\"none\"" +
-            "    />" +
-            "</svg>";
-        label.appendChild(checkboxRectangle);
-
-        let textSpan = document.createElement("span");
-        textSpan.appendChild(document.createTextNode(
-            " " + (this.options["text"] ? this.options["text"] : "")
-        ));
-        label.appendChild(textSpan);
-
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(widgetCheckbox);
-        } else {
-            // document.body.appendChild(table);
-        }
-
-        return widgetCheckbox;
+        // fields: ["Name", "Value"],
+        //     data: [
+        //     { Name: "男", Value: 1 },
+        //     { Name: "女", Value: 2 }
+        // ]
     }
 }
 
-export {Checkbox};
+export {ComboBox};
