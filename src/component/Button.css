@@ -17,7 +17,7 @@
     background: #ffffff none;
     border: 1px solid #dcdee2;
     transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;
-    box-shadow: 0 7px 24px 0 rgba(239,57,57,0.25);
+    /*box-shadow: 0 7px 24px 0 rgba(239,57,57,0.25);*/
     /*transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
 

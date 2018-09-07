@@ -66,6 +66,12 @@ class TextField {
      */
     build() {
         let input = document.createElement("input");
+        let type = this.options["type"];
+        if(type === "password") {
+            input.setAttribute("type", type);
+        } else {
+            input.setAttribute("type", "text");
+        }
         let fragment = document.createDocumentFragment();
 
         let width = this.options["width"];

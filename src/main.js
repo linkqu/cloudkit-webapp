@@ -46,9 +46,10 @@ let button = new Button({
     type: "primary",
     text: "Button",
     // classes: ["button"],
-    // css: {
-    //     "fontSize": "12px"
-    // },
+    css: {
+        "backgroundColor": Color.VOLCANO[5],
+        "borderColor": Color.VOLCANO[5]
+    },
     parent: document.body,
     events: {
         "click": function () {
@@ -58,10 +59,11 @@ let button = new Button({
 });
 
 let textField = new TextField({
+    type: "password",
     width: "200px",
     // classes: ["text-field"],
     css: {
-        "color": Color.RED[9]
+        "color": Color.VOLCANO[5]
     },
     // renderTo
     parent: document.body
