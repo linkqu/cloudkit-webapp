@@ -30,14 +30,14 @@
  */
 
 // Components
-import {Color} from "./component/Color";
-import {Button} from "./component/Button";
-import {TextField} from "./component/TextField";
-import {Table} from "./component/Table";
-import {BorderLayout} from "./layout/BorderLayout";
-import {Checkbox} from "./component/Checkbox";
-import {Radio} from "./component/Radio";
-import {Pagination} from "./component/Pagination";
+import {Color} from "./components/Color";
+import {Button} from "./components/Button";
+import {TextField} from "./components/TextField";
+import {Table} from "./components/Table";
+import {BorderLayout} from "./layouts/BorderLayout";
+import {Checkbox} from "./components/Checkbox";
+import {Radio} from "./components/Radio";
+import {Pagination} from "./components/Pagination";
 
 // import pkg from "../package.json";
 
