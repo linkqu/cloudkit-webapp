@@ -2,6 +2,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
@@ -18,21 +19,28 @@ module.exports = {
     },
     module: {
         rules: [
-            // {test: /\.txt$/, use: "raw-loader"},
-            // {test: /\.css$/, use: "css-loader"},
             {
                 test: /\.css$/,
-                use: [
-                    {loader: "style-loader"},
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: false
-                        }
-                    }
-                    // { loader: "sass-loader" }
-                ]
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
+            // {test: /\.txt$/, use: "raw-loader"},
+            // {test: /\.css$/, use: "css-loader"},
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //         {loader: "style-loader"},
+            //         {
+            //             loader: "css-loader",
+            //             options: {
+            //                 modules: false
+            //             }
+            //         }
+            //         // { loader: "sass-loader" }
+            //     ]
+            // },
             {
                 test: /\.js$/,
                 use: {
@@ -66,6 +74,7 @@ module.exports = {
             template: "./src/index.html"
             // filename:"index.html"
         }),
+        new ExtractTextPlugin("bundle.css"),
         new webpack.BannerPlugin("Webpack 实例")
     ]
 };

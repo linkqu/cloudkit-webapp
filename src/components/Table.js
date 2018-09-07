@@ -234,7 +234,7 @@ class Table {
                 // 添加事件拖拽调整宽度
                 tableHeaderTh.addEventListener("mousemove", function (event) {
                     // console.log("clientX:" + event["clientX"] + ", offsetLeft:" + this['offsetLeft'] + ", width:" + this["offsetWidth"]);
-                    $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 10;
+                    $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
                     this["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
                 });
 
