@@ -29,6 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import "./Modal.css";
+import {Button} from "./Button";
+
 /**
  * Modal
  *
@@ -61,13 +64,26 @@ class Modal {
     build() {
         let modal = document.createElement("div");
         modal.classList.add("widget-modal");
+        if(this.options["width"]) {
+            modal.style["width"] = this.options["width"] + "px";
+        }
+        if(this.options["height"]) {
+            modal.style["height"] = this.options["height"] + "px";
+        }
 
         let close = document.createElement("span");
         close.classList.add("modal-close");
+        close.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width='16' height='16'><path d=\"M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z\"/></svg>";
+        close.addEventListener("click", function () {
+            modal.remove();
+        });
         modal.appendChild(close);
 
         let title = document.createElement("div");
         title.classList.add("modal-title");
+        if(this.options["title"]) {
+            title.appendChild(document.createTextNode(this.options["title"]));
+        }
         modal.appendChild(title);
 
         let content = document.createElement("div");
@@ -81,7 +97,36 @@ class Modal {
             // document.body.appendChild(modal);
         }
 
+        close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
+        close.style["left"] = (modal.clientWidth - 40) + "px";
+
+        modal.style["position"] = "fixed";
+        modal.style["z-index"] = "9999";
+        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 + "px";
+        modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
+
+        window.addEventListener('resize', function () {
+            modal.style["position"] = "fixed";
+            modal.style["z-index"] = "9999";
+            modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 + "px";
+            modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
+        });
+
+        title.addEventListener('mousedown', function () {
+
+        });
+        title.addEventListener('mousemove', function () {
+
+        });
+        title.addEventListener('mouseup', function () {
+
+        });
+
         return modal;
+    }
+
+    resize() {
+
     }
 }
 

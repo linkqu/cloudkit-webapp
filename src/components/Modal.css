@@ -1,0 +1,39 @@
+.widget-modal {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+}
+
+.widget-modal .modal-close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.widget-modal .modal-close svg {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.widget-modal .modal-title {
+    padding: 0 80px 0 20px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    color: #333;
+    overflow: hidden;
+    background-color: #F8F8F8;
+    border-radius: 2px 2px 0 0;
+}
+
+.widget-modal .modal-content {
+    position: relative;
+    overflow: auto;
+}

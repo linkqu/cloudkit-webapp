@@ -189,5 +189,8 @@ let pagination = new Pagination({
 });
 
 new Modal({
+    width: 400,
+    height: 180,
+    title: "提示",
     parent: document.body
 });
