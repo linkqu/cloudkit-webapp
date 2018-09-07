@@ -34,6 +34,20 @@ import Checkbox from "./Checkbox";
 import Pagination from "./Pagination";
 
 /**
+ * 拖放时信息
+ */
+interface Dragging {
+    isAllowResize: boolean,
+    isDragging: boolean,
+    dragWidth: number,
+    dragColumnIndex: string,
+    dragFirstOffset: number,
+    itemWidth: number,
+    columnMinWidth: number,
+    scrollLeft: number
+}
+
+/**
  * Table
  *
  * @author hongquanli <hongquanli@qq.com>
@@ -42,6 +56,18 @@ import Pagination from "./Pagination";
 class Table {
 
     options: JSON;
+
+    // 拖放信息
+    dragging: Dragging = {
+        isAllowResize: false,
+        isDragging: false,
+        dragWidth: 0,
+        dragColumnIndex: null,
+        dragFirstOffset: null,
+        itemWidth: 0,
+        columnMinWidth: 120,
+        scrollLeft: 0
+    };
 
     /**
      * constructor
@@ -60,6 +86,8 @@ class Table {
      * build
      */
     build() {
+        let $this = this;
+
         let scrollWidth = Table.getVerticalScrollBarWidth();
 
         let tableWrapper = document.createElement("div");
@@ -136,10 +164,11 @@ class Table {
             }
 
             tableHeaderWrapper.scrollLeft = tableContentWrapper.scrollLeft;
+            $this.dragging["scrollLeft"] = tableContentWrapper.scrollLeft;
         });
 
         window.addEventListener('resize', function () {
-            
+
         });
 
         let tableContent = document.createElement("table");
@@ -164,11 +193,27 @@ class Table {
 
             columns.forEach(function (item, index, objs) {
                 let tableHeaderCol = document.createElement("col");
+                if(item["index"]) {
+                    tableHeaderCol.setAttribute("data-index", item["index"]);
+                } else {
+                    tableHeaderCol.setAttribute("data-index", index);
+                }
                 tableHeaderColgroup.appendChild(tableHeaderCol);
+
                 let tableContentCol = document.createElement("col");
+                if(item["index"]) {
+                    tableContentCol.setAttribute("data-index", item["index"]);
+                } else {
+                    tableContentCol.setAttribute("data-index", index);
+                }
                 tableContentColgroup.appendChild(tableContentCol);
 
                 let tableHeaderTh = document.createElement("th");
+                if(item["index"]) {
+                    tableHeaderTh.setAttribute("data-index", item["index"]);
+                } else {
+                    tableHeaderTh.setAttribute("data-index", index);
+                }
                 tableHeaderTh.setAttribute("title", item["text"]);
                 let tableContentTh = document.createElement("th");
                 tableHeaderTr.appendChild(tableHeaderTh);
@@ -185,6 +230,77 @@ class Table {
                     // tableHeaderTh.setAttribute("width", item["width"]);
                     // tableContentTh.setAttribute("width", item["width"]);
                 }
+
+                // 添加事件拖拽调整宽度
+                tableHeaderTh.addEventListener("mousemove", function (event) {
+                    // console.log("clientX:" + event["clientX"] + ", offsetLeft:" + this['offsetLeft'] + ", width:" + this["offsetWidth"]);
+                    $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 10;
+                    this["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
+                });
+
+                tableHeaderTh.addEventListener("mouseleave", function (event) {
+                    if ($this.dragging["isDragging"]) {
+                        return;
+                    }
+                    this["style"].cursor = "";
+                });
+
+                tableHeaderTh.addEventListener("mousedown", function (event) {
+                    if ($this.dragging["isAllowResize"]) {
+                        $this.dragging["isDragging"] = true;
+                        event.preventDefault();
+                        let x: number = event["clientX"];
+                        let y: number = event["clientY"];
+                        // console.log("x:" + x + ", y" + y);
+
+                        // console.log("data-index: %s", this.getAttribute("data-index"));
+                        $this.dragging["dragFirstOffset"] = x;
+                        $this.dragging["dragColumnIndex"] = this.getAttribute("data-index");
+
+                        // TODO
+                        $this.dragging["itemWidth"] = parseInt(tableHeaderCol.width);
+                        console.log("itemWidth: %d", $this.dragging["itemWidth"])
+                    }
+                });
+
+                document.addEventListener("mousemove", function (event) {
+                    // console.log("event: %o", event);
+
+                    if ($this.dragging["isDragging"]) {
+                        event.preventDefault();
+                        let x: number = event["clientX"];
+                        let y: number = event["clientY"];
+                        // console.log("x:" + x + ", y" + y);
+
+                        let targetWidth = parseInt(tableContentColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width);
+                        console.log("targetWidth width: %d", targetWidth);
+                        $this.dragging["dragWidth"] = $this.dragging["itemWidth"] + x - $this.dragging["dragFirstOffset"];
+                        $this.dragging["dragWidth"] = ($this.dragging["dragWidth"] < $this.dragging["columnMinWidth"]) ? $this.dragging["columnMinWidth"] : $this.dragging["dragWidth"];
+
+                        console.log("dragWidth: %d", $this.dragging["dragWidth"]);
+                        // console.log("dragColumnIndex: %s", $this.dragging["dragColumnIndex"]);
+                        // $this.dragging["currentCssRule"]['style'].width = $this.dragging["dragWidth"] + "px";
+
+                        tableHeaderColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width = $this.dragging["dragWidth"];
+                        tableContentColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width = $this.dragging["dragWidth"];
+
+                        document.body.style.cursor = "col-resize";
+                    }
+
+                });
+                document.addEventListener("mouseup", function (event) {
+                    if ($this.dragging["isDragging"]) {
+                        document.body.style.cursor = "";
+                        $this.dragging = {
+                            isAllowResize: false,
+                            isDragging: false,
+                            dragWidth: 0,
+                            dragColumnIndex: null,
+                            dragFirstOffset: null,
+                            scrollLeft: 0
+                        };
+                    }
+                });
             });
 
             // let tableHeaderCol = document.createElement("col");
