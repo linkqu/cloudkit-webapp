@@ -111,13 +111,6 @@ class Button {
             }
         }
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(button);
-        } else {
-            // document.body.appendChild(button);
-        }
-
         let css = this.options["css"];
         if (css) {
             for (let key in css) {
@@ -125,6 +118,13 @@ class Button {
                     button.style[key] = css[key];
                 }
             }
+        }
+
+        if (this.options["parent"]) {
+            // console.log(this.options["parent"]);
+            this.options["parent"].appendChild(button);
+        } else {
+            // document.body.appendChild(button);
         }
 
         // button.nextElementSibling
