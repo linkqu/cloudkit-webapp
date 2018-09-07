@@ -29,8 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Checkbox from "Checkbox";
-import Pagination from "Pagination";
+import "./Table.css";
+import Checkbox from "./Checkbox";
+import Pagination from "./Pagination";
 
 /**
  * Table

@@ -29,19 +29,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// Components
 import {Color} from "./component/Color";
-import "./component/Button.css";
 import {Button} from "./component/Button";
-import "./component/TextField.css"
 import {TextField} from "./component/TextField";
-import "./component/Table.css"
 import {Table} from "./component/Table";
-import "./layout/BorderLayout.css";
 import {BorderLayout} from "./layout/BorderLayout";
-import "./component/Checkbox.css";
 import {Checkbox} from "./component/Checkbox";
-import "./component/Radio.css";
 import {Radio} from "./component/Radio";
+
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
