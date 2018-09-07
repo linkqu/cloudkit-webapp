@@ -181,8 +181,8 @@ let pagination = new Pagination({
         // isLast: false,
         numberOfElements: 20,
         // [10, 20, 30, 40, 50]
-        previousLinkText: "上一页",
-        nextLinkText: "下一页"
+        previousLinkText: "Previous Page",
+        nextLinkText: "Next Page"
     },
     parent: document.body
 });

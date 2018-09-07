@@ -95,7 +95,7 @@ class Pagination {
             // console.log("groupIndex: %s", currentGroupIndex);
 
             new Button({
-                text: "上一页",
+                text: pageable["previousLinkText"]? pageable["previousLinkText"] : "上一页",
                 parent: pagination,
                 events: {
                     "click": function () {
@@ -184,7 +184,7 @@ class Pagination {
             }
 
             new Button({
-                text: "下一页",
+                text: pageable["nextLinkText"]? pageable["nextLinkText"] : "下一页",
                 parent: pagination,
                 events: {
                     "click": function () {
