@@ -3,7 +3,7 @@
     padding: 0;
     background-color: #fff;
     border-radius: 2px;
-    box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+    box-shadow: 1px 1px 50px rgba(0, 0, 0, .3);
 }
 
 .widget-modal .modal-close {
@@ -11,14 +11,15 @@
     top: 0;
     left: 0;
     cursor: pointer;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
 }
 
 .widget-modal .modal-close svg {
     position: relative;
     width: 16px;
     height: 16px;
-    margin-left: 10px;
-    font-size: 12px;
 }
 
 .widget-modal .modal-title {

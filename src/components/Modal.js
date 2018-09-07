@@ -118,13 +118,13 @@ class Modal {
 
         modal.style["position"] = "fixed";
         modal.style["z-index"] = "9999";
-        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 30 + "px";
+        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 60 + "px";
         modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
 
         window.addEventListener('resize', function () {
             modal.style["position"] = "fixed";
             modal.style["z-index"] = "9999";
-            modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 30 + "px";
+            modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 60 + "px";
             modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
         });
 
