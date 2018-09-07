@@ -106,11 +106,11 @@ class Pagination {
 
             if (groupSize && currentGroupIndex > 1 && pageNumber !== 1) {
                 new Button({
-                    text: "1",
+                    text: pageNumber,
                     parent: pagination,
                     events: {
                         "click": function () {
-                            alert("hello!");
+                            alert(pageNumber);
                         }
                     }
                 });
@@ -136,21 +136,26 @@ class Pagination {
                 if (start === pageNumber) {
                     // 当前页
                     new Button({
-                        text: start,
+                        text: pageNumber,
+                        css: {
+                            "backgroundColor": Color.VOLCANO[5],
+                            "borderColor": Color.VOLCANO[5]
+                        },
                         parent: pagination,
                         events: {
                             "click": function () {
-                                alert(start);
+                                alert(pageNumber);
                             }
                         }
                     });
                 } else {
+                    let currentNumber = start;
                     new Button({
-                        text: start,
+                        text: currentNumber,
                         parent: pagination,
                         events: {
                             "click": function () {
-                                alert(start);
+                                alert(currentNumber);
                             }
                         }
                     });
