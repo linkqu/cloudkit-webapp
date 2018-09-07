@@ -38,6 +38,7 @@ import {BorderLayout} from "./layouts/BorderLayout";
 import {Checkbox} from "./components/Checkbox";
 import {Radio} from "./components/Radio";
 import {Pagination} from "./components/Pagination";
+import {Modal} from "./components/Modal";
 
 // import pkg from "../package.json";
 
@@ -187,3 +188,6 @@ let pagination = new Pagination({
     parent: document.body
 });
 
+new Modal({
+    parent: document.body
+});

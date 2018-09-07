@@ -30,12 +30,12 @@
  */
 
 /**
- * BackTop
+ * MessageBox
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class BackTop {
+class MessageBox {
 
     options: JSON;
 
@@ -63,4 +63,4 @@ class BackTop {
     }
 }
 
-export {BackTop};
+export {MessageBox};
