@@ -171,15 +171,18 @@ let borderLayout = new BorderLayout({
 
 let pagination = new Pagination({
     pageable: {
-        totalElements: 200,
+        totalElements: 220,
         pageSize: 20,
         // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
         // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
-        totalPages: 10,
+        // totalPages: 11,
         pageNumber: 1,
-        hasNext: true,
-        isLast: false,
-        numberOfElements: 20
+        // hasNext: true,
+        // isLast: false,
+        numberOfElements: 20,
+        // [10, 20, 30, 40, 50]
+        previousLinkText: "上一页",
+        nextLinkText: "下一页"
     },
     parent: document.body
 });

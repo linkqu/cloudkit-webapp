@@ -82,6 +82,7 @@ class Pagination {
             let hasNext = pageNumber < totalPages;
             let isLast = pageNumber === totalPages;
             let numberOfElements = pageable["numberOfElements"] ? pageable["numberOfElements"] : 0;
+            let groupSize = (pageable["groupSize"] || pageable["groupSize"] < 0 || pageable["groupSize"] > totalPages) ? pageable["groupSize"] : 5;
 
             let totalElementText = document.createElement("span");
             totalElementText.classList.add("total-elements-text");
@@ -90,9 +91,22 @@ class Pagination {
             );
             pagination.appendChild(totalElementText);
 
-            if(!isLast) {
+            let currentGroupIndex = totalPages > groupSize ? Math.ceil((pageNumber + (groupSize > 1 ? 1 : 0)) / (groupSize > 0 ? groupSize : 1)) : 1;
+            // console.log("groupIndex: %s", currentGroupIndex);
+
+            new Button({
+                text: "上一页",
+                parent: pagination,
+                events: {
+                    "click": function () {
+                        alert(pageNumber - 1);
+                    }
+                }
+            });
+
+            if (groupSize && currentGroupIndex > 1 && pageNumber !== 1) {
                 new Button({
-                    text: "上一页",
+                    text: "1",
                     parent: pagination,
                     events: {
                         "click": function () {
@@ -102,31 +116,83 @@ class Pagination {
                 });
             }
 
-            if (hasNext) {
-                for (let i = 0; i < 5; i++) {
+            let halve = Math.floor((groupSize - 1) / 2);
+            let start = currentGroupIndex > 1 ? pageNumber - halve : 1;
+            let max = pageNumber + (groupSize - halve - 1);
+            let end = currentGroupIndex > 1 ? max > totalPages ? totalPages : max : groupSize;
+
+            if (end - start < groupSize - 1) {
+                start = end - groupSize + 1;
+            }
+
+            if (pageNumber !== 1 && start > 2) {
+                new Button({
+                    text: "...",
+                    parent: pagination
+                });
+            }
+
+            for (; start <= end; start++) {
+                if (start === pageNumber) {
+                    // 当前页
                     new Button({
-                        text: pageNumber + i,
+                        text: start,
                         parent: pagination,
                         events: {
                             "click": function () {
-                                alert("hello!");
+                                alert(start);
+                            }
+                        }
+                    });
+                } else {
+                    new Button({
+                        text: start,
+                        parent: pagination,
+                        events: {
+                            "click": function () {
+                                alert(start);
                             }
                         }
                     });
                 }
-
-                new Button({
-                    text: "下一页",
-                    parent: pagination,
-                    events: {
-                        "click": function () {
-                            alert("hello!");
-                        }
-                    }
-                });
             }
 
+            // 输出输出...与末页
+            if (totalPages > groupSize && totalPages > end && !isLast) {
+                if (end + 1 < totalPages) {
+                    new Button({
+                        text: "...",
+                        parent: pagination
+                    });
+                }
+                if (groupSize !== 0) {
+                    new Button({
+                        text: totalPages,
+                        parent: pagination,
+                        events: {
+                            "click": function () {
+                                alert(totalPages);
+                            }
+                        }
+                    });
+                }
+            }
+
+            new Button({
+                text: "下一页",
+                parent: pagination,
+                events: {
+                    "click": function () {
+                        alert(pageNumber + 1);
+                    }
+                }
+            });
+
         }
+
+        // N条/页
+        // refresh
+        // 到第N页 确定
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
