@@ -1142,6 +1142,8 @@ class Table {
     tableWrapper.appendChild(tableContentWrapper);
     tableContentWrapper.addEventListener("scroll", function (e) {
       /*
+      screen.availWidth screen.availHeight screen.width screen.height
+      window.innerheight window.innerwidth window.outerwidth window.outerheight screenLeft screenTop screenX screenY
       console.log("offsetLeft: %s, offsetTop: %s", tableContentWrapper.offsetLeft, tableContentWrapper.offsetTop);
       console.log("scrollX: %s, scrollY: %s", window.scrollX, window.scrollY);
       console.log("pageXOffset: %s, pageYOffset: %s", window.pageXOffset, window.pageYOffset);
