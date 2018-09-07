@@ -45,7 +45,6 @@ class Pagination {
      * @param options
      */
     constructor(options: JSON) {
-        // Horizontal Vertical
 
         // default setting
         this.defaultSetting = {

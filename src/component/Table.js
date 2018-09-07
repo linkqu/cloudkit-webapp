@@ -64,6 +64,15 @@ class Table {
         tableWrapper.style.height = height ? height + "px" : null;
         tableWrapper.classList.add("widget-table");
 
+        let tableTitle;
+        if(this.options["title"]) {
+            tableTitle = document.createElement("div");
+            tableTitle.classList.add("table-title");
+            let text = document.createTextNode(this.options["title"]);
+            tableTitle.appendChild(text);
+            tableWrapper.appendChild(tableTitle);
+        }
+
         // Table Header
         let tableHeaderWrapper = document.createElement("div");
         tableHeaderWrapper.style.width = width ? width + "px" : null;
@@ -186,7 +195,7 @@ class Table {
             // tableContentTr.appendChild(tableContentTh);
         }
 
-        let data = this.options['data'];
+        let data = this.options["data"];
         if (data && data.length > 0) {
             data.forEach(function (item, index, objs) {
                 let tableContentTr = document.createElement("tr");
@@ -220,7 +229,9 @@ class Table {
         }
 
         // console.debug(tableHeaderWrapper.clientHeight);
-        tableContentWrapper.style.height = height ? (height - tableHeaderWrapper.clientHeight) + "px" : null;
+        let tableContentHeight = height ? (height - (tableTitle? tableTitle.clientHeight : 0)) : null;
+        tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
+        tableContentWrapper.style.height = tableContentHeight + "px";
 
         return tableWrapper;
     }

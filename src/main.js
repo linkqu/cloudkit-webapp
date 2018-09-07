@@ -92,7 +92,7 @@ let table = new Table({
         {index: "age", text: "Age", width: 75, sortable: false, renderer: undefined},
         {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: undefined},
         {index: "email", text: "Email", width: 120, sortable: false, renderer: undefined},
-        {index: "birthday", text: "Birthday Date", width: 800, sortable: false, renderer: undefined}
+        {index: "birthday", text: "Birthday Date", width: 400, sortable: false, renderer: undefined}
     ],
     data: [
         ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
