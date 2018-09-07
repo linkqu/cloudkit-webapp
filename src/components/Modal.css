@@ -44,3 +44,8 @@
     top: 0;
     left: 0;
 }
+
+.widget-modal .modal-footer .widget-button {
+    float: right;
+    margin: 8px 8px 8px 4px;
+}

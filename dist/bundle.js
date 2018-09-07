@@ -1459,7 +1459,7 @@ class Radio {
 
 }
 
-var css$7 = ".widget-modal {\n    margin: 0;\n    padding: 0;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 1px 1px 50px rgba(0, 0, 0, .3);\n}\n\n.widget-modal .modal-close {\n    position: absolute;\n    top: 0;\n    left: 0;\n    cursor: pointer;\n    width: 16px;\n    height: 16px;\n    vertical-align: middle;\n}\n\n.widget-modal .modal-close svg {\n    position: relative;\n    width: 16px;\n    height: 16px;\n}\n\n.widget-modal .modal-title {\n    padding: 0 80px 0 20px;\n    height: 40px;\n    line-height: 40px;\n    border-bottom: 1px solid #eee;\n    font-size: 13px;\n    color: #333;\n    overflow: hidden;\n    background-color: #F8F8F8;\n    border-radius: 2px 2px 0 0;\n}\n\n.widget-modal .modal-content {\n    position: relative;\n    overflow: auto;\n}\n\n.widget-modal .modal-footer {\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n";
+var css$7 = ".widget-modal {\n    margin: 0;\n    padding: 0;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 1px 1px 50px rgba(0, 0, 0, .3);\n}\n\n.widget-modal .modal-close {\n    position: absolute;\n    top: 0;\n    left: 0;\n    cursor: pointer;\n    width: 16px;\n    height: 16px;\n    vertical-align: middle;\n}\n\n.widget-modal .modal-close svg {\n    position: relative;\n    width: 16px;\n    height: 16px;\n}\n\n.widget-modal .modal-title {\n    padding: 0 80px 0 20px;\n    height: 40px;\n    line-height: 40px;\n    border-bottom: 1px solid #eee;\n    font-size: 13px;\n    color: #333;\n    overflow: hidden;\n    background-color: #F8F8F8;\n    border-radius: 2px 2px 0 0;\n}\n\n.widget-modal .modal-content {\n    position: relative;\n    overflow: auto;\n}\n\n.widget-modal .modal-footer {\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n\n.widget-modal .modal-footer .widget-button {\n    float: right;\n    margin: 8px 8px 8px 4px;\n}\n";
 styleInject(css$7);
 
 /**
@@ -1536,11 +1536,20 @@ class Modal {
         }
       }
     });
+    new Button({
+      type: "primary",
+      text: "Submit",
+      parent: footer,
+      events: {
+        "click": function () {}
+      }
+    });
     modal.appendChild(footer);
     close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
     close.style["left"] = modal.clientWidth - close.clientWidth - 8 + "px";
-    footer.style["top"] = modal.clientHeight - footer.clientHeight - 8 + "px";
-    footer.style["left"] = modal.clientWidth - footer.clientWidth - 8 + "px";
+    footer.style["top"] = modal.clientHeight - footer.clientHeight + "px"; // footer.style["left"] = (modal.clientWidth - footer.clientWidth) + "px";
+
+    footer.style["width"] = modal.clientWidth + "px";
     modal.style["position"] = "fixed";
     modal.style["z-index"] = "9999";
     modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 60 + "px";

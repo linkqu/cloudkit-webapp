@@ -108,13 +108,24 @@ class Modal {
                 }
             }
         });
+        new Button({
+            type: "primary",
+            text: "Submit",
+            parent: footer,
+            events: {
+                "click": function () {
+
+                }
+            }
+        });
         modal.appendChild(footer);
 
         close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
         close.style["left"] = (modal.clientWidth - close.clientWidth) - 8 + "px";
 
-        footer.style["top"] = modal.clientHeight - footer.clientHeight - 8 + "px";
-        footer.style["left"] = (modal.clientWidth - footer.clientWidth) - 8 + "px";
+        footer.style["top"] = modal.clientHeight - footer.clientHeight + "px";
+        // footer.style["left"] = (modal.clientWidth - footer.clientWidth) + "px";
+        footer.style["width"] = modal.clientWidth + "px";
 
         modal.style["position"] = "fixed";
         modal.style["z-index"] = "9999";
