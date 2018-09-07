@@ -29,7 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import Button from "./Button";
+import "./Pagination.css";
+import {Button} from "./Button";
+import {Color} from "./Color";
 
 /**
  * Pagination
@@ -49,9 +51,7 @@ class Pagination {
     constructor(options: JSON) {
 
         // default setting
-        this.defaultSetting = {
-
-        };
+        this.defaultSetting = {};
         this.options = options;
         this.build();
     }
@@ -60,7 +60,82 @@ class Pagination {
      * build
      */
     build() {
+        let pagination = document.createElement("div");
+        pagination.classList.add("widget-pagination");
 
+        // pageable
+        // offset
+        // totalElements
+        // pageSize size
+        // totalPages
+        // pageNumber number
+        // hasNext first true
+        // isLast last false
+        // numberOfElements 当前实际element数量
+
+        let pageable = this.options["pageable"];
+        if (pageable) {
+            let totalElements = pageable["totalElements"] ? pageable["totalElements"] : 0;
+            let pageSize = pageable["pageSize"] ? pageable["pageSize"] : 0;
+            let totalPages = (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize);
+            let pageNumber = pageable["pageNumber"] ? pageable["pageNumber"] : 0;
+            let hasNext = pageNumber < totalPages;
+            let isLast = pageNumber === totalPages;
+            let numberOfElements = pageable["numberOfElements"] ? pageable["numberOfElements"] : 0;
+
+            let totalElementText = document.createElement("span");
+            totalElementText.classList.add("total-elements-text");
+            totalElementText.appendChild(
+                document.createTextNode("共 " + pageable["totalElements"] + " 条")
+            );
+            pagination.appendChild(totalElementText);
+
+            if(!isLast) {
+                new Button({
+                    text: "上一页",
+                    parent: pagination,
+                    events: {
+                        "click": function () {
+                            alert("hello!");
+                        }
+                    }
+                });
+            }
+
+            if (hasNext) {
+                for (let i = 0; i < 5; i++) {
+                    new Button({
+                        text: pageNumber + i,
+                        parent: pagination,
+                        events: {
+                            "click": function () {
+                                alert("hello!");
+                            }
+                        }
+                    });
+                }
+
+                new Button({
+                    text: "下一页",
+                    parent: pagination,
+                    events: {
+                        "click": function () {
+                            alert("hello!");
+                        }
+                    }
+                });
+            }
+
+        }
+
+        if (this.options["parent"]) {
+            // console.log(this.options["parent"]);
+            this.options["parent"].appendChild(pagination);
+        } else {
+            // document.body.appendChild(pagination);
+        }
+
+        return pagination;
     }
 }
 

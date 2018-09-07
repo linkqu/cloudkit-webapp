@@ -37,6 +37,7 @@ import {Table} from "./component/Table";
 import {BorderLayout} from "./layout/BorderLayout";
 import {Checkbox} from "./component/Checkbox";
 import {Radio} from "./component/Radio";
+import {Pagination} from "./component/Pagination";
 
 // import pkg from "../package.json";
 
@@ -167,3 +168,19 @@ let borderLayout = new BorderLayout({
         // split: true,
     }]
 });
+
+let pagination = new Pagination({
+    pageable: {
+        totalElements: 200,
+        pageSize: 20,
+        // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
+        // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
+        totalPages: 10,
+        pageNumber: 1,
+        hasNext: true,
+        isLast: false,
+        numberOfElements: 20
+    },
+    parent: document.body
+});
+
