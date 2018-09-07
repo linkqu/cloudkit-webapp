@@ -74,7 +74,7 @@ let textField = new TextField({
 
 let table = new Table({
     width: 800,
-    height: 9000,
+    height: 200,
     // classes: [""],
     // css: {
     //     "color": Color.RED[9]
@@ -161,8 +161,7 @@ let borderLayout = new BorderLayout({
         height: 50
     }, {
         title: "Center Panel",
-        region: "center",
-
+        region: "center"
     }, {
         title: "East Panel",
         region: "east",

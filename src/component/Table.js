@@ -56,7 +56,7 @@ class Table {
      * build
      */
     build() {
-        let scrollWidth = this.getScrollWidth();
+        let scrollWidth = Table.getScrollWidth();
 
         let tableWrapper = document.createElement("div");
         let width = this.options["width"], height = this.options["height"];
@@ -96,11 +96,11 @@ class Table {
             console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
-            let scrollWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
-            let scrollHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
-            console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
+            let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
+            let scrollAllowHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
+            // console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
 
-            if (scrollWidth && scrollHeight) {
+            if (scrollAllowWidth && scrollAllowHeight) {
                 if (!tableHeader.querySelector('.table-patch')) {
                     // let patchWidth = tableHeader.scrollWidth - scrollWidth;
                     // let patchHeight = tableHeader.scrollHeight - scrollHeight;
@@ -110,7 +110,7 @@ class Table {
                     let patchElement = document.createElement("th");
                     patchElement.classList.add("table-patch");
 
-                    patchElement.width = scrollWidth;
+                    patchElement.width = scrollAllowWidth;
                     tableHeader.querySelector('tr').appendChild(patchElement);
                 }
             } else {
@@ -120,7 +120,11 @@ class Table {
                 }
             }
 
-            tableHeaderWrapper.scrollTo(tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
+            tableHeaderWrapper.scrollLeft = tableContentWrapper.scrollLeft;
+        });
+
+        window.addEventListener('resize', function () {
+            
         });
 
         let tableContent = document.createElement("table");
@@ -221,9 +225,14 @@ class Table {
         return tableWrapper;
     }
 
-    getScrollWidth() {
+    static getScrollWidth() {
         let noScroll, scroll, scrollView = document.createElement("div");
-        scrollView.style.cssText = "position:absolute;top:-1000px;width:100px;height:100px; overflow:hidden;";
+        // scrollView.style.cssText = "position:absolute;top:-1000px;width:100px;height:100px; overflow:hidden;";
+        scrollView.style.position = "absolute";
+        scrollView.style.top = "-1000px";
+        scrollView.style.width = "100px";
+        scrollView.style.height = "100px";
+        scrollView.style.overflow = "hidden";
         noScroll = document.body.appendChild(scrollView).clientWidth;
         scrollView.style.overflowY = "scroll";
         scroll = scrollView.clientWidth;
