@@ -56,7 +56,7 @@ class Table {
      * build
      */
     build() {
-        let scrollWidth = Table.getScrollWidth();
+        let scrollWidth = Table.getVerticalScrollBarWidth();
 
         let tableWrapper = document.createElement("div");
         let width = this.options["width"], height = this.options["height"];
@@ -225,7 +225,12 @@ class Table {
         return tableWrapper;
     }
 
-    static getScrollWidth() {
+    /**
+     * 获取滚动条本身的宽度
+     *
+     * @returns {number}
+     */
+    static getVerticalScrollBarWidth() {
         let noScroll, scroll, scrollView = document.createElement("div");
         // scrollView.style.cssText = "position:absolute;top:-1000px;width:100px;height:100px; overflow:hidden;";
         scrollView.style.position = "absolute";
