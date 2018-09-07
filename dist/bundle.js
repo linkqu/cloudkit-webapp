@@ -1007,11 +1007,12 @@ class Pagination {
         if (start === pageNumber) {
           // 当前页
           new Button({
+            type: "primary",
             text: pageNumber,
-            css: {
-              "backgroundColor": Color.VOLCANO[5],
-              "borderColor": Color.VOLCANO[5]
-            },
+            // css: {
+            //     "backgroundColor": Color.VOLCANO[5],
+            //     "borderColor": Color.VOLCANO[5]
+            // },
             parent: pagination,
             events: {
               "click": function () {
@@ -1606,10 +1607,10 @@ let button = new Button({
   type: "primary",
   text: "Button",
   // classes: ["button"],
-  css: {
-    "backgroundColor": Color.VOLCANO[5],
-    "borderColor": Color.VOLCANO[5]
-  },
+  // css: {
+  //     "backgroundColor": Color.VOLCANO[5],
+  //     "borderColor": Color.VOLCANO[5]
+  // },
   parent: document.body,
   events: {
     "click": function () {

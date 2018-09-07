@@ -136,11 +136,12 @@ class Pagination {
                 if (start === pageNumber) {
                     // 当前页
                     new Button({
+                        type: "primary",
                         text: pageNumber,
-                        css: {
-                            "backgroundColor": Color.VOLCANO[5],
-                            "borderColor": Color.VOLCANO[5]
-                        },
+                        // css: {
+                        //     "backgroundColor": Color.VOLCANO[5],
+                        //     "borderColor": Color.VOLCANO[5]
+                        // },
                         parent: pagination,
                         events: {
                             "click": function () {
