@@ -37,3 +37,9 @@
     position: relative;
     overflow: auto;
 }
+
+.widget-modal .modal-footer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

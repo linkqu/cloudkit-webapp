@@ -97,18 +97,34 @@ class Modal {
             // document.body.appendChild(modal);
         }
 
+        let footer = document.createElement("div");
+        footer.classList.add("modal-footer");
+        new Button({
+            text: "Close",
+            parent: footer,
+            events: {
+                "click": function () {
+                    modal.remove();
+                }
+            }
+        });
+        modal.appendChild(footer);
+
         close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
-        close.style["left"] = (modal.clientWidth - 40) + "px";
+        close.style["left"] = (modal.clientWidth - close.clientWidth) - 8 + "px";
+
+        footer.style["top"] = modal.clientHeight - footer.clientHeight - 8 + "px";
+        footer.style["left"] = (modal.clientWidth - footer.clientWidth) - 8 + "px";
 
         modal.style["position"] = "fixed";
         modal.style["z-index"] = "9999";
-        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 + "px";
+        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 30 + "px";
         modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
 
         window.addEventListener('resize', function () {
             modal.style["position"] = "fixed";
             modal.style["z-index"] = "9999";
-            modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 + "px";
+            modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 30 + "px";
             modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
         });
 
