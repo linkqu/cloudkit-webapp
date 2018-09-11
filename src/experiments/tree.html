@@ -24,9 +24,9 @@
             outline: 0;
         }
 
-        .widget-tree li.tree-branch .icon-expand,
-        .widget-tree li.tree-branch .icon-collapse,
-        .widget-tree li.tree-leaf .icon-fibre {
+        .widget-tree li.branch .icon-expand,
+        .widget-tree li.branch .icon-collapse,
+        .widget-tree li.leaf .icon-fibre {
             line-height: 0;
             margin: 0;
             display: inline-block;
@@ -36,14 +36,14 @@
             outline: none;
         }
 
-        .widget-tree li.tree-branch .icon-expand,
-        .widget-tree li.tree-branch .icon-collapse {
+        .widget-tree li.branch .icon-expand,
+        .widget-tree li.branch .icon-collapse {
             width: 18px;
             height: 18px;
             background: transparent url(tree.png);
         }
 
-        .widget-tree li.tree-branch .icon-expand {
+        .widget-tree li.branch .icon-expand {
             background-position: -92px 0;
         }
 
@@ -51,7 +51,7 @@
             background-position: -92px -36px;
         }
 
-        .widget-tree li.tree-branch .icon-collapse {
+        .widget-tree li.branch .icon-collapse {
             background-position: -74px -18px;
         }
 
@@ -59,7 +59,7 @@
             background-position: -74px -36px;
         }
 
-        .widget-tree li.tree-leaf .icon-fibre {
+        .widget-tree li.leaf .icon-fibre {
             width: 18px;
             height: 18px;
             background: transparent url(tree.png) -56px -18px;
@@ -104,7 +104,7 @@
     <!-- https://www.jstree.com/demo/ -->
     <!-- http://www.treejs.cn/v3/demo.php -->
     <ul class="widget-tree">
-        <li class="tree-branch last-branch">
+        <li class="branch last-branch">
             <span class="icon-collapse">
                 <!--
                 <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -131,8 +131,8 @@
                 <span class="node-text">profile [+]</span>
             </a>
             <ul>
-                <li class="tree-leaf">
-                    <span class="icon-fibre"/>
+                <li class="leaf">
+                    <span class="icon-fibre"></span>
                     <a>
                         <span class="icon">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -143,8 +143,8 @@
                         <span class="node-text">name</span>
                     </a>
                 </li>
-                <li class="tree-leaf">
-                    <span class="icon-fibre"/>
+                <li class="leaf">
+                    <span class="icon-fibre"></span>
                     <a>
                         <span class="icon">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -155,7 +155,7 @@
                         <span class="node-text">age</span>
                     </a>
                 </li>
-                <li class="tree-branch last-branch">
+                <li class="branch last-branch">
                     <span class="icon-expand">
                         <!--
                         <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -176,8 +176,8 @@
                         <span class="node-text">location [+]</span>
                     </a>
                     <ul>
-                        <li class="tree-leaf">
-                            <span class="icon-fibre"/>
+                        <li class="leaf">
+                            <span class="icon-fibre"></span>
                             <a>
                                 <span class="icon">
                                     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -188,8 +188,8 @@
                                 <span class="node-text">province</span>
                             </a>
                         </li>
-                        <li class="tree-leaf">
-                            <span class="icon-fibre"/>
+                        <li class="leaf">
+                            <span class="icon-fibre"></span>
                             <a>
                                 <span class="icon">
                                     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -200,8 +200,8 @@
                                 <span class="node-text">city</span>
                             </a>
                         </li>
-                        <li class="tree-leaf last-leaf">
-                            <span class="icon-fibre"/>
+                        <li class="leaf last-leaf">
+                            <span class="icon-fibre"></span>
                             <a>
                                 <span class="icon">
                                     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
