@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" media="all" href="../resources/stylesheets/normalize.css"/>
     <style type="text/css">
         .widget-tree {
             border: 1px solid #617775;
@@ -16,12 +17,85 @@
             padding: 0;
             margin: 0;
             list-style: none;
-            line-height: 14px;
             text-align: left;
             white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
             outline: 0;
         }
 
+        .widget-tree li.tree-branch .icon-expand,
+        .widget-tree li.tree-branch .icon-collapse,
+        .widget-tree li.tree-leaf .icon-fibre {
+            line-height: 0;
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+            border: 0 none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .widget-tree li.tree-branch .icon-expand,
+        .widget-tree li.tree-branch .icon-collapse {
+            width: 18px;
+            height: 18px;
+            background: transparent url(tree.png);
+        }
+
+        .widget-tree li.tree-branch .icon-expand {
+            background-position: -92px 0;
+        }
+
+        .widget-tree li.last-branch .icon-expand {
+            background-position: -92px -36px;
+        }
+
+        .widget-tree li.tree-branch .icon-collapse {
+            background-position: -74px -18px;
+        }
+
+        .widget-tree li.last-branch .icon-collapse {
+            background-position: -74px -36px;
+        }
+
+        .widget-tree li.tree-leaf .icon-fibre {
+            width: 18px;
+            height: 18px;
+            background: transparent url(tree.png) -56px -18px;
+        }
+
+        .widget-tree li.last-leaf .icon-fibre {
+            background-position: -56px -36px;
+        }
+
+        .widget-tree li a {
+            display: inline-block;
+            cursor: pointer;
+            height: 18px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .widget-tree li a .icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+        }
+
+        .widget-tree li a .branch-text {
+            display: inline-block;
+            padding: 0 0 0 8px;
+            font-size: 13px;
+        }
+
+        .widget-tree li ul {
+            margin: 0;
+            padding: 0 0 0 16px;
+        }
+
+        /* spread expand  expand/collapse */
 
     </style>
 </head>
@@ -30,39 +104,114 @@
     <!-- https://www.jstree.com/demo/ -->
     <!-- http://www.treejs.cn/v3/demo.php -->
     <ul class="widget-tree">
-        <li>
-            <span></span>
+        <li class="tree-branch last-branch">
+            <span class="icon-collapse">
+                <!--
+                <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                    <path d="M61.258 211.18400001l450.742 599.21999999 450.743-599.22z"/>
+                </svg>
+                -->
+                <!--
+                <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                    <path d="M211.184 962.742l599.22-450.742-599.22-450.743z"/>
+                </svg>
+                -->
+            </span>
             <a>
-                <span></span>
-                <span>profile</span>
+                <span class="icon">
+                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                        <path
+                            d="M841.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H432L326.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v712c0 12 4.8 24.8 14.4 33.6S68 912 80 912h728c12 0 24.8-4.8 33.6-14.4 9.6-9.6 14.4-21.6 14.4-33.6V272c0-12-4.8-24.8-14.4-33.6z"
+                            fill="#FFD766"/>
+                        <path
+                            d="M858.4 877.6c-3.2 9.6-8.8 18.4-17.6 24.8-8.8 6.4-18.4 9.6-28.8 9.6H88.8c-14.4 0-28.8-6.4-38.4-19.2s-12-28.8-7.2-42.4l139.2-464c3.2-9.6 8.8-18.4 17.6-24.8 8.8-6.4 18.4-9.6 28.8-9.6h724c14.4 0 28.8 6.4 38.4 19.2 9.6 12.8 12 28.8 7.2 42.4l-140 464z"
+                            fill="#FFAC33"/>
+                    </svg>
+                </span>
+                <span class="branch-text">profile [+]</span>
             </a>
             <ul>
-                <li>
-                    <span></span>
+                <li class="tree-leaf">
+                    <span class="icon-fibre"></span>
                     <a>
-                        <span></span>
-                        <span>name</span>
+                        <span class="icon">
+                            <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                                <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+                                <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+                            </svg>
+                        </span>
+                        <span class="branch-text">name</span>
                     </a>
                 </li>
-                <li>
-                    <span></span>
+                <li class="tree-leaf">
+                    <span class="icon-fibre"></span>
                     <a>
-                        <span></span>
-                        <span>age</span>
+                        <span class="icon">
+                            <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                                <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+                                <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+                            </svg>
+                        </span>
+                        <span class="branch-text">age</span>
                     </a>
                 </li>
-                <li>
-                    <span></span>
+                <li class="tree-branch last-branch">
+                    <span class="icon-expand">
+                        <!--
+                        <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                            <path d="M211.184 962.742l599.22-450.742-599.22-450.743z"/>
+                        </svg>
+                        -->
+                    </span>
                     <a>
-                        <span></span>
-                        <span>location</span>
+                        <span class="icon">
+                            <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                                <path
+                                    d="M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z"
+                                    fill="#FFD766"/>
+                                <path d="M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z"
+                                      fill="#FFAC33"/>
+                            </svg>
+                        </span>
+                        <span class="branch-text">location [+]</span>
                     </a>
-                </li>
-                <li>
                     <ul>
-                        <li>province</li>
-                        <li>city</li>
-                        <li>district</li>
+                        <li class="tree-leaf">
+                            <span class="icon-fibre"></span>
+                            <a>
+                                <span class="icon">
+                                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                                        <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+                                        <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+                                    </svg>
+                                </span>
+                                <span class="branch-text">province</span>
+                            </a>
+                        </li>
+                        <li class="tree-leaf">
+                            <span class="icon-fibre"></span>
+                            <a>
+                                <span class="icon">
+                                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                                        <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+                                        <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+                                    </svg>
+                                </span>
+                                <span class="branch-text">city</span>
+                            </a>
+                        </li>
+                        <li class="tree-leaf last-leaf">
+                            <span class="icon-fibre"></span>
+                            <a>
+                                <span class="icon">
+                                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                                        <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+                                        <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+                                    </svg>
+                                </span>
+                                <span class="branch-text">district</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
