@@ -40,7 +40,7 @@
         .widget-tree li.branch .icon-collapse {
             width: 18px;
             height: 18px;
-            background: transparent url(tree.png);
+            /*background: transparent url(tree.png);*/
         }
 
         .widget-tree li.branch .icon-expand {
@@ -86,14 +86,15 @@
 
         .widget-tree li a .node-text {
             display: inline-block;
-            padding: 0 0 0 8px;
+            padding: 0 0 0 4px;
             font-size: 13px;
         }
 
         .widget-tree li ul {
             margin: 0;
-            /*padding: 0 0 0 16px;*/
-            padding: 0;
+            padding: 0 0 0 16px;
+            /*padding: 0;*/
+            background: url(./table-link-line.gif) 0 0 repeat-y;
         }
 
         /* spread expand  expand/collapse */
@@ -117,6 +118,12 @@
                     <path d="M211.184 962.742l599.22-450.742-599.22-450.743z"/>
                 </svg>
                 -->
+                <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                    <path d="M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" fill="#333333"/>
+                    <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z" fill="#333333"/>
+                </svg>
+
+
             </span>
             <a>
                 <span class="icon">
@@ -129,11 +136,12 @@
                             fill="#FFAC33"/>
                     </svg>
                 </span>
-                <span class="node-text">profile [+]</span>
+                <!-- [+] [-] -->
+                <span class="node-text">profile</span>
             </a>
             <ul>
                 <li class="leaf">
-                    <span class="icon-fibre"></span>
+                    <span class="icon-fibre">&nbsp;</span>
                     <a>
                         <span class="icon">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -145,7 +153,7 @@
                     </a>
                 </li>
                 <li class="leaf">
-                    <span class="icon-fibre"></span>
+                    <span class="icon-fibre">&nbsp;</span>
                     <a>
                         <span class="icon">
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -163,6 +171,11 @@
                             <path d="M211.184 962.742l599.22-450.742-599.22-450.743z"/>
                         </svg>
                         -->
+
+                        <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                            <path d="M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" fill="#333333"/>
+                            <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z" fill="#333333"/>
+                        </svg>
                     </span>
                     <a>
                         <span class="icon">
@@ -174,11 +187,12 @@
                                       fill="#FFAC33"/>
                             </svg>
                         </span>
-                        <span class="node-text">location [+]</span>
+                        <!-- [+] [-] -->
+                        <span class="node-text">location</span>
                     </a>
                     <ul>
                         <li class="leaf">
-                            <span class="icon-fibre"></span>
+                            <span class="icon-fibre">&nbsp;</span>
                             <a>
                                 <span class="icon">
                                     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -190,7 +204,7 @@
                             </a>
                         </li>
                         <li class="leaf">
-                            <span class="icon-fibre"></span>
+                            <span class="icon-fibre">&nbsp;</span>
                             <a>
                                 <span class="icon">
                                     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -202,7 +216,7 @@
                             </a>
                         </li>
                         <li class="leaf last-leaf">
-                            <span class="icon-fibre"></span>
+                            <span class="icon-fibre">&nbsp;</span>
                             <a>
                                 <span class="icon">
                                     <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
@@ -216,6 +230,18 @@
                     </ul>
                 </li>
             </ul>
+        </li>
+        <li class="leaf last-leaf">
+            <span class="icon-fibre">&nbsp;</span>
+            <a>
+                <span class="icon">
+                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+                        <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+                        <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+                    </svg>
+                </span>
+                <span class="node-text">district</span>
+            </a>
         </li>
     </ul>
 
