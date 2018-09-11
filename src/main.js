@@ -197,7 +197,9 @@ new Modal({
     parent: document.body
 });
 
-
+/**
+ * https://github.com/github/fetch
+ */
 // HTML
 // fetch('./index.html')
 //     .then(function(response) {
