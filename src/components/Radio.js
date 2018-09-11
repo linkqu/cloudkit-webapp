@@ -65,7 +65,7 @@ class Radio {
         input.setAttribute("type", "radio");
         input.id = this.options["id"] ? this.options["id"] : null;
         input.name = this.options["name"] ? this.options["name"] : null;
-        if(this.options["disabled"] != undefined) {
+        if(this.options["disabled"] !== undefined) {
             input.setAttribute("disabled", this.options["disabled"]);
         }
         widgetRadio.appendChild(input);

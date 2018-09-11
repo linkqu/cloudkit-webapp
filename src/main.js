@@ -29,6 +29,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import {fetch} from "whatwg-fetch";
+
 // Components
 import {Color} from "./components/Color";
 import {Button} from "./components/Button";
@@ -194,3 +196,66 @@ new Modal({
     title: "提示",
     parent: document.body
 });
+
+
+// HTML
+// fetch('./index.html')
+//     .then(function(response) {
+//         return response.text()
+//     })
+//     .then(function(body) {
+//         document.body.innerHTML = body
+//     });
+
+// JSON
+fetch('./data.json')
+    .then(function (response) {
+        console.log(response.headers.get('Content-Type'))
+        console.log(response.headers.get('Date'))
+        console.log(response.status)
+        console.log(response.statusText)
+        return response.json()
+    }).then(function (json) {
+        console.log('parsed json', json)
+    }).catch(function (ex) {
+        console.log('parsing failed', ex)
+    });
+
+// Response metadata
+// let form = document.querySelector('form')
+// fetch('./users', {
+//     method: 'POST',
+//     body: new FormData(form)
+// });
+
+// // Post form
+// let form = document.querySelector('form');
+//
+// fetch('./users', {
+//     method: 'POST',
+//     body: new FormData(form)
+// });
+//
+// // Post JSON
+// fetch('./users', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//         name: 'Hubot',
+//         login: 'hubot',
+//     })
+// });
+//
+// // File upload
+// let input = document.querySelector('input[type="file"]');
+//
+// let data = new FormData();
+// data.append('file', input.files[0]);
+// data.append('user', 'hubot');
+//
+// fetch('./avatars', {
+//     method: 'POST',
+//     body: data
+// });
