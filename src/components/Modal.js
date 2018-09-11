@@ -121,7 +121,7 @@ class Modal {
         modal.appendChild(footer);
 
         close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
-        close.style["left"] = (modal.clientWidth - close.clientWidth) - 8 + "px";
+        close.style["left"] = (modal.clientWidth - close.clientWidth) - 16 + "px";
 
         footer.style["top"] = modal.clientHeight - footer.clientHeight + "px";
         // footer.style["left"] = (modal.clientWidth - footer.clientWidth) + "px";
