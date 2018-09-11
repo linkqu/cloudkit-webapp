@@ -204,9 +204,9 @@ new Tree({
         text: "List",
         expanded: true,
         children: [
-            {text: "detention", expanded: true},
+            {text: "detention", leaf: true},
             {
-                text: "homework", expanded: true,
+                text: "homework", expanded: false,
                 children: [
                     {text: "book report", leaf: true},
                     {text: "alegrbra", leaf: true}
