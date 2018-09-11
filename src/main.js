@@ -41,6 +41,7 @@ import {Checkbox} from "./components/Checkbox";
 import {Radio} from "./components/Radio";
 import {Pagination} from "./components/Pagination";
 import {Modal} from "./components/Modal";
+import {Tree} from "./components/Tree";
 
 // import pkg from "../package.json";
 
@@ -195,6 +196,25 @@ new Modal({
     height: 180,
     title: "提示",
     parent: document.body
+});
+
+new Tree({
+    parent: document.body,
+    data: [{
+        text: "List",
+        expanded: true,
+        children: [
+            {text: "detention", expanded: true},
+            {
+                text: "homework", expanded: true,
+                children: [
+                    {text: "book report", leaf: true},
+                    {text: "alegrbra", leaf: true}
+                ]
+            },
+            {text: "buy lottery tickets", leaf: true}
+        ]
+    }]
 });
 
 /**

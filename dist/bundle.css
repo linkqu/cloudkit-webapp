@@ -500,3 +500,93 @@
     float: right;
     margin: 8px 16px 8px 4px;
 }
+.widget-tree {
+    padding: 9px;
+}
+
+.widget-tree li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    outline: 0;
+}
+
+.widget-tree li.branch .icon-expand,
+.widget-tree li.branch .icon-collapse,
+.widget-tree li.leaf .icon-fibre {
+    line-height: 0;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
+}
+
+.widget-tree li.branch .icon-expand,
+.widget-tree li.branch .icon-collapse {
+    width: 18px;
+    height: 18px;
+    /*background: transparent url(tree.png);*/
+}
+
+.widget-tree li.branch .icon-expand {
+    background-position: -92px 0;
+}
+
+.widget-tree li.last-branch .icon-expand {
+    background-position: -92px -36px;
+}
+
+.widget-tree li.branch .icon-collapse {
+    background-position: -74px -18px;
+}
+
+.widget-tree li.last-branch .icon-collapse {
+    background-position: -74px -36px;
+}
+
+.widget-tree li.leaf .icon-fibre {
+    width: 18px;
+    height: 18px;
+    background: transparent url(92717ba8243cbc7028452c982b9477ab.png) -56px -18px;
+}
+
+.widget-tree li.last-leaf .icon-fibre {
+    background-position: -56px -36px;
+}
+
+.widget-tree li a {
+    display: inline-block;
+    cursor: pointer;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.widget-tree li a .icon {
+    display: inline-block;
+    margin-left: -5px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.widget-tree li a .node-text {
+    display: inline-block;
+    padding: 0 0 0 4px;
+    font-size: 13px;
+}
+
+.widget-tree li ul {
+    margin: 0;
+    padding: 0 0 0 16px;
+    /*padding: 0;*/
+    background: url(a2649b0b087ae0f894092a090d95d3e2.gif) 0 0 repeat-y;
+}
+
+/* spread expand  expand/collapse branch trunk */
