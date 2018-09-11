@@ -83,8 +83,15 @@ class Tree {
             parent.appendChild(node);
             if(item["leaf"]) {
                 node.classList.add("leaf");
+                if(index + 1 === data.length) {
+                    node.classList.add("last-leaf");
+                }
             } else {
                 node.classList.add("branch");
+
+                if(index + 1 === data.length) {
+                    node.classList.add("last-branch");
+                }
             }
 
             let rootSystem = document.createElement("span");
@@ -92,12 +99,12 @@ class Tree {
                 rootSystem.classList.add(item["expanded"]? "icon-expand" : "icon-collapse");
                 if(item["expanded"]) {
                     rootSystem.innerHTML = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-                        "    <path d=\"M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
+                        "    <path d=\"M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
                         "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
                         "</svg>";
                 } else {
                     rootSystem.innerHTML = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-                        "    <path d=\"M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
+                        "    <path d=\"M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
                         "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
                         "</svg>";
                 }
@@ -133,8 +140,21 @@ class Tree {
 
             if(item["children"]) {
                 let children = document.createElement("ul");
+                if(index + 1 === data.length) {
+                    children.style["background"] = "none";
+                }
                 Tree.buildNode(children, item["children"]);
                 node.appendChild(children);
+            }
+
+            // events
+            let events = item["events"];
+            if (events) {
+                for (let prop in events) {
+                    if (events.hasOwnProperty(prop)) {
+                        node.addEventListener(prop, events[prop])
+                    }
+                }
             }
         });
     }

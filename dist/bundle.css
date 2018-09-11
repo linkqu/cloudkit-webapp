@@ -588,4 +588,9 @@
     background: url(a2649b0b087ae0f894092a090d95d3e2.gif) 0 0 repeat-y;
 }
 
+/*.widget-tree li.last-leaf ul,*/
+/*.widget-tree li.last-branch ul{*/
+    /*background: none;*/
+/*}*/
+
 /* spread expand  expand/collapse branch trunk */

@@ -86,4 +86,9 @@
     background: url('../resources/images/table-link-line.gif') 0 0 repeat-y;
 }
 
+/*.widget-tree li.last-leaf ul,*/
+/*.widget-tree li.last-branch ul{*/
+    /*background: none;*/
+/*}*/
+
 /* spread expand  expand/collapse branch trunk */
