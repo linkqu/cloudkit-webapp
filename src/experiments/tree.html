@@ -3,10 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <style type="text/css">
+        .widget-tree {
+            border: 1px solid #617775;
+            width: 220px;
+            height: 360px;
+            overflow-y: scroll;
+            overflow-x: auto;
+            padding: 16px;
+        }
+
+        .widget-tree li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            line-height: 14px;
+            text-align: left;
+            white-space: nowrap;
+            outline: 0;
+        }
+
 
     </style>
 </head>
 <body>
+
+    <!-- https://www.jstree.com/demo/ -->
+    <!-- http://www.treejs.cn/v3/demo.php -->
+    <ul class="widget-tree">
+        <li>
+            <span></span>
+            <a>
+                <span></span>
+                <span>profile</span>
+            </a>
+            <ul>
+                <li>
+                    <span></span>
+                    <a>
+                        <span></span>
+                        <span>name</span>
+                    </a>
+                </li>
+                <li>
+                    <span></span>
+                    <a>
+                        <span></span>
+                        <span>age</span>
+                    </a>
+                </li>
+                <li>
+                    <span></span>
+                    <a>
+                        <span></span>
+                        <span>location</span>
+                    </a>
+                </li>
+                <li>
+                    <ul>
+                        <li>province</li>
+                        <li>city</li>
+                        <li>district</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
 </body>
 </html>
