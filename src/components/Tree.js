@@ -152,7 +152,7 @@ class Tree {
             if (events) {
                 for (let prop in events) {
                     if (events.hasOwnProperty(prop)) {
-                        node.addEventListener(prop, events[prop])
+                        noteContent.addEventListener(prop, events[prop])
                     }
                 }
             }
