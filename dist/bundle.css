@@ -594,3 +594,46 @@
 /*}*/
 
 /* spread expand  expand/collapse branch trunk */
+.widget-tabs {
+    padding: 8px;
+}
+.widget-tabs .link-bar {
+    box-sizing: border-box;
+    position: relative;
+    font-size: 12px;
+    border-bottom: 1px solid #dcdee2;
+    transition: transform .5s ease-in-out,-webkit-transform .5s ease-in-out;
+}
+.widget-tabs .link-bar .link-bar-item {
+    display: inline-block;
+    height: 100%;
+    padding: 8px 8px;
+    margin-right: 16px;
+    margin-bottom: -1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    transition: color .3s ease-in-out;
+}
+
+.widget-tabs .link-bar .link-bar-item.active {
+    box-sizing: border-box;
+    border-bottom: 1px solid #2d8cf0;
+    transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.widget-tabs .view-content {
+
+}
+
+.widget-tabs .view-content .view-content-block {
+    padding: 8px;
+    display: none;
+}
+
+.widget-tabs .view-content .view-content-block.active {
+    display: block;
+}

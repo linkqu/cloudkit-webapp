@@ -29,7 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import "Tabs.css";
+import "./Tabs.css";
 
 /**
  * Tabs TabbedPane
@@ -61,8 +61,52 @@ class Tabs {
      * build
      */
     build() {
+        let $this = this;
+
         let tabs = document.createElement("div");
         tabs.classList.add("widget-tabs");
+
+        let linkBar = document.createElement("div");
+        linkBar.classList.add("link-bar");
+        tabs.appendChild(linkBar);
+
+        let viewContent = document.createElement("div");
+        viewContent.classList.add("view-content");
+        tabs.appendChild(viewContent);
+
+        let items = $this.options["items"];
+
+        // let linkBarItems:Array = new Array(items.length);
+        if(items) {
+            items.forEach(function (item, index) {
+                let linkBarItem = document.createElement("div");
+                linkBarItem.classList.add("link-bar-item");
+                linkBarItem.setAttribute("data-index", item["index"]);
+                linkBarItem.appendChild(document.createTextNode(item["title"] ? item["title"] : ""));
+                linkBarItem.addEventListener("click", function (event) {
+                    linkBar.childNodes.forEach(function (node, index) {
+                        node.classList.remove("active");
+                    });
+                    linkBarItem.classList.add("active");
+                    viewContent.childNodes.forEach(function (node, index) {
+                        node.classList.remove("active");
+                    });
+                    viewContent.querySelector("div[data-index=" + item["index"] + "]").classList.add("active");
+                });
+                linkBar.appendChild(linkBarItem);
+
+                let viewContentBlock = document.createElement("div");
+                viewContentBlock.classList.add("view-content-block");
+                viewContentBlock.setAttribute("data-index", item["index"]);
+                viewContentBlock.appendChild(document.createTextNode(item["content"] ? item["content"] : ""));
+                viewContent.appendChild(viewContentBlock);
+
+                if(index === $this.options["activeTab"]) {
+                    linkBarItem.classList.add("active");
+                    viewContentBlock.classList.add("active");
+                }
+            });
+        }
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);

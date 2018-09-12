@@ -42,6 +42,7 @@ import {Radio} from "./components/Radio";
 import {Pagination} from "./components/Pagination";
 import {Modal} from "./components/Modal";
 import {Tree} from "./components/Tree";
+import {Tabs} from "./components/Tabs";
 
 // import pkg from "../package.json";
 
@@ -222,11 +223,41 @@ new Tree({
     }, {text: "buy lottery tickets", leaf: true}]
 });
 
+new Tabs({
+    parent: document.body,
+    activeTab: 0,
+    items: [{
+        index: "bookmarks",
+        title: "Bookmarks",
+        content: "Bookmarks content",
+        closable: true,
+        layout: ""
+    }, {
+        index: "downloads",
+        title: "Downloads",
+        content: "Downloads content",
+        closable: true,
+        layout: ""
+    }, {
+        index: "history",
+        title: "History",
+        content: "History content",
+        closable: true,
+        layout: ""
+    }, {
+        index: "window",
+        title: "Window",
+        content: "Window content",
+        closable: true,
+        layout: ""
+    }]
+});
+
 /**
  * https://github.com/github/fetch
  */
 // HTML
-// fetch('./index.html')
+// fetch("./index.html")
 //     .then(function(response) {
 //         return response.text()
 //     })
@@ -235,54 +266,54 @@ new Tree({
 //     });
 
 // JSON
-fetch('./data.json')
+fetch("./data.json")
     .then(function (response) {
-        console.log(response.headers.get('Content-Type'))
-        console.log(response.headers.get('Date'))
+        console.log(response.headers.get("Content-Type"))
+        console.log(response.headers.get("Date"))
         console.log(response.status)
         console.log(response.statusText)
         return response.json()
     }).then(function (json) {
-        console.log('parsed json', json)
+        console.log("parsed json", json)
     }).catch(function (ex) {
-        console.log('parsing failed', ex)
+        console.log("parsing failed", ex)
     });
 
 // Response metadata
-// let form = document.querySelector('form')
-// fetch('./users', {
-//     method: 'POST',
+// let form = document.querySelector("form")
+// fetch("./users", {
+//     method: "POST",
 //     body: new FormData(form)
 // });
 
 // // Post form
-// let form = document.querySelector('form');
+// let form = document.querySelector("form");
 //
-// fetch('./users', {
-//     method: 'POST',
+// fetch("./users", {
+//     method: "POST",
 //     body: new FormData(form)
 // });
 //
 // // Post JSON
-// fetch('./users', {
-//     method: 'POST',
+// fetch("./users", {
+//     method: "POST",
 //     headers: {
-//         'Content-Type': 'application/json'
+//         "Content-Type": "application/json"
 //     },
 //     body: JSON.stringify({
-//         name: 'Hubot',
-//         login: 'hubot',
+//         name: "Hubot",
+//         login: "hubot",
 //     })
 // });
 //
 // // File upload
-// let input = document.querySelector('input[type="file"]');
+// let input = document.querySelector("input[type="file"]");
 //
 // let data = new FormData();
-// data.append('file', input.files[0]);
-// data.append('user', 'hubot');
+// data.append("file", input.files[0]);
+// data.append("user", "hubot");
 //
-// fetch('./avatars', {
-//     method: 'POST',
+// fetch("./avatars", {
+//     method: "POST",
 //     body: data
 // });

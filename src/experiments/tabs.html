@@ -5,24 +5,64 @@
     <link rel="stylesheet" media="all" href="../resources/stylesheets/normalize.css"/>
     <style type="text/css">
         .widget-tabs {
-            padding: 9px;
+            padding: 8px;
+        }
+        .widget-tabs .link-bar {
+            box-sizing: border-box;
+            position: relative;
+            font-size: 12px;
+            border-bottom: 1px solid #dcdee2;
+            transition: transform .5s ease-in-out,-webkit-transform .5s ease-in-out;
+        }
+        .widget-tabs .link-bar .link-bar-item {
+            display: inline-block;
+            height: 100%;
+            padding: 8px 8px;
+            margin-right: 16px;
+            margin-bottom: -1px;
+            box-sizing: border-box;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            transition: color .3s ease-in-out;
+        }
+
+        .widget-tabs .link-bar .link-bar-item.active {
+            box-sizing: border-box;
+            border-bottom: 1px solid #2d8cf0;
+            transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+
+        .widget-tabs .view-content {
+
+        }
+
+        .widget-tabs .view-content .view-content-block {
+            padding: 8px;
+            display: none;
+        }
+
+        .widget-tabs .view-content .view-content-block.active {
+            display: block;
         }
     </style>
 </head>
 <body>
 
 <div class="widget-tabs">
-    <div class="tabs-bar">
-        <div class="tabs-bar-item active">Bookmarks</div>
-        <div class="tabs-bar-item">Downloads</div>
-        <div class="tabs-bar-item">History</div>
-        <div class="tabs-bar-item">Window</div>
+    <div class="link-bar">
+        <div class="link-bar-item">Bookmarks</div>
+        <div class="link-bar-item active">Downloads</div>
+        <div class="link-bar-item">History</div>
+        <div class="link-bar-item">Window</div>
     </div>
-    <div class="tabs-content">
-        <div class="tabs-content-block"></div>
-        <div class="tabs-content-block"></div>
-        <div class="tabs-content-block"></div>
-        <div class="tabs-content-block"></div>
+    <div class="view-content">
+        <div class="view-content-block">Bookmarks</div>
+        <div class="view-content-block active">Downloads</div>
+        <div class="view-content-block">History</div>
+        <div class="view-content-block">Window</div>
     </div>
 </div>
 
