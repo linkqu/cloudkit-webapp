@@ -1,4 +1,12 @@
 .widget-accordion .accordion-item .title {
+    border-bottom: 1px solid #999999;
+    border-left: 1px solid #999999;
+    border-right: 1px solid #999999;
+}
+.widget-accordion .accordion-item:first-child .title {
+    border-top: 1px solid #999999;
+}
+.widget-accordion .accordion-item .title {
     font-weight: 700;
     position: relative;
     padding: 0.5em 1em;
@@ -11,7 +19,7 @@
 
 .widget-accordion .accordion-item .checkbox:checked + label,
 .widget-accordion .accordion-item .title:hover {
-    background-color: #999;
+    background-color: #999999;
 }
 
 .widget-accordion .accordion-item .title:after,
