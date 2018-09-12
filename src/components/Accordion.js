@@ -30,6 +30,7 @@
  */
 
 import "./Accordion.css";
+import uuid from "uuid/v1";
 
 /**
  * Accordion
@@ -61,7 +62,71 @@ class Accordion {
      * build
      */
     build() {
+        let $this = this;
 
+        let accordion = document.createElement("div");
+        accordion.classList.add("widget-accordion");
+
+        let items = $this.options["items"];
+        if(items) {
+            items.forEach(function (item, index, objs) {
+                let accordionItem = document.createElement("div");
+                accordionItem.classList.add("accordion-item");
+                accordion.appendChild(accordionItem);
+
+                let itemCheckbox = document.createElement("input");
+                itemCheckbox.setAttribute("type", "checkbox");
+                itemCheckbox.classList.add("item-checkbox");
+                itemCheckbox.id = item["id"];
+                accordionItem.appendChild(itemCheckbox);
+
+                let title = document.createElement("label");
+                title.classList.add("title");
+                title.setAttribute("for", itemCheckbox.id);
+                title.appendChild(document.createTextNode(item["title"]));
+                accordionItem.appendChild(title);
+
+                let childContainer = document.createElement("div");
+                childContainer.classList.add("child-container");
+                accordionItem.appendChild(childContainer);
+
+                let children = item["children"];
+                if(item["children"]) {
+                    children.forEach(function (item, index, objs) {
+                        let childItem = document.createElement("div");
+                        childItem.classList.add("child-item");
+
+                        let itemCheckbox = document.createElement("input");
+                        itemCheckbox.setAttribute("type", "checkbox");
+                        itemCheckbox.classList.add("item-checkbox");
+                        itemCheckbox.id = uuid();
+                        childItem.appendChild(itemCheckbox);
+
+                        let title = document.createElement("label");
+                        title.classList.add("title");
+                        title.setAttribute("for", itemCheckbox.id);
+                        title.appendChild(document.createTextNode(item["title"]));
+                        childItem.appendChild(title);
+
+                        let article = document.createElement("article");
+                        article.classList.add("item-text");
+                        article.innerHTML = item["text"];
+                        childItem.appendChild(article);
+
+                        childContainer.appendChild(childItem);
+                    });
+                }
+            });
+        }
+
+        if (this.options["parent"]) {
+            // console.log(this.options["parent"]);
+            this.options["parent"].appendChild(accordion);
+        } else {
+            // document.body.appendChild(button);
+        }
+
+        return accordion;
     }
 }
 

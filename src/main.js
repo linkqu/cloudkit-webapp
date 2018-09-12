@@ -43,6 +43,7 @@ import {Pagination} from "./components/Pagination";
 import {Modal} from "./components/Modal";
 import {Tree} from "./components/Tree";
 import {Tabs} from "./components/Tabs";
+import {Accordion} from "./components/Accordion";
 
 // import pkg from "../package.json";
 
@@ -250,6 +251,39 @@ new Tabs({
         content: "Window content",
         closable: true,
         layout: ""
+    }]
+});
+
+new Accordion({
+    parent: document.body,
+    items: [{
+        id: "bookmarks",
+        title: "Bookmarks",
+        children: [
+            {title: "book report", text: "test"},
+            {title: "alegrbra", text: "test"}
+        ]
+    }, {
+        id: "downloads",
+        title: "Downloads",
+        children: [
+            {title: "book report", text: ""},
+            {title: "alegrbra", text: ""}
+        ]
+    }, {
+        id: "history",
+        title: "History",
+        children: [
+            {title: "book report", text: ""},
+            {title: "alegrbra", text: ""}
+        ]
+    }, {
+        id: "window",
+        title: "Window",
+        children: [
+            {title: "book report", text: ""},
+            {title: "alegrbra", text: ""}
+        ]
     }]
 });
 

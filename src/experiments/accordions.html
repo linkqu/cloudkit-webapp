@@ -47,8 +47,8 @@
             display: none;
         }
 
-        .widget-accordion .accordion-item .text,
-        .widget-accordion .accordion-item .child-item-text {
+        .widget-accordion .accordion-item .child-container,
+        .widget-accordion .accordion-item .item-text {
             opacity: 0;
             height: 0;
             /*margin-bottom: 0.5em;*/
@@ -56,8 +56,8 @@
             overflow: hidden;
         }
 
-        .widget-accordion .accordion-item .item-checkbox:checked ~ .text,
-        .widget-accordion .accordion-item .child-item .item-checkbox:checked ~ .child-item-text {
+        .widget-accordion .accordion-item .item-checkbox:checked ~ .child-container,
+        .widget-accordion .accordion-item .child-item .item-checkbox:checked ~ .item-text {
             opacity: 1;
             height: auto;
         }
@@ -85,7 +85,7 @@
             background: none;
         }
 
-        .widget-accordion .accordion-item .child-item-text {
+        .widget-accordion .accordion-item .child-item .item-text {
             padding: 0 1em 0 2em;
         }
     </style>
@@ -102,12 +102,12 @@
             <input class="item-checkbox" id="accordion-1" name="accordion-1" type="checkbox">
             <label class="title" for="accordion-1">Item 1</label>
 
-            <article class="text">
+            <article class="child-container">
 
                 <div class="child-item">
                     <input class="item-checkbox" id="accordion-2" name="accordion-2" type="checkbox">
                     <label class="title" for="accordion-2">I love jelly donuts</label>
-                    <article class="child-item-text">
+                    <article class="item-text">
                         <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to
                             its
                             own off-spring; worse than the Persian host who murdered his own guests; sparing not the
@@ -134,7 +134,7 @@
                 <div class="child-item">
                     <input class="item-checkbox" id="accordion-3" name="accordion-3" type="checkbox">
                     <label class="title" for="accordion-3">They are so delicious</label>
-                    <article class="child-item-text">
+                    <article class="item-text">
                         <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
                             working for an imminent examination, and he heard nothing of the arrival until Saturday
                             morning.
@@ -164,12 +164,12 @@
             <input class="item-checkbox" id="accordion-4" name="accordion-4" type="checkbox">
             <label class="title" for="accordion-4">Item 2</label>
 
-            <article class="text">
+            <article class="child-container">
 
                 <div class="child-item">
                     <input class="item-checkbox" id="accordion-5" name="accordion-5" type="checkbox">
                     <label class="title" for="accordion-5">I also love regular donuts</label>
-                    <article class="child-item-text">
+                    <article class="item-text">
                         <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to
                             its
                             own off-spring; worse than the Persian host who murdered his own guests; sparing not the
@@ -196,7 +196,7 @@
                 <div class="child-item">
                     <input class="item-checkbox" id="accordion-6" name="accordion-6" type="checkbox">
                     <label class="title" for="accordion-6">They are also delicious</label>
-                    <article class="child-item-text">
+                    <article class="item-text">
                         <p>My younger brother was in London when the Martians fell at Woking. He was a medical student
                             working for an imminent examination, and he heard nothing of the arrival until Saturday
                             morning.
