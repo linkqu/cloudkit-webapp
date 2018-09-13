@@ -56,7 +56,14 @@ new Menu({
         index: "bookmarks",
         title: "Bookmarks",
         children: [
-            {title: "book report"},
+            {
+                title: "book report",
+                events: {
+                    "click": function () {
+                        alert("hello!");
+                    }
+                }
+            },
             {title: "alegrbra"}
         ]
     }, {

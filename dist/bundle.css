@@ -638,9 +638,8 @@
     display: block;
 }
 .widget-accordion .accordion-item > .title {
-    border-bottom: 1px solid #999999;
-    border-left: 1px solid #999999;
-    border-right: 1px solid #999999;
+    border: 1px solid #999999;
+    border-top-color: #dae6db;
 }
 .widget-accordion .accordion-item .title {
     font-weight: 700;
@@ -655,7 +654,7 @@
 
 .widget-accordion .accordion-item .checkbox:checked + label,
 .widget-accordion .accordion-item .title:hover {
-    background-color: #999999;
+    background-color: #ebf7ff;
 }
 
 .widget-accordion .accordion-item .title:after,
@@ -669,13 +668,13 @@
     height: 100%;
     line-height: 2.25em;
     text-align: center;
-    background-color: #e5e5e5;
+    background-color: #cfd9e0;
     transition: background-color 0.15s ease-in-out;
 }
 
 .widget-accordion .accordion-item .title:hover:after,
 .widget-accordion .accordion-item .item-checkbox:checked + .title:after {
-    background-color: #b5b5b5;
+    background-color: #cfd9e0;
 }
 
 .widget-accordion .accordion-item .item-checkbox:checked + .title:after {

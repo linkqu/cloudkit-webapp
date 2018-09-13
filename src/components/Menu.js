@@ -77,6 +77,17 @@ class Menu {
                 let menuBarItem = document.createElement("div");
                 menuBarItem.classList.add("menu-bar-item");
                 menuBarItem.appendChild(document.createTextNode(item["title"]));
+
+                // events
+                let events = item["events"];
+                if (events) {
+                    for (let prop in events) {
+                        if (events.hasOwnProperty(prop)) {
+                            menuBarItem.addEventListener(prop, events[prop])
+                        }
+                    }
+                }
+
                 menuBar.appendChild(menuBarItem);
 
                 let menu = document.createElement("div");
@@ -89,6 +100,17 @@ class Menu {
                         let menuItem = document.createElement("div");
                         menuItem.appendChild(document.createTextNode(item["title"]));
                         menuItem.classList.add("menu-item");
+
+                        // events
+                        let events = item["events"];
+                        if (events) {
+                            for (let prop in events) {
+                                if (events.hasOwnProperty(prop)) {
+                                    menuItem.addEventListener(prop, events[prop])
+                                }
+                            }
+                        }
+
                         menu.appendChild(menuItem);
                     });
                 }
