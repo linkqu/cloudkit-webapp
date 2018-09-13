@@ -90,7 +90,7 @@ class Table {
     build() {
         let $this = this;
 
-        let scrollWidth = Table.getVerticalScrollBarWidth();
+        let scrollBarWidth = Table.getVerticalScrollBarWidth();
 
         let tableWrapper = document.createElement("div");
         let width = this.options["width"], height = this.options["height"];
@@ -155,7 +155,7 @@ class Table {
                     let patchElement = document.createElement("th");
                     patchElement.classList.add("table-patch");
 
-                    patchElement.width = scrollAllowWidth;
+                    patchElement.width = scrollBarWidth;
                     tableHeader.querySelector('tr').appendChild(patchElement);
                 }
             } else {
