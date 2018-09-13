@@ -14,9 +14,16 @@
 
 .widget-menu .menu {
     display: none;
-    border: 1px solid #999999;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    /*border-radius: 3px;*/
 }
 
 .widget-menu .menu .menu-item {
+    padding: 6px 16px;
+    cursor: pointer;
+}
 
+.widget-menu .menu .menu-item:hover {
+    background: #ebf7ff;
 }

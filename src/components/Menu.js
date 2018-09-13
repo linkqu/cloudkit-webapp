@@ -96,11 +96,20 @@ class Menu {
                 menuBarItem.addEventListener("mouseover", function (event) {
                     menu.style["display"] = "inline-block";
                     menu.style["position"] = "absolute";
-                    menu.style["top"] = menuBarItem.offsetTop + "px";
+                    menu.style["top"] = menuBarItem.offsetTop + menuBarItem.clientHeight + "px";
                     menu.style["left"] = menuBarItem.offsetLeft + "px";
+                    menu.style["z-index"] = "9999";
                 });
 
                 menuBarItem.addEventListener("mouseout", function (event) {
+                    menu.style["display"] = "none";
+                });
+
+                menu.addEventListener("mouseover", function (event) {
+                    menu.style["display"] = "inline-block";
+                });
+
+                menu.addEventListener("mouseout", function (event) {
                     menu.style["display"] = "none";
                 });
             })
