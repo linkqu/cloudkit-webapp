@@ -122,6 +122,7 @@ class Button {
             }
         }
 
+        // renderTo
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
             this.options["parent"].appendChild(button);

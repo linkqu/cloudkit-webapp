@@ -48,6 +48,9 @@ class BorderLayout {
      */
     constructor(options: JSON) {
         // default setting
+        // collapsible
+        // border
+        // split
         this.defaultSetting = {};
         this.options = options;
         this.build();

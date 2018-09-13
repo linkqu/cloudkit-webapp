@@ -232,7 +232,10 @@ let borderLayout = new BorderLayout({
     items: [{
         title: "North Panel",
         region: "north",
-        height: 50
+        height: 50,
+        items: [{
+
+        }]
     }, {
         title: "West Panel",
         region: "west",

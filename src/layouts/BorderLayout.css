@@ -20,8 +20,7 @@
 }
 
 .border-layout .north, .border-layout .south {
-    background: #7cbce9;
-    /*background: #515a6e;*/
+    /*background: #7cbce9;*/
     color: #fff;
 }
 
@@ -36,12 +35,10 @@
 .border-layout .west, .border-layout .east {
     position: relative;
     height: 100%;
-    /*width: 200px;*/
-    /*min-width: 200px;*/
     /*max-width: 200px;*/
     /*flex: 0 0 200px;*/
-    background: #3a9fe8;
-    color: #fff;
+    /*background: #3a9fe8;*/
+    color: #ffffff;
     transition: all .2s ease-in-out;
 }
 
@@ -53,5 +50,5 @@
     -webkit-box-flex: 1;
     -ms-flex: auto;
     flex: auto;
-    background: #8ee8e0;
+    /*background: #8ee8e0;*/
 }
