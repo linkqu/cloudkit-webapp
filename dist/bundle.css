@@ -1,4 +1,61 @@
 /*! Webpack 实例 */
+.border-layout {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    background: #f5f7f9;
+    height: 100%;
+}
+
+.border-layout .north, .border-layout .south {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.border-layout .north, .border-layout .south {
+    background: #7cbce9;
+    /*background: #515a6e;*/
+    color: #fff;
+}
+
+.border-layout .has-side {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    height: 100%;
+}
+
+.border-layout .west, .border-layout .east {
+    position: relative;
+    height: 100%;
+    /*width: 200px;*/
+    /*min-width: 200px;*/
+    /*max-width: 200px;*/
+    /*flex: 0 0 200px;*/
+    background: #3a9fe8;
+    color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.border-layout .has-side > .center {
+    overflow-x: hidden;
+}
+
+.border-layout .center {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    background: #8ee8e0;
+}
 /* theme-default */
 .widget-button {
     display: inline-block;
@@ -113,54 +170,6 @@
 .button-group:not(.button-group-vertical)>.button:last-child:not(:first-child) {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
-}
-.widget-text-field {
-    display: inline-block;
-    width: 100%;
-    line-height: 1.5;
-    padding: 3px 7px;
-    font-size: 12px;
-    border: 1px solid #dcdee2;
-    /*border-radius: 4px;*/
-    color: #515a6e;
-    background: #fff none;
-    vertical-align: middle;
-    position: relative;
-    cursor: text;
-    transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
-}
-
-.widget-text-field::-moz-placeholder {
-    color: #c5c8ce;
-    opacity: 1
-}
-
-.widget-text-field:-ms-input-placeholder {
-    color: #c5c8ce
-}
-
-.widget-text-field::-webkit-input-placeholder {
-    color: #c5c8ce
-}
-
-.widget-text-field:focus, .ivu-input:hover {
-    border-color: #57a3f3
-}
-
-.widget-text-field:focus {
-    outline: 0;
-    box-shadow: 0 0 0 2px #2D8CF0
-}
-
-.widget-text-field[disabled], fieldset[disabled] .text-field {
-    background-color: #f3f3f3;
-    opacity: 1;
-    cursor: not-allowed;
-    color: #ccc
-}
-
-.widget-text-field[disabled]:hover, fieldset[disabled] .text-field:hover {
-    border-color: #e3e5e8
 }
 .widget-table {
     box-sizing: border-box;
@@ -320,62 +329,53 @@
 .widget-pagination .widget-button {
     margin: 0 -1px 0 0;
 }
-.border-layout {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-flex: 1;
-    -ms-flex: auto;
-    flex: auto;
-    background: #f5f7f9;
-    height: 100%;
-}
-
-.border-layout .north, .border-layout .south {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
-}
-
-.border-layout .north, .border-layout .south {
-    background: #7cbce9;
-    /*background: #515a6e;*/
-    color: #fff;
-}
-
-.border-layout .has-side {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    height: 100%;
-}
-
-.border-layout .west, .border-layout .east {
+.widget-text-field {
+    display: inline-block;
+    width: 100%;
+    line-height: 1.5;
+    padding: 3px 7px;
+    font-size: 12px;
+    border: 1px solid #dcdee2;
+    /*border-radius: 4px;*/
+    color: #515a6e;
+    background: #fff none;
+    vertical-align: middle;
     position: relative;
-    height: 100%;
-    /*width: 200px;*/
-    /*min-width: 200px;*/
-    /*max-width: 200px;*/
-    /*flex: 0 0 200px;*/
-    background: #3a9fe8;
-    color: #fff;
-    transition: all .2s ease-in-out;
+    cursor: text;
+    transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
 }
 
-.border-layout .has-side > .center {
-    overflow-x: hidden;
+.widget-text-field::-moz-placeholder {
+    color: #c5c8ce;
+    opacity: 1
 }
 
-.border-layout .center {
-    -webkit-box-flex: 1;
-    -ms-flex: auto;
-    flex: auto;
-    background: #8ee8e0;
+.widget-text-field:-ms-input-placeholder {
+    color: #c5c8ce
+}
+
+.widget-text-field::-webkit-input-placeholder {
+    color: #c5c8ce
+}
+
+.widget-text-field:focus, .ivu-input:hover {
+    border-color: #57a3f3
+}
+
+.widget-text-field:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px #2D8CF0
+}
+
+.widget-text-field[disabled], fieldset[disabled] .text-field {
+    background-color: #f3f3f3;
+    opacity: 1;
+    cursor: not-allowed;
+    color: #ccc
+}
+
+.widget-text-field[disabled]:hover, fieldset[disabled] .text-field:hover {
+    border-color: #e3e5e8
 }
 .widget-radio input[type="radio"] {
     display: none;
@@ -636,4 +636,97 @@
 
 .widget-tabs .view-content .view-content-block.active {
     display: block;
+}
+.widget-accordion .accordion-item > .title {
+    border-bottom: 1px solid #999999;
+    border-left: 1px solid #999999;
+    border-right: 1px solid #999999;
+}
+.widget-accordion .accordion-item:first-child > .title {
+    border-top: 1px solid #999999;
+}
+.widget-accordion .accordion-item .title {
+    font-weight: 700;
+    position: relative;
+    padding: 0.5em 1em;
+    /*margin-bottom: 0.5em;*/
+    display: block;
+    cursor: pointer;
+    background-color: whiteSmoke;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.widget-accordion .accordion-item .checkbox:checked + label,
+.widget-accordion .accordion-item .title:hover {
+    background-color: #999999;
+}
+
+.widget-accordion .accordion-item .title:after,
+.widget-accordion .accordion-item .checkbox:checked + .title:after {
+    content: "+";
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    width: 2em;
+    height: 100%;
+    line-height: 2.25em;
+    text-align: center;
+    background-color: #e5e5e5;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.widget-accordion .accordion-item .title:hover:after,
+.widget-accordion .accordion-item .item-checkbox:checked + .title:after {
+    background-color: #b5b5b5;
+}
+
+.widget-accordion .accordion-item .item-checkbox:checked + .title:after {
+    content: "-";
+}
+
+.widget-accordion .accordion-item .item-checkbox {
+    display: none;
+}
+
+.widget-accordion .accordion-item .child-container,
+.widget-accordion .accordion-item .item-text {
+    opacity: 0;
+    height: 0;
+    /*margin-bottom: 0.5em;*/
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.widget-accordion .accordion-item .item-checkbox:checked ~ .child-container,
+.widget-accordion .accordion-item .child-item .item-checkbox:checked ~ .item-text {
+    opacity: 1;
+    height: auto;
+}
+
+.widget-accordion .accordion-item .child-item .title {
+    background: none;
+    font-weight: 600;
+    padding: 0.5em 2em;
+    margin-bottom: 0;
+}
+
+.widget-accordion .accordion-item .child-item .title:checked {
+    background: none;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.widget-accordion .accordion-item .child-item .title:after,
+.widget-accordion .accordion-item .child-item .item-checkbox:checked + .title:after {
+    left: 0;
+    background: none;
+}
+
+.widget-accordion .accordion-item .child-item .item-checkbox:checked + label,
+.widget-accordion .accordion-item .child-item .title:hover {
+    background: none;
+}
+
+.widget-accordion .accordion-item .child-item .item-text {
+    padding: 0 1em 0 2em;
 }
