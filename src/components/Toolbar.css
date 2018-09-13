@@ -1,0 +1,8 @@
+.widget-toolbar {
+    padding: 4px 8px;
+    border: 1px solid #dcdee2;
+}
+
+.widget-toolbar .widget-button {
+    border: 0;
+}

@@ -29,17 +29,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import "./Toolbar.css";
-import {Button} from "./Button";
-import {Separator} from "./Separator";
+import "./Separator.css";
 
 /**
- * Icon
+ * Separator
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Toolbar {
+class Separator {
 
     options: JSON;
 
@@ -63,46 +61,18 @@ class Toolbar {
      * build
      */
     build() {
-        let $this = this, options = this.options;
+        let separator = document.createElement("span");
+        separator.classList.add("widget-separator");
 
-        let toolbar = document.createElement("div");
-        toolbar.classList.add("widget-toolbar");
-
-
-        let items = options["items"];
-        if(items) {
-            items.forEach(function (item, index, objs) {
-
-                let button = new Button({
-                    parent: toolbar,
-                    text: "Button"
-                });
-
-                new Separator({
-                    parent: toolbar
-                });
-
-                // events
-                let events = item["events"];
-                if (events) {
-                    for (let prop in events) {
-                        if (events.hasOwnProperty(prop)) {
-                            button.addEventListener(prop, events[prop])
-                        }
-                    }
-                }
-            });
-        }
-
-        if (options["parent"]) {
+        if (this.options["parent"]) {
             // console.log(this.options["parent"]);
-            options["parent"].appendChild(toolbar);
+            this.options["parent"].appendChild(separator);
         } else {
-            // document.body.appendChild(toolbar);
+            // document.body.appendChild(button);
         }
 
-        return toolbar;
+        return separator;
     }
 }
 
-export {Toolbar};
+export {Separator};

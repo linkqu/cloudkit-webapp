@@ -45,6 +45,7 @@ import {Tree} from "./components/Tree";
 import {Tabs} from "./components/Tabs";
 import {Accordion} from "./components/Accordion";
 import {Menu} from "./components/Menu";
+import {Toolbar} from "./components/Toolbar";
 
 // import pkg from "../package.json";
 
@@ -87,6 +88,23 @@ new Menu({
             {title: "hide"},
             {title: "alegrbra"}
         ]
+    }]
+});
+
+new Toolbar({
+    parent: document.body,
+    items: [{
+        index: "bookmarks",
+        text: "Bookmarks"
+    }, {
+        index: "downloads",
+        text: "Downloads"
+    }, {
+        index: "history",
+        text: "History"
+    }, {
+        index: "window",
+        text: "Window"
     }]
 });
 

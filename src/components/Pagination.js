@@ -62,6 +62,7 @@ class Pagination {
     build() {
         let pagination = document.createElement("div");
         pagination.classList.add("widget-pagination");
+        pagination.classList.add("clearfix");
 
         // pageable
         // offset
@@ -84,19 +85,23 @@ class Pagination {
             let numberOfElements = pageable["numberOfElements"] ? pageable["numberOfElements"] : 0;
             let groupSize = (pageable["groupSize"] || pageable["groupSize"] < 0 || pageable["groupSize"] > totalPages) ? pageable["groupSize"] : 5;
 
-            let totalElementText = document.createElement("span");
+            let totalElementText = document.createElement("div");
             totalElementText.classList.add("total-elements-text");
             totalElementText.appendChild(
                 document.createTextNode("共 " + pageable["totalElements"] + " 条")
             );
             pagination.appendChild(totalElementText);
 
+            let pagingButtons = document.createElement("div");
+            pagingButtons.classList.add("paging-buttons");
+            pagination.appendChild(pagingButtons);
+
             let currentGroupIndex = totalPages > groupSize ? Math.ceil((pageNumber + (groupSize > 1 ? 1 : 0)) / (groupSize > 0 ? groupSize : 1)) : 1;
             // console.log("groupIndex: %s", currentGroupIndex);
 
             new Button({
                 text: pageable["previousLinkText"]? pageable["previousLinkText"] : "上一页",
-                parent: pagination,
+                parent: pagingButtons,
                 events: {
                     "click": function () {
                         alert(pageNumber - 1);
@@ -107,7 +112,7 @@ class Pagination {
             if (groupSize && currentGroupIndex > 1 && pageNumber !== 1) {
                 new Button({
                     text: pageNumber,
-                    parent: pagination,
+                    parent: pagingButtons,
                     events: {
                         "click": function () {
                             alert(pageNumber);
@@ -128,7 +133,7 @@ class Pagination {
             if (pageNumber !== 1 && start > 2) {
                 new Button({
                     text: "...",
-                    parent: pagination
+                    parent: pagingButtons
                 });
             }
 
@@ -142,7 +147,7 @@ class Pagination {
                         //     "backgroundColor": Color.VOLCANO[5],
                         //     "borderColor": Color.VOLCANO[5]
                         // },
-                        parent: pagination,
+                        parent: pagingButtons,
                         events: {
                             "click": function () {
                                 alert(pageNumber);
@@ -153,7 +158,7 @@ class Pagination {
                     let currentNumber = start;
                     new Button({
                         text: currentNumber,
-                        parent: pagination,
+                        parent: pagingButtons,
                         events: {
                             "click": function () {
                                 alert(currentNumber);
@@ -168,13 +173,13 @@ class Pagination {
                 if (end + 1 < totalPages) {
                     new Button({
                         text: "...",
-                        parent: pagination
+                        parent: pagingButtons
                     });
                 }
                 if (groupSize !== 0) {
                     new Button({
                         text: totalPages,
-                        parent: pagination,
+                        parent: pagingButtons,
                         events: {
                             "click": function () {
                                 alert(totalPages);
@@ -186,7 +191,7 @@ class Pagination {
 
             new Button({
                 text: pageable["nextLinkText"]? pageable["nextLinkText"] : "下一页",
-                parent: pagination,
+                parent: pagingButtons,
                 events: {
                     "click": function () {
                         alert(pageNumber + 1);
