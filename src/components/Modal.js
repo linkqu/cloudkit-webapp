@@ -93,6 +93,9 @@ class Modal {
 
         let content = document.createElement("div");
         content.classList.add("modal-content");
+        if(this.options["content"]) {
+            content.appendChild(document.createTextNode(this.options["content"]));
+        }
         modal.appendChild(content);
 
         if (this.options["parent"]) {

@@ -38,6 +38,7 @@
 .widget-modal .modal-content {
     position: relative;
     overflow: auto;
+    padding: 16px;
 }
 
 .widget-modal .modal-footer {

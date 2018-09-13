@@ -257,6 +257,7 @@ new Modal({
     width: 400,
     height: 180,
     title: "提示",
+    content: "Hello!",
     parent: document.body
 });
 
