@@ -30,6 +30,7 @@
  */
 
 import "./BorderLayout.css"
+import {Components} from "../commons/Components";
 
 /**
  * BorderLayout
@@ -84,6 +85,25 @@ class BorderLayout {
             panel.style.width = width ? width + "px" : null;
             panel.style.height = height ? height + "px" : null;
             // console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
+
+            let css = item["css"];
+            if (css) {
+                for (let key in css) {
+                    if (css.hasOwnProperty(key)) {
+                        panel.style[key] = css[key];
+                    }
+                }
+            }
+
+            if(item["items"]) {
+                item["items"].forEach(function (item, index, objs) {
+                    let component = Components.buildComponent(
+                        item["type"],
+                        item["options"]
+                    ).getElement();
+                    panel.appendChild(component);
+                });
+            }
 
             panels[item["region"]] = panel;
         });

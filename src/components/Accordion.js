@@ -42,6 +42,8 @@ class Accordion {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -51,9 +53,7 @@ class Accordion {
         // Horizontal Vertical
 
         // default setting
-        this.defaultSetting = {
-
-        };
+        this.defaultSetting = {};
         this.options = options;
         this.build();
     }
@@ -68,7 +68,7 @@ class Accordion {
         accordion.classList.add("widget-accordion");
 
         let items = $this.options["items"];
-        if(items) {
+        if (items) {
             items.forEach(function (item, index, objs) {
                 let accordionItem = document.createElement("div");
                 accordionItem.classList.add("accordion-item");
@@ -91,7 +91,7 @@ class Accordion {
                 accordionItem.appendChild(childContainer);
 
                 let children = item["children"];
-                if(item["children"]) {
+                if (item["children"]) {
                     children.forEach(function (item, index, objs) {
                         let childItem = document.createElement("div");
                         childItem.classList.add("child-item");
@@ -126,8 +126,12 @@ class Accordion {
             // document.body.appendChild(button);
         }
 
-        return accordion;
+        this.element = accordion;
+        return this.element;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
-
 export {Accordion};

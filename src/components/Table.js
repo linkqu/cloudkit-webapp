@@ -57,6 +57,8 @@ class Table {
 
     options: JSON;
 
+    element: HTMLElement;
+
     // 拖放信息
     dragging: Dragging = {
         isAllowResize: false,
@@ -355,7 +357,13 @@ class Table {
         tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
         tableContentWrapper.style.height = tableContentHeight + "px";
 
-        return tableWrapper;
+        this.element = tableWrapper;
+
+        return this.element;
+    }
+
+    getElement() {
+        return this.element;
     }
 
     /**

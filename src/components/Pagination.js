@@ -31,7 +31,7 @@
 
 import "./Pagination.css";
 import {Button} from "./Button";
-import {Color} from "./Color";
+import {Colors} from "../commons/Colors";
 
 /**
  * Pagination

@@ -35,7 +35,7 @@
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Color {
+class Colors {
 
     /** Dust Red/薄暮斗志、奔放 */
     static RED = ["#fff1f0", "#ffccc7", "#ffa39e", "#ff7875", "#ff4d4f", "#f5222d", "#cf1322", "#a8071a", "#820014", "#5c0011"];
@@ -76,7 +76,7 @@ class Color {
     // static colors = new Map([["", ""], ["", "#7FFFAA"]]);
 }
 
-export {Color};
+export {Colors};
 
 // 鸨色 #f7acbc
 // 赤白橡 #deab8a

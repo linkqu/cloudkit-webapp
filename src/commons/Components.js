@@ -29,87 +29,38 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import "./Toolbar.css";
-import {Button} from "./Button";
-import {Separator} from "./Separator";
+import {Button} from "../components/Button";
+import {Accordion} from "../components/Accordion";
+import {Checkbox} from "../components/Checkbox";
+import {EditText} from "../components/EditText";
+import {Menu} from "../components/Menu";
+import {Toolbar} from "../components/Toolbar";
+import {Table} from "../components/Table";
 
 /**
- * Icon
+ * Dialog
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Toolbar {
+class Components {
 
-    options: JSON;
-
-    element: HTMLElement;
-
-    /**
-     * constructor
-     *
-     * @param options
-     */
-    constructor(options: JSON) {
-        // Horizontal Vertical
-
-        // default setting
-        this.defaultSetting = {
-
-        };
-        this.options = options;
-        this.build();
-    }
+    static COMPONENT_CLASSES = {
+        Accordion: Accordion,
+        Button: Button,
+        Checkbox: Checkbox,
+        Toolbar: Toolbar,
+        Table: Table,
+        EditText: EditText,
+        Menu: Menu
+    };
 
     /**
-     * build
+     * buildComponent
      */
-    build() {
-        let $this = this, options = this.options;
-
-        let toolbar = document.createElement("div");
-        toolbar.classList.add("widget-toolbar");
-
-
-        let items = options["items"];
-        if(items) {
-            items.forEach(function (item, index, objs) {
-
-                let button = new Button({
-                    parent: toolbar,
-                    text: "Button"
-                });
-
-                new Separator({
-                    parent: toolbar
-                });
-
-                // events
-                let events = item["events"];
-                if (events) {
-                    for (let prop in events) {
-                        if (events.hasOwnProperty(prop)) {
-                            button.addEventListener(prop, events[prop])
-                        }
-                    }
-                }
-            });
-        }
-
-        if (options["parent"]) {
-            // console.log(this.options["parent"]);
-            options["parent"].appendChild(toolbar);
-        } else {
-            // document.body.appendChild(toolbar);
-        }
-
-        this.element = toolbar;
-        return this.element;
-    }
-
-    getElement() {
-        return this.element;
+    static buildComponent(type:string, options: JSON) {
+        return new this.COMPONENT_CLASSES[type](options);
     }
 }
 
-export {Toolbar};
+export {Components};

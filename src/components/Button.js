@@ -39,7 +39,14 @@ import "./Button.css";
  */
 class Button {
 
-    options: JSON;
+    options: {
+        type: number,
+        text: string,
+        classes: Array,
+        css: JSON,
+        parent: HTMLElement,
+        events: JSON
+    };
 
     element: HTMLElement;
 

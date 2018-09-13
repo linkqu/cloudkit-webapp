@@ -41,6 +41,8 @@ class Menu {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -144,7 +146,13 @@ class Menu {
             // document.body.appendChild(button);
         }
 
+        this.element = menuContainer;
+
         return menuContainer;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 
