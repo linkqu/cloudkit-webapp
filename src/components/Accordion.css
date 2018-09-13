@@ -1,6 +1,6 @@
 .widget-accordion .accordion-item > .title {
-    border: 1px solid #999999;
-    border-top-color: #dae6db;
+    border-bottom: 1px solid #999999;
+    /*border-top-color: #dae6db;*/
 }
 .widget-accordion .accordion-item .title {
     font-weight: 700;

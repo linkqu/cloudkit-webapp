@@ -656,8 +656,8 @@
     display: block;
 }
 .widget-accordion .accordion-item > .title {
-    border: 1px solid #999999;
-    border-top-color: #dae6db;
+    border-bottom: 1px solid #999999;
+    /*border-top-color: #dae6db;*/
 }
 .widget-accordion .accordion-item .title {
     font-weight: 700;
@@ -775,7 +775,8 @@
 }
 .widget-toolbar {
     padding: 4px 8px;
-    border: 1px solid #dcdee2;
+    border-top: 1px solid #dcdee2;
+    border-bottom: 1px solid #dcdee2;
 }
 
 .widget-toolbar .widget-button {
@@ -790,4 +791,71 @@
     height: 18px;
     vertical-align: middle;
     margin: 0 8px 1px;
+}
+.widget-tooltip {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    will-change: top, left;
+    top: 20px;
+    left: 168px;
+    padding: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.widget-tooltip .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+}
+
+.widget-tooltip .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    /* top */
+    left: 16px;
+    bottom: 0;
+    border-width: 6px 6px 0;
+    border-top-color: #000000;
+
+    /* right */
+    /*
+    top: 50%;
+    margin-top: -6px;
+    left: 0;
+    border-width: 6px 6px 6px 0;
+    border-right-color: #000000;
+    */
+
+    /* bottom */
+    /*
+    top: 0;
+    left: 16px;
+    border-width: 0 6px 6px;
+    border-bottom-color: #000000;
+    */
+
+    /** left */
+    /*
+    top: 50%;
+    margin-top: -6px;
+    right: 0;
+    border-width: 6px 0 6px 6px;
+    border-left-color: #000000;
+    */
+}
+
+.widget-tooltip .tooltip-text {
+    padding: 4px 12px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    background-color: #000000;
+    border-radius: 2px;
+    /*box-shadow: 0 1px 6px #000000;*/
+    white-space: nowrap;
 }

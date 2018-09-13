@@ -29,8 +29,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import "./Tooltip.css";
+
 /**
- * Icon
+ * Tooltip
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
@@ -59,7 +61,28 @@ class Tooltip {
      * build
      */
     build() {
+        let $this = this, options = this.options;
 
+        let tooltip = document.createElement("div");
+        tooltip.classList.add("widget-tooltip");
+
+        let arrow = document.createElement("div");
+        arrow.classList.add("tooltip-arrow");
+        tooltip.appendChild(arrow);
+
+        let text = document.createElement("div");
+        text.classList.add("tooltip-text");
+        text.appendChild(document.createTextNode(options["text"]));
+        tooltip.appendChild(text);
+
+        if (options["parent"]) {
+            // console.log(this.options["parent"]);
+            options["parent"].appendChild(tooltip);
+        } else {
+            // document.body.appendChild(tooltip);
+        }
+
+        return tooltip;
     }
 }
 

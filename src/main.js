@@ -46,6 +46,7 @@ import {Tabs} from "./components/Tabs";
 import {Accordion} from "./components/Accordion";
 import {Menu} from "./components/Menu";
 import {Toolbar} from "./components/Toolbar";
+import {Tooltip} from "./components/Tooltip";
 
 // import pkg from "../package.json";
 
@@ -344,6 +345,11 @@ new Accordion({
             {title: "alegrbra", text: ""}
         ]
     }]
+});
+
+new Tooltip({
+    text: "Tooltip sample",
+    parent: document.body
 });
 
 /**
