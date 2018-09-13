@@ -7,3 +7,5 @@ Warehouses
 
 consigner 委托人
 consignee/assignee 受托人
+
+A network error (such as timeout, interrupted connection or unreachable host) has occurred.
