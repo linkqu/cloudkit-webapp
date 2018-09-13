@@ -75,11 +75,23 @@ class Tooltip {
         text.appendChild(document.createTextNode(options["text"]));
         tooltip.appendChild(text);
 
-        if (options["parent"]) {
-            // console.log(this.options["parent"]);
-            options["parent"].appendChild(tooltip);
+        let parent = options["parent"];
+        if (parent) {
+            // console.log(parent);
+            parent.appendChild(tooltip);
+
+
         } else {
             // document.body.appendChild(tooltip);
+        }
+
+        let target = options["target"];
+        if(target) {
+            let targetElement = target.getElement();
+            tooltip.style["position"] = "absolute";
+            tooltip.style["top"] = (targetElement.offsetTop - tooltip.clientHeight) + "px";
+            tooltip.style["left"] = (targetElement.offsetLeft - 6) + "px";
+            tooltip.style["z-index"] = "9999";
         }
 
         return tooltip;

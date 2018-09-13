@@ -349,6 +349,7 @@ new Accordion({
 
 new Tooltip({
     text: "Tooltip sample",
+    target: button,
     parent: document.body
 });
 

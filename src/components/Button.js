@@ -41,6 +41,8 @@ class Button {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -133,7 +135,12 @@ class Button {
         // button.previousElementSibling
         // button.previousSibling
 
-        return button;
+        this.element = button;
+        return this.element;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 
