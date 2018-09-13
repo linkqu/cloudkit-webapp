@@ -44,10 +44,44 @@ import {Modal} from "./components/Modal";
 import {Tree} from "./components/Tree";
 import {Tabs} from "./components/Tabs";
 import {Accordion} from "./components/Accordion";
+import {Menu} from "./components/Menu";
 
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
+
+new Menu({
+    parent: document.body,
+    items: [{
+        index: "bookmarks",
+        title: "Bookmarks",
+        children: [
+            {title: "book report"},
+            {title: "alegrbra"}
+        ]
+    }, {
+        index: "downloads",
+        title: "Downloads",
+        children: [
+            {title: "open report"},
+            {title: "alegrbra"}
+        ]
+    }, {
+        index: "history",
+        title: "History",
+        children: [
+            {title: "book report history"},
+            {title: "alegrbra"}
+        ]
+    }, {
+        index: "window",
+        title: "Window",
+        children: [
+            {title: "hide"},
+            {title: "alegrbra"}
+        ]
+    }]
+});
 
 let button = new Button({
     type: "primary",

@@ -1,0 +1,22 @@
+.widget-menu {
+
+}
+
+.widget-menu .menu-bar {
+    position: relative;
+}
+
+.widget-menu .menu-bar-item {
+    float: left;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.widget-menu .menu {
+    display: none;
+    border: 1px solid #999999;
+}
+
+.widget-menu .menu .menu-item {
+
+}

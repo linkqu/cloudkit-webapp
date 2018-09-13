@@ -61,7 +61,59 @@ class Menu {
      * build
      */
     build() {
+        let $this = this, options = this.options;
 
+        let menuContainer = document.createElement("div");
+        menuContainer.classList.add("widget-menu");
+        menuContainer.classList.add("clearfix");
+
+        let menuBar = document.createElement("div");
+        menuBar.classList.add("menu-bar");
+        menuContainer.appendChild(menuBar);
+
+        let items = options["items"];
+        if(items) {
+            items.forEach(function (item, index, objs) {
+                let menuBarItem = document.createElement("div");
+                menuBarItem.classList.add("menu-bar-item");
+                menuBarItem.appendChild(document.createTextNode(item["title"]));
+                menuBar.appendChild(menuBarItem);
+
+                let menu = document.createElement("div");
+                menu.classList.add("menu");
+                menuContainer.appendChild(menu);
+
+                let children = item["children"];
+                if(children) {
+                    children.forEach(function (item, index, objs) {
+                        let menuItem = document.createElement("div");
+                        menuItem.appendChild(document.createTextNode(item["title"]));
+                        menuItem.classList.add("menu-item");
+                        menu.appendChild(menuItem);
+                    });
+                }
+
+                menuBarItem.addEventListener("mouseover", function (event) {
+                    menu.style["display"] = "inline-block";
+                    menu.style["position"] = "absolute";
+                    menu.style["top"] = menuBarItem.offsetTop + "px";
+                    menu.style["left"] = menuBarItem.offsetLeft + "px";
+                });
+
+                menuBarItem.addEventListener("mouseout", function (event) {
+                    menu.style["display"] = "none";
+                });
+            })
+        }
+
+        if (options["parent"]) {
+            // console.log(this.options["parent"]);
+            options["parent"].appendChild(menuContainer);
+        } else {
+            // document.body.appendChild(button);
+        }
+
+        return menuContainer;
     }
 }
 
