@@ -140,7 +140,7 @@ let borderLayout = new BorderLayout({
         width: 184,
         // split: true,
         css: {
-            "background-color": Colors.BLUE[1]
+            // "background-color": Colors.BLUE[1]
         },
         items: [{
             type: "Accordion",
