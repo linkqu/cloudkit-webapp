@@ -100,7 +100,7 @@ class Table implements Component {
         tableWrapper.classList.add("widget-table");
 
         let tableTitle;
-        if(this.options["title"]) {
+        if (this.options["title"]) {
             tableTitle = document.createElement("div");
             tableTitle.classList.add("table-title");
             let text = document.createTextNode(this.options["title"]);
@@ -173,7 +173,7 @@ class Table implements Component {
 
             columns.forEach(function (item, index, objs) {
                 let tableHeaderCol = document.createElement("col");
-                if(item["index"]) {
+                if (item["index"]) {
                     tableHeaderCol.setAttribute("data-index", item["index"]);
                 } else {
                     tableHeaderCol.setAttribute("data-index", index);
@@ -181,7 +181,7 @@ class Table implements Component {
                 tableHeaderColgroup.appendChild(tableHeaderCol);
 
                 let tableContentCol = document.createElement("col");
-                if(item["index"]) {
+                if (item["index"]) {
                     tableContentCol.setAttribute("data-index", item["index"]);
                 } else {
                     tableContentCol.setAttribute("data-index", index);
@@ -189,7 +189,7 @@ class Table implements Component {
                 tableContentColgroup.appendChild(tableContentCol);
 
                 let tableHeaderTh = document.createElement("th");
-                if(item["index"]) {
+                if (item["index"]) {
                     tableHeaderTh.setAttribute("data-index", item["index"]);
                 } else {
                     tableHeaderTh.setAttribute("data-index", index);
@@ -311,7 +311,7 @@ class Table implements Component {
 
                     let renderer = column["renderer"];
 
-                    let value = (item instanceof Array)? item[index] : item[column["index"]];
+                    let value = (item instanceof Array) ? item[index] : item[column["index"]];
                     if (renderer) {
                         tableContentTd.innerHTML = renderer(value);
                     } else {
@@ -335,11 +335,11 @@ class Table implements Component {
             // document.body.appendChild(table);
         }
 
-        document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function () {
 
             // 在 DOM 完全加载完后执行
             // console.debug(tableHeaderWrapper.clientHeight);
-            let tableContentHeight = height ? (height - (tableTitle? tableTitle.clientHeight : 0)) : null;
+            let tableContentHeight = height ? (height - (tableTitle ? tableTitle.clientHeight : 0)) : null;
             tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
             tableContentWrapper.style.height = tableContentHeight + "px";
 
@@ -362,7 +362,7 @@ class Table implements Component {
                 }
             } else {
                 let tablePatch = tableHeader.querySelector('.table-patch');
-                if(tablePatch) {
+                if (tablePatch) {
                     tablePatch.remove();
                 }
             }
