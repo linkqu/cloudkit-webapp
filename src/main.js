@@ -151,6 +151,19 @@ let borderLayout = new BorderLayout({
                     options: {
                         text: "Window"
                     }
+                }, {
+                    type: Separator,
+                    index: "separator",
+                    options: {
+
+                    }
+                }, {
+                    type: TextField,
+                    index: "separator",
+                    options: {
+                        type: "text",
+                        width: "120px"
+                    }
                 }]
             }
         }]

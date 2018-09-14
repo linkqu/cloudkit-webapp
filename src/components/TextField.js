@@ -118,7 +118,11 @@ class TextField implements Component {
             }
         }
 
-        return input;
+        return this.element = input;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

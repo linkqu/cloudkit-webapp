@@ -144,8 +144,7 @@ class Button implements Component {
         // button.previousElementSibling
         // button.previousSibling
 
-        this.element = button;
-        return this.element;
+        return this.element = button;
     }
 
     getElement() {
