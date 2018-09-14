@@ -30,6 +30,7 @@
  */
 
 import "./Separator.css";
+import type {Component} from "./Component";
 
 /**
  * Separator
@@ -37,9 +38,11 @@ import "./Separator.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Separator {
+class Separator implements Component {
 
     options: JSON;
+
+    element: HTMLElement;
 
     /**
      * constructor
@@ -71,7 +74,12 @@ class Separator {
             // document.body.appendChild(button);
         }
 
-        return separator;
+        this.element = separator;
+        return this.element;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

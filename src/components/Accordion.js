@@ -31,6 +31,7 @@
 
 import "./Accordion.css";
 import uuid from "uuid/v1";
+import type {Component} from "./Component";
 
 /**
  * Accordion
@@ -38,7 +39,7 @@ import uuid from "uuid/v1";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Accordion {
+class Accordion implements Component {
 
     options: JSON;
 

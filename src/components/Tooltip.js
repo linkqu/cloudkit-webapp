@@ -30,6 +30,7 @@
  */
 
 import "./Tooltip.css";
+import type {Component} from "./Component";
 
 /**
  * Tooltip
@@ -37,9 +38,11 @@ import "./Tooltip.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Tooltip {
+class Tooltip implements Component {
 
     options: JSON;
+
+    element: HTMLElement;
 
     /**
      * constructor
@@ -79,22 +82,35 @@ class Tooltip {
         if (parent) {
             // console.log(parent);
             parent.appendChild(tooltip);
-
-
         } else {
-            // document.body.appendChild(tooltip);
+            document.body.appendChild(tooltip);
         }
 
-        let target = options["target"];
+        document.addEventListener("DOMContentLoaded", function(){
+
+        });
+
+        return this.element = tooltip;
+    }
+
+    show() {
+        let target = this.options["target"];
         if(target) {
-            let targetElement = target.getElement();
-            tooltip.style["position"] = "absolute";
-            tooltip.style["top"] = (targetElement.offsetTop - tooltip.clientHeight) + "px";
-            tooltip.style["left"] = (targetElement.offsetLeft - 6) + "px";
-            tooltip.style["z-index"] = "9999";
+            let targetElement = target instanceof HTMLElement? target : target.getElement();
+            this.element.style["display"] = "block";
+            this.element.style["position"] = "absolute";
+            this.element.style["top"] = (targetElement.offsetTop - this.element.clientHeight) + "px";
+            this.element.style["left"] = targetElement.offsetLeft + "px";
+            this.element.style["z-index"] = "9999";
         }
+    }
 
-        return tooltip;
+    hide() {
+        this.element.style["display"] = "none";
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

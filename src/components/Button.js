@@ -30,6 +30,9 @@
  */
 
 import "./Button.css";
+import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import {Tooltip} from "./Tooltip";
 
 /**
  * Button
@@ -37,7 +40,7 @@ import "./Button.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Button {
+class Button implements Component {
 
     options: {
         type: number,
@@ -76,6 +79,8 @@ class Button {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let button = document.createElement("button");
         let fragment = document.createDocumentFragment();
 
@@ -83,12 +88,12 @@ class Button {
         button.classList.add("widget-button");
 
         // Add type class
-        if (this.options["type"]) {
-            button.classList.add("button-" + this.options["type"]);
+        if (options["type"]) {
+            button.classList.add("button-" + options["type"]);
         }
 
         // classes
-        let classes = this.options["classes"];
+        let classes = options["classes"];
         if (classes) {
             classes.forEach(function (value) {
                 button.classList.add(value);
@@ -96,8 +101,8 @@ class Button {
         }
 
         // text
-        if (this.options["text"]) {
-            let text = document.createTextNode(this.options["text"]);
+        if (options["text"]) {
+            let text = document.createTextNode(options["text"]);
             /**
              * 参考
              * Node.removeChild()
@@ -108,10 +113,11 @@ class Button {
              */
             fragment.appendChild(text);
         }
+
         button.appendChild(fragment);
 
         // events
-        let events = this.options["events"];
+        let events = options["events"];
         if (events) {
             for (let prop in events) {
                 if (events.hasOwnProperty(prop)) {
@@ -120,7 +126,7 @@ class Button {
             }
         }
 
-        let css = this.options["css"];
+        let css = options["css"];
         if (css) {
             for (let key in css) {
                 if (css.hasOwnProperty(key)) {
@@ -129,13 +135,37 @@ class Button {
             }
         }
 
+        let tooltipText = options["tooltip"];
+        if(options["tooltip"]) {
+            let component = Components.buildComponent(
+                document.body,
+                Tooltip,
+                {
+                    target: button,
+                    text: tooltipText
+                }
+            );
+
+            button.addEventListener("mouseover", function () {
+                component.show();
+            });
+
+            button.addEventListener("mouseout", function () {
+                component.hide();
+            });
+        }
+
         // renderTo
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(button);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(button);
         } else {
             // document.body.appendChild(button);
         }
+
+        document.addEventListener("DOMContentLoaded", function(){
+
+        });
 
         // button.nextElementSibling
         // button.nextSibling
@@ -143,8 +173,7 @@ class Button {
         // button.previousElementSibling
         // button.previousSibling
 
-        this.element = button;
-        return this.element;
+        return this.element = button;
     }
 
     getElement() {

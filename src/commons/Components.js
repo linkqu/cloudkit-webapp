@@ -36,6 +36,7 @@ import {EditText} from "../components/EditText";
 import {Menu} from "../components/Menu";
 import {Toolbar} from "../components/Toolbar";
 import {Table} from "../components/Table";
+import type {Component} from "../components/Component";
 
 /**
  * Dialog
@@ -45,21 +46,22 @@ import {Table} from "../components/Table";
  */
 class Components {
 
-    static COMPONENT_CLASSES = {
-        Accordion: Accordion,
-        Button: Button,
-        Checkbox: Checkbox,
-        Toolbar: Toolbar,
-        Table: Table,
-        EditText: EditText,
-        Menu: Menu
-    };
+    // static COMPONENT_TYPE = {
+    //     Accordion: Accordion,
+    //     Button: Button,
+    //     Checkbox: Checkbox,
+    //     Toolbar: Toolbar,
+    //     Table: Table,
+    //     EditText: EditText,
+    //     Menu: Menu
+    // };
 
     /**
      * buildComponent
      */
-    static buildComponent(type:string, options: JSON) {
-        return new this.COMPONENT_CLASSES[type](options);
+    static buildComponent(target:Component, type:Component, options: JSON) {
+        options["parent"] = target;
+        return new type(options);
     }
 }
 

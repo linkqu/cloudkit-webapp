@@ -32,6 +32,7 @@
 import "./Table.css";
 import Checkbox from "./Checkbox";
 import Pagination from "./Pagination";
+import type {Component} from "./Component";
 
 /**
  * 拖放时信息
@@ -53,7 +54,7 @@ interface Dragging {
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Table {
+class Table implements Component {
 
     options: JSON;
 
@@ -141,29 +142,6 @@ class Table {
             console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
-            let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
-            let scrollAllowHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
-            // console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
-
-            if (scrollAllowWidth && scrollAllowHeight) {
-                if (!tableHeader.querySelector('.table-patch')) {
-                    // let patchWidth = tableHeader.scrollWidth - scrollWidth;
-                    // let patchHeight = tableHeader.scrollHeight - scrollHeight;
-                    // console.log("patch width: %d, patch height: %d", patchWidth, patchHeight);
-
-                    // 补丁元素
-                    let patchElement = document.createElement("th");
-                    patchElement.classList.add("table-patch");
-
-                    patchElement.width = scrollBarWidth;
-                    tableHeader.querySelector('tr').appendChild(patchElement);
-                }
-            } else {
-                let tablePatch = tableHeader.querySelector('.table-patch');
-                if(tablePatch) {
-                    tablePatch.remove();
-                }
-            }
 
             tableHeaderWrapper.scrollLeft = tableContentWrapper.scrollLeft;
             $this.dragging["scrollLeft"] = tableContentWrapper.scrollLeft;
@@ -305,25 +283,25 @@ class Table {
                 });
             });
 
-            // let tableHeaderCol = document.createElement("col");
-            // // tableHeaderCol.setAttribute("width", 0);
-            // tableHeaderColgroup.appendChild(tableHeaderCol);
-            //
-            // let tableContentCol = document.createElement("col");
-            // tableContentColgroup.appendChild(tableContentCol);
-            //
-            // let tableHeaderTh = document.createElement("th");
-            // tableHeaderTr.appendChild(tableHeaderTh);
-            //
-            // let tableContentTh = document.createElement("th");
-            // tableContentTr.appendChild(tableContentTh);
+            let tableHeaderCol = document.createElement("col");
+            // tableHeaderCol.setAttribute("width", 0);
+            tableHeaderColgroup.appendChild(tableHeaderCol);
+
+            let tableContentCol = document.createElement("col");
+            tableContentColgroup.appendChild(tableContentCol);
+
+            let tableHeaderTh = document.createElement("th");
+            tableHeaderTr.appendChild(tableHeaderTh);
+
+            let tableContentTh = document.createElement("th");
+            tableContentTr.appendChild(tableContentTh);
         }
 
         let data = this.options["data"];
         if (data && data.length > 0) {
             data.forEach(function (item, index, objs) {
                 let tableContentTr = document.createElement("tr");
-                item.forEach(function (item, index, objs) {
+                columns.forEach(function (column, index, objs) {
                     let tableContentTd = document.createElement("td");
                     // let width = columns[index]["width"];
                     // if(width) {
@@ -331,31 +309,65 @@ class Table {
                     // }
                     tableContentTr.appendChild(tableContentTd);
 
-                    let renderer = columns[index]["renderer"];
+                    let renderer = column["renderer"];
+
+                    let value = (item instanceof Array)? item[index] : item[column["index"]];
                     if (renderer) {
-                        tableContentTd.innerHTML = renderer(item);
+                        tableContentTd.innerHTML = renderer(value);
                     } else {
-                        let text = document.createTextNode(item);
+                        let text = document.createTextNode(value);
                         tableContentTd.appendChild(text);
                     }
                 });
+                let tableContentTd = document.createElement("td");
+                tableContentTr.appendChild(tableContentTd);
                 tableContentTbody.appendChild(tableContentTr);
             });
         }
 
         // footer
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(tableWrapper);
+        let parent = this.options["parent"];
+        if (parent) {
+            // console.log(parent);
+            parent.appendChild(tableWrapper);
         } else {
             // document.body.appendChild(table);
         }
 
-        // console.debug(tableHeaderWrapper.clientHeight);
-        let tableContentHeight = height ? (height - (tableTitle? tableTitle.clientHeight : 0)) : null;
-        tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
-        tableContentWrapper.style.height = tableContentHeight + "px";
+        document.addEventListener("DOMContentLoaded", function(){
+
+            // 在 DOM 完全加载完后执行
+            // console.debug(tableHeaderWrapper.clientHeight);
+            let tableContentHeight = height ? (height - (tableTitle? tableTitle.clientHeight : 0)) : null;
+            tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
+            tableContentWrapper.style.height = tableContentHeight + "px";
+
+            let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
+            let scrollAllowHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
+            // console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
+
+            if (scrollAllowHeight) {
+                if (!tableHeader.querySelector('.table-patch')) {
+                    // let patchWidth = tableHeader.scrollWidth - scrollWidth;
+                    // let patchHeight = tableHeader.scrollHeight - scrollHeight;
+                    // console.log("patch width: %d, patch height: %d", patchWidth, patchHeight);
+
+                    // 补丁元素
+                    let patchElement = document.createElement("th");
+                    patchElement.classList.add("table-patch");
+
+                    patchElement.width = scrollBarWidth;
+                    tableHeader.querySelector('tr').appendChild(patchElement);
+                }
+            } else {
+                let tablePatch = tableHeader.querySelector('.table-patch');
+                if(tablePatch) {
+                    tablePatch.remove();
+                }
+            }
+
+        });
 
         this.element = tableWrapper;
 

@@ -31,6 +31,7 @@
 
 import "./Modal.css";
 import {Button} from "./Button";
+import type {Component} from "./Component";
 
 /**
  * Modal
@@ -38,7 +39,7 @@ import {Button} from "./Button";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Modal {
+class Modal implements Component {
 
     options: JSON;
 

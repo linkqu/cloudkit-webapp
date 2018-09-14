@@ -48,6 +48,7 @@ import {Menu} from "./components/Menu";
 import {Toolbar} from "./components/Toolbar";
 import {Tooltip} from "./components/Tooltip";
 import {Components} from "./commons/Components";
+import {Separator} from "./components/Separator";
 
 // import pkg from "../package.json";
 
@@ -77,7 +78,7 @@ let borderLayout = new BorderLayout({
         title: "North Panel",
         region: "north",
         items: [{
-            type: "Menu",
+            type: Menu,
             options: {
                 items: [{
                     index: "bookmarks",
@@ -114,23 +115,61 @@ let borderLayout = new BorderLayout({
                         {title: "hide"},
                         {title: "alegrbra"}
                     ]
+                }, {
+                    index: "help",
+                    title: "Help",
+                    children: [
+                        {title: "hide"},
+                        {title: "alegrbra"}
+                    ]
                 }]
             }
         }, {
-            type: "Toolbar",
+            type: Toolbar,
             options: {
                 items: [{
+                    type: Separator,
+                    index: "separator",
+                    options: {
+
+                    }
+                }, {
+                    type: Button,
                     index: "bookmarks",
-                    text: "Bookmarks"
+                    options: {
+                        text: "Bookmarks"
+                    }
                 }, {
+                    type: Button,
                     index: "downloads",
-                    text: "Downloads"
+                    options: {
+                        text: "Downloads"
+                    }
                 }, {
+                    type: Button,
                     index: "history",
-                    text: "History"
+                    options: {
+                        text: "History"
+                    }
                 }, {
+                    type: Button,
                     index: "window",
-                    text: "Window"
+                    options: {
+                        text: "Window"
+                    }
+                }, {
+                    type: Separator,
+                    index: "separator",
+                    options: {
+
+                    }
+                }, {
+                    type: TextField,
+                    index: "separator",
+                    options: {
+                        type: "text",
+                        width: "120px"
+                    }
                 }]
             }
         }]
@@ -143,7 +182,7 @@ let borderLayout = new BorderLayout({
             // "background-color": Colors.BLUE[1]
         },
         items: [{
-            type: "Accordion",
+            type: Accordion,
             options: {
                 items: [{
                     id: "bookmarks",
@@ -175,6 +214,30 @@ let borderLayout = new BorderLayout({
                     ]
                 }]
             }
+        }, {
+            type: Tree,
+            options: {
+                data: [{
+                    text: "List",
+                    expanded: true,
+                    children: [
+                        {text: "detention", leaf: true},
+                        {
+                            text: "homework", expanded: true,
+                            children: [
+                                {text: "book report", leaf: true},
+                                {text: "alegrbra", leaf: true}
+                            ]
+                        },
+                        {text: "buy lottery tickets", leaf: true}
+                    ],
+                    events: {
+                        "click": function () {
+                            alert("hello!");
+                        }
+                    }
+                }, {text: "buy lottery tickets", leaf: true}]
+            }
         }]
     }, {
         title: "South Panel",
@@ -184,8 +247,45 @@ let borderLayout = new BorderLayout({
         title: "Center Panel",
         region: "center",
         items: [{
-            type: "Table",
+            type: Toolbar,
             options: {
+                items: [{
+                    type: Button,
+                    index: "add",
+                    options: {
+                        text: "新增",
+                        tooltip: "Add a new bill!"
+                    }
+                }, {
+                    type: Button,
+                    index: "modify",
+                    options: {
+                        text: "修改"
+                    }
+                }, {
+                    type: Button,
+                    index: "delete",
+                    options: {
+                        text: "删除"
+                    }
+                }, {
+                    type: Separator,
+                    index: "separator",
+                    options: {
+
+                    }
+                }, {
+                    type: Button,
+                    index: "view",
+                    options: {
+                        text: "查看"
+                    }
+                }]
+            }
+        }, {
+            type: Table,
+            options: {
+                // width: 800,
                 height: 200,
                 // classes: [""],
                 // css: {
@@ -194,9 +294,9 @@ let borderLayout = new BorderLayout({
                 title: "Employee Information Table",
                 columns: [
                     {
-                        index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
+                        index: "name", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
                             // language=HTML
-                            return `<a href='index.html'>Hello ${value}!</a>`;
+                            return `<a href='index.html'>Hello ${value}</a>`;
                         }
                     },
                     {index: "sex", text: "Sex", width: 75, sortable: false, renderer: undefined},
@@ -214,8 +314,35 @@ let borderLayout = new BorderLayout({
                     ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
                     ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
                     ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"]
+                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                    {
+                        name: "Lily",
+                        sex: "女",
+                        age: "28",
+                        mobile: "13590000000",
+                        email: "lily@qq.com",
+                        birthday: "2018-08-29"
+                    }
                 ]
+            }
+        }, {
+            type: Pagination,
+            options: {
+                pageable: {
+                    totalElements: 220,
+                    pageSize: 20,
+                    // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
+                    // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
+                    // totalPages: 11,
+                    pageNumber: 5,
+                    // hasNext: true,
+                    // isLast: false,
+                    numberOfElements: 20,
+                    // [10, 20, 30, 40, 50]
+                    previousLinkText: "Previous Page",
+                    nextLinkText: "Next Page"
+                },
+                parent: document.body
             }
         }]
     }, {

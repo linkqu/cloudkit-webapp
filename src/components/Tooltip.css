@@ -1,5 +1,5 @@
 .widget-tooltip {
-    display: block;
+    display: none;
     visibility: visible;
     position: absolute;
     will-change: top, left;

@@ -1,33 +1,31 @@
 /*! Webpack 实例 */
-.widget-menu {
-    border-bottom: 1px solid #dcdee2;
+.widget-pagination {
+    vertical-align: middle;
+    padding: 8px 0;
 }
 
-.widget-menu .menu-bar {
-    position: relative;
-}
-
-.widget-menu .menu-bar-item {
+.widget-pagination .total-elements-text {
     float: left;
-    padding: 8px;
-    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 3px 15px 3px 15px;
 }
 
-.widget-menu .menu {
-    display: none;
-    border: 1px solid #dddddd;
-    background: #ffffff;
-    /*border-radius: 3px;*/
+.widget-pagination .paging-buttons {
+    float: left;
+}
+.widget-pagination .paging-buttons .widget-button {
+    /*margin: 0 -1px 0 0;*/
+    border-top: 1px solid #dcdee2;
+    border-right: 1px solid #dcdee2;
+    border-bottom: 1px solid #dcdee2;
+    border-left: 0;
+    border-radius: 0;
+}
+.widget-pagination .paging-buttons .widget-button:first-child {
+    border-left: 1px solid #dcdee2;
 }
 
-.widget-menu .menu .menu-item {
-    padding: 6px 16px;
-    cursor: pointer;
-}
-
-.widget-menu .menu .menu-item:hover {
-    background: #ebf7ff;
-}
 /* theme-default */
 .widget-button {
     display: inline-block;
@@ -143,6 +141,104 @@
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
 }
+.widget-checkbox {
+
+}
+
+.widget-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.widget-checkbox .checkbox-rectangle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    position: relative;
+    border: 1px solid #dcdee2;
+    /*border-radius: 2px;*/
+    background-color: #ffffff;
+}
+
+.widget-checkbox label {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.widget-checkbox label svg path {
+    transition: fill .4s linear;
+}
+
+.widget-checkbox input[type="checkbox"]:checked ~ label .checkbox-rectangle {
+    border-color: #2d8cf0;
+}
+
+.widget-checkbox input[type="checkbox"]:checked ~ label svg path {
+    fill: #2d8cf0;
+}
+
+.widget-checkbox input[type="checkbox"]:disabled {
+    border-color: #dcdee2;
+}
+
+.widget-checkbox input[type="checkbox"]:disabled ~ label svg path {
+    fill: #dcdee2;
+}
+
+.widget-checkbox input[type="checkbox"] ~ label svg path {
+    background: #ffffff;
+}
+.widget-menu {
+    border-bottom: 1px solid #dcdee2;
+}
+
+.widget-menu .menu-bar {
+    position: relative;
+}
+
+.widget-menu .menu-bar-item {
+    float: left;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.widget-menu .menu {
+    display: none;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    /*border-radius: 3px;*/
+}
+
+.widget-menu .menu .menu-item {
+    padding: 6px 16px;
+    cursor: pointer;
+}
+
+.widget-menu .menu .menu-item:hover {
+    background: #ebf7ff;
+}
+.widget-toolbar {
+    padding: 4px 8px;
+    /*border-top: 1px solid #dcdee2;*/
+    border-bottom: 1px solid #dcdee2;
+}
+
+.widget-toolbar .widget-button {
+    border: 0;
+}
+.widget-separator {
+    overflow: hidden;
+    display: inline-block;
+    zoom: 1;
+    border: 0;
+    border-left: dotted 1px #adb3b9;
+    height: 18px;
+    vertical-align: middle;
+    margin: 0 8px 1px;
+}
 .widget-table {
     box-sizing: border-box;
     position: relative;
@@ -243,136 +339,6 @@
     position: relative;
     overflow: auto;
 }
-.widget-checkbox {
-
-}
-
-.widget-checkbox input[type="checkbox"] {
-    display: none;
-}
-
-.widget-checkbox .checkbox-rectangle {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    vertical-align: middle;
-    position: relative;
-    border: 1px solid #dcdee2;
-    /*border-radius: 2px;*/
-    background-color: #ffffff;
-}
-
-.widget-checkbox label {
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.widget-checkbox label svg path {
-    transition: fill .4s linear;
-}
-
-.widget-checkbox input[type="checkbox"]:checked ~ label .checkbox-rectangle {
-    border-color: #2d8cf0;
-}
-
-.widget-checkbox input[type="checkbox"]:checked ~ label svg path {
-    fill: #2d8cf0;
-}
-
-.widget-checkbox input[type="checkbox"]:disabled {
-    border-color: #dcdee2;
-}
-
-.widget-checkbox input[type="checkbox"]:disabled ~ label svg path {
-    fill: #dcdee2;
-}
-
-.widget-checkbox input[type="checkbox"] ~ label svg path {
-    background: #ffffff;
-}
-.widget-pagination {
-    vertical-align: middle;
-}
-
-.widget-pagination .total-elements-text {
-    float: left;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 3px 15px 3px 15px;
-}
-
-.widget-pagination .paging-buttons {
-    float: left;
-}
-.widget-pagination .paging-buttons .widget-button {
-    /*margin: 0 -1px 0 0;*/
-    border-top: 1px solid #dcdee2;
-    border-right: 1px solid #dcdee2;
-    border-bottom: 1px solid #dcdee2;
-    border-left: 0;
-    border-radius: 0;
-}
-.widget-pagination .paging-buttons .widget-button:first-child {
-    border-left: 1px solid #dcdee2;
-}
-
-.border-layout {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-flex: 1;
-    -ms-flex: auto;
-    flex: auto;
-    /*background: #f5f7f9;*/
-    height: 100%;
-}
-
-.border-layout .north, .border-layout .south {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
-}
-
-.border-layout .north, .border-layout .south {
-    /*background: #7cbce9;*/
-    /*color: #fff;*/
-}
-
-.border-layout .has-side {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    height: 100%;
-}
-
-.border-layout .west, .border-layout .east {
-    position: relative;
-    height: 100%;
-    /*max-width: 200px;*/
-    /*flex: 0 0 200px;*/
-    /*background: #3a9fe8;*/
-    /*color: #ffffff;*/
-    transition: all .2s ease-in-out;
-}
-
-.border-layout .has-side > .center {
-    overflow-x: hidden;
-}
-
-.border-layout .center {
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    /*background: #8ee8e0;*/
-}
 .widget-accordion .accordion-item > .title {
     border-bottom: 1px solid #999999;
     /*border-top-color: #dae6db;*/
@@ -462,6 +428,73 @@
 .widget-accordion .accordion-item .child-item .item-text {
     padding: 0 1em 0 2em;
 }
+.widget-tooltip {
+    display: none;
+    visibility: visible;
+    position: absolute;
+    will-change: top, left;
+    top: 20px;
+    left: 168px;
+    padding: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.widget-tooltip .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+}
+
+.widget-tooltip .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    /* top */
+    left: 16px;
+    bottom: 0;
+    border-width: 6px 6px 0;
+    border-top-color: #000000;
+
+    /* right */
+    /*
+    top: 50%;
+    margin-top: -6px;
+    left: 0;
+    border-width: 6px 6px 6px 0;
+    border-right-color: #000000;
+    */
+
+    /* bottom */
+    /*
+    top: 0;
+    left: 16px;
+    border-width: 0 6px 6px;
+    border-bottom-color: #000000;
+    */
+
+    /** left */
+    /*
+    top: 50%;
+    margin-top: -6px;
+    right: 0;
+    border-width: 6px 0 6px 6px;
+    border-left-color: #000000;
+    */
+}
+
+.widget-tooltip .tooltip-text {
+    padding: 4px 12px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    background-color: #000000;
+    border-radius: 2px;
+    /*box-shadow: 0 1px 6px #000000;*/
+    white-space: nowrap;
+}
 .widget-text-field {
     display: inline-block;
     width: 100%;
@@ -510,24 +543,58 @@
 .widget-text-field[disabled]:hover, fieldset[disabled] .text-field:hover {
     border-color: #e3e5e8
 }
-.widget-toolbar {
-    padding: 4px 8px;
-    border-top: 1px solid #dcdee2;
-    border-bottom: 1px solid #dcdee2;
+.border-layout {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    /*background: #f5f7f9;*/
+    height: 100%;
 }
 
-.widget-toolbar .widget-button {
-    border: 0;
+.border-layout .north, .border-layout .south {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    /*background: #7cbce9;*/
+    /*color: #fff;*/
 }
-.widget-separator {
-    overflow: hidden;
-    display: inline-block;
-    zoom: 1;
-    border: 0;
-    border-left: solid 1px #adb3b9;
-    height: 18px;
-    vertical-align: middle;
-    margin: 0 8px 1px;
+
+.border-layout .has-side {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    height: 100%;
+}
+
+.border-layout .west, .border-layout .east {
+    position: relative;
+    height: 100%;
+    /*max-width: 200px;*/
+    /*flex: 0 0 200px;*/
+    /*background: #3a9fe8;*/
+    /*color: #ffffff;*/
+    overflow-y: auto;
+    transition: all .2s ease-in-out;
+}
+
+.border-layout .has-side > .center {
+    overflow-x: hidden;
+}
+
+.border-layout .center {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*background: #8ee8e0;*/
+    overflow: auto;
 }
 .widget-radio input[type="radio"] {
     display: none;
@@ -789,71 +856,4 @@
 
 .widget-tabs .view-content .view-content-block.active {
     display: block;
-}
-.widget-tooltip {
-    display: block;
-    visibility: visible;
-    position: absolute;
-    will-change: top, left;
-    top: 20px;
-    left: 168px;
-    padding: 6px;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.widget-tooltip .tooltip-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border: solid transparent;
-}
-
-.widget-tooltip .tooltip-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-
-    /* top */
-    left: 16px;
-    bottom: 0;
-    border-width: 6px 6px 0;
-    border-top-color: #000000;
-
-    /* right */
-    /*
-    top: 50%;
-    margin-top: -6px;
-    left: 0;
-    border-width: 6px 6px 6px 0;
-    border-right-color: #000000;
-    */
-
-    /* bottom */
-    /*
-    top: 0;
-    left: 16px;
-    border-width: 0 6px 6px;
-    border-bottom-color: #000000;
-    */
-
-    /** left */
-    /*
-    top: 50%;
-    margin-top: -6px;
-    right: 0;
-    border-width: 6px 0 6px 6px;
-    border-left-color: #000000;
-    */
-}
-
-.widget-tooltip .tooltip-text {
-    padding: 4px 12px;
-    color: #fff;
-    text-align: left;
-    text-decoration: none;
-    background-color: #000000;
-    border-radius: 2px;
-    /*box-shadow: 0 1px 6px #000000;*/
-    white-space: nowrap;
 }

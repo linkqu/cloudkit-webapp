@@ -29,13 +29,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import type {Component} from "./Component";
+
 /**
  * Breadcrumb
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Breadcrumb {
+class Breadcrumb implements Component {
 
     options: JSON;
 

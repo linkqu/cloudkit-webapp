@@ -30,6 +30,7 @@
  */
 
 import "./TextField.css";
+import type {Component} from "./Component";
 
 /**
  * TextField
@@ -37,7 +38,7 @@ import "./TextField.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class TextField {
+class TextField implements Component {
 
     options: JSON;
 
@@ -117,7 +118,11 @@ class TextField {
             }
         }
 
-        return input;
+        return this.element = input;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

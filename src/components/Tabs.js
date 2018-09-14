@@ -30,6 +30,7 @@
  */
 
 import "./Tabs.css";
+import type {Component} from "./Component";
 
 /**
  * Tabs TabbedPane
@@ -37,7 +38,7 @@ import "./Tabs.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Tabs {
+class Tabs implements Component {
 
     options: JSON;
 
