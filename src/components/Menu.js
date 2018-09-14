@@ -30,6 +30,7 @@
  */
 
 import "./Menu.css";
+import type {Component} from "./Component";
 
 /**
  * Menu
@@ -37,7 +38,7 @@ import "./Menu.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Menu {
+class Menu implements Component {
 
     options: JSON;
 

@@ -30,6 +30,7 @@
  */
 
 import "./Button.css";
+import type {Component} from "./Component";
 
 /**
  * Button
@@ -37,7 +38,7 @@ import "./Button.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Button {
+class Button implements Component {
 
     options: {
         type: number,

@@ -30,6 +30,7 @@
  */
 
 import "./Separator.css";
+import type {Component} from "./Component";
 
 /**
  * Separator
@@ -37,7 +38,7 @@ import "./Separator.css";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Separator {
+class Separator implements Component {
 
     options: JSON;
 

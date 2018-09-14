@@ -32,6 +32,7 @@
 import "./Pagination.css";
 import {Button} from "./Button";
 import {Colors} from "../commons/Colors";
+import type {Component} from "./Component";
 
 /**
  * Pagination
@@ -39,7 +40,7 @@ import {Colors} from "../commons/Colors";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Pagination {
+class Pagination implements Component {
 
     options: JSON;
 

@@ -32,6 +32,7 @@
 import "./Table.css";
 import Checkbox from "./Checkbox";
 import Pagination from "./Pagination";
+import type {Component} from "./Component";
 
 /**
  * 拖放时信息
@@ -53,7 +54,7 @@ interface Dragging {
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Table {
+class Table implements Component {
 
     options: JSON;
 
@@ -155,7 +156,7 @@ class Table {
                     let patchElement = document.createElement("th");
                     patchElement.classList.add("table-patch");
 
-                    patchElement.width = scrollAllowWidth;
+                    patchElement.width = scrollBarWidth;
                     tableHeader.querySelector('tr').appendChild(patchElement);
                 }
             } else {

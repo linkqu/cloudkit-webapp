@@ -29,40 +29,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import type {Component} from "./Component";
+interface Component {
 
-/**
- * Popconfirm
- *
- * @author hongquanli <hongquanli@qq.com>
- * @version 1.0 2018-06-16 6:57 PM
- */
-class Popconfirm implements Component {
-
-    options: JSON;
-
-    /**
-     * constructor
-     *
-     * @param options
-     */
-    constructor(options: JSON) {
-        // Horizontal Vertical
-
-        // default setting
-        this.defaultSetting = {
-
-        };
-        this.options = options;
-        this.build();
-    }
-
-    /**
-     * build
-     */
-    build() {
-
-    }
 }
 
-export {Popconfirm};
+export {Component};

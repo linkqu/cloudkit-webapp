@@ -32,14 +32,15 @@
 import "./Toolbar.css";
 import {Button} from "./Button";
 import {Separator} from "./Separator";
+import type {Component} from "./Component";
 
 /**
- * Icon
+ * Toolbar
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Toolbar {
+class Toolbar implements Component {
 
     options: JSON;
 
