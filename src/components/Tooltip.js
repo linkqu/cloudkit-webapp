@@ -86,16 +86,27 @@ class Tooltip implements Component {
             document.body.appendChild(tooltip);
         }
 
-        let target = options["target"];
-        if(target) {
-            let targetElement = target.getElement();
-            tooltip.style["position"] = "absolute";
-            tooltip.style["top"] = (targetElement.offsetTop - tooltip.clientHeight) + "px";
-            tooltip.style["left"] = (targetElement.offsetLeft - 6) + "px";
-            tooltip.style["z-index"] = "9999";
-        }
+        document.addEventListener("DOMContentLoaded", function(){
+
+        });
 
         return this.element = tooltip;
+    }
+
+    show() {
+        let target = this.options["target"];
+        if(target) {
+            let targetElement = target instanceof HTMLElement? target : target.getElement();
+            this.element.style["display"] = "block";
+            this.element.style["position"] = "absolute";
+            this.element.style["top"] = (targetElement.offsetTop - this.element.clientHeight) + "px";
+            this.element.style["left"] = targetElement.offsetLeft + "px";
+            this.element.style["z-index"] = "9999";
+        }
+    }
+
+    hide() {
+        this.element.style["display"] = "none";
     }
 
     getElement() {

@@ -429,7 +429,7 @@
     padding: 0 1em 0 2em;
 }
 .widget-tooltip {
-    display: block;
+    display: none;
     visibility: visible;
     position: absolute;
     will-change: top, left;

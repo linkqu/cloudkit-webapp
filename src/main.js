@@ -254,7 +254,7 @@ let borderLayout = new BorderLayout({
                     index: "add",
                     options: {
                         text: "新增",
-                        tooltip: "新增"
+                        tooltip: "Add a new bill!"
                     }
                 }, {
                     type: Button,
