@@ -228,15 +228,16 @@ class Table implements Component {
                     //     this['offsetLeft'],
                     //     this["offsetWidth"]
                     // );
-                    console.log(
-                        "screenX: %s, target: %s, %s",
-                        event.screenX,
-                        event.target,
-                        event.target["offsetParent"]
-                    );
+
+                    // console.log(
+                    //     "screenX: %s, target: %s, %s",
+                    //     event.screenX,
+                    //     event.target,
+                    //     event.target["offsetParent"]
+                    // );
 
                     // $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
-                    $this.dragging["isAllowResize"] = event.target["offsetWidth"] - (event["clientX"] - event.target['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
+                    $this.dragging["isAllowResize"] = event.target["offsetWidth"] - (event["clientX"] - event.target['offsetLeft'] - $this.element['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
                     event.target["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
                 });
 
