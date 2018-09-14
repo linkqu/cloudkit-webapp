@@ -128,6 +128,12 @@ let borderLayout = new BorderLayout({
             type: Toolbar,
             options: {
                 items: [{
+                    type: Separator,
+                    index: "separator",
+                    options: {
+
+                    }
+                }, {
                     type: Button,
                     index: "bookmarks",
                     options: {
