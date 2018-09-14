@@ -40,6 +40,14 @@
     transition: all .2s ease-in-out;
 }
 
+.border-layout .west {
+    border-right: 1px solid #dcdee2;
+}
+
+.border-layout .east {
+    border-left: 1px solid #dcdee2;
+}
+
 .border-layout .has-side > .center {
     overflow-x: hidden;
 }
