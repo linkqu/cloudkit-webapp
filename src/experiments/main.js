@@ -77,7 +77,7 @@
 //         title: "North Panel",
 //         region: "north",
 //         items: [{
-//             type: "Menu",
+//             type: Menu,
 //             options: {
 //                 items: [{
 //                     index: "bookmarks",
@@ -117,7 +117,7 @@
 //                 }]
 //             }
 //         }, {
-//             type: "Toolbar",
+//             type: Toolbar,
 //             options: {
 //                 items: [{
 //                     index: "bookmarks",
@@ -143,7 +143,7 @@
 //             // "background-color": Colors.BLUE[1]
 //         },
 //         items: [{
-//             type: "Accordion",
+//             type: Accordion,
 //             options: {
 //                 items: [{
 //                     id: "bookmarks",
@@ -184,9 +184,10 @@
 //         title: "Center Panel",
 //         region: "center",
 //         items: [{
-//             type: "Table",
+//             type: Table,
 //             options: {
 //                 height: 200,
+//                 width: 800,
 //                 // classes: [""],
 //                 // css: {
 //                 //     "color": Color.RED[9]

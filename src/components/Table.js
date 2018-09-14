@@ -142,29 +142,6 @@ class Table implements Component {
             console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
-            let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
-            let scrollAllowHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
-            // console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
-
-            if (scrollAllowWidth && scrollAllowHeight) {
-                if (!tableHeader.querySelector('.table-patch')) {
-                    // let patchWidth = tableHeader.scrollWidth - scrollWidth;
-                    // let patchHeight = tableHeader.scrollHeight - scrollHeight;
-                    // console.log("patch width: %d, patch height: %d", patchWidth, patchHeight);
-
-                    // 补丁元素
-                    let patchElement = document.createElement("th");
-                    patchElement.classList.add("table-patch");
-
-                    patchElement.width = scrollBarWidth;
-                    tableHeader.querySelector('tr').appendChild(patchElement);
-                }
-            } else {
-                let tablePatch = tableHeader.querySelector('.table-patch');
-                if(tablePatch) {
-                    tablePatch.remove();
-                }
-            }
 
             tableHeaderWrapper.scrollLeft = tableContentWrapper.scrollLeft;
             $this.dragging["scrollLeft"] = tableContentWrapper.scrollLeft;
@@ -306,18 +283,18 @@ class Table implements Component {
                 });
             });
 
-            // let tableHeaderCol = document.createElement("col");
-            // // tableHeaderCol.setAttribute("width", 0);
-            // tableHeaderColgroup.appendChild(tableHeaderCol);
-            //
-            // let tableContentCol = document.createElement("col");
-            // tableContentColgroup.appendChild(tableContentCol);
-            //
-            // let tableHeaderTh = document.createElement("th");
-            // tableHeaderTr.appendChild(tableHeaderTh);
-            //
-            // let tableContentTh = document.createElement("th");
-            // tableContentTr.appendChild(tableContentTh);
+            let tableHeaderCol = document.createElement("col");
+            // tableHeaderCol.setAttribute("width", 0);
+            tableHeaderColgroup.appendChild(tableHeaderCol);
+
+            let tableContentCol = document.createElement("col");
+            tableContentColgroup.appendChild(tableContentCol);
+
+            let tableHeaderTh = document.createElement("th");
+            tableHeaderTr.appendChild(tableHeaderTh);
+
+            let tableContentTh = document.createElement("th");
+            tableContentTr.appendChild(tableContentTh);
         }
 
         let data = this.options["data"];
@@ -346,17 +323,47 @@ class Table implements Component {
 
         // footer
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(tableWrapper);
+        let parent = this.options["parent"];
+        if (parent) {
+            // console.log(parent);
+            parent.appendChild(tableWrapper);
         } else {
             // document.body.appendChild(table);
         }
 
-        // console.debug(tableHeaderWrapper.clientHeight);
-        let tableContentHeight = height ? (height - (tableTitle? tableTitle.clientHeight : 0)) : null;
-        tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
-        tableContentWrapper.style.height = tableContentHeight + "px";
+        document.addEventListener("DOMContentLoaded", function(){
+
+            // 在 DOM 完全加载完后执行
+            // console.debug(tableHeaderWrapper.clientHeight);
+            let tableContentHeight = height ? (height - (tableTitle? tableTitle.clientHeight : 0)) : null;
+            tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
+            tableContentWrapper.style.height = tableContentHeight + "px";
+
+            let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
+            let scrollAllowHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
+            // console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
+
+            if (scrollAllowHeight) {
+                if (!tableHeader.querySelector('.table-patch')) {
+                    // let patchWidth = tableHeader.scrollWidth - scrollWidth;
+                    // let patchHeight = tableHeader.scrollHeight - scrollHeight;
+                    // console.log("patch width: %d, patch height: %d", patchWidth, patchHeight);
+
+                    // 补丁元素
+                    let patchElement = document.createElement("th");
+                    patchElement.classList.add("table-patch");
+
+                    patchElement.width = scrollBarWidth;
+                    tableHeader.querySelector('tr').appendChild(patchElement);
+                }
+            } else {
+                let tablePatch = tableHeader.querySelector('.table-patch');
+                if(tablePatch) {
+                    tablePatch.remove();
+                }
+            }
+
+        });
 
         this.element = tableWrapper;
 

@@ -32,7 +32,7 @@
 // import {fetch} from "whatwg-fetch";
 //
 // // Components
-// import {Colors} from "./commons/Color";
+// import {Colors} from "./commons/Colors";
 // import {Button} from "./components/Button";
 // import {TextField} from "./components/TextField";
 // import {Table} from "./components/Table";
@@ -232,48 +232,7 @@
 //     items: [{
 //         title: "North Panel",
 //         region: "north",
-//         height: 50,
-//         items: [{
-//             new Menu({
-//                 parent: document.body,
-//                 items: [{
-//                     index: "bookmarks",
-//                     title: "Bookmarks",
-//                     children: [
-//                         {
-//                             title: "book report",
-//                             events: {
-//                                 "click": function () {
-//                                     alert("hello!");
-//                                 }
-//                             }
-//                         },
-//                         {title: "alegrbra"}
-//                     ]
-//                 }, {
-//                     index: "downloads",
-//                     title: "Downloads",
-//                     children: [
-//                         {title: "open report"},
-//                         {title: "alegrbra"}
-//                     ]
-//                 }, {
-//                     index: "history",
-//                     title: "History",
-//                     children: [
-//                         {title: "book report history"},
-//                         {title: "alegrbra"}
-//                     ]
-//                 }, {
-//                     index: "window",
-//                     title: "Window",
-//                     children: [
-//                         {title: "hide"},
-//                         {title: "alegrbra"}
-//                     ]
-//                 }]
-//             })
-//         }]
+//         height: 50
 //     }, {
 //         title: "West Panel",
 //         region: "west",
@@ -416,10 +375,10 @@
 //         console.log(response.statusText)
 //         return response.json()
 //     }).then(function (json) {
-//         console.log("parsed json", json)
-//     }).catch(function (ex) {
-//         console.log("parsing failed", ex)
-//     });
+//     console.log("parsed json", json)
+// }).catch(function (ex) {
+//     console.log("parsing failed", ex)
+// });
 //
 // // Response metadata
 // // let form = document.querySelector("form")

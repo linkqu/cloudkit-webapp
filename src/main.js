@@ -186,6 +186,7 @@ let borderLayout = new BorderLayout({
         items: [{
             type: Table,
             options: {
+                // width: 800,
                 height: 200,
                 // classes: [""],
                 // css: {
