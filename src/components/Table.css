@@ -43,6 +43,10 @@
     overflow: hidden;
 }
 
+.widget-table .table tr th:hover {
+    background-color: #e8e8e8;
+}
+
 .widget-table .table tr th:first-child {
     border-left: none;
 }
