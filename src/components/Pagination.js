@@ -44,6 +44,8 @@ class Pagination implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -213,7 +215,11 @@ class Pagination implements Component {
             // document.body.appendChild(pagination);
         }
 
-        return pagination;
+        return this.element = pagination;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

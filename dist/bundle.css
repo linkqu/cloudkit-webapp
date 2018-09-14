@@ -295,6 +295,7 @@
 }
 .widget-pagination {
     vertical-align: middle;
+    padding: 8px 0;
 }
 
 .widget-pagination .total-elements-text {
