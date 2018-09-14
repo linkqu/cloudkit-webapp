@@ -142,7 +142,6 @@ class Table implements Component {
             console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
-
             tableHeaderWrapper.scrollLeft = tableContentWrapper.scrollLeft;
             $this.dragging["scrollLeft"] = tableContentWrapper.scrollLeft;
         });
@@ -173,28 +172,22 @@ class Table implements Component {
 
             columns.forEach(function (item, index, objs) {
                 let tableHeaderCol = document.createElement("col");
-                if (item["index"]) {
-                    tableHeaderCol.setAttribute("data-index", item["index"]);
-                } else {
-                    tableHeaderCol.setAttribute("data-index", index);
-                }
                 tableHeaderColgroup.appendChild(tableHeaderCol);
 
                 let tableContentCol = document.createElement("col");
+                let tableHeaderTh = document.createElement("th");
+                tableHeaderTh.setAttribute("title", item["text"]);
                 if (item["index"]) {
+                    tableHeaderCol.setAttribute("data-index", item["index"]);
                     tableContentCol.setAttribute("data-index", item["index"]);
+                    tableHeaderTh.setAttribute("data-index", item["index"]);
                 } else {
+                    tableHeaderCol.setAttribute("data-index", index);
                     tableContentCol.setAttribute("data-index", index);
+                    tableHeaderTh.setAttribute("data-index", index);
                 }
                 tableContentColgroup.appendChild(tableContentCol);
 
-                let tableHeaderTh = document.createElement("th");
-                if (item["index"]) {
-                    tableHeaderTh.setAttribute("data-index", item["index"]);
-                } else {
-                    tableHeaderTh.setAttribute("data-index", index);
-                }
-                tableHeaderTh.setAttribute("title", item["text"]);
                 let tableContentTh = document.createElement("th");
                 tableHeaderTr.appendChild(tableHeaderTh);
                 tableContentTr.appendChild(tableContentTh);
@@ -213,9 +206,38 @@ class Table implements Component {
 
                 // 添加事件拖拽调整宽度
                 tableHeaderTh.addEventListener("mousemove", function (event) {
-                    // console.log("clientX:" + event["clientX"] + ", offsetLeft:" + this['offsetLeft'] + ", width:" + this["offsetWidth"]);
-                    $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
-                    this["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
+
+                    // 网页可见区域宽： document.body.clientWidth;
+                    // 网页可见区域高： document.body.clientHeight;
+                    // 网页可见区域宽： document.body.offsetWidth   （包含边线的宽）;
+                    // 网页可见区域高： document.body.offsetHeight （包含边线的高）;
+                    // 网页正文全文宽： document.body.scrollWidth;（含滚动条时，即滚动条从最顶端滚到最底端实际走过的距离）
+                    // 网页正文全文高： document.body.scrollHeight;（含滚动条时，即滚动条从最顶端滚到最底端实际走过的距离）
+                    // 网页被卷去的高： document.body.scrollTop;
+                    // 网页被卷去的左： document.body.scrollLeft;
+                    // 网页正文项目组上： window.screenTop;（返回窗口相对于屏幕的y坐标）
+                    // 网页正文项目组左： window.screenLeft;（返回窗口相对于屏幕的x坐标）
+                    // 屏幕辨别率的高： window.screen.height;（返回当前屏幕高度，即分辨率值）
+                    // 屏幕辨别率的宽： window.screen.width;（返回当前屏幕宽度，即分辨率值）
+                    // 屏幕可用工作区高度： window.screen.availHeight;（空白空间）
+                    // 屏幕可用工作区的宽度：window.screen.availWidth;（空白空间）
+
+                    // console.log(
+                    //     "clientX: %s, offsetLeft: %s, offsetWidth: %s",
+                    //     event["clientX"],
+                    //     this['offsetLeft'],
+                    //     this["offsetWidth"]
+                    // );
+                    console.log(
+                        "screenX: %s, target: %s, %s",
+                        event.screenX,
+                        event.target,
+                        event.target["offsetParent"]
+                    );
+
+                    // $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
+                    $this.dragging["isAllowResize"] = event.target["offsetWidth"] - (event["clientX"] - event.target['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
+                    event.target["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
                 });
 
                 tableHeaderTh.addEventListener("mouseleave", function (event) {
