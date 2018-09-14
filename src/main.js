@@ -77,7 +77,7 @@ let borderLayout = new BorderLayout({
         title: "North Panel",
         region: "north",
         items: [{
-            type: "Menu",
+            type: Menu,
             options: {
                 items: [{
                     index: "bookmarks",
@@ -117,7 +117,7 @@ let borderLayout = new BorderLayout({
                 }]
             }
         }, {
-            type: "Toolbar",
+            type: Toolbar,
             options: {
                 items: [{
                     index: "bookmarks",
@@ -143,7 +143,7 @@ let borderLayout = new BorderLayout({
             // "background-color": Colors.BLUE[1]
         },
         items: [{
-            type: "Accordion",
+            type: Accordion,
             options: {
                 items: [{
                     id: "bookmarks",
@@ -184,7 +184,7 @@ let borderLayout = new BorderLayout({
         title: "Center Panel",
         region: "center",
         items: [{
-            type: "Table",
+            type: Table,
             options: {
                 height: 200,
                 // classes: [""],

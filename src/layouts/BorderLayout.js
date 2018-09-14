@@ -97,11 +97,11 @@ class BorderLayout {
 
             if(item["items"]) {
                 item["items"].forEach(function (item, index, objs) {
-                    let component = Components.buildComponent(
+                    Components.buildComponent(
+                        panel,
                         item["type"],
                         item["options"]
                     ).getElement();
-                    panel.appendChild(component);
                 });
             }
 
