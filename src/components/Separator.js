@@ -42,6 +42,8 @@ class Separator implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -72,7 +74,12 @@ class Separator implements Component {
             // document.body.appendChild(button);
         }
 
-        return separator;
+        this.element = separator;
+        return this.element;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

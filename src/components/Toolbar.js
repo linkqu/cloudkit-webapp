@@ -33,6 +33,7 @@ import "./Toolbar.css";
 import {Button} from "./Button";
 import {Separator} from "./Separator";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
 
 /**
  * Toolbar
@@ -76,14 +77,20 @@ class Toolbar implements Component {
         if(items) {
             items.forEach(function (item, index, objs) {
 
-                let button = new Button({
-                    parent: toolbar,
-                    text: "Button"
-                });
+                Components.buildComponent(
+                    toolbar,
+                    item["type"],
+                    item["options"]
+                ).getElement();
 
-                new Separator({
-                    parent: toolbar
-                });
+                // let button = new Button({
+                //     parent: toolbar,
+                //     text: "Button"
+                // });
+                //
+                // new Separator({
+                //     parent: toolbar
+                // });
 
                 // events
                 let events = item["events"];

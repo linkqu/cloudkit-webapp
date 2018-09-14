@@ -48,6 +48,7 @@ import {Menu} from "./components/Menu";
 import {Toolbar} from "./components/Toolbar";
 import {Tooltip} from "./components/Tooltip";
 import {Components} from "./commons/Components";
+import {Separator} from "./components/Separator";
 
 // import pkg from "../package.json";
 
@@ -120,17 +121,29 @@ let borderLayout = new BorderLayout({
             type: Toolbar,
             options: {
                 items: [{
+                    type: Button,
                     index: "bookmarks",
-                    text: "Bookmarks"
+                    options: {
+                        text: "Bookmarks"
+                    }
                 }, {
+                    type: Button,
                     index: "downloads",
-                    text: "Downloads"
+                    options: {
+                        text: "Downloads"
+                    }
                 }, {
+                    type: Button,
                     index: "history",
-                    text: "History"
+                    options: {
+                        text: "History"
+                    }
                 }, {
+                    type: Button,
                     index: "window",
-                    text: "Window"
+                    options: {
+                        text: "Window"
+                    }
                 }]
             }
         }]
@@ -184,6 +197,81 @@ let borderLayout = new BorderLayout({
         title: "Center Panel",
         region: "center",
         items: [{
+            type: Menu,
+            options: {
+                items: [{
+                    index: "bookmarks",
+                    title: "Bookmarks",
+                    children: [
+                        {
+                            title: "book report",
+                            events: {
+                                "click": function () {
+                                    alert("hello!");
+                                }
+                            }
+                        },
+                        {title: "alegrbra"}
+                    ]
+                }, {
+                    index: "downloads",
+                    title: "Downloads",
+                    children: [
+                        {title: "open report"},
+                        {title: "alegrbra"}
+                    ]
+                }, {
+                    index: "history",
+                    title: "History",
+                    children: [
+                        {title: "book report history"},
+                        {title: "alegrbra"}
+                    ]
+                }, {
+                    index: "window",
+                    title: "Window",
+                    children: [
+                        {title: "hide"},
+                        {title: "alegrbra"}
+                    ]
+                }]
+            }
+        }, {
+            type: Toolbar,
+            options: {
+                items: [{
+                    type: Button,
+                    index: "add",
+                    options: {
+                        text: "新增"
+                    }
+                }, {
+                    type: Button,
+                    index: "modify",
+                    options: {
+                        text: "修改"
+                    }
+                }, {
+                    type: Button,
+                    index: "delete",
+                    options: {
+                        text: "删除"
+                    }
+                }, {
+                    type: Separator,
+                    index: "separator",
+                    options: {
+
+                    }
+                }, {
+                    type: Button,
+                    index: "view",
+                    options: {
+                        text: "查看"
+                    }
+                }]
+            }
+        }, {
             type: Table,
             options: {
                 // width: 800,
