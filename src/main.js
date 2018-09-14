@@ -293,9 +293,9 @@ let borderLayout = new BorderLayout({
                 title: "Employee Information Table",
                 columns: [
                     {
-                        index: "employee", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
+                        index: "name", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
                             // language=HTML
-                            return `<a href='index.html'>Hello ${value}!</a>`;
+                            return `<a href='index.html'>Hello ${value}</a>`;
                         }
                     },
                     {index: "sex", text: "Sex", width: 75, sortable: false, renderer: undefined},
@@ -313,7 +313,15 @@ let borderLayout = new BorderLayout({
                     ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
                     ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
                     ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"]
+                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                    {
+                        name: "Lily",
+                        sex: "女",
+                        age: "28",
+                        mobile: "13590000000",
+                        email: "lily@qq.com",
+                        birthday: "2018-08-29"
+                    }
                 ]
             }
         }, {

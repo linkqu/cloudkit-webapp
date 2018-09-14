@@ -310,10 +310,12 @@ class Table implements Component {
                     tableContentTr.appendChild(tableContentTd);
 
                     let renderer = column["renderer"];
+
+                    let value = (item instanceof Array)? item[index] : item[column["index"]];
                     if (renderer) {
-                        tableContentTd.innerHTML = renderer(item[index]);
+                        tableContentTd.innerHTML = renderer(value);
                     } else {
-                        let text = document.createTextNode(item[index]);
+                        let text = document.createTextNode(value);
                         tableContentTd.appendChild(text);
                     }
                 });
