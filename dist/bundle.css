@@ -357,6 +357,7 @@
     /*flex: 0 0 200px;*/
     /*background: #3a9fe8;*/
     /*color: #ffffff;*/
+    overflow-y: auto;
     transition: all .2s ease-in-out;
 }
 
@@ -369,6 +370,7 @@
     -ms-flex: 1;
     flex: 1;
     /*background: #8ee8e0;*/
+    overflow: auto;
 }
 .widget-accordion .accordion-item > .title {
     border-bottom: 1px solid #999999;

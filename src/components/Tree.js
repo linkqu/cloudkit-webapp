@@ -42,6 +42,8 @@ class Tree implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -76,6 +78,9 @@ class Tree implements Component {
         } else {
             // document.body.appendChild(tree);
         }
+
+        this.element = tree;
+        return this.element;
     }
 
     static buildNode(parent, data) {
@@ -158,6 +163,10 @@ class Tree implements Component {
                 }
             }
         });
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

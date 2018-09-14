@@ -317,6 +317,8 @@ class Table implements Component {
                         tableContentTd.appendChild(text);
                     }
                 });
+                let tableContentTd = document.createElement("td");
+                tableContentTr.appendChild(tableContentTd);
                 tableContentTbody.appendChild(tableContentTr);
             });
         }
