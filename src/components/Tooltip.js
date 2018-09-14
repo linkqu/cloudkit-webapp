@@ -42,6 +42,8 @@ class Tooltip implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
