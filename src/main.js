@@ -115,6 +115,13 @@ let borderLayout = new BorderLayout({
                         {title: "hide"},
                         {title: "alegrbra"}
                     ]
+                }, {
+                    index: "help",
+                    title: "Help",
+                    children: [
+                        {title: "hide"},
+                        {title: "alegrbra"}
+                    ]
                 }]
             }
         }, {
