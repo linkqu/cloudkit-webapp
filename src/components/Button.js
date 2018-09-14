@@ -31,6 +31,8 @@
 
 import "./Button.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import {Tooltip} from "./Tooltip";
 
 /**
  * Button
@@ -109,7 +111,19 @@ class Button implements Component {
              */
             fragment.appendChild(text);
         }
+
         button.appendChild(fragment);
+
+        let tooltipText = this.options["tooltip"];
+        if(this.options["tooltip"]) {
+            Components.buildComponent(
+                Tooltip,
+                {
+                    target: button,
+                    text: tooltipText
+                }
+            )
+        }
 
         // events
         let events = this.options["events"];

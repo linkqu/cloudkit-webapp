@@ -80,10 +80,8 @@ class Tooltip implements Component {
         if (parent) {
             // console.log(parent);
             parent.appendChild(tooltip);
-
-
         } else {
-            // document.body.appendChild(tooltip);
+            document.body.appendChild(tooltip);
         }
 
         let target = options["target"];
@@ -95,7 +93,11 @@ class Tooltip implements Component {
             tooltip.style["z-index"] = "9999";
         }
 
-        return tooltip;
+        return this.element = tooltip;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

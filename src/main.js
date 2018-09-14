@@ -253,7 +253,8 @@ let borderLayout = new BorderLayout({
                     type: Button,
                     index: "add",
                     options: {
-                        text: "新增"
+                        text: "新增",
+                        tooltip: "新增"
                     }
                 }, {
                     type: Button,
