@@ -301,7 +301,7 @@ class Table implements Component {
         if (data && data.length > 0) {
             data.forEach(function (item, index, objs) {
                 let tableContentTr = document.createElement("tr");
-                item.forEach(function (item, index, objs) {
+                columns.forEach(function (column, index, objs) {
                     let tableContentTd = document.createElement("td");
                     // let width = columns[index]["width"];
                     // if(width) {
@@ -309,11 +309,11 @@ class Table implements Component {
                     // }
                     tableContentTr.appendChild(tableContentTd);
 
-                    let renderer = columns[index]["renderer"];
+                    let renderer = column["renderer"];
                     if (renderer) {
-                        tableContentTd.innerHTML = renderer(item);
+                        tableContentTd.innerHTML = renderer(item[index]);
                     } else {
-                        let text = document.createTextNode(item);
+                        let text = document.createTextNode(item[index]);
                         tableContentTd.appendChild(text);
                     }
                 });
