@@ -4,6 +4,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+// const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     mode: "production",
@@ -144,7 +145,10 @@ module.exports = {
             filename: 'bundle.[name].css',
             ignoreOrder: true
         }),
-        new webpack.BannerPlugin("Webpack")
+        new webpack.BannerPlugin("Webpack"),
+        // new CompressionPlugin({
+        //     algorithm: 'gzip'
+        // })
         // new webpack.optimize.SplitChunksPlugin({
         //
         // })
