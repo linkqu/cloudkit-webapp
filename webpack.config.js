@@ -92,9 +92,14 @@ module.exports = {
             // minSize: 30000,
             // 最小 chunks
             // minChunks: 1,
+            // 最大异步请求chunks
             // maxAsyncRequests: 5,
+            // 最大初始化chunks
             // maxInitialRequests: 3,
+            // split 的 chunks name
             // name: true,
+            // 如果不指定name，自动生成name的分隔符（‘runtime~[name]’）
+            // automaticNameDelimiter: "",
             // filename: "bundle.js",
             cacheGroups: {
                 // default: {
