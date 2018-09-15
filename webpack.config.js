@@ -116,15 +116,15 @@ module.exports = {
                     name: 'vendors',
                     // minChunks: 1,
                     // 缓存优先级权重
-                    priority: 10,
+                    priority: -10,
                     enforce: true
                 },
                 commons: {
-                    // test: /commons\/|components\/|containers\/|layouts\//,
+                    test: /commons\/|components\/|containers\/|layouts\//,
                     name: "commons",
                     chunks: "initial",
-                    minChunks: 2,
-                    priority: 10,
+                    // minChunks: 2,
+                    priority: -10,
                     enforce: true
                 }
             }
