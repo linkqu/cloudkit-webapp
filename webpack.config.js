@@ -13,9 +13,11 @@ module.exports = {
     //     bundle2: "./main2.js"
     // },
     output: {
+        // path: path.join(process.cwd(), 'dist'),
         path: path.resolve(__dirname, "dist"),
-        // filename: "[name].js"
-        filename: "bundle.js"
+        // filename: "bundle.js",
+        filename: 'bundle.[name].js',
+        chunkFilename: 'bundle.[name].js'
     },
     module: {
         rules: [
@@ -81,13 +83,65 @@ module.exports = {
         //     { test: /\.css$/, loader: "style-loader!css-loader" }
         // ]
     },
+    optimization: {
+        splitChunks: {
+            // all initial
+            // 应该用范围
+            chunks: "all",
+            // 最小尺寸
+            // minSize: 30000,
+            // 最小 chunks
+            // minChunks: 1,
+            // maxAsyncRequests: 5,
+            // maxInitialRequests: 3,
+            // name: true,
+            // filename: "bundle.js",
+            cacheGroups: {
+                // default: {
+                //     minChunks: 2,
+                //     priority: -20,
+                //     reuseExistingChunk: true
+                // },
+                // default: false,
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    // split 出来的 chunk 的名字
+                    // Third party
+                    // name: '3rd-party',
+                    name: 'vendors',
+                    // minChunks: 1,
+                    // 缓存优先级权重
+                    priority: 10,
+                    enforce: true
+                },
+                commons: {
+                    test: /commons\/|components\/|containers\/|layouts\//,
+                    name: "commons",
+                    // chunks: "initial",
+                    // minChunks: 1,
+                    priority: 10,
+                    enforce: true
+                }
+            }
+        },
+        runtimeChunk: {
+            name: 'manifest'
+        }
+    },
     plugins: [
         new UglifyJsPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
             // filename:"index.html"
         }),
-        new ExtractTextPlugin("bundle.css"),
+        new ExtractTextPlugin({
+            // "bundle.css"
+            filename: 'bundle.[name].css',
+            ignoreOrder: true
+        }),
         new webpack.BannerPlugin("Webpack 实例")
+        // new webpack.optimize.SplitChunksPlugin({
+        //
+        // })
     ]
 };
