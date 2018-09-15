@@ -176,7 +176,7 @@ let borderLayout = new BorderLayout({
     }, {
         title: "West Panel",
         region: "west",
-        width: 184,
+        width: 200,
         // split: true,
         css: {
             // "background-color": Colors.BLUE[1]

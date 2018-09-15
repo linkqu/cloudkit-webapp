@@ -282,6 +282,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    user-select: none;
+}
+
+.widget-table .table tr th:hover {
+    background-color: #e8e8e8;
 }
 
 .widget-table .table tr th:first-child {
