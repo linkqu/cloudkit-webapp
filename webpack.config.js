@@ -7,11 +7,11 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
     mode: "production",
-    entry: "./src/main.js",
-    // entry: {
-    //     bundle1: "./main1.js",
-    //     bundle2: "./main2.js"
-    // },
+    // entry: "./src/main.js",
+    entry: {
+        commons: "./src/commons.js",
+        main: "./src/main.js"
+    },
     output: {
         // path: path.join(process.cwd(), 'dist'),
         path: path.resolve(__dirname, "dist"),
@@ -144,7 +144,7 @@ module.exports = {
             filename: 'bundle.[name].css',
             ignoreOrder: true
         }),
-        new webpack.BannerPlugin("Webpack!")
+        new webpack.BannerPlugin("Webpack")
         // new webpack.optimize.SplitChunksPlugin({
         //
         // })
