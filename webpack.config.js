@@ -144,7 +144,7 @@ module.exports = {
             filename: 'bundle.[name].css',
             ignoreOrder: true
         }),
-        new webpack.BannerPlugin("Webpack 实例")
+        new webpack.BannerPlugin("Webpack!")
         // new webpack.optimize.SplitChunksPlugin({
         //
         // })
