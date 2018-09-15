@@ -163,6 +163,12 @@ class Button implements Component {
             // document.body.appendChild(button);
         }
 
+        // developer.mozilla.org/zh-CN/docs/Web/Events
+        // DOMElementNameChanged
+        // DOMNodeInserted
+        // DOMNodeRemoved
+        // DOMAttributeNameChanged
+        // DOMAttrModified
         document.addEventListener("DOMContentLoaded", function(){
 
         });
