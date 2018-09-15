@@ -9,7 +9,7 @@ module.exports = {
     mode: "production",
     // entry: "./src/main.js",
     entry: {
-        commons: "./src/commons.js",
+        // commons: "./src/commons.js",
         main: "./src/main.js"
     },
     output: {
@@ -120,10 +120,10 @@ module.exports = {
                     enforce: true
                 },
                 commons: {
-                    test: /commons\/|components\/|containers\/|layouts\//,
+                    // test: /commons\/|components\/|containers\/|layouts\//,
                     name: "commons",
-                    // chunks: "initial",
-                    // minChunks: 1,
+                    chunks: "initial",
+                    minChunks: 2,
                     priority: 10,
                     enforce: true
                 }
