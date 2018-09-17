@@ -51,7 +51,7 @@
 .widget-tree li.leaf .icon-fibre {
     width: 18px;
     height: 18px;
-    background: transparent url('../../resources/images/tree.png') -56px -18px;
+    background: transparent url('../../webapps/resources/images/tree.png') -56px -18px;
 }
 
 .widget-tree li.last-leaf .icon-fibre {
@@ -83,7 +83,7 @@
     margin: 0;
     padding: 0 0 0 16px;
     /*padding: 0;*/
-    background: url('../../resources/images/table-link-line.gif') 0 0 repeat-y;
+    background: url('../../webapps/resources/images/table-link-line.gif') 0 0 repeat-y;
 }
 
 /*.widget-tree li.last-leaf ul,*/

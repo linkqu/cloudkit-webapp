@@ -90,30 +90,37 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                        options: {
-                            sourceMap: true,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: 'css-loader'
                         },
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader:'postcss-loader'
-                    }
-                ]
+                        // {
+                        //     loader: 'postcss-loader'
+                        // }
+                    ]
+                })
             },
             // {
             //     test: /\.css$/,
-            //     use: ExtractTextPlugin.extract({
-            //         fallback: "style-loader",
-            //         use: "css-loader"
-            //     })
+            //     loaders: [
+            //         {
+            //             loader: 'style-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         },
+            //         {
+            //             loader: 'css-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         },
+            //         {
+            //             loader:'postcss-loader'
+            //         }
+            //     ]
             // },
             // {test: /\.txt$/, use: "raw-loader"},
             // {test: /\.css$/, use: "css-loader"},
@@ -225,7 +232,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {
-                from: path.resolve(__dirname, './src/resources'),
+                from: path.resolve(__dirname, './src/webapps/resources'),
                 to: path.resolve(__dirname, './dist/resources')
             }
         ]),
