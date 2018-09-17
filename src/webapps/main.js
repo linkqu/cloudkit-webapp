@@ -32,23 +32,23 @@
 import {fetch} from "whatwg-fetch";
 
 // Components
-import {Colors} from "./commons/Colors";
-import {Button} from "./components/Button";
-import {TextField} from "./components/TextField";
-import {Table} from "./components/Table";
-import {BorderLayout} from "./layouts/BorderLayout";
-import {Checkbox} from "./components/Checkbox";
-import {Radio} from "./components/Radio";
-import {Pagination} from "./components/Pagination";
-import {Modal} from "./components/Modal";
-import {Tree} from "./components/Tree";
-import {Tabs} from "./components/Tabs";
-import {Accordion} from "./components/Accordion";
-import {Menu} from "./components/Menu";
-import {Toolbar} from "./components/Toolbar";
-import {Tooltip} from "./components/Tooltip";
-import {Components} from "./commons/Components";
-import {Separator} from "./components/Separator";
+import {Colors} from "../frameworks/commons/Colors";
+import {Button} from "../frameworks/components/Button";
+import {TextField} from "../frameworks/components/TextField";
+import {Table} from "../frameworks/components/Table";
+import {BorderLayout} from "../frameworks/layouts/BorderLayout";
+import {Checkbox} from "../frameworks/components/Checkbox";
+import {Radio} from "../frameworks/components/Radio";
+import {Pagination} from "../frameworks/components/Pagination";
+import {Modal} from "../frameworks/components/Modal";
+import {Tree} from "../frameworks/components/Tree";
+import {Tabs} from "../frameworks/components/Tabs";
+import {Accordion} from "../frameworks/components/Accordion";
+import {Menu} from "../frameworks/components/Menu";
+import {Toolbar} from "../frameworks/components/Toolbar";
+import {Tooltip} from "../frameworks/components/Tooltip";
+import {Components} from "../frameworks/commons/Components";
+import {Separator} from "../frameworks/components/Separator";
 
 // import pkg from "../package.json";
 

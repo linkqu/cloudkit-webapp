@@ -5,32 +5,82 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 // const CompressionPlugin = require("compression-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: "production",
     // entry: "./src/main.js",
     entry: {
         // commons: "./src/commons.js",
-        main: "./src/main.js"
+        main: "./src/webapps/main.js"
     },
     output: {
         // path: path.join(process.cwd(), 'dist'),
+        // path: path.join(__dirname, 'dist'),
         path: path.resolve(__dirname, "dist"),
+        publicPath: '',
         // filename: "bundle.js",
         filename: 'bundle.[name].js',
-        chunkFilename: 'bundle.[name].js'
+        chunkFilename: '[name].chunk.js'
     },
     module: {
         rules: [
             {
                 test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    'file-loader',
+                loader: 'url-loader?limit=8192'
+                // use: [
+                //     'file-loader',
+                //     {
+                //         loader: 'image-webpack-loader',
+                //         options: {
+                //             bypassOnDebug: true,
+                //             disable: true
+                //         },
+                //     },
+                // ]
+            },
+            {
+                test: /\.less$/,
+                loaders: [
                     {
-                        loader: 'image-webpack-loader',
+                        loader: 'style-loader',
                         options: {
-                            bypassOnDebug: true,
-                            disable: true
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                ]
+            },
+            {
+                test: /\.scss$/,
+                loaders: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
                         },
                     },
                 ]
@@ -62,6 +112,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
+                        sourceMap: true,
                         presets: [
                             ["@babel/preset-env", {
                                 // "targets": {
@@ -78,6 +129,10 @@ module.exports = {
                     }
                 },
                 exclude: "/node_modules/**"
+            },
+            {
+                test: /\.(html|tpl)$/,
+                loader: 'html-loader'
             }
         ],
         // loaders: [
@@ -137,7 +192,7 @@ module.exports = {
     plugins: [
         new UglifyJsPlugin(),
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: "./src/webapps/index.html"
             // filename:"index.html"
         }),
         new ExtractTextPlugin({
@@ -145,6 +200,12 @@ module.exports = {
             filename: 'bundle.[name].css',
             ignoreOrder: true
         }),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, './src/resources'),
+                to: path.resolve(__dirname, './dist/resources')
+            }
+        ]),
         new webpack.BannerPlugin("Webpack"),
         // new CompressionPlugin({
         //     algorithm: 'gzip'
