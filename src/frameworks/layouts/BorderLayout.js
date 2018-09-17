@@ -31,6 +31,7 @@
 
 import "./BorderLayout.css"
 import {Components} from "../commons/Components";
+import type {Component} from "../components/Component";
 
 /**
  * BorderLayout
@@ -38,9 +39,11 @@ import {Components} from "../commons/Components";
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class BorderLayout {
+class BorderLayout implements Component {
 
     options: JSON;
+
+    element: HTMLElement;
 
     /**
      * constructor
@@ -95,7 +98,7 @@ class BorderLayout {
                 }
             }
 
-            if(item["items"]) {
+            if (item["items"]) {
                 item["items"].forEach(function (item, index, objs) {
                     Components.buildComponent(
                         panel,
@@ -156,7 +159,11 @@ class BorderLayout {
             // document.body.appendChild(table);
         }
 
-        return borderLayout;
+        return this.element = borderLayout;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

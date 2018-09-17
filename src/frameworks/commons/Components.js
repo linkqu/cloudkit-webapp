@@ -29,13 +29,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Button} from "../components/Button";
-import {Accordion} from "../components/Accordion";
-import {Checkbox} from "../components/Checkbox";
-import {EditText} from "../components/EditText";
-import {Menu} from "../components/Menu";
-import {Toolbar} from "../components/Toolbar";
-import {Table} from "../components/Table";
 import type {Component} from "../components/Component";
 
 /**

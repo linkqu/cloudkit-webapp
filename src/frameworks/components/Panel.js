@@ -30,6 +30,7 @@
  */
 
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
 
 /**
  * Panel
@@ -40,6 +41,8 @@ import type {Component} from "./Component";
 class Panel implements Component {
 
     options: JSON;
+
+    element: HTMLElement;
 
     /**
      * constructor
@@ -61,7 +64,35 @@ class Panel implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
 
+        let panel = document.createElement("div");
+        if(options["id"]) {
+            panel.id = options["id"];
+        }
+        let items = options["items"];
+        if(items) {
+            items.forEach(function (item, index, objs) {
+                Components.buildComponent(
+                    panel,
+                    item["type"],
+                    item["options"]
+                ).getElement();
+            });
+        }
+
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(panel);
+        } else {
+            // document.body.appendChild(panel);
+        }
+
+        return this.element = panel;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

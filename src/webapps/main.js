@@ -50,6 +50,8 @@ import {Tooltip} from "../frameworks/components/Tooltip";
 import {Components} from "../frameworks/commons/Components";
 import {Separator} from "../frameworks/components/Separator";
 
+import {Profile} from "./accounts/settings/Profile";
+
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
@@ -247,102 +249,107 @@ let borderLayout = new BorderLayout({
         title: "Center Panel",
         region: "center",
         items: [{
-            type: Toolbar,
+            type: Profile,
             options: {
                 items: [{
-                    type: Button,
-                    index: "add",
+                    type: Toolbar,
                     options: {
-                        text: "新增",
-                        tooltip: "Add a new bill!"
-                    }
-                }, {
-                    type: Button,
-                    index: "modify",
-                    options: {
-                        text: "修改"
-                    }
-                }, {
-                    type: Button,
-                    index: "delete",
-                    options: {
-                        text: "删除"
-                    }
-                }, {
-                    type: Separator,
-                    index: "separator",
-                    options: {
+                        items: [{
+                            type: Button,
+                            index: "add",
+                            options: {
+                                text: "新增",
+                                tooltip: "Add a new bill!"
+                            }
+                        }, {
+                            type: Button,
+                            index: "modify",
+                            options: {
+                                text: "修改"
+                            }
+                        }, {
+                            type: Button,
+                            index: "delete",
+                            options: {
+                                text: "删除"
+                            }
+                        }, {
+                            type: Separator,
+                            index: "separator",
+                            options: {
 
+                            }
+                        }, {
+                            type: Button,
+                            index: "view",
+                            options: {
+                                text: "查看"
+                            }
+                        }]
                     }
                 }, {
-                    type: Button,
-                    index: "view",
+                    type: Table,
                     options: {
-                        text: "查看"
+                        // width: 800,
+                        height: 200,
+                        // classes: [""],
+                        // css: {
+                        //     "color": Color.RED[9]
+                        // },
+                        title: "Employee Information Table",
+                        columns: [
+                            {
+                                index: "name", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
+                                    // language=HTML
+                                    return `<a href='index.html'>Hello ${value}</a>`;
+                                }
+                            },
+                            {index: "sex", text: "Sex", width: 75, sortable: false, renderer: undefined},
+                            {index: "age", text: "Age", width: 75, sortable: false, renderer: undefined},
+                            {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: undefined},
+                            {index: "email", text: "Email", width: 120, sortable: false, renderer: undefined},
+                            {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: undefined}
+                        ],
+                        data: [
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                            {
+                                name: "Lily",
+                                sex: "女",
+                                age: "28",
+                                mobile: "13590000000",
+                                email: "lily@qq.com",
+                                birthday: "2018-08-29"
+                            }
+                        ]
+                    }
+                }, {
+                    type: Pagination,
+                    options: {
+                        pageable: {
+                            totalElements: 220,
+                            pageSize: 20,
+                            // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
+                            // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
+                            // totalPages: 11,
+                            pageNumber: 5,
+                            // hasNext: true,
+                            // isLast: false,
+                            numberOfElements: 20,
+                            // [10, 20, 30, 40, 50]
+                            previousLinkText: "Previous Page",
+                            nextLinkText: "Next Page"
+                        },
+                        parent: document.body
                     }
                 }]
-            }
-        }, {
-            type: Table,
-            options: {
-                // width: 800,
-                height: 200,
-                // classes: [""],
-                // css: {
-                //     "color": Color.RED[9]
-                // },
-                title: "Employee Information Table",
-                columns: [
-                    {
-                        index: "name", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
-                            // language=HTML
-                            return `<a href='index.html'>Hello ${value}</a>`;
-                        }
-                    },
-                    {index: "sex", text: "Sex", width: 75, sortable: false, renderer: undefined},
-                    {index: "age", text: "Age", width: 75, sortable: false, renderer: undefined},
-                    {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: undefined},
-                    {index: "email", text: "Email", width: 120, sortable: false, renderer: undefined},
-                    {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: undefined}
-                ],
-                data: [
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                    {
-                        name: "Lily",
-                        sex: "女",
-                        age: "28",
-                        mobile: "13590000000",
-                        email: "lily@qq.com",
-                        birthday: "2018-08-29"
-                    }
-                ]
-            }
-        }, {
-            type: Pagination,
-            options: {
-                pageable: {
-                    totalElements: 220,
-                    pageSize: 20,
-                    // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
-                    // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
-                    // totalPages: 11,
-                    pageNumber: 5,
-                    // hasNext: true,
-                    // isLast: false,
-                    numberOfElements: 20,
-                    // [10, 20, 30, 40, 50]
-                    previousLinkText: "Previous Page",
-                    nextLinkText: "Next Page"
-                },
-                parent: document.body
             }
         }]
     }, {
