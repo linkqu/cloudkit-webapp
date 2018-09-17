@@ -26,7 +26,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                // test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                // 'url-loader?limit=1024&name=[path][name].[ext]&outputPath=img/&publicPath=output/'
                 loader: 'url-loader?limit=8192'
                 // use: [
                 //     'file-loader',
@@ -52,14 +54,15 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: true,
-                        },
+                            modules: true
+                        }
                     },
                     {
                         loader: 'less-loader',
                         options: {
                             sourceMap: true,
                         },
-                    },
+                    }
                 ]
             },
             {
@@ -87,11 +90,31 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader:'postcss-loader'
+                    }
+                ]
             },
+            // {
+            //     test: /\.css$/,
+            //     use: ExtractTextPlugin.extract({
+            //         fallback: "style-loader",
+            //         use: "css-loader"
+            //     })
+            // },
             // {test: /\.txt$/, use: "raw-loader"},
             // {test: /\.css$/, use: "css-loader"},
             // {
