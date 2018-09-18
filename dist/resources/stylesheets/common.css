@@ -1,9 +1,0 @@
-:root {
-　　--defaultTextColor: #444;
-}
-
-.clearfix::after {
-    display: block;
-    clear: both;
-    content: "";
-}

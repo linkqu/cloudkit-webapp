@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 // const CompressionPlugin = require("compression-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     mode: "production",
@@ -17,15 +17,15 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        // publicPath: '/assets/',
-        publicPath: './',
+        // publicPath: "/assets/",
+        publicPath: "./",
         // filename: "bundle.js",
         // filename: "[name].js",
-        // filename: 'bundle.[name].js',
+        // filename: "bundle.[name].js",
         filename: "[chunkhash].js",
         // chunkFilename: "[id].js",
         chunkFilename: "[chunkhash].js",
-        // chunkFilename: '[name].chunk.js',
+        // chunkFilename: "[name].chunk.js",
         sourceMapFilename: "[file].map",
         libraryTarget: "umd",
     },
@@ -34,12 +34,12 @@ module.exports = {
             {
                 // test: /\.(gif|png|jpe?g|svg)$/i,
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                // 'url-loader?limit=1024&name=[path][name].[ext]&outputPath=img/&publicPath=output/'
-                loader: 'url-loader?limit=8192'
+                // "url-loader?limit=1024&name=[path][name].[ext]&outputPath=img/&publicPath=output/"
+                loader: "url-loader?limit=8192"
                 // use: [
-                //     'file-loader',
+                //     "file-loader",
                 //     {
-                //         loader: 'image-webpack-loader',
+                //         loader: "image-webpack-loader",
                 //         options: {
                 //             bypassOnDebug: true,
                 //             disable: true
@@ -51,20 +51,20 @@ module.exports = {
             //     test: /\.less$/,
             //     loaders: [
             //         {
-            //             loader: 'style-loader',
+            //             loader: "style-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
             //         },
             //         {
-            //             loader: 'css-loader',
+            //             loader: "css-loader",
             //             options: {
             //                 sourceMap: true,
             //                 modules: true
             //             }
             //         },
             //         {
-            //             loader: 'less-loader',
+            //             loader: "less-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
@@ -75,19 +75,19 @@ module.exports = {
             //     test: /\.scss$/,
             //     loaders: [
             //         {
-            //             loader: 'style-loader',
+            //             loader: "style-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
             //         },
             //         {
-            //             loader: 'css-loader',
+            //             loader: "css-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
             //         },
             //         {
-            //             loader: 'sass-loader',
+            //             loader: "sass-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
@@ -100,13 +100,13 @@ module.exports = {
                     fallback: "style-loader",
                     use: [
                         {
-                            loader: 'css-loader',
+                            loader: "css-loader",
                             options: {
                                 modules: false
                             }
                         },
                         {
-                            loader: 'postcss-loader'
+                            loader: "postcss-loader"
                         }
                     ]
                 })
@@ -115,19 +115,19 @@ module.exports = {
             //     test: /\.css$/,
             //     loaders: [
             //         {
-            //             loader: 'style-loader',
+            //             loader: "style-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
             //         },
             //         {
-            //             loader: 'css-loader',
+            //             loader: "css-loader",
             //             options: {
             //                 sourceMap: true,
             //             },
             //         },
             //         {
-            //             loader:'postcss-loader'
+            //             loader:"postcss-loader"
             //         }
             //     ]
             // },
@@ -171,7 +171,7 @@ module.exports = {
             },
             {
                 test: /\.(html|tpl)$/,
-                loader: 'html-loader'
+                loader: "html-loader"
             }
         ],
         // loaders: [
@@ -180,35 +180,36 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-            // all initial
+            // all initial async
             // 应该用范围
-            chunks: "all",
+            chunks: "async",
             // 最小尺寸
-            // minSize: 30000,
+            minSize: 30000,
             // 最小 chunks
-            // minChunks: 1,
+            minChunks: 1,
             // 最大异步请求chunks
-            // maxAsyncRequests: 5,
+            maxAsyncRequests: 5,
             // 最大初始化chunks
-            // maxInitialRequests: 3,
+            maxInitialRequests: 3,
             // split 的 chunks name
             // name: true,
             // 如果不指定name，自动生成name的分隔符（‘runtime~[name]’）
-            // automaticNameDelimiter: "",
+            automaticNameDelimiter: "~",
             // filename: "bundle.js",
             cacheGroups: {
-                // default: {
-                //     minChunks: 2,
-                //     priority: -20,
-                //     reuseExistingChunk: true
-                // },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                },
                 // default: false,
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     // split 出来的 chunk 的名字
                     // Third party
-                    // name: '3rd-party',
-                    name: 'vendors',
+                    // name: "3rd-party",
+                    name: "vendors",
+                    chunks: "all",
                     // minChunks: 1,
                     // 缓存优先级权重
                     priority: -10,
@@ -218,26 +219,26 @@ module.exports = {
                     test: /commons\/|components\/|containers\/|layouts\//,
                     name: "commons",
                     chunks: "initial",
-                    // minChunks: 2,
+                    minChunks: 2,
                     priority: -10,
                     enforce: true
                 }
             }
         },
         runtimeChunk: {
-            name: 'manifest'
+            name: "manifest"
         }
     },
     // serve: {
     //     port: 9000,
-    //     content: './dist'
+    //     content: "./dist"
     // },
     // stats: "errors-only",
     devServer: {
         // proxy: {
-        //     '/api': 'http://localhost:8080'
+        //     "/api": "http://localhost:8080"
         // },
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, "dist"),
         compress: true,
         historyApiFallback: true,
         hot: true,
@@ -250,7 +251,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/webapps/index.html",
             filename:"index.html",
-            // inject: 'head',
+            // inject: "head",
             // favicon: "favicon.ico",
             minify: {
                 // https://github.com/kangax/html-minifier#options-quick-reference
@@ -262,22 +263,22 @@ module.exports = {
                 removeComments: true,
                 removeEmptyAttributes: true
             },
-            // chunks: ['main','index']
+            // chunks: ["main","index"]
         }),
         new ExtractTextPlugin({
-            filename: '[name].css',
-            // filename: 'bundle.[name].css',
+            filename: "[name].css",
+            // filename: "bundle.[name].css",
             ignoreOrder: true
         }),
         new CopyWebpackPlugin([
             {
-                from: path.resolve(__dirname, './src/webapps/resources'),
-                to: path.resolve(__dirname, './dist/resources')
+                from: path.resolve(__dirname, "./src/webapps/resources"),
+                to: path.resolve(__dirname, "./dist/resources")
             }
         ]),
         new webpack.BannerPlugin("Webpack"),
         // new CompressionPlugin({
-        //     algorithm: 'gzip'
+        //     algorithm: "gzip"
         // })
         // new webpack.optimize.SplitChunksPlugin({
         //

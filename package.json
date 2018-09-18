@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "flow": "flow",
-        "build:rp": "rollup -c",
+        "build:rp": "rimraf dist/* && rollup -c",
         "build:wp": "rimraf dist/* && webpack -c",
         "watch:wp": "webpack -c -w",
         "watch:rp": "rollup -c -w",

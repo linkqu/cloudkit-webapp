@@ -13,7 +13,7 @@ import {uglify} from "rollup-plugin-uglify";
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-    input: "src/main.js",
+    input: "src/webapps/main.js",
     output: {
         file: "dist/bundle.js",
         // 输出的文件类型 (amd, cjs, es, iife, umd)
