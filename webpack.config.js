@@ -13,6 +13,7 @@ module.exports = {
     entry: {
         // commons: "./src/commons.js",
         main: "./src/webapps/main.js"
+        // index: "./src/webapps/index.js"
     },
     output: {
         // path: path.join(process.cwd(), 'dist'),
@@ -222,8 +223,21 @@ module.exports = {
     plugins: [
         new UglifyJsPlugin(),
         new HtmlWebpackPlugin({
-            template: "./src/webapps/index.html"
-            // filename:"index.html"
+            template: "./src/webapps/index.html",
+            filename:"index.html",
+            // inject: 'head',
+            // favicon: "favicon.ico",
+            minify: {
+                // https://github.com/kangax/html-minifier#options-quick-reference
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                // removeAttributeQuotes: true,
+                html5: true,
+                minifyCSS: true,
+                removeComments: true,
+                removeEmptyAttributes: true
+            },
+            // chunks: ['main','index']
         }),
         new ExtractTextPlugin({
             // "bundle.css"
