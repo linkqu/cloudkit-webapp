@@ -17,7 +17,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        publicPath: '/assets/',
+        // publicPath: '/assets/',
+        publicPath: './',
         // filename: "bundle.js",
         // filename: "[name].js",
         // filename: 'bundle.[name].js',
@@ -224,21 +225,22 @@ module.exports = {
             name: 'manifest'
         }
     },
-    serve: {
-        port: 7000,
-        content: './dist'
-    },
-    stats: "errors-only",
+    // serve: {
+    //     port: 9000,
+    //     content: './dist'
+    // },
+    // stats: "errors-only",
     devServer: {
-        proxy: {
-            '/api': 'http://localhost:8080'
-        },
-        contentBase: path.join(__dirname, 'public'),
+        // proxy: {
+        //     '/api': 'http://localhost:8080'
+        // },
+        contentBase: path.join(__dirname, 'dist'),
         compress: true,
         historyApiFallback: true,
         hot: true,
         https: false,
-        noInfo: true
+        noInfo: true,
+        port: 9000
     },
     plugins: [
         new UglifyJsPlugin(),
