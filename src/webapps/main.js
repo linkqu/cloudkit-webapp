@@ -50,7 +50,7 @@ import {Tooltip} from "../frameworks/components/Tooltip";
 import {Components} from "../frameworks/commons/Components";
 import {Separator} from "../frameworks/components/Separator";
 
-import {Profile} from "./accounts/settings/Profile";
+import {Profile} from "./accounts/Profile";
 
 // import pkg from "../package.json";
 

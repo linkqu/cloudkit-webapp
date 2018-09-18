@@ -29,8 +29,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Panel} from "../../../frameworks/components/Panel";
-import type {Component} from "../../../frameworks/components/Component";
+import {Panel} from "../../frameworks/components/Panel";
+import type {Component} from "../../frameworks/components/Component";
 
 /**
  * Profile
