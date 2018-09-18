@@ -10,7 +10,7 @@
     "scripts": {
         "flow": "flow",
         "build:rp": "rollup -c",
-        "build:wp": "webpack -c",
+        "build:wp": "rimraf dist/* && webpack -c",
         "watch:wp": "webpack -c -w",
         "watch:rp": "rollup -c -w",
         "start": "serve dist",

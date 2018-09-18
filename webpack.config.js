@@ -47,64 +47,67 @@ module.exports = {
                 //     },
                 // ]
             },
-            {
-                test: /\.less$/,
-                loaders: [
-                    {
-                        loader: 'style-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                            modules: true
-                        }
-                    },
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    }
-                ]
-            },
-            {
-                test: /\.scss$/,
-                loaders: [
-                    {
-                        loader: 'style-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                ]
-            },
+            // {
+            //     test: /\.less$/,
+            //     loaders: [
+            //         {
+            //             loader: 'style-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         },
+            //         {
+            //             loader: 'css-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //                 modules: true
+            //             }
+            //         },
+            //         {
+            //             loader: 'less-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         }
+            //     ]
+            // },
+            // {
+            //     test: /\.scss$/,
+            //     loaders: [
+            //         {
+            //             loader: 'style-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         },
+            //         {
+            //             loader: 'css-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         },
+            //         {
+            //             loader: 'sass-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //             },
+            //         },
+            //     ]
+            // },
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [
                         {
-                            loader: 'css-loader'
+                            loader: 'css-loader',
+                            options: {
+                                modules: false
+                            }
                         },
-                        // {
-                        //     loader: 'postcss-loader'
-                        // }
+                        {
+                            loader: 'postcss-loader'
+                        }
                     ]
                 })
             },
@@ -262,8 +265,8 @@ module.exports = {
             // chunks: ['main','index']
         }),
         new ExtractTextPlugin({
-            // "bundle.css"
-            filename: 'bundle.[name].css',
+            filename: '[name].css',
+            // filename: 'bundle.[name].css',
             ignoreOrder: true
         }),
         new CopyWebpackPlugin([
