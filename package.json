@@ -13,6 +13,7 @@
         "build:wp": "webpack -c",
         "watch:wp": "webpack -c -w",
         "watch:rp": "rollup -c -w",
+        "start:wp": "webpack-dev-server --useLocalIp",
         "dev": "npm-run-all --parallel start watch",
         "start": "serve dist",
         "clean": "rimraf dist/*.js && rimraf node_modules"
@@ -70,6 +71,7 @@
         "uuid": "^3.3.2",
         "webpack": "^4.19.0",
         "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.8",
         "whatwg-fetch": "^3.0.0"
     },
     "dependencies": {}

@@ -1,4 +1,4 @@
-// webpack.config.js https://webpack.js.org
+// webpack.config.js https://webpack.js.org https://webpack.js.org/configuration/
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -16,13 +16,17 @@ module.exports = {
         // index: "./src/webapps/index.js"
     },
     output: {
-        // path: path.join(process.cwd(), 'dist'),
-        // path: path.join(__dirname, 'dist'),
         path: path.resolve(__dirname, "dist"),
-        publicPath: '',
+        publicPath: '/assets/',
         // filename: "bundle.js",
-        filename: 'bundle.[name].js',
-        chunkFilename: '[name].chunk.js'
+        // filename: "[name].js",
+        // filename: 'bundle.[name].js',
+        filename: "[chunkhash].js",
+        // chunkFilename: "[id].js",
+        chunkFilename: "[chunkhash].js",
+        // chunkFilename: '[name].chunk.js',
+        sourceMapFilename: "[file].map",
+        libraryTarget: "umd",
     },
     module: {
         rules: [
@@ -219,6 +223,22 @@ module.exports = {
         runtimeChunk: {
             name: 'manifest'
         }
+    },
+    serve: {
+        port: 7000,
+        content: './dist'
+    },
+    stats: "errors-only",
+    devServer: {
+        proxy: {
+            '/api': 'http://localhost:8080'
+        },
+        contentBase: path.join(__dirname, 'public'),
+        compress: true,
+        historyApiFallback: true,
+        hot: true,
+        https: false,
+        noInfo: true
     },
     plugins: [
         new UglifyJsPlugin(),
