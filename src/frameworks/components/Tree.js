@@ -126,6 +126,17 @@ class Tree implements Component {
             } else {
                 rootSystem.classList.add("icon-fibre");
             }
+            rootSystem.addEventListener("click", function () {
+                let childNode = node.querySelector("li > ul");
+                if(childNode.style.display !== "none") {
+                    childNode.style.display = "none";
+                    rootSystem.innerHTML = iconCollapse;
+                } else {
+                    childNode.style.display = "block";
+                    rootSystem.innerHTML = iconExpanded;
+                }
+
+            });
             node.appendChild(rootSystem);
 
             let noteContent = document.createElement("a");
@@ -149,17 +160,7 @@ class Tree implements Component {
                 noteText.appendChild(document.createTextNode(item["text"]));
             }
             noteContent.appendChild(noteText);
-            noteContent.addEventListener("click", function () {
-                let childNode = node.querySelector("li > ul");
-                if(childNode.style.display !== "none") {
-                    childNode.style.display = "none";
-                    rootSystem.innerHTML = iconCollapse;
-                } else {
-                    childNode.style.display = "block";
-                    rootSystem.innerHTML = iconExpanded;
-                }
 
-            });
             node.appendChild(noteContent);
 
             if(item["children"]) {
