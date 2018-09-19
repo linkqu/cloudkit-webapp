@@ -56,24 +56,7 @@ import {Profile} from "./accounts/Profile";
 
 // console.log(`running version ${pkg.version}`);
 
-// Components.buildComponent("Button", {
-//     type: "primary",
-//     text: "Button",
-//     // classes: ["button"],
-//     // css: {
-//     //     "backgroundColor": Color.VOLCANO[5],
-//     //     "borderColor": Color.VOLCANO[5]
-//     // },
-//     parent: document.body,
-//     events: {
-//         "click": function () {
-//             alert("hello!");
-//         }
-//     }
-// });
-
-let borderLayout = new BorderLayout({
-    parent: document.body,
+Components.buildComponent(document.body, BorderLayout, {
     // width: 1024,
     // height: 300,
     items: [{
@@ -132,9 +115,7 @@ let borderLayout = new BorderLayout({
                 items: [{
                     type: Separator,
                     index: "separator",
-                    options: {
-
-                    }
+                    options: {}
                 }, {
                     type: Button,
                     index: "bookmarks",
@@ -162,9 +143,7 @@ let borderLayout = new BorderLayout({
                 }, {
                     type: Separator,
                     index: "separator",
-                    options: {
-
-                    }
+                    options: {}
                 }, {
                     type: TextField,
                     index: "separator",
@@ -276,9 +255,7 @@ let borderLayout = new BorderLayout({
                         }, {
                             type: Separator,
                             index: "separator",
-                            options: {
-
-                            }
+                            options: {}
                         }, {
                             type: Button,
                             index: "view",
@@ -299,7 +276,11 @@ let borderLayout = new BorderLayout({
                         title: "Employee Information Table",
                         columns: [
                             {
-                                index: "name", text: "Employee Name", width: 120, sortable: false, renderer: function (value) {
+                                index: "name",
+                                text: "Employee Name",
+                                width: 120,
+                                sortable: false,
+                                renderer: function (value) {
                                     // language=HTML
                                     return `<a href='index.html'>Hello ${value}</a>`;
                                 }
@@ -308,7 +289,13 @@ let borderLayout = new BorderLayout({
                             {index: "age", text: "Age", width: 75, sortable: false, renderer: undefined},
                             {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: undefined},
                             {index: "email", text: "Email", width: 120, sortable: false, renderer: undefined},
-                            {index: "birthday", text: "Birthday Date", width: 120, sortable: false, renderer: undefined}
+                            {
+                                index: "birthday",
+                                text: "Birthday Date",
+                                width: 120,
+                                sortable: false,
+                                renderer: undefined
+                            }
                         ],
                         data: [
                             ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
