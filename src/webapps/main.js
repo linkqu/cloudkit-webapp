@@ -58,6 +58,7 @@ import {Icon} from "../frameworks/components/Icon";
 // console.log(`running version ${pkg.version}`);
 
 Components.buildComponent({
+    id: "main-page",
     parent: document.body,
     type: BorderLayout,
     options: {
