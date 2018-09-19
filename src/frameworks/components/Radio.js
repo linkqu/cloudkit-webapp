@@ -91,7 +91,7 @@ class Radio implements Component {
 
         let textSpan = document.createElement("span");
         textSpan.appendChild(document.createTextNode(
-            " " + (options["text"] ? options["text"] : "")
+            (options["text"] ? options["text"] : "")
         ));
         label.appendChild(textSpan);
 

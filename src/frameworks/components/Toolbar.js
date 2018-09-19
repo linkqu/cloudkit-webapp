@@ -75,7 +75,6 @@ class Toolbar implements Component {
             toolbar.id = options["id"];
         }
 
-
         let items = options["items"];
         if(items) {
             items.forEach(function (item, index, objs) {

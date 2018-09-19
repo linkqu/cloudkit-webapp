@@ -16,6 +16,7 @@
     border: 1px solid #dcdee2;
     /*border-radius: 2px;*/
     background-color: #ffffff;
+    margin-right: 8px;
 }
 
 .widget-checkbox label {
