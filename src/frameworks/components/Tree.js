@@ -143,6 +143,17 @@ class Tree implements Component {
                 noteText.appendChild(document.createTextNode(item["text"]));
             }
             noteContent.appendChild(noteText);
+            noteContent.addEventListener("click", function () {
+                let childNode = node.querySelector("li > ul");
+                if(childNode.style.display !== "none") {
+                    childNode.style.display = "none";
+                    // noteIcon
+                } else {
+                    childNode.style.display = "block";
+                    // noteIcon
+                }
+
+            });
             node.appendChild(noteContent);
 
             if(item["children"]) {

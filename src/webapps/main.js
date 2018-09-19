@@ -255,7 +255,7 @@ Components.buildComponent({
                         ],
                         events: {
                             "click": function () {
-                                alert("hello!");
+                                // alert("hello!");
                             }
                         }
                     }, {text: "buy lottery tickets", leaf: true}]
