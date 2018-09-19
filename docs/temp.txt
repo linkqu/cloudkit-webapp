@@ -4,8 +4,19 @@ transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 Helpdesk
 Warehouses
 
-
 consigner 委托人
 consignee/assignee 受托人
 
 A network error (such as timeout, interrupted connection or unreachable host) has occurred.
+
+CREATE TABLE TEST(
+    NAME VARCHAR(10) BINARY
+);
+SELECT * FROM TABLE TEST WHERE BINARY NAME='Clip';
+
+# 0：区分大小写，1：不区分大小写
+lower_case_table_names = 0
+
+SET GLOBAL max_allowed_packet = 2*1024*1024*10
+
+ALTER TABLE TEST CONVERT TO CHARACTER SET "utf8mb4" COLLATE "utf8mb4_bin";
