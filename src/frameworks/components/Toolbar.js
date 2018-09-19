@@ -80,7 +80,7 @@ class Toolbar implements Component {
         if(items) {
             items.forEach(function (item, index, objs) {
 
-                Components.buildComponent({
+                let component = Components.buildComponent({
                     parent: toolbar,
                     type: item["type"],
                     options: item["options"]
@@ -100,7 +100,7 @@ class Toolbar implements Component {
                 if (events) {
                     for (let prop in events) {
                         if (events.hasOwnProperty(prop)) {
-                            button.addEventListener(prop, events[prop])
+                            component.getElement().addEventListener(prop, events[prop])
                         }
                     }
                 }

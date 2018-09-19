@@ -65,8 +65,21 @@ class Icon implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let component = document.createElement("div");
-        component.classList.add("");
+        let component = document.createElement("span");
+        component.classList.add("widget-icon");
+
+        // classes
+        let classes = options["classes"];
+        if (classes) {
+            classes.forEach(function (value) {
+                component.classList.add(value);
+            });
+        }
+
+        let content = options["content"];
+        if (content) {
+            component.innerHTML = content;
+        }
 
         return this.element = component;
     }
