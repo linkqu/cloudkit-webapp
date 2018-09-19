@@ -62,7 +62,7 @@ class Account {
      */
     build() {
 
-        return this.element = button;
+        return this.element = null;
     }
 
     getElement() {

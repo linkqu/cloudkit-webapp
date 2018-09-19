@@ -1,3 +1,8 @@
+.widget-radio {
+    display: inline-block;
+    padding: 0 8px;
+}
+
 .widget-radio input[type="radio"] {
     display: none;
 }

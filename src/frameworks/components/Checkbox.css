@@ -1,5 +1,6 @@
 .widget-checkbox {
-
+    display: inline-block;
+    padding: 0 8px;
 }
 
 .widget-checkbox input[type="checkbox"] {

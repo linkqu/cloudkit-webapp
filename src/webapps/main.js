@@ -145,14 +145,38 @@ Components.buildComponent({
                         }
                     }, {
                         type: Separator,
-                        index: "separator",
                         options: {}
                     }, {
                         type: TextField,
-                        index: "separator",
                         options: {
                             type: "text",
                             width: "120px"
+                        }
+                    }, {
+                        type: Checkbox,
+                        options: {
+                            id: "c1",
+                            text: "Checkbox"
+                        }
+                    }, {
+                        type: Checkbox,
+                        options: {
+                            id: "c2",
+                            text: "Checkbox"
+                        }
+                    }, {
+                        type: Radio,
+                        options: {
+                            id: "t1",
+                            name: "type",
+                            text: "Radio"
+                        }
+                    }, {
+                        type: Radio,
+                        options: {
+                            id: "t2",
+                            name: "type",
+                            text: "Radio"
                         }
                     }]
                 }
