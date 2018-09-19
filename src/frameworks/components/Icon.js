@@ -30,6 +30,7 @@
  */
 
 import type {Component} from "./Component";
+import "./Icon.css";
 
 /**
  * Icon
@@ -76,9 +77,25 @@ class Icon implements Component {
             });
         }
 
+        let css = options["css"];
+        if (css) {
+            for (let key in css) {
+                if (css.hasOwnProperty(key)) {
+                    component.style[key] = css[key];
+                }
+            }
+        }
+
         let content = options["content"];
         if (content) {
             component.innerHTML = content;
+        }
+
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(component);
+        } else {
+            // document.body.appendChild(component);
         }
 
         return this.element = component;
@@ -86,6 +103,16 @@ class Icon implements Component {
 
     getElement() {
         return this.element;
+    }
+
+    css(css: JSON) {
+        if (css) {
+            for (let key in css) {
+                if (css.hasOwnProperty(key)) {
+                    this.element.style[key] = css[key];
+                }
+            }
+        }
     }
 }
 

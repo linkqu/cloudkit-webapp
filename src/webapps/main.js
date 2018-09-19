@@ -124,7 +124,15 @@ Components.buildComponent({
                         type: Button,
                         index: "bookmarks",
                         options: {
-                            text: "Bookmarks"
+                            text: "Bookmarks",
+                            icon: {
+                                content: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M256 48C141.125 48 48 141.125 48 256s93.125 208 208 208 208-93.125 208-208S370.875 48 256 48zm107 229h-86v86h-42v-86h-86v-42h86v-86h42v86h86v42z\"/></svg>"
+                            },
+                            events: {
+                                click: function () {
+                                    alert("Test");
+                                }
+                            }
                         }
                     }, {
                         type: Button,
@@ -178,6 +186,11 @@ Components.buildComponent({
                             id: "t2",
                             name: "type",
                             text: "Radio"
+                        }
+                    }, {
+                        type: Icon,
+                        options: {
+                            content: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M368.5 240H272v-96.5c0-8.8-7.2-16-16-16s-16 7.2-16 16V240h-96.5c-8.8 0-16 7.2-16 16 0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7H240v96.5c0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7 8.8 0 16-7.2 16-16V272h96.5c8.8 0 16-7.2 16-16s-7.2-16-16-16z\"/></svg>"
                         }
                     }]
                 }
@@ -320,11 +333,6 @@ Components.buildComponent({
                                 index: "view",
                                 options: {
                                     text: "查看"
-                                }
-                            }, {
-                                type: Icon,
-                                options: {
-                                    content: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M368.5 240H272v-96.5c0-8.8-7.2-16-16-16s-16 7.2-16 16V240h-96.5c-8.8 0-16 7.2-16 16 0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7H240v96.5c0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7 8.8 0 16-7.2 16-16V272h96.5c8.8 0 16-7.2 16-16s-7.2-16-16-16z\"/></svg>"
                                 }
                             }]
                         }

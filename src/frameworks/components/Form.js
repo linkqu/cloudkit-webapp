@@ -79,6 +79,13 @@ class Form implements Component {
             options["enctype"] ? options["enctype"] : "application/x-www-form-urlencoded"
         );
 
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(component);
+        } else {
+            // document.body.appendChild(component);
+        }
+
         return this.element = component;
     }
 

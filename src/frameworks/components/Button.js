@@ -33,6 +33,7 @@ import "./Button.css";
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
 import {Tooltip} from "./Tooltip";
+import {Icon} from "./Icon";
 
 /**
  * Button
@@ -142,6 +143,23 @@ class Button implements Component {
             classes.forEach(function (value) {
                 button.classList.add(value);
             });
+        }
+
+        let icon = options["icon"];
+        if(icon) {
+            let iconComponent = Components.buildComponent({
+                parent: button,
+                type: Icon,
+                options: {
+                    content: icon["content"]
+                }
+            });
+
+            if (options["text"]) {
+                iconComponent.css({
+                    "margin-right": "4px"
+                });
+            }
         }
 
         // text
