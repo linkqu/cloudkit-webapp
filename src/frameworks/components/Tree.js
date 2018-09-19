@@ -32,6 +32,17 @@
 import "./Tree.css";
 import type {Component} from "./Component";
 
+const iconCollapse:string = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
+    "    <path d=\"M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
+    "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
+    "</svg>";
+
+const iconExpanded:string =
+    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
+    "    <path d=\"M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
+    "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
+    "</svg>";
+
 /**
  * Tree
  *
@@ -43,6 +54,8 @@ class Tree implements Component {
     options: JSON;
 
     element: HTMLElement;
+
+
 
     /**
      * constructor
@@ -105,15 +118,9 @@ class Tree implements Component {
             if(item["children"]) {
                 rootSystem.classList.add(item["expanded"]? "icon-expand" : "icon-collapse");
                 if(item["expanded"]) {
-                    rootSystem.innerHTML = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-                        "    <path d=\"M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
-                        "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
-                        "</svg>";
+                    rootSystem.innerHTML = iconExpanded;
                 } else {
-                    rootSystem.innerHTML = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-                        "    <path d=\"M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
-                        "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
-                        "</svg>";
+                    rootSystem.innerHTML = iconCollapse;
                 }
 
             } else {
@@ -146,10 +153,10 @@ class Tree implements Component {
                 let childNode = node.querySelector("li > ul");
                 if(childNode.style.display !== "none") {
                     childNode.style.display = "none";
-                    // noteIcon
+                    rootSystem.innerHTML = iconCollapse;
                 } else {
                     childNode.style.display = "block";
-                    // noteIcon
+                    rootSystem.innerHTML = iconExpanded;
                 }
 
             });
