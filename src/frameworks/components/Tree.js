@@ -64,23 +64,24 @@ class Tree implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let tree = document.createElement("ul");
         tree.classList.add("widget-tree");
 
-        let data = this.options["data"];
+        let data = options["data"];
         if(data) {
             Tree.buildNode(tree, data);
         }
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(tree);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(tree);
         } else {
             // document.body.appendChild(tree);
         }
 
-        this.element = tree;
-        return this.element;
+        return this.element = tree;
     }
 
     static buildNode(parent, data) {

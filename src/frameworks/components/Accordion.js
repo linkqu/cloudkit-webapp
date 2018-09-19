@@ -63,10 +63,13 @@ class Accordion implements Component {
      * build
      */
     build() {
-        let $this = this;
+        let $this = this, options = this.options;
 
         let accordion = document.createElement("div");
         accordion.classList.add("widget-accordion");
+        if(options["id"]) {
+            accordion.id = options["id"];
+        }
 
         let items = $this.options["items"];
         if (items) {

@@ -64,18 +64,19 @@ class Separator implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let separator = document.createElement("span");
         separator.classList.add("widget-separator");
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(separator);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(separator);
         } else {
             // document.body.appendChild(button);
         }
 
-        this.element = separator;
-        return this.element;
+        return this.element = separator;
     }
 
     getElement() {

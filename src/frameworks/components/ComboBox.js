@@ -41,6 +41,8 @@ class ComboBox implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -60,11 +62,22 @@ class ComboBox implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         // fields: ["Name", "Value"],
         //     data: [
         //     { Name: "男", Value: 1 },
         //     { Name: "女", Value: 2 }
         // ]
+
+        let component = document.createElement("div");
+        component.classList.add("");
+
+        return this.element = component;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

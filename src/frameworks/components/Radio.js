@@ -42,6 +42,8 @@ class Radio implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -59,15 +61,17 @@ class Radio implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let widgetRadio = document.createElement("div");
         widgetRadio.classList.add("widget-radio");
 
         let input = document.createElement("input");
         input.setAttribute("type", "radio");
-        input.id = this.options["id"] ? this.options["id"] : null;
-        input.name = this.options["name"] ? this.options["name"] : null;
-        if(this.options["disabled"] !== undefined) {
-            input.setAttribute("disabled", this.options["disabled"]);
+        input.id = options["id"] ? options["id"] : null;
+        input.name = options["name"] ? options["name"] : null;
+        if(options["disabled"] !== undefined) {
+            input.setAttribute("disabled", options["disabled"]);
         }
         widgetRadio.appendChild(input);
 
@@ -87,18 +91,22 @@ class Radio implements Component {
 
         let textSpan = document.createElement("span");
         textSpan.appendChild(document.createTextNode(
-            " " + (this.options["text"] ? this.options["text"] : "")
+            " " + (options["text"] ? options["text"] : "")
         ));
         label.appendChild(textSpan);
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(widgetRadio);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(widgetRadio);
         } else {
             // document.body.appendChild(table);
         }
 
-        return widgetRadio;
+        return this.element = widgetRadio;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

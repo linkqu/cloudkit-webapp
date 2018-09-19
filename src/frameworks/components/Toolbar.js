@@ -71,17 +71,20 @@ class Toolbar implements Component {
 
         let toolbar = document.createElement("div");
         toolbar.classList.add("widget-toolbar");
+        if(options["id"]) {
+            toolbar.id = options["id"];
+        }
 
 
         let items = options["items"];
         if(items) {
             items.forEach(function (item, index, objs) {
 
-                Components.buildComponent(
-                    toolbar,
-                    item["type"],
-                    item["options"]
-                ).getElement();
+                Components.buildComponent({
+                    parent: toolbar,
+                    type: item["type"],
+                    options: item["options"]
+                });
 
                 // let button = new Button({
                 //     parent: toolbar,
@@ -111,8 +114,7 @@ class Toolbar implements Component {
             // document.body.appendChild(toolbar);
         }
 
-        this.element = toolbar;
-        return this.element;
+        return this.element = toolbar;
     }
 
     getElement() {

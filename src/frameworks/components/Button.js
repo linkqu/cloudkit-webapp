@@ -181,14 +181,14 @@ class Button implements Component {
 
         let tooltipText = options["tooltip"];
         if(options["tooltip"]) {
-            let component = Components.buildComponent(
-                document.body,
-                Tooltip,
-                {
+            let component = Components.buildComponent({
+                parent : document.body,
+                type: Tooltip,
+                options: {
                     target: button,
                     text: tooltipText
                 }
-            );
+            });
 
             button.addEventListener("mouseover", function () {
                 component.show();

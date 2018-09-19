@@ -89,21 +89,21 @@ class Table implements Component {
      * build
      */
     build() {
-        let $this = this;
+        let $this = this, options = this.options;
 
         let scrollBarWidth = Table.getVerticalScrollBarWidth();
 
         let tableWrapper = document.createElement("div");
-        let width = this.options["width"], height = this.options["height"];
+        let width = options["width"], height = options["height"];
         tableWrapper.style.width = width ? width + "px" : null;
         tableWrapper.style.height = height ? height + "px" : null;
         tableWrapper.classList.add("widget-table");
 
         let tableTitle;
-        if (this.options["title"]) {
+        if (options["title"]) {
             tableTitle = document.createElement("div");
             tableTitle.classList.add("table-title");
-            let text = document.createTextNode(this.options["title"]);
+            let text = document.createTextNode(options["title"]);
             tableTitle.appendChild(text);
             tableWrapper.appendChild(tableTitle);
         }
@@ -163,7 +163,7 @@ class Table implements Component {
         let tableContentTbody = document.createElement("tbody");
         tableContent.appendChild(tableContentTbody);
 
-        let columns = this.options['columns'];
+        let columns = options['columns'];
         if (columns) {
             let tableHeaderTr = document.createElement("tr");
             tableHeaderThead.appendChild(tableHeaderTr);
@@ -320,7 +320,7 @@ class Table implements Component {
             tableContentTr.appendChild(tableContentTh);
         }
 
-        let data = this.options["data"];
+        let data = options["data"];
         if (data && data.length > 0) {
             data.forEach(function (item, index, objs) {
                 let tableContentTr = document.createElement("tr");
@@ -350,7 +350,7 @@ class Table implements Component {
 
         // footer
 
-        let parent = this.options["parent"];
+        let parent = options["parent"];
         if (parent) {
             // console.log(parent);
             parent.appendChild(tableWrapper);
@@ -392,9 +392,7 @@ class Table implements Component {
 
         });
 
-        this.element = tableWrapper;
-
-        return this.element;
+        return this.element = tableWrapper;
     }
 
     getElement() {

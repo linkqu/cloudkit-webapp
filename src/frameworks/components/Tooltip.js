@@ -93,6 +93,10 @@ class Tooltip implements Component {
         return this.element = tooltip;
     }
 
+    getElement() {
+        return this.element;
+    }
+
     show() {
         let target = this.options["target"];
         if(target) {
@@ -109,9 +113,6 @@ class Tooltip implements Component {
         this.element.style["display"] = "none";
     }
 
-    getElement() {
-        return this.element;
-    }
 }
 
 export {Tooltip};

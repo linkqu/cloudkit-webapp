@@ -39,6 +39,8 @@ class RelativeLayout {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -58,7 +60,16 @@ class RelativeLayout {
      * build
      */
     build() {
+        let $this = this, options = this.options;
 
+        let component = document.createElement("div");
+        component.classList.add("");
+
+        return this.element = component;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

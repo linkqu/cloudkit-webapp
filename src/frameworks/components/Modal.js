@@ -32,6 +32,7 @@
 import "./Modal.css";
 import {Button} from "./Button";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
 
 /**
  * Modal
@@ -43,6 +44,8 @@ class Modal implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -52,9 +55,7 @@ class Modal implements Component {
         // Horizontal Vertical
 
         // default setting
-        this.defaultSetting = {
-
-        };
+        this.defaultSetting = {};
         this.options = options;
         this.build();
     }
@@ -63,13 +64,18 @@ class Modal implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let modal = document.createElement("div");
         modal.classList.add("widget-modal");
-        if(this.options["width"]) {
-            modal.style["width"] = this.options["width"] + "px";
+        if(options["id"]) {
+            modal.id = options["id"];
         }
-        if(this.options["height"]) {
-            modal.style["height"] = this.options["height"] + "px";
+        if (options["width"]) {
+            modal.style["width"] = options["width"] + "px";
+        }
+        if (options["height"]) {
+            modal.style["height"] = options["height"] + "px";
         }
 
         let close = document.createElement("span");
@@ -87,59 +93,42 @@ class Modal implements Component {
 
         let title = document.createElement("div");
         title.classList.add("modal-title");
-        if(this.options["title"]) {
-            title.appendChild(document.createTextNode(this.options["title"]));
+        if (options["title"]) {
+            title.appendChild(document.createTextNode(options["title"]));
         }
         modal.appendChild(title);
 
         let content = document.createElement("div");
         content.classList.add("modal-content");
-        if(this.options["content"]) {
-            content.appendChild(document.createTextNode(this.options["content"]));
+        if (options["content"]) {
+            content.appendChild(document.createTextNode(options["content"]));
         }
         modal.appendChild(content);
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(modal);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(modal);
         } else {
             // document.body.appendChild(modal);
         }
 
         let footer = document.createElement("div");
         footer.classList.add("modal-footer");
-        new Button({
-            text: "Close",
-            parent: footer,
-            events: {
-                "click": function () {
-                    modal.remove();
-                }
-            }
-        });
-        new Button({
-            type: "primary",
-            text: "Submit",
-            parent: footer,
-            events: {
-                "click": function () {
 
+        let buttons = options["buttons"];
+        buttons.forEach(function (item, index, objs) {
+            let buttons = Components.buildComponent({
+                parent: footer,
+                type: Button,
+                options: {
+                    type: item["type"],
+                    text: item["text"],
+                    events: item["events"]
                 }
-            }
+            });
+
         });
         modal.appendChild(footer);
-
-        close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
-        close.style["left"] = (modal.clientWidth - close.clientWidth) - 16 + "px";
-
-        footer.style["top"] = modal.clientHeight - footer.clientHeight + "px";
-        // footer.style["left"] = (modal.clientWidth - footer.clientWidth) + "px";
-        footer.style["width"] = modal.clientWidth + "px";
-
-        modal.style["position"] = "fixed";
-        modal.style["z-index"] = "9999";
-        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 60 + "px";
-        modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
 
         window.addEventListener('resize', function () {
             modal.style["position"] = "fixed";
@@ -158,7 +147,41 @@ class Modal implements Component {
 
         });
 
-        return modal;
+        return this.element = modal;
+    }
+
+    getElement() {
+        return this.element;
+    }
+
+    show() {
+        let modal = this.element;
+        let title = modal.querySelector(".modal-title");
+        let close = modal.querySelector(".modal-close");
+        let footer = modal.querySelector(".modal-footer");
+        // console.log("%o, %o, %o, %o", modal, title, close, footer);
+
+        modal.style["display"] = "block";
+        modal.style["position"] = "fixed";
+        modal.style["z-index"] = "9999";
+        modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 60 + "px";
+        modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
+
+        close.style["top"] = (title.clientHeight - close.clientHeight) / 2 + "px";
+        close.style["left"] = (modal.clientWidth - close.clientWidth) - 16 + "px";
+
+        footer.style["top"] = modal.clientHeight - footer.clientHeight + "px";
+        // footer.style["left"] = (modal.clientWidth - footer.clientWidth) + "px";
+        footer.style["width"] = modal.clientWidth + "px";
+    }
+
+    hide() {
+        this.element.style["display"] = "none";
+    }
+
+    close() {
+        let modal = this.element;
+        modal.remove();
     }
 
     resize() {

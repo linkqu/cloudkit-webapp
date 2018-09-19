@@ -63,6 +63,8 @@ class Pagination implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let pagination = document.createElement("div");
         pagination.classList.add("widget-pagination");
         pagination.classList.add("clearfix");
@@ -77,7 +79,7 @@ class Pagination implements Component {
         // isLast last false
         // numberOfElements 当前实际element数量
 
-        let pageable = this.options["pageable"];
+        let pageable = options["pageable"];
         if (pageable) {
             let totalElements = pageable["totalElements"] ? pageable["totalElements"] : 0;
             let pageSize = pageable["pageSize"] ? pageable["pageSize"] : 0;
@@ -208,9 +210,9 @@ class Pagination implements Component {
         // refresh
         // 到第N页 确定
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(pagination);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(pagination);
         } else {
             // document.body.appendChild(pagination);
         }

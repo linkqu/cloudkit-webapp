@@ -42,6 +42,8 @@ class Tabs implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -62,7 +64,7 @@ class Tabs implements Component {
      * build
      */
     build() {
-        let $this = this;
+        let $this = this, options = this.options;
 
         let tabs = document.createElement("div");
         tabs.classList.add("widget-tabs");
@@ -75,7 +77,7 @@ class Tabs implements Component {
         viewContent.classList.add("view-content");
         tabs.appendChild(viewContent);
 
-        let items = $this.options["items"];
+        let items = options["items"];
 
         // let linkBarItems:Array = new Array(items.length);
         if(items) {
@@ -102,7 +104,7 @@ class Tabs implements Component {
                 viewContentBlock.appendChild(document.createTextNode(item["content"] ? item["content"] : ""));
                 viewContent.appendChild(viewContentBlock);
 
-                if(index === $this.options["activeTab"]) {
+                if(index === options["activeTab"]) {
                     linkBarItem.classList.add("active");
                     viewContentBlock.classList.add("active");
                 }
@@ -116,7 +118,11 @@ class Tabs implements Component {
             // document.body.appendChild(button);
         }
         
-        return tabs;
+        return this.element = tabs;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

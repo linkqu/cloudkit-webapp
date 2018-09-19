@@ -42,6 +42,8 @@ class Checkbox implements Component {
 
     options: JSON;
 
+    element: HTMLElement;
+
     /**
      * constructor
      *
@@ -59,15 +61,17 @@ class Checkbox implements Component {
      * build
      */
     build() {
+        let $this = this, options = this.options;
+
         let widgetCheckbox = document.createElement("div");
         widgetCheckbox.classList.add("widget-checkbox");
 
         let input = document.createElement("input");
         input.setAttribute("type", "checkbox");
-        input.id = this.options["id"] ? this.options["id"] : null;
-        input.name = this.options["name"] ? this.options["name"] : null;
-        if(this.options["disabled"] !== undefined) {
-            input.setAttribute("disabled", this.options["disabled"]);
+        input.id = options["id"] ? options["id"] : null;
+        input.name = options["name"] ? options["name"] : null;
+        if(options["disabled"] !== undefined) {
+            input.setAttribute("disabled", options["disabled"]);
         }
         widgetCheckbox.appendChild(input);
 
@@ -88,18 +92,22 @@ class Checkbox implements Component {
 
         let textSpan = document.createElement("span");
         textSpan.appendChild(document.createTextNode(
-            " " + (this.options["text"] ? this.options["text"] : "")
+            " " + (options["text"] ? options["text"] : "")
         ));
         label.appendChild(textSpan);
 
-        if (this.options["parent"]) {
-            // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(widgetCheckbox);
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            options["parent"].appendChild(widgetCheckbox);
         } else {
             // document.body.appendChild(table);
         }
 
-        return widgetCheckbox;
+        return this.element = widgetCheckbox;
+    }
+
+    getElement() {
+        return this.element;
     }
 }
 

@@ -73,11 +73,11 @@ class Panel implements Component {
         let items = options["items"];
         if(items) {
             items.forEach(function (item, index, objs) {
-                Components.buildComponent(
-                    panel,
-                    item["type"],
-                    item["options"]
-                ).getElement();
+                Components.buildComponent({
+                    parent: panel,
+                    type: item["type"],
+                    options: item["options"]
+                });
             });
         }
 

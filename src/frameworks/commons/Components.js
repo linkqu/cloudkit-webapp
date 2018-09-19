@@ -52,9 +52,12 @@ class Components {
     /**
      * buildComponent
      */
-    static buildComponent(target:Component, type:Component, options: JSON) {
-        options["parent"] = target;
-        return new type(options);
+    static buildComponent(options: JSON) {
+        // target
+        if(options["parent"]) {
+            options["options"]["parent"] = options["parent"];
+        }
+        return new options["type"](options["options"]);
     }
 }
 

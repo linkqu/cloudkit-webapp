@@ -147,9 +147,7 @@ class Menu implements Component {
             // document.body.appendChild(button);
         }
 
-        this.element = menuContainer;
-
-        return menuContainer;
+        return this.element = menuContainer;
     }
 
     getElement() {
