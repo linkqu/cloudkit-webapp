@@ -95,6 +95,14 @@ log_throttle_queries_not_using_indexes = ON
 # 日志存储方式 FILE TABLE log_output='FILE,TABLE'
 log_output='TABLE'
 
+
+SELECT * FROM MYSQL.SLOW_LOG ORDER BY START_TIME DESC;
+
+SELECT * FROM MYSQL.SLOW_LOG;
+SET GLOBAL SLOW_QUERY_LOG = 'OFF';
+ALTER TABLE MYSQL.SLOW_LOG RENAME MYSQL.SLOW_LOG_BACKUP;
+SET GLOBAL SLOW_QUERY_LOG = 'ON';
+DROP TABLE MYSQL.SLOW_LOG_BACKUP;
 ------------------------------------------------------------------------------------------------------------------------
 binlog日志
 
@@ -112,3 +120,20 @@ server-id=123454
 
 
 SHOW VARIABLES LIKE 'log_bin%';
+------------------------------------------------------------------------------------------------------------------------
+show full processlist;
+kill id;
+
+
+#批量kill
+1)查找Lockd语句
+mysql -uroot -p123456 -h 192.1.20.101 -e "show processlist" | grep -i 'Locked' > locked_log.txt
+
+2）组合kill
+for line in `cat locked_log.txt | awk '{print $1}'`
+do
+   echo "kill $line;" >> kill_thread_id.sql
+done
+
+3)执行
+mysql>source kill_thread_id.sql
