@@ -62,17 +62,17 @@ RENAME TABLE test TO test_, test_ TO TEST;
 ALTER TABLE test RENAME TO TEST;
 
 
-
+------------------------------------------------------------------------------------------------------------------------
+# 慢查询日志
 SHOW VARIABLES LIKE 'slow_query%';
 SHOW VARIABLES LIKE 'long_query_time';
 
 SET GLOBAL slow_query_log='ON';
--- FILE
-SET GLOBAL log_output='TABLE';
 SET GLOBAL slow_query_log_file='/usr/local/mysql/data/slow.log';
-SET GLOBAL long_query_time=1;
+SET GLOBAL long_query_time=3;
 SET GLOBAL log-queries-not-using-indexes=ON
 SET GLOBAL log-slow-admin-statements=ON
+SET GLOBAL log_output='FILE,TABLE';
 
 [mysqld]
 # 指定是否开启慢查询日志 ON|OFF (1|0)缺省关闭
@@ -84,13 +84,31 @@ slow_query_log_file = /usr/local/mysql/data/host_name-slow.log
 # 慢查询阀值，当查询时间超出设定值的SQL即被记录到慢查询日志，单位为妙，缺省值为10s
 long_query_time = 3
 # 查询检查返回少于该参数指定行的SQL不被记录到慢查询日志
-min_examined_row_limit
+min_examined_row_limit = ON
 # 未使用索引的查询也被记录到慢查询日志中（可选项）
-log-queries-not-using-indexes
+log-queries-not-using-indexes = ON
 # 开启记录管理型慢SQL。缺省情况下数据库相关管理型SQL(比如OPTIMIZE TABLE、ANALYZE TABLE和ALTER TABLE)不会被记录到日志。
-log-slow-admin-statements
-# 每分钟允许记录到slow log的且未使用索引的SQL语句次数。该值默认为0，表示没有限制，在生产环境下，若没有使用索引，此类SQL语句会频繁地被记录到slow log，从而导致slow log文件的大小不断增加，故DBA可通过此参数进行配置。该参数MySQL 5.6.5版本开始新增
-log_throttle_queries_not_using_indexes
+log-slow-admin-statements = ON
+# 每分钟允许记录到slow log的且未使用索引的SQL语句次数。该值默认为0，表示没有限制，在生产环境下，若没有使用索引，此类SQL语句会频繁地被
+# 记录到slow log，从而导致slow log文件的大小不断增加，故DBA可通过此参数进行配置。该参数MySQL 5.6.5版本开始新增
+log_throttle_queries_not_using_indexes = ON
 # 日志存储方式 FILE TABLE log_output='FILE,TABLE'
 log_output='TABLE'
 
+------------------------------------------------------------------------------------------------------------------------
+binlog日志
+
+
+log_bin=ON
+log_bin_basename=/var/lib/mysql/mysql-bin
+log_bin_index=/var/lib/mysql/mysql-bin.index
+
+OR
+
+log-bin=/var/lib/mysql/mysql-bin
+
+# 5.7及以上版本
+server-id=123454
+
+
+SHOW VARIABLES LIKE 'log_bin%';
