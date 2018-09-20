@@ -244,22 +244,23 @@ Components.buildComponent({
                         text: "List",
                         expanded: true,
                         children: [
-                            {text: "detention", leaf: true},
+                            {id: "", text: "detention", leaf: true},
                             {
+                                id: "",
                                 text: "homework", expanded: true,
                                 children: [
-                                    {text: "book report", leaf: true},
-                                    {text: "alegrbra", leaf: true}
+                                    {id: "", text: "book report", leaf: true},
+                                    {id: "", text: "alegrbra", leaf: true}
                                 ]
                             },
-                            {text: "buy lottery tickets", leaf: true}
+                            {id: "", text: "buy lottery tickets", leaf: true}
                         ],
                         events: {
                             "click": function () {
                                 alert("hello!");
                             }
                         }
-                    }, {text: "buy lottery tickets", leaf: true}]
+                    }, {id: "", text: "buy lottery tickets", leaf: true}]
                 }
             }]
         }, {

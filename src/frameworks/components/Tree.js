@@ -31,6 +31,7 @@
 
 import "./Tree.css";
 import type {Component} from "./Component";
+import uuid from "uuid/v1";
 
 const ICON_COLLAPSE: string =
     "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
@@ -68,7 +69,7 @@ class Tree implements Component {
 
     element: HTMLElement;
 
-    childElement: Map;
+    childElementMap: Map;
 
     /**
      * constructor
@@ -89,14 +90,13 @@ class Tree implements Component {
      */
     build() {
         let $this = this, options = this.options;
-        let childElement = this.childElement;
 
         let tree = document.createElement("ul");
         tree.classList.add("widget-tree");
 
         let data = options["data"];
         if (data) {
-            Tree.buildNode(tree, data);
+            this.buildNode(tree, data);
         }
 
         if (options["parent"]) {
@@ -109,10 +109,13 @@ class Tree implements Component {
         return this.element = tree;
     }
 
-    static buildNode(parent, data) {
+    buildNode(parent, data) {
+        let childElementMap = this.childElementMap;
+
         data.forEach(function (item, index, objs) {
             let node = document.createElement("li");
             parent.appendChild(node);
+            childElementMap.set(item[id]?item[id]:uuid(), node);
             if (item["leaf"]) {
                 node.classList.add("leaf");
                 if (index + 1 === data.length) {
