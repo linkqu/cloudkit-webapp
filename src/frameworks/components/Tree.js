@@ -69,7 +69,7 @@ class Tree implements Component {
 
     element: HTMLElement;
 
-    childElementMap: Map;
+    childElementMap: Map = new Map();
 
     /**
      * constructor
@@ -110,12 +110,14 @@ class Tree implements Component {
     }
 
     buildNode(parent, data) {
-        let childElementMap = this.childElementMap;
+        let $this = this, childElementMap = this.childElementMap;
 
         data.forEach(function (item, index, objs) {
             let node = document.createElement("li");
+            let dataViewId = "data-view-id";
+            node.setAttribute(dataViewId, item["id"] ? item["id"] : uuid());
             parent.appendChild(node);
-            childElementMap.set(item[id]?item[id]:uuid(), node);
+            childElementMap.set(node.getAttribute(dataViewId), node);
             if (item["leaf"]) {
                 node.classList.add("leaf");
                 if (index + 1 === data.length) {
@@ -177,7 +179,7 @@ class Tree implements Component {
                 if (index + 1 === data.length) {
                     children.style["background"] = "none";
                 }
-                Tree.buildNode(children, item["children"]);
+                $this.buildNode(children, item["children"]);
                 node.appendChild(children);
             }
 

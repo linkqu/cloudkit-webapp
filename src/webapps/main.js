@@ -244,16 +244,16 @@ Components.buildComponent({
                         text: "List",
                         expanded: true,
                         children: [
-                            {id: "", text: "detention", leaf: true},
+                            {id: "detention", text: "detention", leaf: true},
                             {
-                                id: "",
+                                id: "homework",
                                 text: "homework", expanded: true,
                                 children: [
-                                    {id: "", text: "book report", leaf: true},
-                                    {id: "", text: "alegrbra", leaf: true}
+                                    {id: "book-report", text: "book report", leaf: true},
+                                    {id: "alegrbra", text: "alegrbra", leaf: true}
                                 ]
                             },
-                            {id: "", text: "buy lottery tickets", leaf: true}
+                            {id: "buy-lottery-tickets", text: "buy lottery tickets", leaf: true}
                         ],
                         events: {
                             "click": function () {
