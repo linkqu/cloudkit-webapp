@@ -47,14 +47,14 @@ const ICON_EXPANDED: string =
 
 const ICON_LEAF =
     "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-    "    <path d=\"M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z\" fill=\"#90CAF9\"></path>\n" +
-    "    <path d=\"M821.333333 298.666667H618.666667V96z\" fill=\"#E1F5FE\"></path>\n" +
+    "    <path d=\"M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z\" fill=\"#90CAF9\"/>\n" +
+    "    <path d=\"M821.333333 298.666667H618.666667V96z\" fill=\"#E1F5FE\"/>\n" +
     "</svg>";
 
 const ICON_FORK =
     "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-    "    <path d=\"M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z\" fill=\"#FFD766\"></path>\n" +
-    "    <path d=\"M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z\" fill=\"#FFAC33\"></path>\n" +
+    "    <path d=\"M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z\" fill=\"#FFD766\"/>\n" +
+    "    <path d=\"M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z\" fill=\"#FFAC33\"/>\n" +
     "</svg>";
 
 /**
@@ -98,6 +98,7 @@ class Tree implements Component {
         if (data) {
             this.buildNode(tree, data);
         }
+        console.log("childElementMap: %o", this.childElementMap);
 
         if (options["parent"]) {
             // console.log(options["parent"]);
