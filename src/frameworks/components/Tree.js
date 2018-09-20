@@ -32,15 +32,28 @@
 import "./Tree.css";
 import type {Component} from "./Component";
 
-const iconCollapse:string = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
+const ICON_COLLAPSE: string =
+    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
     "    <path d=\"M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
     "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
     "</svg>";
 
-const iconExpanded:string =
+const ICON_EXPANDED: string =
     "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
     "    <path d=\"M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
     "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
+    "</svg>";
+
+const ICON_LEAF =
+    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
+    "    <path d=\"M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z\" fill=\"#90CAF9\"></path>\n" +
+    "    <path d=\"M821.333333 298.666667H618.666667V96z\" fill=\"#E1F5FE\"></path>\n" +
+    "</svg>";
+
+const ICON_FORK =
+    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
+    "    <path d=\"M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z\" fill=\"#FFD766\"></path>\n" +
+    "    <path d=\"M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z\" fill=\"#FFAC33\"></path>\n" +
     "</svg>";
 
 /**
@@ -55,7 +68,7 @@ class Tree implements Component {
 
     element: HTMLElement;
 
-
+    childElement: Map;
 
     /**
      * constructor
@@ -66,9 +79,7 @@ class Tree implements Component {
         // Horizontal Vertical
 
         // default setting
-        this.defaultSetting = {
-
-        };
+        this.defaultSetting = {};
         this.options = options;
         this.build();
     }
@@ -78,12 +89,13 @@ class Tree implements Component {
      */
     build() {
         let $this = this, options = this.options;
+        let childElement = this.childElement;
 
         let tree = document.createElement("ul");
         tree.classList.add("widget-tree");
 
         let data = options["data"];
-        if(data) {
+        if (data) {
             Tree.buildNode(tree, data);
         }
 
@@ -101,26 +113,26 @@ class Tree implements Component {
         data.forEach(function (item, index, objs) {
             let node = document.createElement("li");
             parent.appendChild(node);
-            if(item["leaf"]) {
+            if (item["leaf"]) {
                 node.classList.add("leaf");
-                if(index + 1 === data.length) {
+                if (index + 1 === data.length) {
                     node.classList.add("last-leaf");
                 }
             } else {
                 node.classList.add("branch");
 
-                if(index + 1 === data.length) {
+                if (index + 1 === data.length) {
                     node.classList.add("last-branch");
                 }
             }
 
             let rootSystem = document.createElement("span");
-            if(item["children"]) {
-                rootSystem.classList.add(item["expanded"]? "icon-expand" : "icon-collapse");
-                if(item["expanded"]) {
-                    rootSystem.innerHTML = iconExpanded;
+            if (item["children"]) {
+                rootSystem.classList.add(item["expanded"] ? "icon-expand" : "icon-collapse");
+                if (item["expanded"]) {
+                    rootSystem.innerHTML = ICON_EXPANDED;
                 } else {
-                    rootSystem.innerHTML = iconCollapse;
+                    rootSystem.innerHTML = ICON_COLLAPSE;
                 }
 
             } else {
@@ -128,12 +140,12 @@ class Tree implements Component {
             }
             rootSystem.addEventListener("click", function () {
                 let childNode = node.querySelector("li > ul");
-                if(childNode.style.display !== "none") {
+                if (childNode.style.display !== "none") {
                     childNode.style.display = "none";
-                    rootSystem.innerHTML = iconCollapse;
+                    rootSystem.innerHTML = ICON_COLLAPSE;
                 } else {
                     childNode.style.display = "block";
-                    rootSystem.innerHTML = iconExpanded;
+                    rootSystem.innerHTML = ICON_EXPANDED;
                 }
 
             });
@@ -142,30 +154,24 @@ class Tree implements Component {
             let noteContent = document.createElement("a");
             let noteIcon = document.createElement("span");
             noteIcon.classList.add("icon");
-            if(item["leaf"]) {
-                noteIcon.innerHTML ="<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-                    "    <path d=\"M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z\" fill=\"#90CAF9\"></path>\n" +
-                    "    <path d=\"M821.333333 298.666667H618.666667V96z\" fill=\"#E1F5FE\"></path>\n" +
-                    "</svg>";
+            if (item["leaf"]) {
+                noteIcon.innerHTML = ICON_LEAF;
             } else {
-                noteIcon.innerHTML = "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-                    "    <path d=\"M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z\" fill=\"#FFD766\"></path>\n" +
-                    "    <path d=\"M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z\" fill=\"#FFAC33\"></path>\n" +
-                    "</svg>";
+                noteIcon.innerHTML = ICON_FORK;
             }
             noteContent.appendChild(noteIcon);
             let noteText = document.createElement("span");
             noteText.classList.add("node-text");
-            if(item["text"]) {
+            if (item["text"]) {
                 noteText.appendChild(document.createTextNode(item["text"]));
             }
             noteContent.appendChild(noteText);
 
             node.appendChild(noteContent);
 
-            if(item["children"]) {
+            if (item["children"]) {
                 let children = document.createElement("ul");
-                if(index + 1 === data.length) {
+                if (index + 1 === data.length) {
                     children.style["background"] = "none";
                 }
                 Tree.buildNode(children, item["children"]);
