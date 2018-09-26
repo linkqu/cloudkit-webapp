@@ -31,8 +31,9 @@
 
 import "./Table.css";
 import Checkbox from "./Checkbox";
-import Pagination from "./Pagination";
+import {Pagination} from "./Pagination";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
 
 /**
  * 拖放时信息
@@ -93,11 +94,11 @@ class Table implements Component {
 
         let scrollBarWidth = Table.getVerticalScrollBarWidth();
 
-        let tableWrapper = document.createElement("div");
+        let tableWidget = document.createElement("div");
         let width = options["width"], height = options["height"];
-        tableWrapper.style.width = width ? width + "px" : null;
-        tableWrapper.style.height = height ? height + "px" : null;
-        tableWrapper.classList.add("widget-table");
+        tableWidget.style.width = width ? width + "px" : null;
+        tableWidget.style.height = height ? height + "px" : null;
+        tableWidget.classList.add("widget-table");
 
         let tableTitle;
         if (options["title"]) {
@@ -105,14 +106,14 @@ class Table implements Component {
             tableTitle.classList.add("table-title");
             let text = document.createTextNode(options["title"]);
             tableTitle.appendChild(text);
-            tableWrapper.appendChild(tableTitle);
+            tableWidget.appendChild(tableTitle);
         }
 
         // Table Header
         let tableHeaderWrapper = document.createElement("div");
         tableHeaderWrapper.style.width = width ? width + "px" : null;
         tableHeaderWrapper.classList.add("table-header");
-        tableWrapper.appendChild(tableHeaderWrapper);
+        tableWidget.appendChild(tableHeaderWrapper);
 
         let tableHeader = document.createElement("table");
         tableHeader.classList.add("table");
@@ -128,7 +129,7 @@ class Table implements Component {
         let tableContentWrapper = document.createElement("div");
         tableContentWrapper.style.width = width ? width + "px" : null;
         tableContentWrapper.classList.add("table-content");
-        tableWrapper.appendChild(tableContentWrapper);
+        tableWidget.appendChild(tableContentWrapper);
         tableContentWrapper.addEventListener("scroll", function (e) {
             /*
             screen.availWidth screen.availHeight screen.width screen.height
@@ -349,11 +350,24 @@ class Table implements Component {
         }
 
         // footer
+        let tableFooter;
+        if (options["pageable"]) {
+            tableFooter = document.createElement("div");
+            tableFooter.classList.add("table-footer");
+            Components.buildComponent({
+                type: Pagination,
+                options: {
+                    parent: tableFooter,
+                    pageable: options["pageable"]
+                }
+            });
+            tableWidget.appendChild(tableFooter);
+        }
 
         let parent = options["parent"];
         if (parent) {
             // console.log(parent);
-            parent.appendChild(tableWrapper);
+            parent.appendChild(tableWidget);
         } else {
             // document.body.appendChild(table);
         }
@@ -362,8 +376,10 @@ class Table implements Component {
 
             // 在 DOM 完全加载完后执行
             // console.debug(tableHeaderWrapper.clientHeight);
-            let tableContentHeight = height ? (height - (tableTitle ? tableTitle.clientHeight : 0)) : null;
-            tableContentHeight = tableContentHeight ? (tableContentHeight - tableHeaderWrapper.clientHeight) : null;
+            let tableContentHeight = height ? (height - (tableTitle ? tableTitle.offsetHeight : 0)) : 0;
+            tableContentHeight = tableContentHeight ? (
+                    tableContentHeight - tableHeaderWrapper.offsetHeight - (tableFooter ? tableFooter.offsetHeight : 0)
+                ) : 0;
             tableContentWrapper.style.height = tableContentHeight + "px";
 
             let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
@@ -392,7 +408,7 @@ class Table implements Component {
 
         });
 
-        return this.element = tableWrapper;
+        return this.element = tableWidget;
     }
 
     getElement() {

@@ -342,12 +342,26 @@ Components.buildComponent({
                         type: Table,
                         options: {
                             // width: 800,
-                            height: 200,
+                            height: 300,
                             // classes: [""],
                             // css: {
                             //     "color": Color.RED[9]
                             // },
                             title: "Employee Information Table",
+                            pageable: {
+                                totalElements: 220,
+                                pageSize: 20,
+                                // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
+                                // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
+                                // totalPages: 11,
+                                pageNumber: 5,
+                                // hasNext: true,
+                                // isLast: false,
+                                numberOfElements: 20,
+                                // [10, 20, 30, 40, 50]
+                                previousLinkText: "Previous Page",
+                                nextLinkText: "Next Page"
+                            },
                             columns: [
                                 {
                                     index: "name",
@@ -391,26 +405,28 @@ Components.buildComponent({
                                 }
                             ]
                         }
-                    }, {
-                        type: Pagination,
-                        options: {
-                            pageable: {
-                                totalElements: 220,
-                                pageSize: 20,
-                                // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
-                                // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
-                                // totalPages: 11,
-                                pageNumber: 5,
-                                // hasNext: true,
-                                // isLast: false,
-                                numberOfElements: 20,
-                                // [10, 20, 30, 40, 50]
-                                previousLinkText: "Previous Page",
-                                nextLinkText: "Next Page"
-                            },
-                            parent: document.body
-                        }
-                    }]
+                    }
+                    // , {
+                    //     type: Pagination,
+                    //     options: {
+                    //         pageable: {
+                    //             totalElements: 220,
+                    //             pageSize: 20,
+                    //             // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
+                    //             // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
+                    //             // totalPages: 11,
+                    //             pageNumber: 5,
+                    //             // hasNext: true,
+                    //             // isLast: false,
+                    //             numberOfElements: 20,
+                    //             // [10, 20, 30, 40, 50]
+                    //             previousLinkText: "Previous Page",
+                    //             nextLinkText: "Next Page"
+                    //         },
+                    //         parent: document.body
+                    //     }
+                    // }
+                    ]
                 }
             }]
         }, {

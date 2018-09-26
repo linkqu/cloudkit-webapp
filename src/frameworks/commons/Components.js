@@ -53,6 +53,8 @@ class Components {
      * buildComponent
      */
     static buildComponent(options: JSON) {
+        // console.log("buildComponent: %s", options["type"]);
+
         // target
         if(options["parent"]) {
             options["options"]["parent"] = options["parent"];
