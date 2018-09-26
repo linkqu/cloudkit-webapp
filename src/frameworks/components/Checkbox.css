@@ -1,6 +1,12 @@
 .widget-checkbox {
     display: inline-block;
-    padding: 0 8px;
+    padding: 3px 8px;
+    border: 1px transparent solid;
+    font-size: 12px;
+}
+
+.widget-checkbox:hover {
+    border: 1px dotted #80c6ff;
 }
 
 .widget-checkbox input[type="checkbox"] {

@@ -1,6 +1,11 @@
 .widget-radio {
     display: inline-block;
-    padding: 0 8px;
+    padding: 3px 8px;
+    border: 1px transparent solid;
+}
+
+.widget-radio:hover {
+    border: 1px dotted #80c6ff;
 }
 
 .widget-radio input[type="radio"] {

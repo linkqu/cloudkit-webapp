@@ -1,6 +1,7 @@
 /* theme-default */
 .widget-button {
     display: inline-block;
+    box-sizing: border-box;
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
@@ -11,14 +12,33 @@
     user-select: none;
     touch-action: manipulation;
     cursor: pointer;
-    padding: 3px 15px 3px 15px;
+    padding: 3px 16px;
     font-size: 12px;
     line-height: 1.5;
+    /*line-height: 24px;*/
     background: #ffffff none;
-    border: 1px solid #dcdee2;
-    transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;
+    border: 1px solid #b8d1e5;
+    /*border: 0;*/
+    outline: 0;
+    /*box-shadow: inset 0 0 0 1px #b8d1e5;*/
+    /*transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;*/
     /*box-shadow: 0 7px 24px 0 rgba(239,57,57,0.25);*/
     /*transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
+    transition: color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.widget-button:hover {
+    transition: none;
+    border: 1px solid #80c6ff;
+}
+
+.widget-button[disabled] {
+    pointer-events: none;
+}
+
+.widget-button:focus {
+    border: 1px solid #80c6ff;
+    /*box-shadow: inset 0 0 0 1px #80c6ff, 0 0 0 1px #80c6ff;*/
 }
 
 .button-round-corner {

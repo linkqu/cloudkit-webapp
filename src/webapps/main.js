@@ -89,6 +89,7 @@ Components.buildComponent({
                         title: "Downloads",
                         children: [
                             {title: "open report"},
+                            {type: "separator"},
                             {title: "alegrbra"}
                         ]
                     }, {
@@ -162,6 +163,9 @@ Components.buildComponent({
                             type: "text",
                             width: "120px"
                         }
+                    }, {
+                        type: Separator,
+                        options: {}
                     }, {
                         type: Checkbox,
                         options: {

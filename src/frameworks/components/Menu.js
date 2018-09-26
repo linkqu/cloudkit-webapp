@@ -100,21 +100,26 @@ class Menu implements Component {
                 let children = item["children"];
                 if(children) {
                     children.forEach(function (item, index, objs) {
-                        let menuItem = document.createElement("div");
-                        menuItem.appendChild(document.createTextNode(item["title"]));
-                        menuItem.classList.add("menu-item");
+                        if(item["type"] === "separator") {
+                            let separator = document.createElement("span");
+                            separator.classList.add("separator");
+                            menu.appendChild(separator);
+                        } else {
+                            let menuItem = document.createElement("div");
+                            menuItem.appendChild(document.createTextNode(item["title"]));
+                            menuItem.classList.add("menu-item");
 
-                        // events
-                        let events = item["events"];
-                        if (events) {
-                            for (let prop in events) {
-                                if (events.hasOwnProperty(prop)) {
-                                    menuItem.addEventListener(prop, events[prop])
+                            // events
+                            let events = item["events"];
+                            if (events) {
+                                for (let prop in events) {
+                                    if (events.hasOwnProperty(prop)) {
+                                        menuItem.addEventListener(prop, events[prop])
+                                    }
                                 }
                             }
+                            menu.appendChild(menuItem);
                         }
-
-                        menu.appendChild(menuItem);
                     });
                 }
 

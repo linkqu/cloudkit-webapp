@@ -5,5 +5,9 @@
 }
 
 .widget-toolbar .widget-button {
-    border: 0;
+    border-color: transparent;
+}
+
+.widget-toolbar .widget-button:hover {
+    border: 1px dotted #80c6ff;
 }
