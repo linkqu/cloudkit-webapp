@@ -271,6 +271,36 @@ Components.buildComponent({
             title: "Center Panel",
             region: "center",
             items: [{
+                type: Tabs,
+                options: {
+                    activeTab: 0,
+                    items: [{
+                        index: "bookmarks",
+                        title: "Bookmarks",
+                        content: "Bookmarks content",
+                        closable: true,
+                        layout: ""
+                    }, {
+                        index: "downloads",
+                        title: "Downloads",
+                        content: "Downloads content",
+                        closable: true,
+                        layout: ""
+                    }, {
+                        index: "history",
+                        title: "History",
+                        content: "History content",
+                        closable: true,
+                        layout: ""
+                    }, {
+                        index: "window",
+                        title: "Window",
+                        content: "Window content",
+                        closable: true,
+                        layout: ""
+                    }]
+                }
+            }, {
                 type: Profile,
                 options: {
                     items: [{
