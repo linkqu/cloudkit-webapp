@@ -31,6 +31,8 @@
 
 import "./Tabs.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Tabs TabbedPane
@@ -84,6 +86,8 @@ class Tabs implements Component {
             items.forEach(function (item, index) {
                 let linkBarItem = document.createElement("div");
                 linkBarItem.classList.add("link-bar-item");
+                let dataViewId = "data-view-id";
+                linkBarItem.setAttribute(Components.VIEW_ID_KEY, item["viewId"] ? item["viewId"] : uuid());
                 linkBarItem.setAttribute("data-index", item["index"]);
                 linkBarItem.appendChild(document.createTextNode(item["title"] ? item["title"] : ""));
                 linkBarItem.addEventListener("click", function (event) {
@@ -102,6 +106,17 @@ class Tabs implements Component {
                 viewContentBlock.classList.add("view-content-block");
                 viewContentBlock.setAttribute("data-index", item["index"]);
                 viewContentBlock.appendChild(document.createTextNode(item["content"] ? item["content"] : ""));
+
+                if (item["items"]) {
+                    item["items"].forEach(function (item, index, objs) {
+                        Components.buildComponent({
+                            parent: viewContentBlock,
+                            type: item["type"],
+                            options: item["options"]
+                        });
+                    });
+                }
+
                 viewContent.appendChild(viewContentBlock);
 
                 if(index === options["activeTab"]) {

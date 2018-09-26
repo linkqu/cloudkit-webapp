@@ -31,6 +31,8 @@
 
 import type {Component} from "../components/Component";
 
+const VIEW_ID_KEY:string = "data-view-id";
+
 /**
  * Dialog
  *
@@ -63,4 +65,4 @@ class Components {
     }
 }
 
-export {Components};
+export {Components, VIEW_ID_KEY};

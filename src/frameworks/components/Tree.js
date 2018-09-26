@@ -116,7 +116,7 @@ class Tree implements Component {
         data.forEach(function (item, index, objs) {
             let node = document.createElement("li");
             let dataViewId = "data-view-id";
-            node.setAttribute(dataViewId, item["id"] ? item["id"] : uuid());
+            node.setAttribute(dataViewId, item["viewId"] ? item["viewId"] : uuid());
             parent.appendChild(node);
             childElementMap.set(node.getAttribute(dataViewId), node);
             if (item["leaf"]) {
