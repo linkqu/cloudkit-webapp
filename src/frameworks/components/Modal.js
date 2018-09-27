@@ -68,6 +68,7 @@ class Modal implements Component {
         let $this = this, options = this.options;
 
         let modal = document.createElement("div");
+        $this.element = modal;
         modal.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         modal.classList.add("widget-modal");
         if(options["id"]) {
@@ -89,7 +90,8 @@ class Modal implements Component {
             "</svg>";
 
         close.addEventListener("click", function () {
-            modal.remove();
+            // modal.remove();
+            $this.hide();
         });
         modal.appendChild(close);
 
@@ -109,7 +111,11 @@ class Modal implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(modal);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(modal);
+            } else {
+                options["parent"].getElement().appendChild(modal);
+            }
         } else {
             // document.body.appendChild(modal);
         }
@@ -149,11 +155,35 @@ class Modal implements Component {
 
         });
 
-        return this.element = modal;
+        return $this.element;
     }
 
     getElement() {
         return this.element;
+    }
+
+    getParent() {
+        return this.options["parent"];
+    }
+
+    getChildren() {
+        return this.childObjects;
+    }
+
+    setChildren(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChild(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChild(key: string, object: Component) {
+        this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 
     show() {
@@ -175,10 +205,22 @@ class Modal implements Component {
         footer.style["top"] = modal.clientHeight - footer.clientHeight + "px";
         // footer.style["left"] = (modal.clientWidth - footer.clientWidth) + "px";
         footer.style["width"] = modal.clientWidth + "px";
+
+        this.element.setAttribute("data-view-visibility", true);
     }
 
     hide() {
         this.element.style["display"] = "none";
+        this.element.setAttribute("data-view-visibility", false);
+    }
+
+    toggle() {
+        let visible = this.element.getAttribute("data-view-visibility");
+        if(visible === "true") {
+            this.hide();
+        } else {
+            this.show();
+        }
     }
 
     close() {

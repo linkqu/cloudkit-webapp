@@ -70,9 +70,17 @@ class Panel implements Component {
         let $this = this, options = this.options;
 
         let panel = document.createElement("div");
+        $this.element = panel;
         panel.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         if(options["id"]) {
             panel.id = options["id"];
+        }
+        let width = options["width"], height = options["height"];
+        panel.style.width = width ? width + "px" : null;
+        panel.style.height = height ? height + "px" : null;
+
+        if(options["hidden"]) {
+            panel.hidden = options["hidden"];
         }
 
         let attributes = options["attributes"];
@@ -93,45 +101,74 @@ class Panel implements Component {
             }
         }
 
-        let items = options["items"];
-        if(items) {
-            items.forEach(function (item, index, objs) {
-                Components.buildComponent({
-                    parent: panel,
-                    type: item["type"],
-                    options: item["options"]
+        document.addEventListener("DOMContentLoaded", function () {
+            let items = options["items"];
+            if(items) {
+                items.forEach(function (item, index, objs) {
+                    let component = Components.buildComponent({
+                        parent: $this,
+                        viewId: item["viewId"],
+                        type: item["type"],
+                        options: item["options"]
+                    });
+
+                    $this.childObjects.set(item["viewId"], component);
                 });
-            });
-        }
+            }
+        });
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(panel);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(panel);
+            } else {
+                options["parent"].getElement().appendChild(panel);
+            }
         } else {
             // document.body.appendChild(panel);
         }
 
-        return this.element = panel;
+        return $this.element;
     }
 
     getElement() {
         return this.element;
     }
 
-    getChildObjects() {
+    getParent() {
+        return this.options["parent"];
+    }
+
+    getChildren() {
         return this.childObjects;
     }
 
-    setChildObjects(objects: Map<string, Component>) {
+    setChildren(objects: Map<string, Component>) {
         this.childObjects = objects;
     }
 
-    getChildObject(key: string) {
+    getChild(key: string) {
         return this.childObjects.get(key);
     }
 
-    addChildObject(key: string, object: Component) {
+    addChild(key: string, object: Component) {
         this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
+    }
+
+    hide() {
+        this.element.hidden = true;
+    }
+
+    show() {
+        this.element.hidden = false;
+    }
+
+    toggle() {
+        this.element.hidden = !this.element.hidden;
     }
 }
 

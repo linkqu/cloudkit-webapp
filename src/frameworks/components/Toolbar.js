@@ -48,6 +48,8 @@ class Toolbar implements Component {
 
     element: HTMLElement;
 
+    childObjects: Map = new Map();
+
     /**
      * constructor
      *
@@ -71,41 +73,11 @@ class Toolbar implements Component {
         let $this = this, options = this.options;
 
         let toolbar = document.createElement("div");
+        $this.element = toolbar;
         toolbar.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         toolbar.classList.add("widget-toolbar");
         if(options["id"]) {
             toolbar.id = options["id"];
-        }
-
-        let items = options["items"];
-        if(items) {
-            items.forEach(function (item, index, objs) {
-
-                let component = Components.buildComponent({
-                    parent: toolbar,
-                    type: item["type"],
-                    options: item["options"]
-                });
-
-                // let button = new Button({
-                //     parent: toolbar,
-                //     text: "Button"
-                // });
-                //
-                // new Separator({
-                //     parent: toolbar
-                // });
-
-                // events
-                let events = item["events"];
-                if (events) {
-                    for (let prop in events) {
-                        if (events.hasOwnProperty(prop)) {
-                            component.getElement().addEventListener(prop, events[prop])
-                        }
-                    }
-                }
-            });
         }
 
         if (options["parent"]) {
@@ -119,11 +91,64 @@ class Toolbar implements Component {
             // document.body.appendChild(toolbar);
         }
 
-        return this.element = toolbar;
+        let items = options["items"];
+        if(items) {
+            items.forEach(function (item, index, objs) {
+
+                let component = Components.buildComponent({
+                    parent: $this,
+                    type: item["type"],
+                    viewId: item["viewId"],
+                    options: item["options"]
+                });
+
+                $this.childObjects.set(item["viewId"], component);
+
+                // events
+                let events = item["events"];
+                if (events) {
+                    for (let prop in events) {
+                        if (events.hasOwnProperty(prop)) {
+                            component.getElement().addEventListener(prop, events[prop])
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+        });
+
+        return $this.element;
     }
 
     getElement() {
         return this.element;
+    }
+
+    getParent() {
+        return this.options["parent"];
+    }
+
+    getChildren() {
+        return this.childObjects;
+    }
+
+    setChildren(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChild(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChild(key: string, object: Component) {
+        this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 }
 

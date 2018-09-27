@@ -66,6 +66,7 @@ class Radio implements Component {
         let $this = this, options = this.options;
 
         let widgetRadio = document.createElement("div");
+        $this.element = widgetRadio;
         widgetRadio.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         widgetRadio.classList.add("widget-radio");
 
@@ -100,12 +101,16 @@ class Radio implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(widgetRadio);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(widgetRadio);
+            } else {
+                options["parent"].getElement().appendChild(widgetRadio);
+            }
         } else {
             // document.body.appendChild(table);
         }
 
-        return this.element = widgetRadio;
+        return $this.element;
     }
 
     getElement() {

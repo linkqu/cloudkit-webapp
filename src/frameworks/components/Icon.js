@@ -69,6 +69,7 @@ class Icon implements Component {
         let $this = this, options = this.options;
 
         let component = document.createElement("span");
+        $this.element = component;
         component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("widget-icon");
 
@@ -96,12 +97,16 @@ class Icon implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(component);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(component);
+            } else {
+                options["parent"].getElement().appendChild(component);
+            }
         } else {
             // document.body.appendChild(component);
         }
 
-        return this.element = component;
+        return $this.element;
     }
 
     getElement() {

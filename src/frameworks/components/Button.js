@@ -128,6 +128,7 @@ class Button implements Component {
         let $this = this, options = this.options;
 
         let button = document.createElement("button");
+        $this.element = button;
         button.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let fragment = document.createDocumentFragment();
 
@@ -185,7 +186,9 @@ class Button implements Component {
         if (events) {
             for (let prop in events) {
                 if (events.hasOwnProperty(prop)) {
-                    button.addEventListener(prop, events[prop])
+                    button.addEventListener(prop, function (event:Event) {
+                        events[prop](event, $this, options["parent"]);
+                    })
                 }
             }
         }
@@ -222,7 +225,11 @@ class Button implements Component {
         // renderTo
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(button);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(button);
+            } else {
+                options["parent"].getElement().appendChild(button);
+            }
         } else {
             // document.body.appendChild(button);
         }
@@ -243,11 +250,35 @@ class Button implements Component {
         // button.previousElementSibling
         // button.previousSibling
 
-        return this.element = button;
+        return $this.element;
     }
 
     getElement() {
         return this.element;
+    }
+
+    getParent() {
+        return this.options["parent"];
+    }
+
+    getChildren() {
+        return this.childObjects;
+    }
+
+    setChildren(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChild(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChild(key: string, object: Component) {
+        this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 }
 

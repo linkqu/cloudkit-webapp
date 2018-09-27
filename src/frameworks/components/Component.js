@@ -31,6 +31,21 @@
 
 interface Component {
 
+    build();
+
+    getElement();
+
+    getParent();
+
+    getChildren();
+
+    setChildren(objects: Map<string, Component>);
+
+    getChild(key: string);
+
+    addChild(key: string, object: Component);
+
+    removeChild(key: string);
 }
 
 export {Component};

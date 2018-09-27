@@ -74,6 +74,8 @@ class Table implements Component {
         scrollLeft: 0
     };
 
+    childObjects: Map = new Map();
+
     /**
      * constructor
      *
@@ -96,6 +98,7 @@ class Table implements Component {
         let scrollBarWidth = Table.getVerticalScrollBarWidth();
 
         let tableWidget = document.createElement("div");
+        $this.element = tableWidget;
         tableWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let width = options["width"], height = options["height"];
         tableWidget.style.width = width ? width + "px" : null;
@@ -369,7 +372,11 @@ class Table implements Component {
         let parent = options["parent"];
         if (parent) {
             // console.log(parent);
-            parent.appendChild(tableWidget);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(tableWidget);
+            } else {
+                options["parent"].getElement().appendChild(tableWidget);
+            }
         } else {
             // document.body.appendChild(table);
         }
@@ -410,11 +417,31 @@ class Table implements Component {
 
         });
 
-        return this.element = tableWidget;
+        return $this.element;
     }
 
     getElement() {
         return this.element;
+    }
+
+    getChildren() {
+        return this.childObjects;
+    }
+
+    setChildren(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChild(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChild(key: string, object: Component) {
+        this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 
     /**

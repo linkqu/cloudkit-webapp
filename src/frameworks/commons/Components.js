@@ -58,19 +58,24 @@ class Components {
      * buildComponent
      */
     static buildComponent(options: JSON) {
-        // console.log("buildComponent: %s", options["type"]);
+        try {
+            // console.log("buildComponent: %s", options["type"]);
 
-        // target
-        if(options["parent"]) {
-            options["options"]["parent"] = options["parent"];
+            // target
+            if(options["parent"]) {
+                options["options"]["parent"] = options["parent"];
+            }
+
+            if(options["viewId"]) {
+                options["options"]["viewId"] = options["viewId"];
+            } else {
+                options["options"]["viewId"] = uuid();
+            }
+            return new options["type"](options["options"]);
+        } catch (error) {
+            console.log("type: %s, error: %o", typeof options["type"], error);
         }
 
-        if(options["viewId"]) {
-            options["options"]["viewId"] = options["viewId"];
-        } else {
-            options["options"]["viewId"] = uuid();
-        }
-        return new options["type"](options["options"]);
     }
 }
 

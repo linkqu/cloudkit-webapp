@@ -66,6 +66,7 @@ class Checkbox implements Component {
         let $this = this, options = this.options;
 
         let widgetCheckbox = document.createElement("div");
+        $this.element = widgetCheckbox;
         widgetCheckbox.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         widgetCheckbox.classList.add("widget-checkbox");
 
@@ -101,12 +102,16 @@ class Checkbox implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(widgetCheckbox);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(widgetCheckbox);
+            } else {
+                options["parent"].getElement().appendChild(widgetCheckbox);
+            }
         } else {
             // document.body.appendChild(table);
         }
 
-        return this.element = widgetCheckbox;
+        return $this.element;
     }
 
     getElement() {

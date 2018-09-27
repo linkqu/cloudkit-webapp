@@ -68,6 +68,7 @@ class Pagination implements Component {
         let $this = this, options = this.options;
 
         let pagination = document.createElement("div");
+        $this.element = pagination;
         pagination.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         pagination.classList.add("widget-pagination");
         pagination.classList.add("clearfix");
@@ -215,12 +216,16 @@ class Pagination implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(pagination);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(pagination);
+            } else {
+                options["parent"].getElement().appendChild(pagination);
+            }
         } else {
             // document.body.appendChild(pagination);
         }
 
-        return this.element = pagination;
+        return $this.element;
     }
 
     getElement() {

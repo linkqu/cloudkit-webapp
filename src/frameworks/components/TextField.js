@@ -73,6 +73,7 @@ class TextField implements Component {
         let $this = this, options = this.options;
 
         let input = document.createElement("input");
+        $this.element = input;
         input.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let type = options["type"];
         if(type === "password") {
@@ -111,7 +112,11 @@ class TextField implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(input);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(input);
+            } else {
+                options["parent"].getElement().appendChild(input);
+            }
         } else {
             // document.body.appendChild(button);
         }
@@ -125,7 +130,7 @@ class TextField implements Component {
             }
         }
 
-        return this.element = input;
+        return $this.element;
     }
 
     getElement() {

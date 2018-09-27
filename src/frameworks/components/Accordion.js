@@ -67,6 +67,7 @@ class Accordion implements Component {
         let $this = this, options = this.options;
 
         let accordion = document.createElement("div");
+        $this.element = accordion;
         accordion.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         accordion.classList.add("widget-accordion");
         if(options["id"]) {
@@ -136,8 +137,7 @@ class Accordion implements Component {
             // document.body.appendChild(accordion);
         }
 
-        this.element = accordion;
-        return this.element;
+        return $this.element;
     }
 
     getElement() {

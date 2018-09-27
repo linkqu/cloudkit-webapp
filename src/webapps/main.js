@@ -50,25 +50,33 @@ import {Separator} from "../frameworks/components/Separator";
 
 import {Profile} from "./accounts/Profile";
 import {Icon} from "../frameworks/components/Icon";
+import type {Component} from "../frameworks/components/Component";
+import {Panel} from "../frameworks/components/Panel";
 
 // import pkg from "../package.json";
 
 // console.log(`running version ${pkg.version}`);
 
-const COMPONENT_VIEW_ID_KEYS = {
-    MAIN_COMPONENT: "main_component"
+const VIEW_ID_KEYS = {
+    MAIN_COMPONENT: "main-component",
+    MAIN_NORTH_PANEL: "main-north-panel",
+    MAIN_WEST_PANEL: "main-west-panel",
+    MAIN_CENTER_PANEL: "main-center-panel",
+    MAIN_SOUTH_PANEL: "main-south-panel",
+    MAIN_EAST_PANEL: "main-east-panel",
+
 };
 
 let component = Components.buildComponent({
     id: "main",
-    viewId: COMPONENT_VIEW_ID_KEYS.MAIN_COMPONENT,
+    viewId: VIEW_ID_KEYS.MAIN_COMPONENT,
     parent: document.body,
     type: BorderLayout,
     options: {
         // width: 1024,
         // height: 300,
         items: [{
-            viewId: "main-north-panel",
+            viewId: VIEW_ID_KEYS.MAIN_NORTH_PANEL,
             title: "North Panel",
             region: "north",
             items: [{
@@ -136,7 +144,7 @@ let component = Components.buildComponent({
                             },
                             events: {
                                 click: function () {
-                                    console.log("%o", component.getChildObjects());
+                                    component.getChild(VIEW_ID_KEYS.MAIN_WEST_PANEL).toggle();
                                 }
                             }
                         }
@@ -205,7 +213,7 @@ let component = Components.buildComponent({
                 }
             }]
         }, {
-            viewId: "main-west-panel",
+            viewId: VIEW_ID_KEYS.MAIN_WEST_PANEL,
             title: "West Panel",
             region: "west",
             width: 200,
@@ -279,62 +287,50 @@ let component = Components.buildComponent({
                 }
             }]
         }, {
-            viewId: "main-south-panel",
+            viewId: VIEW_ID_KEYS.MAIN_SOUTH_PANEL,
             title: "South Panel",
             region: "south",
             height: 50
         }, {
+            viewId: VIEW_ID_KEYS.MAIN_CENTER_PANEL,
             title: "Center Panel",
             region: "center",
             items: [{
                 type: Tabs,
+                viewId: "main-tabs",
                 options: {
                     activeTab: 0,
                     items: [{
+                        viewId: "bookmarks",
                         index: "bookmarks",
                         title: "Bookmarks",
                         // content: "Bookmarks content",
                         items: [{
-                            type: Profile,
+                            id: "accounts-settings-account",
+                            viewId: "profile",
+                            type: Panel,
                             options: {
                                 items: [{
+                                    viewId: "toolbar",
                                     type: Toolbar,
                                     options: {
                                         items: [{
+                                            viewId: "add",
                                             type: Button,
                                             options: {
                                                 index: "add",
                                                 text: "新增",
                                                 tooltip: "Add a new bill!",
                                                 events: {
-                                                    click: function (e) {
-                                                        // let modal = Components.buildComponent({
-                                                        //     parent: document.body,
-                                                        //     type: Modal,
-                                                        //     options: {
-                                                        //         width: 400,
-                                                        //         height: 180,
-                                                        //         title: "提示",
-                                                        //         content: "Hello!",
-                                                        //         buttons: [{
-                                                        //             text: "Close",
-                                                        //             events: {
-                                                        //                 "click": function () {
-                                                        //                     modal.hide();
-                                                        //                 }
-                                                        //             }
-                                                        //         }, {
-                                                        //             type: "primary",
-                                                        //             text: "Submit",
-                                                        //             events: {
-                                                        //                 "click": function () {
-                                                        //                     alert("hello!");
-                                                        //                 }
-                                                        //             }
-                                                        //         }]
-                                                        //     }
-                                                        // });
-                                                        // modal.show();
+                                                    click: function (event:Event, current:Component, parent:Component) {
+                                                        // console.log(parent.getParent().getChild("add-modal"));
+                                                        // let modal = component
+                                                        //     .getChild("main-center-panel")
+                                                        //     .getChild("main-tabs")
+                                                        //     .getChild("profile")
+                                                        //     .getChild("add-modal");
+                                                        let modal = parent.getParent().getChild("add-modal");
+                                                        modal.toggle();
                                                     }
                                                 }
                                             }
@@ -364,6 +360,7 @@ let component = Components.buildComponent({
                                         }]
                                     }
                                 }, {
+                                    viewId: "table",
                                     type: Table,
                                     options: {
                                         // width: 800,
@@ -454,53 +451,32 @@ let component = Components.buildComponent({
                                             }
                                         ]
                                     }
-                                }
-                                    // , {
-                                    //     type: Pagination,
-                                    //     options: {
-                                    //         pageable: {
-                                    //             totalElements: 220,
-                                    //             pageSize: 20,
-                                    //             // java: pageSize == 0 ? 1 : (int) Math.ceil((double) totalElements / (double) pageSize);
-                                    //             // javascript: (pageSize === 0) ? 1 : Math.ceil(totalElements / pageSize)
-                                    //             // totalPages: 11,
-                                    //             pageNumber: 5,
-                                    //             // hasNext: true,
-                                    //             // isLast: false,
-                                    //             numberOfElements: 20,
-                                    //             // [10, 20, 30, 40, 50]
-                                    //             previousLinkText: "Previous Page",
-                                    //             nextLinkText: "Next Page"
-                                    //         },
-                                    //         parent: document.body
-                                    //     }
-                                    // }
-                                ]
-                            }
-                        }, {
-                            type: Modal,
-                            options: {
-                                id: "account-add-modal",
-                                viewId: "",
-                                width: 400,
-                                height: 180,
-                                title: "提示",
-                                content: "Hello!",
-                                buttons: [{
-                                    text: "Close",
-                                    events: {
-                                        "click": function () {
-                                            // document.querySelectorAll("#account-add-modal")
-                                            // modal.hide();
-                                        }
-                                    }
                                 }, {
-                                    type: "primary",
-                                    text: "Submit",
-                                    events: {
-                                        "click": function () {
-                                            alert("hello!");
-                                        }
+                                    viewId: "add-modal",
+                                    type: Modal,
+                                    options: {
+                                        viewId: "account-add-modal",
+                                        width: 400,
+                                        height: 180,
+                                        title: "提示",
+                                        content: "Hello!",
+                                        buttons: [{
+                                            text: "Close",
+                                            events: {
+                                                "click": function () {
+                                                    // document.querySelectorAll("#account-add-modal")
+                                                    // modal.hide();
+                                                }
+                                            }
+                                        }, {
+                                            type: "primary",
+                                            text: "Submit",
+                                            events: {
+                                                "click": function () {
+                                                    alert("hello!");
+                                                }
+                                            }
+                                        }]
                                     }
                                 }]
                             }
@@ -529,14 +505,15 @@ let component = Components.buildComponent({
                 }
             }]
         }, {
-            viewId: "main-east-panel",
+            viewId: VIEW_ID_KEYS.MAIN_EAST_PANEL,
             title: "East Panel",
             region: "east",
-            width: 184
+            width: 184,
+            hidden: true
             // split: true,
         }]
     }
 });
 
-console.log("%o", component.getChildObjects());
-console.log("%o", component.getChildObject("main-east-panel"));
+// console.log("%o", component.getChildren());
+// console.log("%o", component.getChild("main-east-panel"));

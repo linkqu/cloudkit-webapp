@@ -69,6 +69,7 @@ class Menu implements Component {
         let $this = this, options = this.options;
 
         let menuContainer = document.createElement("div");
+        $this.element = menuContainer;
         menuContainer.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         menuContainer.classList.add("widget-menu");
         menuContainer.classList.add("clearfix");
@@ -159,7 +160,7 @@ class Menu implements Component {
             // document.body.appendChild(button);
         }
 
-        return this.element = menuContainer;
+        return $this.element;
     }
 
     getElement() {

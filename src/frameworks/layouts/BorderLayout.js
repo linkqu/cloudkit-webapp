@@ -71,6 +71,7 @@ class BorderLayout implements Component {
         let $this = this, options = this.options;
 
         let borderLayout = document.createElement("div");
+        $this.element = borderLayout;
         borderLayout.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         borderLayout.setAttribute("layout", "border-layout");
         let width = options["width"], height = options["height"];
@@ -84,16 +85,16 @@ class BorderLayout implements Component {
 
             let panel = Components.buildComponent({
                 type: Panel,
+                viewId: item["viewId"],
                 options: {
                     attributes: {
                         region: item["region"],
                         title: item["title"]
                     },
-                    css: {
-                        width: item["width"] + "px",
-                        height: item["height"] + "px"
-                    }
-                }
+                    width: item["width"] + "px",
+                    height: item["height"] + "px"
+                },
+                hidden: item["hidden"]
             });
 
             if (item["viewId"]) {
@@ -104,10 +105,11 @@ class BorderLayout implements Component {
                 item["items"].forEach(function (item, index, objs) {
                     let component = Components.buildComponent({
                         parent: panel,
+                        viewId: item["viewId"],
                         type: item["type"],
                         options: item["options"]
                     });
-                    panel.addChildObject(item["viewId"], component);
+                    panel.addChild(item["viewId"], component);
                 });
             }
 
@@ -166,27 +168,31 @@ class BorderLayout implements Component {
             // document.body.appendChild(table);
         }
 
-        return this.element = borderLayout;
+        return $this.element;
     }
 
     getElement() {
         return this.element;
     }
 
-    getChildObjects() {
+    getChildren() {
         return this.childObjects;
     }
 
-    setChildObjects(objects: Map<string, Component>) {
+    setChildren(objects: Map<string, Component>) {
         this.childObjects = objects;
     }
 
-    getChildObject(key:string) {
+    getChild(key:string) {
         return this.childObjects.get(key);
     }
 
-    addChildObject(key: string, object: Component) {
+    addChild(key: string, object: Component) {
         this.childObjects.set(id, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 }
 

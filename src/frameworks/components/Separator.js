@@ -69,17 +69,25 @@ class Separator implements Component {
         let $this = this, options = this.options;
 
         let separator = document.createElement("span");
+        $this.element = separator;
         separator.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         separator.classList.add("widget-separator");
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(separator);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(separator);
+            } else {
+                options["parent"].getElement().appendChild(separator);
+            }
         } else {
             // document.body.appendChild(button);
         }
 
-        return this.element = separator;
+        // options["parent"] && (options["parent"] instanceof HTMLElement ?
+        //     options["parent"].appendChild(separator) : options["parent"].getElement().appendChild(separator));
+
+        return $this.element;
     }
 
     getElement() {

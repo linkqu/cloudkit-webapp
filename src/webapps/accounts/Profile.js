@@ -44,6 +44,8 @@ class Profile implements Component {
 
     element: HTMLElement;
 
+    childObjects: Map = new Map();
+
     /**
      * constructor
      *
@@ -69,6 +71,7 @@ class Profile implements Component {
         let profilePanel = new Panel({
             id: "accounts-settings-account",
             parent: options["parent"],
+            viewId: options["viewId"],
             items: options["items"]
         });
 

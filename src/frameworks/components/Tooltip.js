@@ -69,6 +69,7 @@ class Tooltip implements Component {
         let $this = this, options = this.options;
 
         let tooltip = document.createElement("div");
+        $this.element = tooltip;
         tooltip.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tooltip.classList.add("widget-tooltip");
 
@@ -84,7 +85,11 @@ class Tooltip implements Component {
         let parent = options["parent"];
         if (parent) {
             // console.log(parent);
-            parent.appendChild(tooltip);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(tooltip);
+            } else {
+                options["parent"].getElement().appendChild(tooltip);
+            }
         } else {
             document.body.appendChild(tooltip);
         }
@@ -93,7 +98,7 @@ class Tooltip implements Component {
 
         });
 
-        return this.element = tooltip;
+        return $this.element;
     }
 
     getElement() {

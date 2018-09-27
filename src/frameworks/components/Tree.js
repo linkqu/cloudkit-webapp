@@ -101,6 +101,7 @@ class Tree implements Component {
         let $this = this, options = this.options;
 
         let tree = document.createElement("ul");
+        $this.element = tree
         tree.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tree.classList.add("widget-tree");
 
@@ -108,16 +109,20 @@ class Tree implements Component {
         if (data) {
             this.buildNode(tree, data);
         }
-        console.log("childElements: %o", this.childElements);
+        // console.log("childElements: %o", this.childElements);
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].getElement().appendChild(tree);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(tree);
+            } else {
+                options["parent"].getElement().appendChild(tree);
+            }
         } else {
             // document.body.appendChild(tree);
         }
 
-        return this.element = tree;
+        return $this.element;
     }
 
     buildNode(parent, data) {

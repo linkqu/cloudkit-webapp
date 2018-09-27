@@ -65,10 +65,11 @@ class Calendar implements Component {
         let $this = this, options = this.options;
 
         let component = document.createElement("div");
+        $this.element = component;
         component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("");
 
-        return this.element = component;
+        return $this.element;
     }
 
     getElement() {

@@ -46,6 +46,8 @@ class Tabs implements Component {
 
     element: HTMLElement;
 
+    childObjects: Map = new Map();
+
     /**
      * constructor
      *
@@ -69,6 +71,7 @@ class Tabs implements Component {
         let $this = this, options = this.options;
 
         let tabs = document.createElement("div");
+        $this.element = tabs;
         tabs.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tabs.classList.add("widget-tabs");
 
@@ -110,11 +113,14 @@ class Tabs implements Component {
 
                 if (item["items"]) {
                     item["items"].forEach(function (item, index, objs) {
-                        Components.buildComponent({
+                        let component = Components.buildComponent({
                             parent: viewContentBlock,
+                            viewId: item["viewId"],
                             type: item["type"],
                             options: item["options"]
                         });
+
+                        $this.childObjects.set(item["viewId"], component)
                     });
                 }
 
@@ -138,11 +144,35 @@ class Tabs implements Component {
             // document.body.appendChild(button);
         }
         
-        return this.element = tabs;
+        return $this.element;
     }
 
     getElement() {
         return this.element;
+    }
+
+    getParent() {
+        return this.options["parent"];
+    }
+
+    getChildren() {
+        return this.childObjects;
+    }
+
+    setChildren(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChild(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChild(key: string, object: Component) {
+        this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 }
 
