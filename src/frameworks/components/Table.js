@@ -34,6 +34,7 @@ import Checkbox from "./Checkbox";
 import {Pagination} from "./Pagination";
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * 拖放时信息
@@ -95,6 +96,7 @@ class Table implements Component {
         let scrollBarWidth = Table.getVerticalScrollBarWidth();
 
         let tableWidget = document.createElement("div");
+        tableWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let width = options["width"], height = options["height"];
         tableWidget.style.width = width ? width + "px" : null;
         tableWidget.style.height = height ? height + "px" : null;

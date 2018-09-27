@@ -34,6 +34,7 @@ import type {Component} from "./Component";
 import {Components} from "../commons/Components";
 import {Tooltip} from "./Tooltip";
 import {Icon} from "./Icon";
+import uuid from "uuid/v1";
 
 /**
  * Button
@@ -127,6 +128,7 @@ class Button implements Component {
         let $this = this, options = this.options;
 
         let button = document.createElement("button");
+        button.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let fragment = document.createDocumentFragment();
 
         // Add default class

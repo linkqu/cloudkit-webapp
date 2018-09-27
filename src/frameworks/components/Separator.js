@@ -31,6 +31,8 @@
 
 import "./Separator.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Separator
@@ -67,6 +69,7 @@ class Separator implements Component {
         let $this = this, options = this.options;
 
         let separator = document.createElement("span");
+        separator.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         separator.classList.add("widget-separator");
 
         if (options["parent"]) {

@@ -33,6 +33,7 @@ import "./Modal.css";
 import {Button} from "./Button";
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Modal
@@ -67,6 +68,7 @@ class Modal implements Component {
         let $this = this, options = this.options;
 
         let modal = document.createElement("div");
+        modal.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         modal.classList.add("widget-modal");
         if(options["id"]) {
             modal.id = options["id"];

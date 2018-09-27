@@ -31,6 +31,8 @@
 
 import type {Component} from "./Component";
 import "./Icon.css";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Icon
@@ -67,6 +69,7 @@ class Icon implements Component {
         let $this = this, options = this.options;
 
         let component = document.createElement("span");
+        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("widget-icon");
 
         // classes

@@ -30,6 +30,8 @@
  */
 
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Header
@@ -65,6 +67,7 @@ class Header implements Component {
         let $this = this, options = this.options;
 
         let component = document.createElement("div");
+        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("");
 
         return this.element = component;

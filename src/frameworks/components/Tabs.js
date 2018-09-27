@@ -69,6 +69,7 @@ class Tabs implements Component {
         let $this = this, options = this.options;
 
         let tabs = document.createElement("div");
+        tabs.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tabs.classList.add("widget-tabs");
 
         let linkBar = document.createElement("div");

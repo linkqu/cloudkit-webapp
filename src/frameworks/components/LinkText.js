@@ -30,6 +30,8 @@
  */
 
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * LinkText
@@ -65,7 +67,8 @@ class LinkText implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let component = document.createElement("div");
+        let component = document.createElement("a");
+        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("");
 
         return this.element = component;

@@ -32,6 +32,7 @@
 import "./BorderLayout.css"
 import {Components} from "../commons/Components";
 import type {Component} from "../components/Component";
+import uuid from "uuid/v1";
 
 /**
  * BorderLayout
@@ -64,16 +65,18 @@ class BorderLayout implements Component {
      * build
      */
     build() {
-        let borderLayout = document.createElement("div");
+        let $this = this, options = this.options;
 
+        let borderLayout = document.createElement("div");
+        borderLayout.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         borderLayout.setAttribute("layout", "border-layout");
-        let width = this.options["width"], height = this.options["height"];
+        let width = options["width"], height = options["height"];
         borderLayout.style.width = width ? width + "px" : null;
         borderLayout.style.height = height ? height + "px" : null;
         borderLayout.classList.add("border-layout");
 
         let panels = {};
-        let items = this.options["items"];
+        let items = options["items"];
         items.forEach(function (item, index, objs) {
             let panel = document.createElement("div");
             panel.setAttribute("region", item["region"]);
@@ -152,9 +155,9 @@ class BorderLayout implements Component {
             borderLayout.appendChild(southPanel);
         }
 
-        if (this.options["parent"]) {
+        if (options["parent"]) {
             // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(borderLayout);
+            options["parent"].appendChild(borderLayout);
         } else {
             // document.body.appendChild(table);
         }

@@ -34,6 +34,7 @@ import {Button} from "./Button";
 import {Separator} from "./Separator";
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Toolbar
@@ -70,6 +71,7 @@ class Toolbar implements Component {
         let $this = this, options = this.options;
 
         let toolbar = document.createElement("div");
+        toolbar.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         toolbar.classList.add("widget-toolbar");
         if(options["id"]) {
             toolbar.id = options["id"];

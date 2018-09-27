@@ -39,15 +39,13 @@ import {Table} from "../frameworks/components/Table";
 import {BorderLayout} from "../frameworks/layouts/BorderLayout";
 import {Checkbox} from "../frameworks/components/Checkbox";
 import {Radio} from "../frameworks/components/Radio";
-import {Pagination} from "../frameworks/components/Pagination";
 import {Modal} from "../frameworks/components/Modal";
 import {Tree} from "../frameworks/components/Tree";
 import {Tabs} from "../frameworks/components/Tabs";
 import {Accordion} from "../frameworks/components/Accordion";
 import {Menu} from "../frameworks/components/Menu";
 import {Toolbar} from "../frameworks/components/Toolbar";
-import {Tooltip} from "../frameworks/components/Tooltip";
-import {Components, VIEW_ID_KEY} from "../frameworks/commons/Components";
+import {Components} from "../frameworks/commons/Components";
 import {Separator} from "../frameworks/components/Separator";
 
 import {Profile} from "./accounts/Profile";

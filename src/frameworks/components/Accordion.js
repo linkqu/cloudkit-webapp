@@ -32,6 +32,7 @@
 import "./Accordion.css";
 import uuid from "uuid/v1";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
 
 /**
  * Accordion
@@ -66,6 +67,7 @@ class Accordion implements Component {
         let $this = this, options = this.options;
 
         let accordion = document.createElement("div");
+        accordion.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         accordion.classList.add("widget-accordion");
         if(options["id"]) {
             accordion.id = options["id"];

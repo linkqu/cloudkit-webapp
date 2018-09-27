@@ -31,6 +31,8 @@
 
 import "./Radio.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Radio
@@ -64,6 +66,7 @@ class Radio implements Component {
         let $this = this, options = this.options;
 
         let widgetRadio = document.createElement("div");
+        widgetRadio.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         widgetRadio.classList.add("widget-radio");
 
         let input = document.createElement("input");

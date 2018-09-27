@@ -33,6 +33,8 @@ import "./Pagination.css";
 import {Button} from "./Button";
 import {Colors} from "../commons/Colors";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Pagination
@@ -66,6 +68,7 @@ class Pagination implements Component {
         let $this = this, options = this.options;
 
         let pagination = document.createElement("div");
+        pagination.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         pagination.classList.add("widget-pagination");
         pagination.classList.add("clearfix");
 

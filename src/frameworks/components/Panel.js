@@ -31,6 +31,7 @@
 
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Panel
@@ -67,6 +68,7 @@ class Panel implements Component {
         let $this = this, options = this.options;
 
         let panel = document.createElement("div");
+        panel.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         if(options["id"]) {
             panel.id = options["id"];
         }

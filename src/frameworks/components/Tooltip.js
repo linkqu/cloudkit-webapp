@@ -31,6 +31,8 @@
 
 import "./Tooltip.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Tooltip
@@ -67,6 +69,7 @@ class Tooltip implements Component {
         let $this = this, options = this.options;
 
         let tooltip = document.createElement("div");
+        tooltip.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tooltip.classList.add("widget-tooltip");
 
         let arrow = document.createElement("div");

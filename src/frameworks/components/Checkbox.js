@@ -31,6 +31,8 @@
 
 import "./Checkbox.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Checkbox
@@ -64,6 +66,7 @@ class Checkbox implements Component {
         let $this = this, options = this.options;
 
         let widgetCheckbox = document.createElement("div");
+        widgetCheckbox.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         widgetCheckbox.classList.add("widget-checkbox");
 
         let input = document.createElement("input");

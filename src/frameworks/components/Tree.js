@@ -101,6 +101,7 @@ class Tree implements Component {
         let $this = this, options = this.options;
 
         let tree = document.createElement("ul");
+        tree.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tree.classList.add("widget-tree");
 
         let data = options["data"];

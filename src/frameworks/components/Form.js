@@ -30,6 +30,8 @@
  */
 
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * BackTop
@@ -64,6 +66,7 @@ class Form implements Component {
         let $this = this, options = this.options;
 
         let component = document.createElement("form");
+        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("widget-form");
 
         component.setAttribute("action", options["action"] ? options["action"] : "");

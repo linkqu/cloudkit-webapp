@@ -31,6 +31,8 @@
 
 import "./TextField.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * TextField
@@ -71,6 +73,7 @@ class TextField implements Component {
         let $this = this, options = this.options;
 
         let input = document.createElement("input");
+        input.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let type = options["type"];
         if(type === "password") {
             input.setAttribute("type", type);

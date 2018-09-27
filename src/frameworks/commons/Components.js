@@ -30,6 +30,7 @@
  */
 
 import type {Component} from "../components/Component";
+import uuid from "uuid/v1";
 
 // const VIEW_ID_KEY:string = "data-view-id";
 
@@ -62,6 +63,12 @@ class Components {
         // target
         if(options["parent"]) {
             options["options"]["parent"] = options["parent"];
+        }
+
+        if(options["viewId"]) {
+            options["options"]["viewId"] = options["viewId"];
+        } else {
+            options["options"]["viewId"] = uuid();
         }
         return new options["type"](options["options"]);
     }

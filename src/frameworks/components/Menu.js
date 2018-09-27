@@ -31,6 +31,8 @@
 
 import "./Menu.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
 
 /**
  * Menu
@@ -67,6 +69,7 @@ class Menu implements Component {
         let $this = this, options = this.options;
 
         let menuContainer = document.createElement("div");
+        menuContainer.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         menuContainer.classList.add("widget-menu");
         menuContainer.classList.add("clearfix");
 

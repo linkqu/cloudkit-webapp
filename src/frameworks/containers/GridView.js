@@ -29,6 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import {Components} from "../commons/Components";
+import uuid from "uuid/v1";
+
 /**
  * GridView
  *
@@ -64,6 +67,7 @@ class GridView {
         let $this = this, options = this.options;
 
         let component = document.createElement("div");
+        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("");
 
         return this.element = component;
