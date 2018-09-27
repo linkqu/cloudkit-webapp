@@ -69,25 +69,25 @@ class Panel implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let panel = document.createElement("div");
-        $this.element = panel;
-        panel.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        let panelWidget = document.createElement("div");
+        $this.element = panelWidget;
+        panelWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         if(options["id"]) {
-            panel.id = options["id"];
+            panelWidget.id = options["id"];
         }
         let width = options["width"], height = options["height"];
-        panel.style.width = width ? width + "px" : null;
-        panel.style.height = height ? height + "px" : null;
+        panelWidget.style.width = width ? width + "px" : null;
+        panelWidget.style.height = height ? height + "px" : null;
 
         if(options["hidden"]) {
-            panel.hidden = options["hidden"];
+            panelWidget.hidden = options["hidden"];
         }
 
         let attributes = options["attributes"];
         if (attributes) {
             for (let key in attributes) {
                 if (attributes.hasOwnProperty(key)) {
-                    panel.setAttribute(key, attributes[key])
+                    panelWidget.setAttribute(key, attributes[key])
                 }
             }
         }
@@ -96,7 +96,7 @@ class Panel implements Component {
         let classes = options["classes"];
         if (classes) {
             classes.forEach(function (value) {
-                panel.classList.add(value);
+                panelWidget.classList.add(value);
             });
         }
 
@@ -104,7 +104,7 @@ class Panel implements Component {
         if (css) {
             for (let key in css) {
                 if (css.hasOwnProperty(key)) {
-                    panel.style[key] = css[key];
+                    panelWidget.style[key] = css[key];
                 }
             }
         }
@@ -128,9 +128,9 @@ class Panel implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(panel);
+                options["parent"].appendChild(panelWidget);
             } else {
-                options["parent"].getElement().appendChild(panel);
+                options["parent"].getElement().appendChild(panelWidget);
             }
         } else {
             // document.body.appendChild(panel);

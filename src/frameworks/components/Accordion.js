@@ -66,12 +66,12 @@ class Accordion implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let accordion = document.createElement("div");
-        $this.element = accordion;
-        accordion.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        accordion.classList.add("widget-accordion");
+        let accordionWidget = document.createElement("div");
+        $this.element = accordionWidget;
+        accordionWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        accordionWidget.classList.add("widget-accordion");
         if(options["id"]) {
-            accordion.id = options["id"];
+            accordionWidget.id = options["id"];
         }
 
         let items = $this.options["items"];
@@ -79,7 +79,7 @@ class Accordion implements Component {
             items.forEach(function (item, index, objs) {
                 let accordionItem = document.createElement("div");
                 accordionItem.classList.add("accordion-item");
-                accordion.appendChild(accordionItem);
+                accordionWidget.appendChild(accordionItem);
 
                 let itemCheckbox = document.createElement("input");
                 itemCheckbox.setAttribute("type", "checkbox");
@@ -129,9 +129,9 @@ class Accordion implements Component {
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(accordion);
+                options["parent"].appendChild(accordionWidget);
             } else {
-                options["parent"].getElement().appendChild(accordion);
+                options["parent"].getElement().appendChild(accordionWidget);
             }
         } else {
             // document.body.appendChild(accordion);

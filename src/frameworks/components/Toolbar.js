@@ -72,20 +72,20 @@ class Toolbar implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let toolbar = document.createElement("div");
-        $this.element = toolbar;
-        toolbar.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        toolbar.classList.add("widget-toolbar");
+        let toolbarWidget = document.createElement("div");
+        $this.element = toolbarWidget;
+        toolbarWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        toolbarWidget.classList.add("widget-toolbar");
         if(options["id"]) {
-            toolbar.id = options["id"];
+            toolbarWidget.id = options["id"];
         }
 
         if (options["parent"]) {
             // console.log(this.options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(toolbar);
+                options["parent"].appendChild(toolbarWidget);
             } else {
-                options["parent"].getElement().appendChild(toolbar);
+                options["parent"].getElement().appendChild(toolbarWidget);
             }
         } else {
             // document.body.appendChild(toolbar);

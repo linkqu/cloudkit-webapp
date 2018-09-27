@@ -67,11 +67,11 @@ class Pagination implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let pagination = document.createElement("div");
-        $this.element = pagination;
-        pagination.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        pagination.classList.add("widget-pagination");
-        pagination.classList.add("clearfix");
+        let paginationWidget = document.createElement("div");
+        $this.element = paginationWidget;
+        paginationWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        paginationWidget.classList.add("widget-pagination");
+        paginationWidget.classList.add("clearfix");
 
         // pageable
         // offset
@@ -99,11 +99,11 @@ class Pagination implements Component {
             totalElementText.appendChild(
                 document.createTextNode("共 " + pageable["totalElements"] + " 条")
             );
-            pagination.appendChild(totalElementText);
+            paginationWidget.appendChild(totalElementText);
 
             let pagingButtons = document.createElement("div");
             pagingButtons.classList.add("paging-buttons");
-            pagination.appendChild(pagingButtons);
+            paginationWidget.appendChild(pagingButtons);
 
             let currentGroupIndex = totalPages > groupSize ? Math.ceil((pageNumber + (groupSize > 1 ? 1 : 0)) / (groupSize > 0 ? groupSize : 1)) : 1;
             // console.log("groupIndex: %s", currentGroupIndex);
@@ -217,9 +217,9 @@ class Pagination implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(pagination);
+                options["parent"].appendChild(paginationWidget);
             } else {
-                options["parent"].getElement().appendChild(pagination);
+                options["parent"].getElement().appendChild(paginationWidget);
             }
         } else {
             // document.body.appendChild(pagination);

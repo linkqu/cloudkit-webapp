@@ -70,18 +70,18 @@ class Modal implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let modal = document.createElement("div");
-        $this.element = modal;
-        modal.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        modal.classList.add("widget-modal");
+        let modalWidget = document.createElement("div");
+        $this.element = modalWidget;
+        modalWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        modalWidget.classList.add("widget-modal");
         if(options["id"]) {
-            modal.id = options["id"];
+            modalWidget.id = options["id"];
         }
         if (options["width"]) {
-            modal.style["width"] = options["width"] + "px";
+            modalWidget.style["width"] = options["width"] + "px";
         }
         if (options["height"]) {
-            modal.style["height"] = options["height"] + "px";
+            modalWidget.style["height"] = options["height"] + "px";
         }
 
         let close = document.createElement("span");
@@ -96,28 +96,28 @@ class Modal implements Component {
             // modal.remove();
             $this.hide();
         });
-        modal.appendChild(close);
+        modalWidget.appendChild(close);
 
         let title = document.createElement("div");
         title.classList.add("modal-title");
         if (options["title"]) {
             title.appendChild(document.createTextNode(options["title"]));
         }
-        modal.appendChild(title);
+        modalWidget.appendChild(title);
 
         let content = document.createElement("div");
         content.classList.add("modal-content");
         if (options["content"]) {
             content.appendChild(document.createTextNode(options["content"]));
         }
-        modal.appendChild(content);
+        modalWidget.appendChild(content);
 
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(modal);
+                options["parent"].appendChild(modalWidget);
             } else {
-                options["parent"].getElement().appendChild(modal);
+                options["parent"].getElement().appendChild(modalWidget);
             }
         } else {
             // document.body.appendChild(modal);
@@ -149,10 +149,10 @@ class Modal implements Component {
         });
 
         window.addEventListener('resize', function () {
-            modal.style["position"] = "fixed";
-            modal.style["z-index"] = "9999";
-            modal.style["top"] = (window.innerHeight - modal.clientHeight) / 2 - 60 + "px";
-            modal.style["left"] = (window.innerWidth - modal.clientWidth) / 2 + "px";
+            modalWidget.style["position"] = "fixed";
+            modalWidget.style["z-index"] = "9999";
+            modalWidget.style["top"] = (window.innerHeight - modalWidget.clientHeight) / 2 - 60 + "px";
+            modalWidget.style["left"] = (window.innerWidth - modalWidget.clientWidth) / 2 + "px";
         });
 
         title.addEventListener('mousedown', function () {

@@ -127,31 +127,31 @@ class Button implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let button = document.createElement("button");
-        $this.element = button;
-        button.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        let buttonWidget = document.createElement("button");
+        $this.element = buttonWidget;
+        buttonWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let fragment = document.createDocumentFragment();
 
         // Add default class
-        button.classList.add("widget-button");
+        buttonWidget.classList.add("widget-button");
 
         // Add type class
         if (options["type"]) {
-            button.classList.add("button-" + options["type"]);
+            buttonWidget.classList.add("button-" + options["type"]);
         }
 
         // classes
         let classes = options["classes"];
         if (classes) {
             classes.forEach(function (value) {
-                button.classList.add(value);
+                buttonWidget.classList.add(value);
             });
         }
 
         let icon = options["icon"];
         if(icon) {
             let iconComponent = Components.buildComponent({
-                parent: button,
+                parent: buttonWidget,
                 type: Icon,
                 options: {
                     content: icon["content"]
@@ -179,14 +179,14 @@ class Button implements Component {
             fragment.appendChild(text);
         }
 
-        button.appendChild(fragment);
+        buttonWidget.appendChild(fragment);
 
         // events
         let events = options["events"];
         if (events) {
             for (let prop in events) {
                 if (events.hasOwnProperty(prop)) {
-                    button.addEventListener(prop, function (event:Event) {
+                    buttonWidget.addEventListener(prop, function (event:Event) {
                         events[prop](event, $this, options["parent"]);
                     })
                 }
@@ -197,7 +197,7 @@ class Button implements Component {
         if (css) {
             for (let key in css) {
                 if (css.hasOwnProperty(key)) {
-                    button.style[key] = css[key];
+                    buttonWidget.style[key] = css[key];
                 }
             }
         }
@@ -208,16 +208,16 @@ class Button implements Component {
                 parent : document.body,
                 type: Tooltip,
                 options: {
-                    target: button,
+                    target: buttonWidget,
                     text: tooltipText
                 }
             });
 
-            button.addEventListener("mouseover", function () {
+            buttonWidget.addEventListener("mouseover", function () {
                 component.show();
             });
 
-            button.addEventListener("mouseout", function () {
+            buttonWidget.addEventListener("mouseout", function () {
                 component.hide();
             });
         }
@@ -226,9 +226,9 @@ class Button implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(button);
+                options["parent"].appendChild(buttonWidget);
             } else {
-                options["parent"].getElement().appendChild(button);
+                options["parent"].getElement().appendChild(buttonWidget);
             }
         } else {
             // document.body.appendChild(button);

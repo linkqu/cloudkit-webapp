@@ -100,23 +100,23 @@ class Tree implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let tree = document.createElement("ul");
-        $this.element = tree;
-        tree.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        tree.classList.add("widget-tree");
+        let treeWidget = document.createElement("ul");
+        $this.element = treeWidget;
+        treeWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        treeWidget.classList.add("widget-tree");
 
         let data = options["data"];
         if (data) {
-            this.buildNode(tree, data);
+            this.buildNode(treeWidget, data);
         }
         // console.log("children: %o", this.children);
 
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(tree);
+                options["parent"].appendChild(treeWidget);
             } else {
-                options["parent"].getElement().appendChild(tree);
+                options["parent"].getElement().appendChild(treeWidget);
             }
         } else {
             // document.body.appendChild(tree);

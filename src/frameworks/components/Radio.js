@@ -65,10 +65,10 @@ class Radio implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let widgetRadio = document.createElement("div");
-        $this.element = widgetRadio;
-        widgetRadio.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        widgetRadio.classList.add("widget-radio");
+        let radioWidget = document.createElement("div");
+        $this.element = radioWidget;
+        radioWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        radioWidget.classList.add("widget-radio");
 
         let input = document.createElement("input");
         input.setAttribute("type", "radio");
@@ -77,11 +77,11 @@ class Radio implements Component {
         if(options["disabled"] !== undefined) {
             input.setAttribute("disabled", options["disabled"]);
         }
-        widgetRadio.appendChild(input);
+        radioWidget.appendChild(input);
 
         let label = document.createElement("label");
         label.setAttribute("for", input.id);
-        widgetRadio.appendChild(label);
+        radioWidget.appendChild(label);
 
         let radioCircle = document.createElement("span");
         radioCircle.classList.add("radio-circle");
@@ -102,9 +102,9 @@ class Radio implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(widgetRadio);
+                options["parent"].appendChild(radioWidget);
             } else {
-                options["parent"].getElement().appendChild(widgetRadio);
+                options["parent"].getElement().appendChild(radioWidget);
             }
         } else {
             // document.body.appendChild(table);

@@ -70,18 +70,18 @@ class Tabs implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let tabs = document.createElement("div");
-        $this.element = tabs;
-        tabs.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        tabs.classList.add("widget-tabs");
+        let tabsWidget = document.createElement("div");
+        $this.element = tabsWidget;
+        tabsWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        tabsWidget.classList.add("widget-tabs");
 
         let linkBar = document.createElement("div");
         linkBar.classList.add("link-bar");
-        tabs.appendChild(linkBar);
+        tabsWidget.appendChild(linkBar);
 
         let viewContent = document.createElement("div");
         viewContent.classList.add("view-content");
-        tabs.appendChild(viewContent);
+        tabsWidget.appendChild(viewContent);
 
         let items = options["items"];
 
@@ -136,9 +136,9 @@ class Tabs implements Component {
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(tabs);
+                options["parent"].appendChild(tabsWidget);
             } else {
-                options["parent"].getElement().appendChild(tabs);
+                options["parent"].getElement().appendChild(tabsWidget);
             }
         } else {
             // document.body.appendChild(button);

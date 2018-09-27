@@ -68,30 +68,30 @@ class Tooltip implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let tooltip = document.createElement("div");
-        $this.element = tooltip;
-        tooltip.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        tooltip.classList.add("widget-tooltip");
+        let tooltipWidget = document.createElement("div");
+        $this.element = tooltipWidget;
+        tooltipWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        tooltipWidget.classList.add("widget-tooltip");
 
         let arrow = document.createElement("div");
         arrow.classList.add("tooltip-arrow");
-        tooltip.appendChild(arrow);
+        tooltipWidget.appendChild(arrow);
 
         let text = document.createElement("div");
         text.classList.add("tooltip-text");
         text.appendChild(document.createTextNode(options["text"]));
-        tooltip.appendChild(text);
+        tooltipWidget.appendChild(text);
 
         let parent = options["parent"];
         if (parent) {
             // console.log(parent);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(tooltip);
+                options["parent"].appendChild(tooltipWidget);
             } else {
-                options["parent"].getElement().appendChild(tooltip);
+                options["parent"].getElement().appendChild(tooltipWidget);
             }
         } else {
-            document.body.appendChild(tooltip);
+            document.body.appendChild(tooltipWidget);
         }
 
         document.addEventListener("DOMContentLoaded", function(){

@@ -70,6 +70,18 @@ class TabLayout {
         component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         component.classList.add("");
 
+        // renderTo
+        if (options["parent"]) {
+            // console.log(options["parent"]);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(component);
+            } else {
+                options["parent"].getElement().appendChild(component);
+            }
+        } else {
+            // document.body.appendChild(component);
+        }
+
         return $this.element;
     }
 

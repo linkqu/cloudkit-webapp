@@ -72,40 +72,40 @@ class TextField implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let input = document.createElement("input");
-        $this.element = input;
-        input.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        let textFieldWidget = document.createElement("input");
+        $this.element = textFieldWidget;
+        textFieldWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         let type = options["type"];
         if(type === "password") {
-            input.setAttribute("type", type);
+            textFieldWidget.setAttribute("type", type);
         } else {
-            input.setAttribute("type", "text");
+            textFieldWidget.setAttribute("type", "text");
         }
         let fragment = document.createDocumentFragment();
 
         let width = options["width"];
         if (width) {
-            input.style["width"] = width;
+            textFieldWidget.style["width"] = width;
         }
 
         // Add default class
-        input.classList.add("widget-text-field");
+        textFieldWidget.classList.add("widget-text-field");
 
         // Add class
         let classes = options["classes"];
         if (classes) {
             classes.forEach(function (value) {
-                input.classList.add(value);
+                textFieldWidget.classList.add(value);
             });
         }
 
-        input.appendChild(fragment);
+        textFieldWidget.appendChild(fragment);
 
         let events = options["events"];
         if (events) {
             for (let prop in events) {
                 if (events.hasOwnProperty(prop)) {
-                    input.addEventListener(prop, events[prop])
+                    textFieldWidget.addEventListener(prop, events[prop])
                 }
             }
         }
@@ -113,9 +113,9 @@ class TextField implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(input);
+                options["parent"].appendChild(textFieldWidget);
             } else {
-                options["parent"].getElement().appendChild(input);
+                options["parent"].getElement().appendChild(textFieldWidget);
             }
         } else {
             // document.body.appendChild(button);
@@ -125,7 +125,7 @@ class TextField implements Component {
         if (css) {
             for (let key in css) {
                 if (css.hasOwnProperty(key)) {
-                    input.style[key] = css[key];
+                    textFieldWidget.style[key] = css[key];
                 }
             }
         }

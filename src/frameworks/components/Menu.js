@@ -68,15 +68,15 @@ class Menu implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let menuContainer = document.createElement("div");
-        $this.element = menuContainer;
-        menuContainer.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        menuContainer.classList.add("widget-menu");
-        menuContainer.classList.add("clearfix");
+        let menuWidget = document.createElement("div");
+        $this.element = menuWidget;
+        menuWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        menuWidget.classList.add("widget-menu");
+        menuWidget.classList.add("clearfix");
 
         let menuBar = document.createElement("div");
         menuBar.classList.add("menu-bar");
-        menuContainer.appendChild(menuBar);
+        menuWidget.appendChild(menuBar);
 
         let items = options["items"];
         if(items) {
@@ -99,7 +99,7 @@ class Menu implements Component {
 
                 let menu = document.createElement("div");
                 menu.classList.add("menu");
-                menuContainer.appendChild(menu);
+                menuWidget.appendChild(menu);
 
                 let children = item["children"];
                 if(children) {
@@ -152,9 +152,9 @@ class Menu implements Component {
         if (options["parent"]) {
             // console.log(this.options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(menuContainer);
+                options["parent"].appendChild(menuWidget);
             } else {
-                options["parent"].getElement().appendChild(menuContainer);
+                options["parent"].getElement().appendChild(menuWidget);
             }
         } else {
             // document.body.appendChild(button);

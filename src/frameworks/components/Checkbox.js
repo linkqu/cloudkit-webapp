@@ -65,10 +65,10 @@ class Checkbox implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let widgetCheckbox = document.createElement("div");
-        $this.element = widgetCheckbox;
-        widgetCheckbox.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        widgetCheckbox.classList.add("widget-checkbox");
+        let checkboxWidget = document.createElement("div");
+        $this.element = checkboxWidget;
+        checkboxWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        checkboxWidget.classList.add("widget-checkbox");
 
         let input = document.createElement("input");
         input.setAttribute("type", "checkbox");
@@ -77,11 +77,11 @@ class Checkbox implements Component {
         if(options["disabled"] !== undefined) {
             input.setAttribute("disabled", options["disabled"]);
         }
-        widgetCheckbox.appendChild(input);
+        checkboxWidget.appendChild(input);
 
         let label = document.createElement("label");
         label.setAttribute("for", input.id);
-        widgetCheckbox.appendChild(label);
+        checkboxWidget.appendChild(label);
 
         let checkboxRectangle = document.createElement("span");
         checkboxRectangle.classList.add("checkbox-rectangle");
@@ -103,9 +103,9 @@ class Checkbox implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(widgetCheckbox);
+                options["parent"].appendChild(checkboxWidget);
             } else {
-                options["parent"].getElement().appendChild(widgetCheckbox);
+                options["parent"].getElement().appendChild(checkboxWidget);
             }
         } else {
             // document.body.appendChild(table);

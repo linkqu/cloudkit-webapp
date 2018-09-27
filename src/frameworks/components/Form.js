@@ -65,20 +65,20 @@ class Form implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let component = document.createElement("form");
-        $this.element = component;
-        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        component.classList.add("widget-form");
+        let formWidget = document.createElement("form");
+        $this.element = formWidget;
+        formWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        formWidget.classList.add("widget-form");
 
-        component.setAttribute("action", options["action"] ? options["action"] : "");
-        component.setAttribute("method", options["method"] ? options["method"] : "get");
+        formWidget.setAttribute("action", options["action"] ? options["action"] : "");
+        formWidget.setAttribute("method", options["method"] ? options["method"] : "get");
         /*
         enctype 属性可能的值：
         application/x-www-form-urlencoded
         multipart/form-data
         text/plain
         */
-        component.setAttribute(
+        formWidget.setAttribute(
             "enctype",
             options["enctype"] ? options["enctype"] : "application/x-www-form-urlencoded"
         );
@@ -86,9 +86,9 @@ class Form implements Component {
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(component);
+                options["parent"].appendChild(formWidget);
             } else {
-                options["parent"].getElement().appendChild(component);
+                options["parent"].getElement().appendChild(formWidget);
             }
         } else {
             // document.body.appendChild(component);

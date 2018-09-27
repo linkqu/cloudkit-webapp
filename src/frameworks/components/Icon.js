@@ -68,16 +68,16 @@ class Icon implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let component = document.createElement("span");
-        $this.element = component;
-        component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        component.classList.add("widget-icon");
+        let iconWidget = document.createElement("span");
+        $this.element = iconWidget;
+        iconWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        iconWidget.classList.add("widget-icon");
 
         // classes
         let classes = options["classes"];
         if (classes) {
             classes.forEach(function (value) {
-                component.classList.add(value);
+                iconWidget.classList.add(value);
             });
         }
 
@@ -85,22 +85,22 @@ class Icon implements Component {
         if (css) {
             for (let key in css) {
                 if (css.hasOwnProperty(key)) {
-                    component.style[key] = css[key];
+                    iconWidget.style[key] = css[key];
                 }
             }
         }
 
         let content = options["content"];
         if (content) {
-            component.innerHTML = content;
+            iconWidget.innerHTML = content;
         }
 
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(component);
+                options["parent"].appendChild(iconWidget);
             } else {
-                options["parent"].getElement().appendChild(component);
+                options["parent"].getElement().appendChild(iconWidget);
             }
         } else {
             // document.body.appendChild(component);
