@@ -20,6 +20,10 @@
     position: relative;
     border: 1px transparent solid;
     transition: color .3s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .widget-tabs .link-bar .link-bar-item:hover {
