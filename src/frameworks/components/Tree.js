@@ -31,31 +31,40 @@
 
 import "./Tree.css";
 import type {Component} from "./Component";
+import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
 
 const ICON_COLLAPSE: string =
-    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-    "    <path d=\"M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
-    "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
-    "</svg>";
+    `
+    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+        <path d="M328 544h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" fill="#333333"/>
+        <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z" fill="#333333"/>
+    </svg>
+    `;
 
 const ICON_EXPANDED: string =
-    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-    "    <path d=\"M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z\" fill=\"#333333\"/>\n" +
-    "    <path d=\"M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z\" fill=\"#333333\"/>\n" +
-    "</svg>";
+    `
+    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+        <path d="M328 544h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z" fill="#333333"/>
+        <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32z m-40 728H184V184h656v656z" fill="#333333"/>
+    </svg>
+    `;
 
 const ICON_LEAF =
-    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-    "    <path d=\"M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z\" fill=\"#90CAF9\"/>\n" +
-    "    <path d=\"M821.333333 298.666667H618.666667V96z\" fill=\"#E1F5FE\"/>\n" +
-    "</svg>";
+    `
+    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+        <path d="M853.333333 960H170.666667V64h469.333333l213.333333 213.333333z" fill="#90CAF9"/>
+        <path d="M821.333333 298.666667H618.666667V96z" fill="#E1F5FE"/>
+    </svg>
+    `;
 
 const ICON_FORK =
-    "<svg viewBox=\"0 0 1024 1024\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"16\" height=\"16\">\n" +
-    "    <path d=\"M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z\" fill=\"#FFD766\"/>\n" +
-    "    <path d=\"M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z\" fill=\"#FFAC33\"/>\n" +
-    "</svg>";
+    `
+    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16">
+        <path d="M977.6 238.4c-9.6-9.6-21.6-14.4-33.6-14.4H472L366.4 118.4c-4-4-9.6-8-15.2-10.4-6.4-2.4-12-4-18.4-4H80c-12 0-24.8 4.8-33.6 14.4S32 140 32 152v280h960V272c0-12-4.8-24.8-14.4-33.6z" fill="#FFD766"/>
+        <path d="M944 912H80c-26.4 0-48-21.6-48-48V352h960v512c0 26.4-21.6 48-48 48z" fill="#FFAC33"/>
+    </svg>
+    `;
 
 /**
  * Tree
@@ -69,7 +78,7 @@ class Tree implements Component {
 
     element: HTMLElement;
 
-    childElementMap: Map = new Map();
+    childElements: Map = new Map();
 
     /**
      * constructor
@@ -98,7 +107,7 @@ class Tree implements Component {
         if (data) {
             this.buildNode(tree, data);
         }
-        console.log("childElementMap: %o", this.childElementMap);
+        console.log("childElements: %o", this.childElements);
 
         if (options["parent"]) {
             // console.log(options["parent"]);
@@ -111,14 +120,13 @@ class Tree implements Component {
     }
 
     buildNode(parent, data) {
-        let $this = this, childElementMap = this.childElementMap;
+        let $this = this, childElements = this.childElements;
 
         data.forEach(function (item, index, objs) {
             let node = document.createElement("li");
-            let dataViewId = "data-view-id";
-            node.setAttribute(dataViewId, item["viewId"] ? item["viewId"] : uuid());
+            node.setAttribute(Components.VIEW_ID_KEY, item["viewId"] ? item["viewId"] : uuid());
             parent.appendChild(node);
-            childElementMap.set(node.getAttribute(dataViewId), node);
+            childElements.set(node.getAttribute(Components.VIEW_ID_KEY), node);
             if (item["leaf"]) {
                 node.classList.add("leaf");
                 if (index + 1 === data.length) {

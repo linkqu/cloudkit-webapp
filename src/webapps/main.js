@@ -57,8 +57,8 @@ import {Icon} from "../frameworks/components/Icon";
 
 // console.log(`running version ${pkg.version}`);
 
-Components.buildComponent({
-    id: "main-page",
+let component = Components.buildComponent({
+    id: "main",
     parent: document.body,
     type: BorderLayout,
     options: {
@@ -254,24 +254,29 @@ Components.buildComponent({
                                 viewId: "homework",
                                 text: "homework", expanded: true,
                                 children: [
-                                    {id: "book-report",  viewId: "book-report", text: "book report", leaf: true},
-                                    {id: "alegrbra",  viewId: "alegrbra", text: "alegrbra", leaf: true}
+                                    {id: "book-report", viewId: "book-report", text: "book report", leaf: true},
+                                    {id: "alegrbra", viewId: "alegrbra", text: "alegrbra", leaf: true}
                                 ]
                             },
-                            {id: "buy-lottery-tickets",  viewId: "alegrbra", text: "buy lottery tickets", leaf: true}
+                            {id: "buy-lottery-tickets", viewId: "alegrbra", text: "buy lottery tickets", leaf: true}
                         ],
                         events: {
                             "click": function () {
                                 alert("hello!");
                             }
                         }
-                    }, {id: "buy-lottery-tickets1",  viewId: "buy-lottery-tickets1", text: "buy lottery tickets", leaf: true}]
+                    }, {
+                        id: "buy-lottery-tickets1",
+                        viewId: "buy-lottery-tickets1",
+                        text: "buy lottery tickets",
+                        leaf: true
+                    }]
                 }
             }]
         }, {
             title: "South Panel",
-            region: "south"
-            // height: 50
+            region: "south",
+            height: 50
         }, {
             title: "Center Panel",
             region: "center",
@@ -387,10 +392,34 @@ Components.buildComponent({
                                                     return `<a href='index.html'>Hello ${value}</a>`;
                                                 }
                                             },
-                                            {index: "sex", text: "Sex", width: 75, sortable: false, renderer: undefined},
-                                            {index: "age", text: "Age", width: 75, sortable: false, renderer: undefined},
-                                            {index: "mobile", text: "Mobile", width: 120, sortable: false, renderer: undefined},
-                                            {index: "email", text: "Email", width: 120, sortable: false, renderer: undefined},
+                                            {
+                                                index: "sex",
+                                                text: "Sex",
+                                                width: 75,
+                                                sortable: false,
+                                                renderer: undefined
+                                            },
+                                            {
+                                                index: "age",
+                                                text: "Age",
+                                                width: 75,
+                                                sortable: false,
+                                                renderer: undefined
+                                            },
+                                            {
+                                                index: "mobile",
+                                                text: "Mobile",
+                                                width: 120,
+                                                sortable: false,
+                                                renderer: undefined
+                                            },
+                                            {
+                                                index: "email",
+                                                text: "Email",
+                                                width: 120,
+                                                sortable: false,
+                                                renderer: undefined
+                                            },
                                             {
                                                 index: "birthday",
                                                 text: "Birthday Date",
@@ -495,8 +524,8 @@ Components.buildComponent({
             }]
         }, {
             title: "East Panel",
-            region: "east"
-            // width: 184
+            region: "east",
+            width: 184
             // split: true,
         }]
     }

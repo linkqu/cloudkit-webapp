@@ -29,6 +29,10 @@
     height: 100%;
 }
 
+.border-layout .south {
+    border-top: 1px solid #dcdee2;
+}
+
 .border-layout .west, .border-layout .east {
     position: relative;
     height: 100%;

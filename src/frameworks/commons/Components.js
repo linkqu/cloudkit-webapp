@@ -31,7 +31,7 @@
 
 import type {Component} from "../components/Component";
 
-const VIEW_ID_KEY:string = "data-view-id";
+// const VIEW_ID_KEY:string = "data-view-id";
 
 /**
  * Dialog
@@ -51,6 +51,8 @@ class Components {
     //     Menu: Menu
     // };
 
+    static VIEW_ID_KEY = "data-view-id";
+
     /**
      * buildComponent
      */
@@ -65,4 +67,4 @@ class Components {
     }
 }
 
-export {Components, VIEW_ID_KEY};
+export {Components};
