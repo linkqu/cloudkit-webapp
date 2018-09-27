@@ -70,7 +70,7 @@ class Table implements Component {
         dragColumnIndex: null,
         dragFirstOffset: null,
         itemWidth: 0,
-        columnMinWidth: 120,
+        columnMinWidth: 80,
         scrollLeft: 0
     };
 
