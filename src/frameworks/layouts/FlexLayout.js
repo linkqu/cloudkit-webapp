@@ -29,23 +29,22 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import type {Component} from "./Component";
+import "./FlexLayout.css";
 import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
+import {Panel} from "../components/Panel";
 
 /**
- * Panel
+ * AbsoluteLayout
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
  */
-class Panel implements Component {
+class FlexLayout {
 
     options: JSON;
 
     element: HTMLElement;
-
-    children: Map = new Map();
 
     /**
      * constructor
@@ -53,7 +52,6 @@ class Panel implements Component {
      * @param options
      */
     constructor(options: JSON) {
-        // Horizontal Vertical
 
         // default setting
         this.defaultSetting = {
@@ -69,76 +67,44 @@ class Panel implements Component {
     build() {
         let $this = this, options = this.options;
 
-        let panelWidget = document.createElement("div");
-        $this.element = panelWidget;
-        panelWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        if(options["id"]) {
-            panelWidget.id = options["id"];
-        }
+        let flexLayoutWidget = document.createElement("div");
+        $this.element = flexLayoutWidget;
+        flexLayoutWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
+        flexLayoutWidget.setAttribute("layout", "flex-layout");
         let width = options["width"], height = options["height"];
-        panelWidget.style.width = width ? width + "px" : null;
-        panelWidget.style.height = height ? height + "px" : null;
-
-        if(options["hidden"]) {
-            panelWidget.hidden = options["hidden"];
-        }
-
-        let attributes = options["attributes"];
-        if (attributes) {
-            for (let key in attributes) {
-                if (attributes.hasOwnProperty(key)) {
-                    panelWidget.setAttribute(key, attributes[key])
-                }
-            }
-        }
-
-        // classes
-        let classes = options["classes"];
-        if (classes) {
-            classes.forEach(function (value) {
-                panelWidget.classList.add(value);
-            });
-        }
+        flexLayoutWidget.style.width = width ? width + "px" : null;
+        flexLayoutWidget.style.height = height ? height + "px" : null;
+        flexLayoutWidget.classList.add("widget-flex-layout");
 
         let css = options["css"];
         if (css) {
             for (let key in css) {
                 if (css.hasOwnProperty(key)) {
-                    panelWidget.style[key] = css[key];
+                    flexLayoutWidget.style[key] = css[key];
                 }
             }
         }
 
         let items = options["items"];
-        if(items) {
-            items.forEach(function (item, index, objs) {
-                let component = Components.buildComponent({
-                    parent: $this,
-                    viewId: item["viewId"],
-                    type: item["type"],
-                    options: item["options"]
-                });
-
-                $this.children.set(item["viewId"], component);
+        items.forEach(function (item, index, objs) {
+            Components.buildComponent({
+                type: Panel,
+                parent: $this,
+                options: item
             });
-        } else if(options["content"]) {
-            panelWidget.innerText = options["content"];
-        }
+        });
 
+        // renderTo
         if (options["parent"]) {
             // console.log(options["parent"]);
             if(options["parent"] instanceof HTMLElement) {
-                options["parent"].appendChild(panelWidget);
+                options["parent"].appendChild(flexLayoutWidget);
             } else {
-                options["parent"].getElement().appendChild(panelWidget);
+                options["parent"].getElement().appendChild(flexLayoutWidget);
             }
         } else {
-            // document.body.appendChild(panel);
+            // document.body.appendChild(component);
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-        });
 
         return $this.element;
     }
@@ -146,42 +112,6 @@ class Panel implements Component {
     getElement() {
         return this.element;
     }
-
-    getParent() {
-        return this.options["parent"];
-    }
-
-    getChildren() {
-        return this.children;
-    }
-
-    setChildren(objects: Map<string, Component>) {
-        this.children = objects;
-    }
-
-    getChild(key: string) {
-        return this.children.get(key);
-    }
-
-    addChild(key: string, object: Component) {
-        this.children.set(key, object);
-    }
-
-    removeChild(key: string) {
-        this.children.delete(key)
-    }
-
-    hide() {
-        this.element.hidden = true;
-    }
-
-    show() {
-        this.element.hidden = false;
-    }
-
-    toggle() {
-        this.element.hidden = !this.element.hidden;
-    }
 }
 
-export {Panel};
+export {FlexLayout};

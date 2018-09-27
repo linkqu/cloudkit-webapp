@@ -1,4 +1,4 @@
-.border-layout {
+.widget-border-layout {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -13,7 +13,7 @@
     height: 100%;
 }
 
-.border-layout .north, .border-layout .south {
+.widget-border-layout .north, .widget-border-layout .south {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -21,7 +21,7 @@
     /*color: #fff;*/
 }
 
-.border-layout .has-side {
+.widget-border-layout .has-side {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -29,11 +29,11 @@
     height: 100%;
 }
 
-.border-layout .south {
+.widget-border-layout .south {
     border-top: 1px solid #dcdee2;
 }
 
-.border-layout .west, .border-layout .east {
+.widget-border-layout .west, .widget-border-layout .east {
     position: relative;
     height: 100%;
     /*max-width: 200px;*/
@@ -44,19 +44,19 @@
     transition: all .2s ease-in-out;
 }
 
-.border-layout .west {
+.widget-border-layout .west {
     border-right: 1px solid #dcdee2;
 }
 
-.border-layout .east {
+.widget-border-layout .east {
     border-left: 1px solid #dcdee2;
 }
 
-.border-layout .has-side > .center {
+.widget-border-layout .has-side > .center {
     overflow-x: hidden;
 }
 
-.border-layout .center {
+.widget-border-layout .center {
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;

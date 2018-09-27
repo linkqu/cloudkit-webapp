@@ -47,11 +47,10 @@ import {Menu} from "../frameworks/components/Menu";
 import {Toolbar} from "../frameworks/components/Toolbar";
 import {Components} from "../frameworks/commons/Components";
 import {Separator} from "../frameworks/components/Separator";
-
-import {Profile} from "./accounts/Profile";
 import {Icon} from "../frameworks/components/Icon";
 import type {Component} from "../frameworks/components/Component";
 import {Panel} from "../frameworks/components/Panel";
+import {FlexLayout} from "../frameworks/layouts/FlexLayout";
 
 // import pkg from "../package.json";
 
@@ -138,9 +137,9 @@ let component = Components.buildComponent({
                         type: Button,
                         index: "bookmarks",
                         options: {
-                            text: "Bookmarks",
+                            // text: "Bookmarks",
                             icon: {
-                                content: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M256 48C141.125 48 48 141.125 48 256s93.125 208 208 208 208-93.125 208-208S370.875 48 256 48zm107 229h-86v86h-42v-86h-86v-42h86v-86h42v86h86v42z\"/></svg>"
+                                content: `<svg class="glyph-icon" style="width: 16px; height: 16px;"><use xlink:href="#icon-menu"/></svg>`
                             },
                             events: {
                                 click: function () {
@@ -515,5 +514,38 @@ let component = Components.buildComponent({
     }
 });
 
-// console.log("%o", component.getChildren());
-// console.log("%o", component.getChild("main-east-panel"));
+// let itemCss = {
+//     "width": "200px",
+//     "height": "200px",
+//     "line-height": "200px",
+//     "vertical-align": "middle",
+//     "background-color": "#ffd200",
+//     "margin": "5px",
+//     "font-size": "100px",
+//     "color": "white",
+//     "text-align": "center"
+// };
+//
+// Components.buildComponent({
+//     type: FlexLayout,
+//     parent: document.body,
+//     options: {
+//         width: 500,
+//         height: 500,
+//         css: {
+//             "flex-direction": "row",
+//             "flex-wrap": "wrap",
+//             "align-content": "flex-start"
+//         },
+//         items: [{
+//             css: itemCss,
+//             content: "1"
+//         }, {
+//             css: itemCss,
+//             content: "2"
+//         }, {
+//             css: itemCss,
+//             content: "3"
+//         }]
+//     }
+// });

@@ -74,6 +74,7 @@ class Modal implements Component {
         $this.element = modalWidget;
         modalWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         modalWidget.classList.add("widget-modal");
+
         if(options["id"]) {
             modalWidget.id = options["id"];
         }
@@ -107,8 +108,11 @@ class Modal implements Component {
 
         let content = document.createElement("div");
         content.classList.add("modal-content");
+
         if (options["content"]) {
-            content.appendChild(document.createTextNode(options["content"]));
+            if(options["content"] instanceof String) {
+                content.appendChild(document.createTextNode(options["content"]));
+            }
         }
         modalWidget.appendChild(content);
 

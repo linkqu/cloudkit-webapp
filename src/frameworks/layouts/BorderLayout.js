@@ -77,7 +77,7 @@ class BorderLayout implements Component {
         let width = options["width"], height = options["height"];
         borderLayout.style.width = width ? width + "px" : null;
         borderLayout.style.height = height ? height + "px" : null;
-        borderLayout.classList.add("border-layout");
+        borderLayout.classList.add("widget-border-layout");
 
         let panels = {};
         let items = options["items"];
@@ -127,7 +127,7 @@ class BorderLayout implements Component {
 
         if (westPanel || eastPanel) {
             let mainPanel = document.createElement("div");
-            mainPanel.classList.add("border-layout");
+            mainPanel.classList.add("widget-border-layout");
             mainPanel.classList.add("has-side");
             borderLayout.appendChild(mainPanel);
 
