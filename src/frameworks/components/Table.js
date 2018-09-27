@@ -94,7 +94,6 @@ class Table implements Component {
      */
     build() {
         let $this = this, options = this.options;
-
         let scrollBarWidth = Table.getVerticalScrollBarWidth();
 
         let tableWidget = document.createElement("div");
