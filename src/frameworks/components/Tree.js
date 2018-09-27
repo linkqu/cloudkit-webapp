@@ -78,7 +78,7 @@ class Tree implements Component {
 
     element: HTMLElement;
 
-    childElements: Map = new Map();
+    children: Map = new Map();
 
     /**
      * constructor
@@ -101,7 +101,7 @@ class Tree implements Component {
         let $this = this, options = this.options;
 
         let tree = document.createElement("ul");
-        $this.element = tree
+        $this.element = tree;
         tree.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         tree.classList.add("widget-tree");
 
@@ -109,7 +109,7 @@ class Tree implements Component {
         if (data) {
             this.buildNode(tree, data);
         }
-        // console.log("childElements: %o", this.childElements);
+        // console.log("children: %o", this.children);
 
         if (options["parent"]) {
             // console.log(options["parent"]);
@@ -126,13 +126,13 @@ class Tree implements Component {
     }
 
     buildNode(parent, data) {
-        let $this = this, childElements = this.childElements;
+        let $this = this, children = this.children;
 
         data.forEach(function (item, index, objs) {
             let node = document.createElement("li");
             node.setAttribute(Components.VIEW_ID_KEY, item["viewId"] ? item["viewId"] : uuid());
             parent.appendChild(node);
-            childElements.set(node.getAttribute(Components.VIEW_ID_KEY), node);
+            children.set(node.getAttribute(Components.VIEW_ID_KEY), node);
             if (item["leaf"]) {
                 node.classList.add("leaf");
                 if (index + 1 === data.length) {

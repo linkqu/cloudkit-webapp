@@ -463,9 +463,9 @@ let component = Components.buildComponent({
                                         buttons: [{
                                             text: "Close",
                                             events: {
-                                                "click": function () {
-                                                    // document.querySelectorAll("#account-add-modal")
-                                                    // modal.hide();
+                                                "click": function (event:Event, current: Component, parent:Component) {
+                                                    console.log("parent: " + parent);
+                                                    parent.getParent().hide();
                                                 }
                                             }
                                         }, {

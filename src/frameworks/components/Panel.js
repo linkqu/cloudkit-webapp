@@ -45,7 +45,7 @@ class Panel implements Component {
 
     element: HTMLElement;
 
-    childObjects: Map = new Map();
+    children: Map = new Map();
 
     /**
      * constructor
@@ -92,6 +92,14 @@ class Panel implements Component {
             }
         }
 
+        // classes
+        let classes = options["classes"];
+        if (classes) {
+            classes.forEach(function (value) {
+                panel.classList.add(value);
+            });
+        }
+
         let css = options["css"];
         if (css) {
             for (let key in css) {
@@ -112,7 +120,7 @@ class Panel implements Component {
                         options: item["options"]
                     });
 
-                    $this.childObjects.set(item["viewId"], component);
+                    $this.children.set(item["viewId"], component);
                 });
             }
         });
@@ -140,23 +148,23 @@ class Panel implements Component {
     }
 
     getChildren() {
-        return this.childObjects;
+        return this.children;
     }
 
     setChildren(objects: Map<string, Component>) {
-        this.childObjects = objects;
+        this.children = objects;
     }
 
     getChild(key: string) {
-        return this.childObjects.get(key);
+        return this.children.get(key);
     }
 
     addChild(key: string, object: Component) {
-        this.childObjects.set(key, object);
+        this.children.set(key, object);
     }
 
     removeChild(key: string) {
-        this.childObjects.delete(key)
+        this.children.delete(key)
     }
 
     hide() {

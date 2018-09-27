@@ -34,6 +34,7 @@ import {Button} from "./Button";
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
+import {Panel} from "./Panel";
 
 /**
  * Modal
@@ -46,6 +47,8 @@ class Modal implements Component {
     options: JSON;
 
     element: HTMLElement;
+
+    children: Map = new Map();
 
     /**
      * constructor
@@ -120,23 +123,30 @@ class Modal implements Component {
             // document.body.appendChild(modal);
         }
 
-        let footer = document.createElement("div");
-        footer.classList.add("modal-footer");
+        let footerPanel = Components.buildComponent({
+            parent: $this,
+            type: Panel,
+            viewId: options["viewId"]? options["viewId"] + "-footer" : uuid(),
+            options: {
+                classes: ["modal-footer"]
+            }
+        });
+        $this.addChild(options["viewId"]? options["viewId"] + "-footer" : uuid(), footerPanel);
 
         let buttons = options["buttons"];
         buttons.forEach(function (item, index, objs) {
-            let buttons = Components.buildComponent({
-                parent: footer,
+            let button = Components.buildComponent({
+                parent: footerPanel,
                 type: Button,
                 options: {
+                    viewId: item["viewId"]? options["viewId"] : uuid(),
                     type: item["type"],
                     text: item["text"],
                     events: item["events"]
                 }
             });
-
+            // footerPanel.addChild(item["viewId"]? options["viewId"] : uuid(), button);
         });
-        modal.appendChild(footer);
 
         window.addEventListener('resize', function () {
             modal.style["position"] = "fixed";
@@ -167,23 +177,23 @@ class Modal implements Component {
     }
 
     getChildren() {
-        return this.childObjects;
+        return this.children;
     }
 
     setChildren(objects: Map<string, Component>) {
-        this.childObjects = objects;
+        this.children = objects;
     }
 
     getChild(key: string) {
-        return this.childObjects.get(key);
+        return this.children.get(key);
     }
 
     addChild(key: string, object: Component) {
-        this.childObjects.set(key, object);
+        this.children.set(key, object);
     }
 
     removeChild(key: string) {
-        this.childObjects.delete(key)
+        this.children.delete(key)
     }
 
     show() {
