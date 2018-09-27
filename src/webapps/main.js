@@ -55,14 +55,20 @@ import {Icon} from "../frameworks/components/Icon";
 
 // console.log(`running version ${pkg.version}`);
 
+const COMPONENT_VIEW_ID_KEYS = {
+    MAIN_COMPONENT: "main_component"
+};
+
 let component = Components.buildComponent({
     id: "main",
+    viewId: COMPONENT_VIEW_ID_KEYS.MAIN_COMPONENT,
     parent: document.body,
     type: BorderLayout,
     options: {
         // width: 1024,
         // height: 300,
         items: [{
+            viewId: "main-north-panel",
             title: "North Panel",
             region: "north",
             items: [{
@@ -130,7 +136,7 @@ let component = Components.buildComponent({
                             },
                             events: {
                                 click: function () {
-                                    alert("Test");
+                                    console.log("%o", component.getChildObjects());
                                 }
                             }
                         }
@@ -199,6 +205,7 @@ let component = Components.buildComponent({
                 }
             }]
         }, {
+            viewId: "main-west-panel",
             title: "West Panel",
             region: "west",
             width: 200,
@@ -272,6 +279,7 @@ let component = Components.buildComponent({
                 }
             }]
         }, {
+            viewId: "main-south-panel",
             title: "South Panel",
             region: "south",
             height: 50
@@ -482,7 +490,7 @@ let component = Components.buildComponent({
                                     text: "Close",
                                     events: {
                                         "click": function () {
-                                            document.querySelectorAll("#account-add-modal")
+                                            // document.querySelectorAll("#account-add-modal")
                                             // modal.hide();
                                         }
                                     }
@@ -521,6 +529,7 @@ let component = Components.buildComponent({
                 }
             }]
         }, {
+            viewId: "main-east-panel",
             title: "East Panel",
             region: "east",
             width: 184
@@ -528,3 +537,6 @@ let component = Components.buildComponent({
         }]
     }
 });
+
+console.log("%o", component.getChildObjects());
+console.log("%o", component.getChildObject("main-east-panel"));

@@ -45,6 +45,8 @@ class Panel implements Component {
 
     element: HTMLElement;
 
+    childObjects: Map = new Map();
+
     /**
      * constructor
      *
@@ -72,6 +74,25 @@ class Panel implements Component {
         if(options["id"]) {
             panel.id = options["id"];
         }
+
+        let attributes = options["attributes"];
+        if (attributes) {
+            for (let key in attributes) {
+                if (attributes.hasOwnProperty(key)) {
+                    panel.setAttribute(key, attributes[key])
+                }
+            }
+        }
+
+        let css = options["css"];
+        if (css) {
+            for (let key in css) {
+                if (css.hasOwnProperty(key)) {
+                    panel.style[key] = css[key];
+                }
+            }
+        }
+
         let items = options["items"];
         if(items) {
             items.forEach(function (item, index, objs) {
@@ -95,6 +116,22 @@ class Panel implements Component {
 
     getElement() {
         return this.element;
+    }
+
+    getChildObjects() {
+        return this.childObjects;
+    }
+
+    setChildObjects(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChildObject(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChildObject(key: string, object: Component) {
+        this.childObjects.set(key, object);
     }
 }
 

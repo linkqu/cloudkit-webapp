@@ -33,6 +33,7 @@ import "./BorderLayout.css"
 import {Components} from "../commons/Components";
 import type {Component} from "../components/Component";
 import uuid from "uuid/v1";
+import {Panel} from "../components/Panel";
 
 /**
  * BorderLayout
@@ -45,6 +46,8 @@ class BorderLayout implements Component {
     options: JSON;
 
     element: HTMLElement;
+
+    childObjects: Map = new Map();
 
     /**
      * constructor
@@ -78,36 +81,33 @@ class BorderLayout implements Component {
         let panels = {};
         let items = options["items"];
         items.forEach(function (item, index, objs) {
-            let panel = document.createElement("div");
-            panel.setAttribute("region", item["region"]);
 
-            panel.setAttribute("title", item["title"]);
-
-            // let text = document.createTextNode(item["title"]);
-            // panel.appendChild(text);
-
-            let width = item["width"], height = item["height"];
-            // console.log("width: %d, height: %d", width, height);
-            panel.style.width = width ? width + "px" : null;
-            panel.style.height = height ? height + "px" : null;
-            // console.log("panel width: %d, panel height: %d", panel.style.width, panel.style.height);
-
-            let css = item["css"];
-            if (css) {
-                for (let key in css) {
-                    if (css.hasOwnProperty(key)) {
-                        panel.style[key] = css[key];
+            let panel = Components.buildComponent({
+                type: Panel,
+                options: {
+                    attributes: {
+                        region: item["region"],
+                        title: item["title"]
+                    },
+                    css: {
+                        width: item["width"] + "px",
+                        height: item["height"] + "px"
                     }
                 }
+            });
+
+            if (item["viewId"]) {
+                $this.childObjects.set(item["viewId"], panel);
             }
 
             if (item["items"]) {
                 item["items"].forEach(function (item, index, objs) {
-                    Components.buildComponent({
+                    let component = Components.buildComponent({
                         parent: panel,
                         type: item["type"],
                         options: item["options"]
                     });
+                    panel.addChildObject(item["viewId"], component);
                 });
             }
 
@@ -119,8 +119,8 @@ class BorderLayout implements Component {
         let westPanel = panels["west"], centerPanel = panels["center"], eastPanel = panels["east"];
 
         if (northPanel) {
-            northPanel.classList.add("north");
-            borderLayout.appendChild(northPanel);
+            northPanel.getElement().classList.add("north");
+            borderLayout.appendChild(northPanel.getElement());
         }
 
         if (westPanel || eastPanel) {
@@ -130,34 +130,38 @@ class BorderLayout implements Component {
             borderLayout.appendChild(mainPanel);
 
             if (westPanel) {
-                westPanel.classList.add("west");
-                mainPanel.appendChild(westPanel);
+                westPanel.getElement().classList.add("west");
+                mainPanel.appendChild(westPanel.getElement());
             }
 
             if (centerPanel) {
-                centerPanel.classList.add("center");
-                mainPanel.appendChild(centerPanel);
+                centerPanel.getElement().classList.add("center");
+                mainPanel.appendChild(centerPanel.getElement());
             }
 
             if (eastPanel) {
-                eastPanel.classList.add("east");
-                mainPanel.appendChild(eastPanel);
+                eastPanel.getElement().classList.add("east");
+                mainPanel.appendChild(eastPanel.getElement());
             }
         } else {
             if (centerPanel) {
-                centerPanel.classList.add("center");
-                borderLayout.appendChild(centerPanel);
+                centerPanel.getElement().classList.add("center");
+                borderLayout.appendChild(centerPanel.getElement());
             }
         }
 
         if (southPanel) {
-            southPanel.classList.add("south");
-            borderLayout.appendChild(southPanel);
+            southPanel.getElement().classList.add("south");
+            borderLayout.appendChild(southPanel.getElement());
         }
 
         if (options["parent"]) {
             // console.log(this.options["parent"]);
-            options["parent"].appendChild(borderLayout);
+            if (options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(borderLayout);
+            } else {
+                options["parent"].getElement().appendChild(borderLayout);
+            }
         } else {
             // document.body.appendChild(table);
         }
@@ -167,6 +171,22 @@ class BorderLayout implements Component {
 
     getElement() {
         return this.element;
+    }
+
+    getChildObjects() {
+        return this.childObjects;
+    }
+
+    setChildObjects(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChildObject(key:string) {
+        return this.childObjects.get(key);
+    }
+
+    addChildObject(key: string, object: Component) {
+        this.childObjects.set(id, object);
     }
 }
 

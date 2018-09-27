@@ -110,7 +110,11 @@ class Toolbar implements Component {
 
         if (options["parent"]) {
             // console.log(this.options["parent"]);
-            options["parent"].appendChild(toolbar);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(toolbar);
+            } else {
+                options["parent"].getElement().appendChild(toolbar);
+            }
         } else {
             // document.body.appendChild(toolbar);
         }

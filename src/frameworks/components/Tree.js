@@ -112,7 +112,7 @@ class Tree implements Component {
 
         if (options["parent"]) {
             // console.log(options["parent"]);
-            options["parent"].appendChild(tree);
+            options["parent"].getElement().appendChild(tree);
         } else {
             // document.body.appendChild(tree);
         }

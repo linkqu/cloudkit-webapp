@@ -127,9 +127,13 @@ class Accordion implements Component {
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(accordion);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(accordion);
+            } else {
+                options["parent"].getElement().appendChild(accordion);
+            }
         } else {
-            // document.body.appendChild(button);
+            // document.body.appendChild(accordion);
         }
 
         this.element = accordion;

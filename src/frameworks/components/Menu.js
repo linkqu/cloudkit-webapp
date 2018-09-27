@@ -150,7 +150,11 @@ class Menu implements Component {
 
         if (options["parent"]) {
             // console.log(this.options["parent"]);
-            options["parent"].appendChild(menuContainer);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(menuContainer);
+            } else {
+                options["parent"].getElement().appendChild(menuContainer);
+            }
         } else {
             // document.body.appendChild(button);
         }

@@ -129,7 +129,11 @@ class Tabs implements Component {
 
         if (this.options["parent"]) {
             // console.log(this.options["parent"]);
-            this.options["parent"].appendChild(tabs);
+            if(options["parent"] instanceof HTMLElement) {
+                options["parent"].appendChild(tabs);
+            } else {
+                options["parent"].getElement().appendChild(tabs);
+            }
         } else {
             // document.body.appendChild(button);
         }
