@@ -51,6 +51,7 @@ import {Icon} from "../frameworks/components/Icon";
 import type {Component} from "../frameworks/components/Component";
 import {Panel} from "../frameworks/components/Panel";
 import {FlexLayout} from "../frameworks/layouts/FlexLayout";
+import {Select} from "../frameworks/components/Select";
 
 // import pkg from "../package.json";
 
@@ -208,6 +209,29 @@ let component = Components.buildComponent({
                         options: {
                             content: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M368.5 240H272v-96.5c0-8.8-7.2-16-16-16s-16 7.2-16 16V240h-96.5c-8.8 0-16 7.2-16 16 0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7H240v96.5c0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7 8.8 0 16-7.2 16-16V272h96.5c8.8 0 16-7.2 16-16s-7.2-16-16-16z\"/></svg>"
                         }
+                    }, {
+                        type: Select,
+                        options: {
+                            id: "s1",
+                            name: "select",
+                            field: "name",
+                            dropdownHeight: 100,
+                            data: [{
+                                "name": "test1"
+                            }, {
+                                "name": "test2"
+                            }, {
+                                "name": "test3"
+                            }, {
+                                "name": "test4"
+                            }, {
+                                "name": "test5"
+                            }, {
+                                "name": "test6"
+                            }, {
+                                "name": "test7"
+                            }]
+                        }
                     }]
                 }
             }]
@@ -318,10 +342,14 @@ let component = Components.buildComponent({
                                             type: Button,
                                             options: {
                                                 index: "add",
-                                                text: "新增",
+                                                // text: "新增",
+                                                text: "Add new",
                                                 tooltip: "Add a new bill!",
+                                                icon: {
+                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-add\"/></svg>"
+                                                },
                                                 events: {
-                                                    click: function (event:Event, current:Component, parent:Component) {
+                                                    click: function (event: Event, current: Component, parent: Component) {
                                                         // console.log(parent.getParent().getChild("add-modal"));
                                                         // let modal = component
                                                         //     .getChild("main-center-panel")
@@ -337,13 +365,23 @@ let component = Components.buildComponent({
                                             type: Button,
                                             options: {
                                                 index: "modify",
-                                                text: "修改"
+                                                // text: "修改",
+                                                text: "Modify",
+                                                tooltip: "Modify bill!",
+                                                icon: {
+                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-document\"/></svg>"
+                                                }
                                             }
                                         }, {
                                             type: Button,
                                             options: {
                                                 index: "delete",
-                                                text: "删除"
+                                                // text: "删除",
+                                                text: "Modify",
+                                                tooltip: "Delete a bill!",
+                                                icon: {
+                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-trash\"/></svg>"
+                                                }
                                             }
                                         }, {
                                             type: Separator,
@@ -354,7 +392,23 @@ let component = Components.buildComponent({
                                             type: Button,
                                             options: {
                                                 index: "view",
-                                                text: "查看"
+                                                // text: "查看",
+                                                text: "View",
+                                                tooltip: "View a bill!",
+                                                icon: {
+                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-eye\"/></svg>"
+                                                }
+                                            }
+                                        }, {
+                                            type: Button,
+                                            options: {
+                                                index: "download",
+                                                // text: "导出",
+                                                text: "Export",
+                                                tooltip: "Export bills!",
+                                                icon: {
+                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-download\"/></svg>"
+                                                }
                                             }
                                         }]
                                     }
@@ -462,8 +516,7 @@ let component = Components.buildComponent({
                                         buttons: [{
                                             text: "Close",
                                             events: {
-                                                "click": function (event:Event, current: Component, parent:Component) {
-                                                    console.log("parent: " + parent);
+                                                "click": function (event: Event, current: Component, parent: Component) {
                                                     parent.getParent().hide();
                                                 }
                                             }
@@ -517,16 +570,16 @@ let component = Components.buildComponent({
 document.addEventListener("DOMContentLoaded", function () {
 
     fetch("./data/data.json")
-    .then(function (response) {
-        console.log(
-            "headers: Content-Type=%s, Date=%s;status: %s %s",
-            response.headers.get("Content-Type"),
-            response.headers.get("Date"),
-            response.status,
-            response.statusText
-        );
-        return response.json()
-    }).then(function (json) {
+        .then(function (response) {
+            console.log(
+                "headers: Content-Type=%s, Date=%s;status: %s %s",
+                response.headers.get("Content-Type"),
+                response.headers.get("Date"),
+                response.status,
+                response.statusText
+            );
+            return response.json()
+        }).then(function (json) {
         console.log("parsed json", json)
     }).catch(function (ex) {
         console.log("parsing failed", ex)

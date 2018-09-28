@@ -32,6 +32,7 @@
 
 .widget-tabs .link-bar .link-bar-item.active {
     box-sizing: border-box;
+    border: 1px #dcdee2 dotted;
     border-bottom: 1px solid #2d8cf0;
     transition: transform .3s ease-in-out,-webkit-transform .3s ease-in-out;
     -webkit-transform-origin: 0 0;
@@ -59,7 +60,7 @@
 }
 
 .widget-tabs .view-content {
-
+    border: 1px #dcdee2 dotted;
 }
 
 .widget-tabs .view-content .view-content-block {

@@ -110,7 +110,7 @@ class Modal implements Component {
         content.classList.add("modal-content");
 
         if (options["content"]) {
-            if(options["content"] instanceof String) {
+            if(typeof options["content"] === "string") {
                 content.appendChild(document.createTextNode(options["content"]));
             }
         }

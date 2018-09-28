@@ -99,6 +99,8 @@ class Button implements Component {
 
     element: HTMLElement;
 
+    children: Map = new Map();
+
     /**
      * constructor
      *
@@ -193,6 +195,7 @@ class Button implements Component {
             }
         }
 
+        // styles
         let css = options["css"];
         if (css) {
             for (let key in css) {
@@ -205,7 +208,7 @@ class Button implements Component {
         let tooltipText = options["tooltip"];
         if(options["tooltip"]) {
             let component = Components.buildComponent({
-                parent : document.body,
+                parent : options["parent"],
                 type: Tooltip,
                 options: {
                     target: buttonWidget,

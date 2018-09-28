@@ -1,0 +1,32 @@
+.widget-select {
+    display: inline-block;
+    border: 1px solid #ffffff;
+    border-bottom-color: #dcdee2;
+}
+
+.widget-select > input {
+    border: 0;
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    background: #fff none;
+    vertical-align: middle;
+    position: relative;
+}
+
+.widget-select .select-dropdown {
+    display: none;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.widget-select .select-dropdown .select-list-item {
+    padding: 6px 16px;
+    cursor: pointer;
+}
+
+.widget-select .select-dropdown .select-list-item:hover {
+    background: #ebf7ff;
+}
