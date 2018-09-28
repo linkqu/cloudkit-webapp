@@ -2,16 +2,34 @@
     display: inline-block;
     border: 1px solid #ffffff;
     border-bottom-color: #dcdee2;
+    padding: 0 4px;
 }
 
 .widget-select > input {
     border: 0;
+    outline: none;
     padding: 4px 8px;
     font-size: 12px;
     line-height: 1.5;
     background: #fff none;
     vertical-align: middle;
     position: relative;
+}
+
+.widget-select .arrow-down {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    padding: 4px 8px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.widget-select .arrow-down svg {
+    position: relative;
+    width: 16px;
+    height: 16px;
 }
 
 .widget-select .select-dropdown {
@@ -23,7 +41,7 @@
 }
 
 .widget-select .select-dropdown .select-list-item {
-    padding: 6px 16px;
+    padding: 6px 8px;
     cursor: pointer;
 }
 

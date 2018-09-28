@@ -81,6 +81,7 @@ class Select implements Component {
 
         let input = document.createElement("input");
         input.type = "text";
+        // input.readOnly = true;
         if(options["name"]) {
             input.name = options["name"];
         }
@@ -88,35 +89,68 @@ class Select implements Component {
         if(options["id"]) {
             input.id = options["id"];
         }
-        input.addEventListener("change", function () {
-            let data = [];
-            $this.data.forEach(function (row, index, objs) {
-                if(row["name"].startsWith(input.value)) {
-                    data.push(row);
-                }
-                $this.loadData(data);
-                console.log(data);
-            });
+        // propertychange
+        input.addEventListener("input", function () {
+            if(input.value) {
+                let data = [];
+                $this.data.forEach(function (row, index, objs) {
+                    if(row["name"].startsWith(input.value)) {
+                        data.push(row);
+                    }
+                    // $this.loadData(data);
+                });
+            } else {
+                $this.loadData($this.data);
+            }
         });
         selectWidget.appendChild(input);
 
+        let arrowDownIcon = document.createElement("span");
+        arrowDownIcon.classList.add("arrow-down");
+        // language=HTML
+        arrowDownIcon.innerHTML = `<svg class="glyph-icon" style="width: 16px; height: 16px;"><use xlink:href="#icon-arrow-down"/></svg>`;
+
+        arrowDownIcon.addEventListener("click", function () {
+            selectDropdown.style["display"] = "inline-block";
+            selectDropdown.style["position"] = "absolute";
+            selectDropdown.style["top"] = selectWidget.offsetTop + selectWidget.clientHeight + "px";
+            selectDropdown.style["left"] = selectWidget.offsetLeft + "px";
+            selectDropdown.style["z-index"] = "9999";
+            arrowDownIcon.style.fill = "#2d8cf0";
+            selectWidget.style.borderBottomColor = "#2d8cf0";
+            event.stopPropagation();
+        });
+        selectWidget.appendChild(arrowDownIcon);
+
         let selectDropdown = document.createElement("div");
         selectDropdown.classList.add("select-dropdown");
+        selectDropdown.classList.add("clearfix");
         if(options["dropdownHeight"]) {
             selectDropdown.style.height = options["dropdownHeight"] + "px";
         }
         selectWidget.appendChild(selectDropdown);
 
         let data = options["data"];
+        $this.data = data;
         $this.loadData(data);
         $this.selectList.forEach(function (item, index, objs) {
             item.addEventListener("click", function (event) {
-                    event.stopPropagation();
-                    // selectListItem.getAttribute("data-item")
-                    // console.log("data-item: %o", JSON.parse(selectListItem.getAttribute("data-item")).name);
-                    input.value = JSON.parse(item.getAttribute("data-item"))[options["field"]];
-                    input.setAttribute("data-value", item.getAttribute("data-item"));
-                    selectDropdown.style["display"] = "none";
+
+                let row = JSON.parse(item.getAttribute("data-item"));
+                let text = "";
+                let fields = $this.options["fields"];
+                fields.forEach(function (field, index, objs) {
+                    if(index === 0) {
+                        text += row[field];
+                    } else {
+                        text += ", " + row[field];
+                    }
+                });
+
+                input.value = text;
+                input.setAttribute("data-value", item.getAttribute("data-item"));
+                selectDropdown.style["display"] = "none";
+                event.stopPropagation();
             });
             selectDropdown.appendChild(item);
         });
@@ -127,6 +161,16 @@ class Select implements Component {
             selectDropdown.style["top"] = selectWidget.offsetTop + selectWidget.clientHeight + "px";
             selectDropdown.style["left"] = selectWidget.offsetLeft + "px";
             selectDropdown.style["z-index"] = "9999";
+
+            arrowDownIcon.style.fill = "#2d8cf0";
+            selectWidget.style.borderBottomColor = "#2d8cf0";
+            event.stopPropagation();
+        });
+
+        document.addEventListener("click", function (event) {
+            selectDropdown.style["display"] = "none";
+            arrowDownIcon.style.fill = "#000000";
+            selectWidget.style.borderBottomColor = "#dcdee2";
         });
 
         // renderTo
@@ -178,13 +222,22 @@ class Select implements Component {
 
     loadData(data:Array) {
         let $this = this;
-        $this.data = data;
 
         if(data) {
             data.forEach(function (row, index, objs) {
                 let selectListItem = document.createElement("div");
                 selectListItem.classList.add("select-list-item");
-                selectListItem.appendChild(document.createTextNode(row[$this.options["field"]]));
+
+                let text = "";
+                let fields = $this.options["fields"];
+                fields.forEach(function (field, index, objs) {
+                    if(index === 0) {
+                        text += row[field];
+                    } else {
+                        text += "," + row[field];
+                    }
+                });
+                selectListItem.appendChild(document.createTextNode(text));
                 selectListItem.setAttribute("data-item", JSON.stringify(row));
                 selectListItem.setAttribute("tabindex", -1);
                 $this.selectList.push(selectListItem);
