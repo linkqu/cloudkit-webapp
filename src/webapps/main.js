@@ -289,7 +289,7 @@ let component = Components.buildComponent({
             viewId: VIEW_ID_KEYS.MAIN_SOUTH_PANEL,
             title: "South Panel",
             region: "south",
-            height: 50
+            // height: 50
         }, {
             viewId: VIEW_ID_KEYS.MAIN_CENTER_PANEL,
             title: "Center Panel",
@@ -507,7 +507,7 @@ let component = Components.buildComponent({
             viewId: VIEW_ID_KEYS.MAIN_EAST_PANEL,
             title: "East Panel",
             region: "east",
-            width: 184,
+            // width: 184,
             hidden: true
             // split: true,
         }]

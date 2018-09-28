@@ -33,6 +33,7 @@ import "./Tabs.css";
 import type {Component} from "./Component";
 import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
+import {Panel} from "./Panel";
 
 /**
  * Tabs TabbedPane
@@ -47,6 +48,12 @@ class Tabs implements Component {
     element: HTMLElement;
 
     childObjects: Map = new Map();
+
+    activeIndex:string = "";
+
+    linkBarItems: Map = new Map();
+
+    viewContentBlocks: Map = new Map();
 
     /**
      * constructor
@@ -88,9 +95,9 @@ class Tabs implements Component {
         // let linkBarItems:Array = new Array(items.length);
         if(items) {
             items.forEach(function (item, index) {
+
                 let linkBarItem = document.createElement("div");
                 linkBarItem.classList.add("link-bar-item");
-                let dataViewId = "data-view-id";
                 linkBarItem.setAttribute(Components.VIEW_ID_KEY, item["viewId"] ? item["viewId"] : uuid());
                 linkBarItem.setAttribute("data-index", item["index"]);
                 linkBarItem.appendChild(document.createTextNode(item["title"] ? item["title"] : ""));
@@ -102,14 +109,68 @@ class Tabs implements Component {
                     viewContent.childNodes.forEach(function (node, index) {
                         node.classList.remove("active");
                     });
-                    viewContent.querySelector("div[data-index=" + item["index"] + "]").classList.add("active");
+                    let currentContent = viewContent.querySelector("div[data-index=" + item["index"] + "]");
+                    if(currentContent) {
+                        currentContent.classList.add("active");
+                    }
                 });
-                linkBar.appendChild(linkBarItem);
 
-                let viewContentBlock = document.createElement("div");
-                viewContentBlock.classList.add("view-content-block");
-                viewContentBlock.setAttribute("data-index", item["index"]);
-                viewContentBlock.appendChild(document.createTextNode(item["content"] ? item["content"] : ""));
+                // let viewContentBlock = document.createElement("div");
+                // viewContentBlock.classList.add("view-content-block");
+                // viewContentBlock.setAttribute("data-index", item["index"]);
+                // viewContentBlock.appendChild(document.createTextNode(item["content"] ? item["content"] : ""));
+
+                let viewContentBlock = Components.buildComponent({
+                    parent: viewContent,
+                    type: Panel,
+                    options: {
+                        classes: ["view-content-block"],
+                        attributes: {
+                            "data-index": item["index"],
+                        },
+                        content: item["content"] ? item["content"] : ""
+                    }
+                });
+                // viewContent.appendChild(viewContentBlock);
+                $this.viewContentBlocks.set(item["index"], viewContentBlock);
+
+                if(item["closable"]) {
+                    // linkBarItem.style["padding-right"] = "32px";
+                    let close = document.createElement("span");
+                    close.classList.add("close");
+                    // language=HTML
+                    close.innerHTML =
+                        `
+                        <svg class="glyph-icon" style="width: 16px; height: 16px;" fill="#dcdee2">
+                            <use xlink:href="#icon-close-circle"/>
+                        </svg>
+                        `;
+
+                    close.addEventListener("click", function () {
+
+                    });
+                    linkBarItem.appendChild(close);
+                    close.addEventListener("click", function (event) {
+                        // 阻止冒泡
+                        // w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true；
+                        // 阻止默认行为
+                        // w3c的方法是e.preventDefault()，IE则是使用e.returnValue = false;
+                        event.stopPropagation();
+
+                        if($this.linkBarItems.size > 1) {
+                            linkBarItem.remove();
+                            $this.linkBarItems.delete(item["index"]);
+                            viewContentBlock.getElement().remove();
+                            $this.viewContentBlocks.delete(item["index"]);
+
+                            $this.activeTab($this.linkBarItems.keys().next().value);
+                        } else {
+                            tabsWidget.remove();
+                        }
+                    });
+                }
+                linkBar.appendChild(linkBarItem);
+                $this.linkBarItems.set(item["index"], linkBarItem);
 
                 if (item["items"]) {
                     item["items"].forEach(function (item, index, objs) {
@@ -124,11 +185,11 @@ class Tabs implements Component {
                     });
                 }
 
-                viewContent.appendChild(viewContentBlock);
-
                 if(index === options["activeTab"]) {
-                    linkBarItem.classList.add("active");
-                    viewContentBlock.classList.add("active");
+                    // linkBarItem.classList.add("active");
+                    // viewContentBlock.getElement().classList.add("active");
+                    // $this.activeIndex = options["activeTab"];
+                    $this.activeTab(item["index"]);
                 }
             });
         }
@@ -143,7 +204,7 @@ class Tabs implements Component {
         } else {
             // document.body.appendChild(button);
         }
-        
+
         return $this.element;
     }
 
@@ -173,6 +234,20 @@ class Tabs implements Component {
 
     removeChild(key: string) {
         this.childObjects.delete(key)
+    }
+
+    activeTab(index: string) {
+        let $this = this;
+        this.linkBarItems.forEach(function (item, index, objs) {
+            item.classList.remove("active");
+            $this.viewContentBlocks.get(index).getElement().classList.remove("active");
+        });
+        let linkBarItem = this.linkBarItems.get(index);
+        if(linkBarItem) {
+            linkBarItem.classList.add("active");
+            this.viewContentBlocks.get(index).getElement().classList.add("active");
+            this.activeIndex = index;
+        }
     }
 }
 

@@ -38,6 +38,26 @@
     transform-origin: 0 0;
 }
 
+.widget-tabs .link-bar .link-bar-item .close {
+    display: inline-block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-left: 8px;
+}
+
+.widget-tabs .link-bar .link-bar-item .close svg {
+    position: relative;
+    width: 16px;
+    height: 16px;
+}
+
+.widget-tabs .link-bar .link-bar-item .close:hover svg {
+    fill: #333333;
+}
+
 .widget-tabs .view-content {
 
 }
