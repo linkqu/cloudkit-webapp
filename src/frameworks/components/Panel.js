@@ -76,7 +76,7 @@ class Panel implements Component {
             panelWidget.id = options["id"];
         }
         let width = options["width"], height = options["height"];
-        panelWidget.style.width = width ? width + "px" : null;
+        panelWidget.style.width = width ? width - 1 + "px" : null;
         panelWidget.style.height = height ? height + "px" : null;
 
         if(options["hidden"]) {
