@@ -11,21 +11,25 @@ module.exports = {
     mode: "production",
     // entry: "./src/main.js",
     entry: {
-        // commons: "./src/commons.js",
-        main: "./src/webapps/main.js"
-        // index: "./src/webapps/index.js"
+        index: "./src/webapps/index.js",
+        main: "./src/webapps/main.js",
+        accounts: "./src/webapps/accounts/main.js",
+        contacts: "./src/webapps/contacts/main.js",
+        purchases: "./src/webapps/purchases/main.js",
+        sales: "./src/webapps/sales/main.js"
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        // publicPath: "/assets/",
-        publicPath: "./",
+        // publicPath: "./",
         // filename: "bundle.js",
-        // filename: "[name].js",
+        filename: "[name].js",
         // filename: "bundle.[name].js",
-        filename: "[chunkhash].js",
+        // filename: "[chunkhash].js",
         // chunkFilename: "[id].js",
         // chunkFilename: "[chunkhash].js",
-        chunkFilename: "[name].chunk.js",
+        // chunkFilename: "[id].chunk.js?[chunkhash]",
+        // chunkFilename: "[name].chunk.js",
+        chunkFilename: "[name].chunk.js?[chunkhash]",
         sourceMapFilename: "[file].map",
         libraryTarget: "umd",
     },
@@ -35,7 +39,14 @@ module.exports = {
                 // test: /\.(gif|png|jpe?g|svg)$/i,
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
                 // "url-loader?limit=1024&name=[path][name].[ext]&outputPath=img/&publicPath=output/"
-                loader: "url-loader?limit=8192"
+                // loader: "url-loader?limit=8192"
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        loader: 'image-webpack-loader'
+                        // limit: 500
+                    }
+                }
                 // use: [
                 //     "file-loader",
                 //     {
@@ -182,7 +193,7 @@ module.exports = {
         splitChunks: {
             // all initial async
             // 应该用范围
-            chunks: "async",
+            chunks: "all",
             // 最小尺寸
             minSize: 30000,
             // 最小 chunks
@@ -204,6 +215,7 @@ module.exports = {
                 },
                 // default: false,
                 vendors: {
+                    // /node_modules\//
                     test: /[\\/]node_modules[\\/]/,
                     // split 出来的 chunk 的名字
                     // Third party
@@ -216,7 +228,8 @@ module.exports = {
                     enforce: true
                 },
                 commons: {
-                    test: /commons\/|components\/|containers\/|layouts\//,
+                    // test: /commons\/|components\/|containers\/|layouts\//,
+                    test: /src\/frameworks\//,
                     name: "commons",
                     chunks: "initial",
                     minChunks: 2,
@@ -226,6 +239,7 @@ module.exports = {
             }
         },
         runtimeChunk: {
+            // runtime
             name: "manifest"
         }
     },
@@ -248,11 +262,13 @@ module.exports = {
     },
     plugins: [
         new UglifyJsPlugin(),
+        // index
         new HtmlWebpackPlugin({
-            template: "./src/webapps/index.html",
-            filename:"index.html",
+            template: "./src/webapps/templates/index.html",
+            filename: "./index.html",
             // inject: "head",
             // favicon: "favicon.ico",
+            hash: true,
             minify: {
                 // https://github.com/kangax/html-minifier#options-quick-reference
                 collapseWhitespace: true,
@@ -263,19 +279,57 @@ module.exports = {
                 removeComments: true,
                 removeEmptyAttributes: true
             },
-            // chunks: ["main","index"]
+            chunks: ["manifest", "vendors", "commons", "index"]
+        }),
+        // main
+        new HtmlWebpackPlugin({
+            template: "./src/webapps/templates/main.html",
+            filename: "./main.html",
+            // inject: "head",
+            // favicon: "favicon.ico",
+            hash: true,
+            minify: {
+                // https://github.com/kangax/html-minifier#options-quick-reference
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                // removeAttributeQuotes: true,
+                html5: true,
+                minifyCSS: true,
+                removeComments: true,
+                removeEmptyAttributes: true
+            },
+            chunks: ["manifest", "vendors", "commons", "main"]
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/webapps/templates/module.html",
+            filename: "./accounts/index.html",
+            // inject: "head",
+            // favicon: "favicon.ico",
+            hash: true,
+            minify: {
+                // https://github.com/kangax/html-minifier#options-quick-reference
+                collapseWhitespace: true,
+                conservativeCollapse: true,
+                // removeAttributeQuotes: true,
+                html5: true,
+                minifyCSS: true,
+                removeComments: true,
+                removeEmptyAttributes: true
+            },
+            chunks: ["manifest", "vendors", "commons", "accounts"]
         }),
         new ExtractTextPlugin({
             filename: "[name].css",
             // filename: "bundle.[name].css",
             ignoreOrder: true
         }),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, "./src/webapps/resources"),
-                to: path.resolve(__dirname, "./dist/resources")
-            }
-        ]),
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, "./src/webapps/resources"),
+            to: path.resolve(__dirname, "./dist/resources")
+        }, {
+            from: path.resolve(__dirname, "./src/webapps/data"),
+            to: path.resolve(__dirname, "./dist/data")
+        }]),
         new webpack.BannerPlugin("Webpack"),
         // new CompressionPlugin({
         //     algorithm: "gzip"

@@ -391,7 +391,7 @@ let component = Components.buildComponent({
                                                 sortable: false,
                                                 renderer: function (value) {
                                                     // language=HTML
-                                                    return `<a href='index.html'>Hello ${value}</a>`;
+                                                    return `<a href='templates/index.html'>Hello ${value}</a>`;
                                                 }
                                             },
                                             {
@@ -512,6 +512,26 @@ let component = Components.buildComponent({
             // split: true,
         }]
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    fetch("./data/data.json")
+    .then(function (response) {
+        console.log(
+            "headers: Content-Type=%s, Date=%s;status: %s %s",
+            response.headers.get("Content-Type"),
+            response.headers.get("Date"),
+            response.status,
+            response.statusText
+        );
+        return response.json()
+    }).then(function (json) {
+        console.log("parsed json", json)
+    }).catch(function (ex) {
+        console.log("parsing failed", ex)
+    });
+
 });
 
 // let itemCss = {
