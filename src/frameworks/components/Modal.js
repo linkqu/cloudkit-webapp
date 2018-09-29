@@ -48,6 +48,17 @@ class Modal implements Component {
 
     element: HTMLElement;
 
+    // 拖放信息
+    dragging = {
+        isDragging: false,
+        offset: [],
+        dragColumnIndex: null,
+        dragFirstOffset: null,
+        itemWidth: 0,
+        columnMinWidth: 80,
+        scrollLeft: 0
+    };
+
     children: Map = new Map();
 
     /**
@@ -104,6 +115,55 @@ class Modal implements Component {
         if (options["title"]) {
             title.appendChild(document.createTextNode(options["title"]));
         }
+
+        title.addEventListener('mousedown', function(event){
+            event.preventDefault();
+
+            $this.dragging.isDragging = true;
+            $this.dragging.offset = [
+                event.clientX - parseFloat(modalWidget.style.left),
+                event.clientY - parseFloat(modalWidget.style.top)
+            ];
+
+            title.style.cursor = "move";
+        });
+
+        document.addEventListener("mousemove", function (event) {
+
+            // 拖拽移动
+            if($this.dragging.isDragging){
+                event.preventDefault();
+
+                let x = event.clientX - $this.dragging.offset[0], y = event.clientY - $this.dragging.offset[1];
+                // let isFixed = modalWidget.style.position === "fixed";
+                //
+                // let scrollX = isFixed ? 0 : document.body.scrollLeft;
+                // let scrollY = isFixed ? 0 : document.body.scrollTop;
+
+                console.log("scrollX: %s, scrollY: %s", document.body.scrollLeft, document.body.scrollTop);
+
+                // 控制元素不被拖出窗口外
+                let rightBoundary = document.body.scrollWidth - modalWidget.clientWidth;
+                let bottomBoundary = document.body.scrollHeight - modalWidget.clientHeight;
+
+                // x < scrollX && (x = scrollX);
+                x < 0 && (x = 0);
+                x > rightBoundary && (x = rightBoundary);
+                // y < scrollY && (y = scrollY);
+                y < 0 && (y = 0);
+                y > bottomBoundary && (y = bottomBoundary);
+
+                modalWidget.style.left = x + "px";
+                modalWidget.style.top = y + "px";
+            }
+        });
+
+        document.addEventListener('mouseup', function(event){
+            if($this.dragging.isDragging){
+                $this.dragging.isDragging = false;
+            }
+        });
+
         modalWidget.appendChild(title);
 
         let content = document.createElement("div");

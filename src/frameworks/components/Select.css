@@ -1,8 +1,7 @@
 .widget-select {
     display: inline-block;
-    border: 1px solid #ffffff;
-    border-bottom-color: #dcdee2;
-    padding: 0 4px;
+    border: 1px solid #dcdee2;
+    /*border-bottom-color: #dcdee2;*/
 }
 
 .widget-select > input {
