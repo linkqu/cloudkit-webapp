@@ -38,6 +38,10 @@
     transition: fill .4s linear;
 }
 
+.widget-checkbox > .text {
+    display: inline-block;
+}
+
 .widget-checkbox input[type="checkbox"]:checked ~ label .checkbox-rectangle {
     border-color: #2d8cf0;
 }

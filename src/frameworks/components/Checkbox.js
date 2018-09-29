@@ -95,6 +95,7 @@ class Checkbox implements Component {
         label.appendChild(checkboxIcon);
 
         let checkboxText = document.createElement("span");
+        checkboxText.classList.add("text");
         checkboxText.appendChild(document.createTextNode(
             (options["text"] ? options["text"] : "")
         ));

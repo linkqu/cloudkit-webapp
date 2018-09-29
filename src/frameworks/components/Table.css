@@ -35,13 +35,14 @@
     min-height: 2rem;
     background-color: #f7f7f7;
     color: #333333;
+    border-left: 1px solid #ffffff;
     border-right: 1px solid #dddddd;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     user-select: none;
     text-align: left;
-    padding: 7px 8px;
+    padding: 4px 8px;
 }
 
 .widget-table .table tr th:hover {
@@ -74,8 +75,9 @@
 .widget-table .table tr td {
     vertical-align: middle;
     box-sizing: border-box;
-    border-right: 1px solid #dddddd;
-    border-bottom: 1px solid #e5e5e5;
+    border: 1px solid #ffffff;
+    border-right-color: #dddddd;
+    border-bottom-color: #e5e5e5;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -88,6 +90,7 @@
 
 .widget-table .table tbody tr:first-child td {
     border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #ffffff;
 }
 
 .widget-table .table tbody tr:nth-child(2n) td {
@@ -106,5 +109,5 @@
 
 .widget-table .table-footer {
     border-top: 1px solid #dddddd;
-    /*border-bottom: 1px solid #dddddd;*/
+    border-bottom: 1px solid #ffffff;
 }

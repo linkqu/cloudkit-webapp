@@ -214,7 +214,7 @@ let component = Components.buildComponent({
                         options: {
                             id: "s1",
                             name: "select",
-                            fields: ["name"],
+                            fields: ["name", "value"],
                             dropdownHeight: 100,
                             data: [{
                                 "name": "test1",
