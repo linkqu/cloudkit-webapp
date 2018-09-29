@@ -2,6 +2,7 @@
     display: inline-block;
     border: 1px solid #dcdee2;
     /*border-bottom-color: #dcdee2;*/
+    margin: 0 8px;
 }
 
 .widget-select > input {
