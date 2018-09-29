@@ -33,8 +33,6 @@
     vertical-align: middle;
     box-sizing: border-box;
     min-height: 2rem;
-    padding-top: 7px;
-    padding-bottom: 7px;
     background-color: #f7f7f7;
     color: #333333;
     border-right: 1px solid #dddddd;
@@ -42,6 +40,8 @@
     white-space: nowrap;
     overflow: hidden;
     user-select: none;
+    text-align: left;
+    padding: 7px 8px;
 }
 
 .widget-table .table tr th:hover {
@@ -79,7 +79,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    padding: 0 0.5rem;
+    padding: 0 8px;
     word-wrap: break-word;
     cursor: text;
     line-height: normal;

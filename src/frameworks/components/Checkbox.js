@@ -70,35 +70,35 @@ class Checkbox implements Component {
         checkboxWidget.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
         checkboxWidget.classList.add("widget-checkbox");
 
-        let input = document.createElement("input");
-        input.setAttribute("type", "checkbox");
-        input.id = options["id"] ? options["id"] : null;
-        input.name = options["name"] ? options["name"] : null;
+        let inputCheckbox = document.createElement("input");
+        inputCheckbox.setAttribute("type", "checkbox");
+        inputCheckbox.id = options["id"] ? options["id"] : null;
+        inputCheckbox.name = options["name"] ? options["name"] : null;
         if(options["disabled"] !== undefined) {
-            input.setAttribute("disabled", options["disabled"]);
+            inputCheckbox.setAttribute("disabled", options["disabled"]);
         }
-        checkboxWidget.appendChild(input);
+        checkboxWidget.appendChild(inputCheckbox);
 
         let label = document.createElement("label");
-        label.setAttribute("for", input.id);
+        label.setAttribute("for", inputCheckbox.id);
         checkboxWidget.appendChild(label);
 
-        let checkboxRectangle = document.createElement("span");
-        checkboxRectangle.classList.add("checkbox-rectangle");
+        let checkboxIcon = document.createElement("span");
+        checkboxIcon.classList.add("checkbox-rectangle");
         // language=HTML
-        checkboxRectangle.innerHTML =
+        checkboxIcon.innerHTML =
             "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" width=\"14\" height=\"14\">" +
             "    <path d=\"M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z\"" +
             "        fill=\"none\"" +
             "    />" +
             "</svg>";
-        label.appendChild(checkboxRectangle);
+        label.appendChild(checkboxIcon);
 
-        let textSpan = document.createElement("span");
-        textSpan.appendChild(document.createTextNode(
+        let checkboxText = document.createElement("span");
+        checkboxText.appendChild(document.createTextNode(
             (options["text"] ? options["text"] : "")
         ));
-        label.appendChild(textSpan);
+        label.appendChild(checkboxText);
 
         if (options["parent"]) {
             // console.log(options["parent"]);

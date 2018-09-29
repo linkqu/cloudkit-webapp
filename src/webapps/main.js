@@ -446,6 +446,14 @@ let component = Components.buildComponent({
                                         },
                                         columns: [
                                             {
+                                                index: "id",
+                                                type: Checkbox,
+                                                text: "ID",
+                                                width: 75,
+                                                sortable: false,
+                                                renderer: undefined
+                                            },
+                                            {
                                                 index: "name",
                                                 text: "Employee Name",
                                                 width: 120,
@@ -492,16 +500,17 @@ let component = Components.buildComponent({
                                             }
                                         ],
                                         data: [
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
-                                            ["Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [1, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [2, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [3, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [4, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [5, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [6, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [7, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [8, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
+                                            [9, "Robot", "男", 28, "13590000000", "robot@qq.com", "2018-08-29"],
                                             {
+                                                id: 10,
                                                 name: "Lily",
                                                 sex: "女",
                                                 age: "28",

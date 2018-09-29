@@ -14,6 +14,7 @@
 }
 
 .widget-checkbox .checkbox-rectangle {
+    margin-top: -3px;
     display: inline-block;
     width: 14px;
     height: 14px;

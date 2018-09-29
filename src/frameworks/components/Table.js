@@ -114,27 +114,27 @@ class Table implements Component {
         }
 
         // Table Header
-        let tableHeaderWrapper = document.createElement("div");
-        tableHeaderWrapper.style.width = width ? width + "px" : null;
-        tableHeaderWrapper.classList.add("table-header");
-        tableWidget.appendChild(tableHeaderWrapper);
+        let tableHeader = document.createElement("div");
+        tableHeader.style.width = width ? width + "px" : null;
+        tableHeader.classList.add("table-header");
+        tableWidget.appendChild(tableHeader);
 
-        let tableHeader = document.createElement("table");
-        tableHeader.classList.add("table");
-        tableHeaderWrapper.appendChild(tableHeader);
+        let headerTable = document.createElement("table");
+        headerTable.classList.add("table");
+        tableHeader.appendChild(headerTable);
 
-        let tableHeaderColgroup = document.createElement("colgroup");
-        tableHeader.appendChild(tableHeaderColgroup);
+        let headerTableColgroup = document.createElement("colgroup");
+        headerTable.appendChild(headerTableColgroup);
 
-        let tableHeaderThead = document.createElement("thead");
-        tableHeader.appendChild(tableHeaderThead);
+        let headerTableThead = document.createElement("thead");
+        headerTable.appendChild(headerTableThead);
 
         // Table Content
-        let tableContentWrapper = document.createElement("div");
-        tableContentWrapper.style.width = width ? width + "px" : null;
-        tableContentWrapper.classList.add("table-content");
-        tableWidget.appendChild(tableContentWrapper);
-        tableContentWrapper.addEventListener("scroll", function (e) {
+        let tableContent = document.createElement("div");
+        tableContent.style.width = width ? width + "px" : null;
+        tableContent.classList.add("table-content");
+        tableWidget.appendChild(tableContent);
+        tableContent.addEventListener("scroll", function (e) {
             /*
             screen.availWidth screen.availHeight screen.width screen.height
             window.innerheight window.innerwidth window.outerwidth window.outerheight screenLeft screenTop screenX screenY
@@ -147,70 +147,80 @@ class Table implements Component {
             console.log("scrollLeft: %s, scrollTop: %s", tableContentWrapper.scrollLeft, tableContentWrapper.scrollTop);
             */
 
-            tableHeaderWrapper.scrollLeft = tableContentWrapper.scrollLeft;
-            $this.dragging["scrollLeft"] = tableContentWrapper.scrollLeft;
+            tableHeader.scrollLeft = tableContent.scrollLeft;
+            $this.dragging["scrollLeft"] = tableContent.scrollLeft;
         });
 
         window.addEventListener('resize', function () {
 
         });
 
-        let tableContent = document.createElement("table");
-        tableContent.classList.add("table");
-        tableContentWrapper.appendChild(tableContent);
+        let contentTable = document.createElement("table");
+        contentTable.classList.add("table");
+        tableContent.appendChild(contentTable);
 
-        let tableContentColgroup = document.createElement("colgroup");
-        tableContent.appendChild(tableContentColgroup);
+        let contentTableColgroup = document.createElement("colgroup");
+        contentTable.appendChild(contentTableColgroup);
 
-        let tableContentThead = document.createElement("thead");
-        // tableContent.appendChild(tableContentThead);
+        let contentTableThead = document.createElement("thead");
+        // contentTable.appendChild(contentTableThead);
 
-        let tableContentTbody = document.createElement("tbody");
-        tableContent.appendChild(tableContentTbody);
+        let contentTableTbody = document.createElement("tbody");
+        contentTable.appendChild(contentTableTbody);
 
         let columns = options['columns'];
         if (columns) {
-            let tableHeaderTr = document.createElement("tr");
-            tableHeaderThead.appendChild(tableHeaderTr);
-            let tableContentTr = document.createElement("tr");
-            tableContentThead.appendChild(tableContentTr);
+            let headerTableTr = document.createElement("tr");
+            headerTableThead.appendChild(headerTableTr);
+            let contentTableTr = document.createElement("tr");
+            contentTableThead.appendChild(contentTableTr);
 
             columns.forEach(function (item, index, objs) {
-                let tableHeaderCol = document.createElement("col");
-                tableHeaderColgroup.appendChild(tableHeaderCol);
+                let headerTableCol = document.createElement("col");
+                headerTableColgroup.appendChild(headerTableCol);
 
-                let tableContentCol = document.createElement("col");
-                let tableHeaderTh = document.createElement("th");
-                tableHeaderTh.setAttribute("title", item["text"]);
+                let contentTableCol = document.createElement("col");
+                let headerTableTh = document.createElement("th");
+                headerTableTh.setAttribute("title", item["text"]);
                 if (item["index"]) {
-                    tableHeaderCol.setAttribute("data-index", item["index"]);
-                    tableContentCol.setAttribute("data-index", item["index"]);
-                    tableHeaderTh.setAttribute("data-index", item["index"]);
+                    headerTableCol.setAttribute("data-index", item["index"]);
+                    contentTableCol.setAttribute("data-index", item["index"]);
+                    headerTableTh.setAttribute("data-index", item["index"]);
                 } else {
-                    tableHeaderCol.setAttribute("data-index", index);
-                    tableContentCol.setAttribute("data-index", index);
-                    tableHeaderTh.setAttribute("data-index", index);
+                    headerTableCol.setAttribute("data-index", index);
+                    contentTableCol.setAttribute("data-index", index);
+                    headerTableTh.setAttribute("data-index", index);
                 }
-                tableContentColgroup.appendChild(tableContentCol);
+                contentTableColgroup.appendChild(contentTableCol);
 
-                let tableContentTh = document.createElement("th");
-                tableHeaderTr.appendChild(tableHeaderTh);
-                tableContentTr.appendChild(tableContentTh);
+                let contentTableTh = document.createElement("th");
+                headerTableTr.appendChild(headerTableTh);
+                contentTableTr.appendChild(contentTableTh);
 
-                let text = document.createTextNode(item["text"]);
-                tableHeaderTh.appendChild(text);
-                // tableContentTh.appendChild(document.createTextNode(""));
+                if(item["type"]) {
+                    Components.buildComponent({
+                        type: item["type"],
+                        parent: headerTableTh,
+                        options: {
+                            text: item["text"]
+                        }
+                    });
+                } else {
+                    let text = document.createTextNode(item["text"]);
+                    headerTableTh.appendChild(text);
+                    // tableContentTh.appendChild(document.createTextNode(""));
+                }
 
                 if (item["width"]) {
-                    tableHeaderCol.setAttribute("width", item["width"]);
-                    tableContentCol.setAttribute("width", item["width"]);
+                    headerTableCol.setAttribute("width", item["width"]);
+                    contentTableCol.setAttribute("width", item["width"]);
 
                     // tableHeaderTh.setAttribute("width", item["width"]);
                     // tableContentTh.setAttribute("width", item["width"]);
                 }
 
                 // 添加事件拖拽调整宽度
-                tableHeaderTh.addEventListener("mousemove", function (event) {
+                headerTableTh.addEventListener("mousemove", function (event) {
 
                     // 网页可见区域宽： document.body.clientWidth;
                     // 网页可见区域高： document.body.clientHeight;
@@ -242,18 +252,18 @@ class Table implements Component {
                     // );
 
                     // $this.dragging["isAllowResize"] = this["offsetWidth"] - (event["clientX"] - this['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
-                    $this.dragging["isAllowResize"] = event.target["offsetWidth"] - (event["clientX"] - event.target['offsetLeft'] - $this.element['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
-                    event.target["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
+                    $this.dragging["isAllowResize"] = headerTableTh["offsetWidth"] - (event["clientX"] - headerTableTh['offsetLeft'] - $this.element['offsetLeft']) - $this.dragging["scrollLeft"] <= 8;
+                    headerTableTh["style"].cursor = $this.dragging["isAllowResize"] ? "col-resize" : "";
                 });
 
-                tableHeaderTh.addEventListener("mouseleave", function (event) {
+                headerTableTh.addEventListener("mouseleave", function (event) {
                     if ($this.dragging["isDragging"]) {
                         return;
                     }
                     this["style"].cursor = "";
                 });
 
-                tableHeaderTh.addEventListener("mousedown", function (event) {
+                headerTableTh.addEventListener("mousedown", function (event) {
                     if ($this.dragging["isAllowResize"]) {
                         $this.dragging["isDragging"] = true;
                         event.preventDefault();
@@ -266,7 +276,7 @@ class Table implements Component {
                         $this.dragging["dragColumnIndex"] = this.getAttribute("data-index");
 
                         // TODO
-                        $this.dragging["itemWidth"] = parseInt(tableHeaderCol.width);
+                        $this.dragging["itemWidth"] = parseInt(headerTableCol.width);
                         console.log("itemWidth: %d", $this.dragging["itemWidth"])
                     }
                 });
@@ -280,7 +290,7 @@ class Table implements Component {
                         let y: number = event["clientY"];
                         // console.log("x:" + x + ", y" + y);
 
-                        let targetWidth = parseInt(tableContentColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width);
+                        let targetWidth = parseInt(contentTableColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width);
                         console.log("targetWidth width: %d", targetWidth);
                         $this.dragging["dragWidth"] = $this.dragging["itemWidth"] + x - $this.dragging["dragFirstOffset"];
                         $this.dragging["dragWidth"] = ($this.dragging["dragWidth"] < $this.dragging["columnMinWidth"]) ? $this.dragging["columnMinWidth"] : $this.dragging["dragWidth"];
@@ -289,8 +299,8 @@ class Table implements Component {
                         // console.log("dragColumnIndex: %s", $this.dragging["dragColumnIndex"]);
                         // $this.dragging["currentCssRule"]['style'].width = $this.dragging["dragWidth"] + "px";
 
-                        tableHeaderColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width = $this.dragging["dragWidth"];
-                        tableContentColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width = $this.dragging["dragWidth"];
+                        headerTableColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width = $this.dragging["dragWidth"];
+                        contentTableColgroup.querySelector("col[data-index=" + $this.dragging["dragColumnIndex"] + "]").width = $this.dragging["dragWidth"];
 
                         document.body.style.cursor = "col-resize";
                     }
@@ -311,45 +321,55 @@ class Table implements Component {
                 });
             });
 
-            let tableHeaderCol = document.createElement("col");
-            // tableHeaderCol.setAttribute("width", 0);
-            tableHeaderColgroup.appendChild(tableHeaderCol);
+            let headerTableCol = document.createElement("col");
+            // headerTableCol.setAttribute("width", 0);
+            headerTableColgroup.appendChild(headerTableCol);
 
-            let tableContentCol = document.createElement("col");
-            tableContentColgroup.appendChild(tableContentCol);
+            let contentTableCol = document.createElement("col");
+            contentTableColgroup.appendChild(contentTableCol);
 
-            let tableHeaderTh = document.createElement("th");
-            tableHeaderTr.appendChild(tableHeaderTh);
+            let headerTableTh = document.createElement("th");
+            headerTableTr.appendChild(headerTableTh);
 
-            let tableContentTh = document.createElement("th");
-            tableContentTr.appendChild(tableContentTh);
+            let contentTableTh = document.createElement("th");
+            contentTableTr.appendChild(contentTableTh);
         }
 
         let data = options["data"];
         if (data && data.length > 0) {
             data.forEach(function (item, index, objs) {
-                let tableContentTr = document.createElement("tr");
+                let contentTableTr = document.createElement("tr");
                 columns.forEach(function (column, index, objs) {
-                    let tableContentTd = document.createElement("td");
+                    let contentTableTd = document.createElement("td");
                     // let width = columns[index]["width"];
                     // if(width) {
-                    //     tableContentTd.setAttribute("width", width);
+                    //     contentTable.setAttribute("width", width);
                     // }
-                    tableContentTr.appendChild(tableContentTd);
+                    contentTableTr.appendChild(contentTableTd);
 
                     let renderer = column["renderer"];
 
                     let value = (item instanceof Array) ? item[index] : item[column["index"]];
-                    if (renderer) {
-                        tableContentTd.innerHTML = renderer(value);
+
+                    if(column["type"]) {
+                        Components.buildComponent({
+                            type: column["type"],
+                            parent: contentTableTd,
+                            options: {
+                                id: value,
+                                text: value
+                            }
+                        });
+                    } else if (renderer) {
+                        contentTableTd.innerHTML = renderer(value);
                     } else {
                         let text = document.createTextNode(value);
-                        tableContentTd.appendChild(text);
+                        contentTableTd.appendChild(text);
                     }
                 });
-                let tableContentTd = document.createElement("td");
-                tableContentTr.appendChild(tableContentTd);
-                tableContentTbody.appendChild(tableContentTr);
+                let contentTableTd = document.createElement("td");
+                contentTableTr.appendChild(contentTableTd);
+                contentTableTbody.appendChild(contentTableTr);
             });
         }
 
@@ -386,16 +406,16 @@ class Table implements Component {
             // console.debug(tableHeaderWrapper.clientHeight);
             let tableContentHeight = height ? (height - (tableTitle ? tableTitle.offsetHeight : 0)) : 0;
             tableContentHeight = tableContentHeight ? (
-                    tableContentHeight - tableHeaderWrapper.offsetHeight - (tableFooter ? tableFooter.offsetHeight : 0)
-                ) : 0;
-            tableContentWrapper.style.height = tableContentHeight + "px";
+                    tableContentHeight - tableHeader.offsetHeight - (tableFooter ? tableFooter.offsetHeight : 0)
+            ) : 0;
+            tableContent.style.height = tableContentHeight + "px";
 
-            let scrollAllowWidth = tableContentWrapper.scrollWidth - tableContentWrapper.clientWidth;
-            let scrollAllowHeight = tableContentWrapper.scrollHeight - tableContentWrapper.clientHeight;
+            let scrollAllowWidth = tableContent.scrollWidth - tableContent.clientWidth;
+            let scrollAllowHeight = tableContent.scrollHeight - tableContent.clientHeight;
             // console.log("scrollWidth: %s, scrollHeight: %s", scrollWidth, scrollHeight);
 
             if (scrollAllowHeight) {
-                if (!tableHeader.querySelector('.table-patch')) {
+                if (!headerTable.querySelector('.table-patch')) {
                     // let patchWidth = tableHeader.scrollWidth - scrollWidth;
                     // let patchHeight = tableHeader.scrollHeight - scrollHeight;
                     // console.log("patch width: %d, patch height: %d", patchWidth, patchHeight);
@@ -405,10 +425,10 @@ class Table implements Component {
                     patchElement.classList.add("table-patch");
 
                     patchElement.width = scrollBarWidth;
-                    tableHeader.querySelector('tr').appendChild(patchElement);
+                    headerTable.querySelector('tr').appendChild(patchElement);
                 }
             } else {
-                let tablePatch = tableHeader.querySelector('.table-patch');
+                let tablePatch = headerTable.querySelector('.table-patch');
                 if (tablePatch) {
                     tablePatch.remove();
                 }

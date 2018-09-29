@@ -103,6 +103,38 @@ class Select implements Component {
                 $this.loadData($this.data);
             }
         });
+        input.addEventListener("keyup", function (event) {
+            let keyCode = event.keyCode;
+
+            // Tab键展开
+            if(keyCode === 9){
+
+            }
+        });
+        input.addEventListener("keydown", function (event) {
+            let keyCode = event.keyCode;
+            // Tab键隐藏
+            if(keyCode === 9){
+
+            }
+
+            // Up 键
+            if(keyCode === 38) {
+
+            }
+
+            // Down 键
+            if(keyCode === 40){
+
+            }
+
+            // Enter 键
+            if(keyCode === 13){
+                event.preventDefault();
+                // click
+            }
+        });
+
         selectWidget.appendChild(input);
 
         let arrowDownIcon = document.createElement("span");
