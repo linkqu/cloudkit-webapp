@@ -35,7 +35,9 @@ import uuid from "uuid/v1";
 import {Panel} from "../components/Panel";
 
 /**
- * AbsoluteLayout
+ * FlexLayout
+ * http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+ * http://static.vgee.cn/static/index.html
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
