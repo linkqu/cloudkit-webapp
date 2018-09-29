@@ -34,6 +34,9 @@ import type {Component} from "./Component";
 import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
 
+// const ICON_CHECKBOX_OUTLINE: string = `<svg class="glyph-icon" style="width: 16px; height: 16px;"><use xlink:href="#icon-checkbox-outline"/></svg>`;
+// const ICON_CHECKBOX: string = `<svg class="glyph-icon" style="width: 16px; height: 16px;"><use xlink:href="#icon-checkbox"/></svg>`;
+
 /**
  * Checkbox
  *
@@ -95,7 +98,6 @@ class Checkbox implements Component {
         label.appendChild(checkboxIcon);
 
         let checkboxText = document.createElement("span");
-        checkboxText.classList.add("text");
         checkboxText.appendChild(document.createTextNode(
             (options["text"] ? options["text"] : "")
         ));
