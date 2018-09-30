@@ -30,7 +30,7 @@
  */
 
 /**
- * Icon
+ * Colors
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
@@ -72,6 +72,8 @@ class Colors {
 
     /** Magenta/法式洋红明快、感性 */
     static MAGENTA = ["#fff0f6", "#ffd6e7", "#ffadd2", "#ff85c0", "#f759ab", "#eb2f96", "#c41d7f", "#9e1068", "#780650", "#520339"];
+
+    static GREY = ["#ffffff", "#fafafa", "#f5f5f5", "#e8e8e8", "#d9d9d9", "#bfbfbf", "#8c8c8c", "#595959", "#262626", "#000000"];
 
     // static colors = new Map([["", ""], ["", "#7FFFAA"]]);
 }

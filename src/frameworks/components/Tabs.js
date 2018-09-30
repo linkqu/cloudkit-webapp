@@ -34,6 +34,8 @@ import type {Component} from "./Component";
 import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
 import {Panel} from "./Panel";
+import {Icons} from "../commons/Icons";
+import {Colors} from "../commons/Colors";
 
 /**
  * Tabs TabbedPane
@@ -138,13 +140,9 @@ class Tabs implements Component {
                     // linkBarItem.style["padding-right"] = "32px";
                     let close = document.createElement("span");
                     close.classList.add("close");
+                    close.style.fill = Colors.GREY[4];
                     // language=HTML
-                    close.innerHTML =
-                        `
-                        <svg class="glyph-icon" style="width: 16px; height: 16px;" fill="#dcdee2">
-                            <use xlink:href="#icon-close-circle"/>
-                        </svg>
-                        `;
+                    close.innerHTML = Icons.reference(Icons.ICON_CLOSE_CIRCLE);
 
                     close.addEventListener("click", function () {
 
@@ -152,9 +150,9 @@ class Tabs implements Component {
                     linkBarItem.appendChild(close);
                     close.addEventListener("click", function (event) {
                         // 阻止冒泡
-                        // w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true；
+                        // w3c标准方法是e.stopPropagation()，IE 使用e.cancelBubble = true；
                         // 阻止默认行为
-                        // w3c的方法是e.preventDefault()，IE则是使用e.returnValue = false;
+                        // w3c标准方法是e.preventDefault()，IE 使用e.returnValue = false;
                         event.stopPropagation();
 
                         if($this.linkBarItems.size > 1) {

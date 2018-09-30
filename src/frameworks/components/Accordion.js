@@ -93,6 +93,26 @@ class Accordion implements Component {
                 title.appendChild(document.createTextNode(item["title"]));
                 accordionItem.appendChild(title);
 
+                // styles
+                let styles = options["css"];
+                if (styles) {
+                    for (let key in styles) {
+                        if (styles.hasOwnProperty(key)) {
+                            title.style[key] = styles[key];
+                        }
+                    }
+                }
+
+                // styles
+                let css = item["css"];
+                if (css) {
+                    for (let key in css) {
+                        if (css.hasOwnProperty(key)) {
+                            title.style[key] = css[key];
+                        }
+                    }
+                }
+
                 let childContainer = document.createElement("div");
                 childContainer.classList.add("child-container");
                 accordionItem.appendChild(childContainer);

@@ -92,7 +92,8 @@ class BorderLayout implements Component {
                         title: item["title"]
                     },
                     width: item["width"],
-                    height: item["height"]
+                    height: item["height"],
+                    css: item["css"]
                 },
                 hidden: item["hidden"]
             });

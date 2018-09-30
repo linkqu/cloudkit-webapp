@@ -52,6 +52,7 @@ import type {Component} from "../frameworks/components/Component";
 import {Panel} from "../frameworks/components/Panel";
 import {FlexLayout} from "../frameworks/layouts/FlexLayout";
 import {Select} from "../frameworks/components/Select";
+import {Icons} from "../frameworks/commons/Icons";
 
 // import pkg from "../package.json";
 
@@ -140,7 +141,7 @@ let component = Components.buildComponent({
                         options: {
                             // text: "Bookmarks",
                             icon: {
-                                content: `<svg class="glyph-icon" style="width: 16px; height: 16px;"><use xlink:href="#icon-menu"/></svg>`
+                                content: Icons.ICON_MENU
                             },
                             events: {
                                 click: function () {
@@ -204,11 +205,11 @@ let component = Components.buildComponent({
                             name: "type",
                             text: "Radio"
                         }
-                    }, {
-                        type: Icon,
-                        options: {
-                            content: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path d=\"M368.5 240H272v-96.5c0-8.8-7.2-16-16-16s-16 7.2-16 16V240h-96.5c-8.8 0-16 7.2-16 16 0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7H240v96.5c0 4.4 1.8 8.4 4.7 11.3 2.9 2.9 6.9 4.7 11.3 4.7 8.8 0 16-7.2 16-16V272h96.5c8.8 0 16-7.2 16-16s-7.2-16-16-16z\"/></svg>"
-                        }
+                    // }, {
+                    //     type: Icon,
+                    //     options: {
+                    //         content: Icons.ICON_TRASH
+                    //     }
                     }, {
                         type: Select,
                         options: {
@@ -248,12 +249,15 @@ let component = Components.buildComponent({
             region: "west",
             width: 200,
             // split: true,
-            css: {
-                // "background-color": Colors.BLUE[1]
-            },
+            // css: {
+            //     "background-color": Colors.PURPLE[9]
+            // },
             items: [{
                 type: Accordion,
                 options: {
+                    // css: {
+                    //     "background-color": Colors.PURPLE[9]
+                    // },
                     items: [{
                         id: "bookmarks",
                         title: "Bookmarks",
@@ -353,7 +357,7 @@ let component = Components.buildComponent({
                                                 text: "Add new",
                                                 tooltip: "Add a new bill!",
                                                 icon: {
-                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-add\"/></svg>"
+                                                    content: Icons.ICON_ADD
                                                 },
                                                 events: {
                                                     click: function (event: Event, current: Component, parent: Component) {
@@ -376,7 +380,7 @@ let component = Components.buildComponent({
                                                 text: "Modify",
                                                 tooltip: "Modify bill!",
                                                 icon: {
-                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-document\"/></svg>"
+                                                    content: Icons.ICON_DOCUMENT
                                                 }
                                             }
                                         }, {
@@ -387,7 +391,7 @@ let component = Components.buildComponent({
                                                 text: "Modify",
                                                 tooltip: "Delete a bill!",
                                                 icon: {
-                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-trash\"/></svg>"
+                                                    content: Icons.ICON_TRASH
                                                 }
                                             }
                                         }, {
@@ -403,7 +407,7 @@ let component = Components.buildComponent({
                                                 text: "View",
                                                 tooltip: "View a bill!",
                                                 icon: {
-                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-eye\"/></svg>"
+                                                    content: Icons.ICON_EYE
                                                 }
                                             }
                                         }, {
@@ -414,7 +418,7 @@ let component = Components.buildComponent({
                                                 text: "Export",
                                                 tooltip: "Export bills!",
                                                 icon: {
-                                                    content: "<svg class=\"glyph-icon\" style=\"width: 16px; height: 16px;\"><use xlink:href=\"#icon-download\"/></svg>"
+                                                    content: Icons.ICON_DOWNLOAD
                                                 }
                                             }
                                         }]

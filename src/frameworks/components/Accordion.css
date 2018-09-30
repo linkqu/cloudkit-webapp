@@ -1,5 +1,7 @@
 .widget-accordion .accordion-item > .title {
-    border-bottom: 1px solid #999999;
+    margin-top: -1px;
+    border-bottom: 1px solid #dcdee2;
+    border-top: 1px solid #dcdee2;
     /*border-top-color: #dae6db;*/
 }
 .widget-accordion .accordion-item .title {
@@ -11,6 +13,7 @@
     cursor: pointer;
     background-color: whiteSmoke;
     transition: background-color 0.15s ease-in-out;
+    /*color: #c3cdd5;*/
 }
 
 .widget-accordion .accordion-item .checkbox:checked + label,
@@ -29,13 +32,13 @@
     height: 100%;
     line-height: 2.25em;
     text-align: center;
-    background-color: #cfd9e0;
+    /*background-color: #cfd9e0;*/
     transition: background-color 0.15s ease-in-out;
 }
 
 .widget-accordion .accordion-item .title:hover:after,
 .widget-accordion .accordion-item .item-checkbox:checked + .title:after {
-    background-color: #cfd9e0;
+    /*background-color: #cfd9e0;*/
 }
 
 .widget-accordion .accordion-item .item-checkbox:checked + .title:after {
@@ -51,10 +54,14 @@
     opacity: 0;
     height: 0;
     /*margin-bottom: 0.5em;*/
+    padding: 0;
     transition: opacity 0.5s ease-in-out;
     overflow: hidden;
 }
 
+.widget-accordion .accordion-item .child-item:last-child .item-checkbox:checked ~ .item-text {
+    padding-bottom: 0.5em;
+}
 .widget-accordion .accordion-item .item-checkbox:checked ~ .child-container,
 .widget-accordion .accordion-item .child-item .item-checkbox:checked ~ .item-text {
     opacity: 1;

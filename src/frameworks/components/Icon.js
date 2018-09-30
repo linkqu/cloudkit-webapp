@@ -33,6 +33,7 @@ import type {Component} from "./Component";
 import "./Icon.css";
 import {Components} from "../commons/Components";
 import uuid from "uuid/v1";
+import {Icons} from "../commons/Icons";
 
 /**
  * Icon
@@ -92,7 +93,7 @@ class Icon implements Component {
 
         let content = options["content"];
         if (content) {
-            iconWidget.innerHTML = content;
+            iconWidget.innerHTML = Icons.reference(content);
         }
 
         if (options["parent"]) {
