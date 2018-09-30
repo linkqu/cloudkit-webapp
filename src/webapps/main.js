@@ -380,7 +380,7 @@ let component = Components.buildComponent({
                                                 text: "Modify",
                                                 tooltip: "Modify bill!",
                                                 icon: {
-                                                    content: Icons.ICON_DOCUMENT
+                                                    content: Icons.ICON_MODIFY
                                                 }
                                             }
                                         }, {
@@ -388,7 +388,7 @@ let component = Components.buildComponent({
                                             options: {
                                                 index: "delete",
                                                 // text: "删除",
-                                                text: "Modify",
+                                                text: "Delete",
                                                 tooltip: "Delete a bill!",
                                                 icon: {
                                                     content: Icons.ICON_TRASH
@@ -407,7 +407,7 @@ let component = Components.buildComponent({
                                                 text: "View",
                                                 tooltip: "View a bill!",
                                                 icon: {
-                                                    content: Icons.ICON_EYE
+                                                    content: Icons.ICON_MAGNIFIER
                                                 }
                                             }
                                         }, {

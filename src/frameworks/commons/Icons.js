@@ -31,6 +31,7 @@
 
 /**
  * Icons
+ * https://ionicons.com/
  *
  * @author hongquanli <hongquanli@qq.com>
  * @version 1.0 2018-06-16 6:57 PM
@@ -42,8 +43,12 @@ class Icons {
     static ICON_EYE:string = "icon-eye";
     static ICON_TRASH:string = "icon-trash";
     static ICON_DOCUMENT:string = "icon-document";
-    static ICON_ADD:string = "icon-add";
     static ICON_MENU:string = "icon-menu";
+    static ICON_PLUS:string = "icon-plus";
+
+    static ICON_MODIFY:string = "icon-modify";
+    static ICON_ADD:string = "icon-add";
+    static ICON_MAGNIFIER:string = "icon-magnifier";
 
     // symbolIcon glyphIcon
     static reference(id:string) {

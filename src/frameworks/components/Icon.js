@@ -91,6 +91,10 @@ class Icon implements Component {
             }
         }
 
+        if (options["fill"]) {
+            iconWidget.style.fill = options["fill"];
+        }
+
         let content = options["content"];
         if (content) {
             iconWidget.innerHTML = Icons.reference(content);
