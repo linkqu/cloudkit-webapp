@@ -32,11 +32,14 @@
 import {fetch} from "whatwg-fetch";
 
 // Components
+import type {Component} from "../frameworks/components/Component";
 import {Colors} from "../frameworks/commons/Colors";
+import {Icons} from "../frameworks/commons/Icons";
+import {BorderLayout} from "../frameworks/layouts/BorderLayout";
+import {FlexLayout} from "../frameworks/layouts/FlexLayout";
 import {Button} from "../frameworks/components/Button";
 import {TextField} from "../frameworks/components/TextField";
 import {Table} from "../frameworks/components/Table";
-import {BorderLayout} from "../frameworks/layouts/BorderLayout";
 import {Checkbox} from "../frameworks/components/Checkbox";
 import {Radio} from "../frameworks/components/Radio";
 import {Modal} from "../frameworks/components/Modal";
@@ -48,11 +51,8 @@ import {Toolbar} from "../frameworks/components/Toolbar";
 import {Components} from "../frameworks/commons/Components";
 import {Separator} from "../frameworks/components/Separator";
 import {Icon} from "../frameworks/components/Icon";
-import type {Component} from "../frameworks/components/Component";
 import {Panel} from "../frameworks/components/Panel";
-import {FlexLayout} from "../frameworks/layouts/FlexLayout";
 import {Select} from "../frameworks/components/Select";
-import {Icons} from "../frameworks/commons/Icons";
 
 // import pkg from "../package.json";
 
@@ -65,10 +65,9 @@ const VIEW_ID_KEYS = {
     MAIN_CENTER_PANEL: "main-center-panel",
     MAIN_SOUTH_PANEL: "main-south-panel",
     MAIN_EAST_PANEL: "main-east-panel",
-
 };
 
-let component = Components.buildComponent({
+let mainPage = {
     id: "main",
     viewId: VIEW_ID_KEYS.MAIN_COMPONENT,
     parent: document.body,
@@ -144,8 +143,9 @@ let component = Components.buildComponent({
                                 content: Icons.ICON_MENU
                             },
                             events: {
-                                click: function () {
-                                    component.getChild(VIEW_ID_KEYS.MAIN_WEST_PANEL).toggle();
+                                click: function (event: Event, current: Component, parent: Component) {
+                                    console.log(parent.getParent());
+                                    parent.getParent().getParent().getChild(VIEW_ID_KEYS.MAIN_WEST_PANEL).toggle();
                                 }
                             }
                         }
@@ -205,11 +205,11 @@ let component = Components.buildComponent({
                             name: "type",
                             text: "Radio"
                         }
-                    // }, {
-                    //     type: Icon,
-                    //     options: {
-                    //         content: Icons.ICON_TRASH
-                    //     }
+                        // }, {
+                        //     type: Icon,
+                        //     options: {
+                        //         content: Icons.ICON_TRASH
+                        //     }
                     }, {
                         type: Select,
                         options: {
@@ -433,7 +433,7 @@ let component = Components.buildComponent({
                                         // css: {
                                         //     "color": Color.RED[9]
                                         // },
-                                        title: "Employee Information Table",
+                                        // title: "Employee Information Table",
                                         pageable: {
                                             totalElements: 220,
                                             pageSize: 20,
@@ -585,7 +585,9 @@ let component = Components.buildComponent({
             // split: true,
         }]
     }
-});
+};
+
+let component = Components.buildComponent(mainPage);
 
 document.addEventListener("DOMContentLoaded", function () {
 

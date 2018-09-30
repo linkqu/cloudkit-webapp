@@ -1,10 +1,12 @@
 .widget-toolbar {
     padding: 4px 0;
     border: 1px solid #dcdee2;
+    background: #fafafa;
 }
 
 .widget-toolbar .widget-button {
     border-color: transparent;
+    background: transparent;
 }
 
 .widget-toolbar .widget-button:hover {
