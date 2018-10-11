@@ -147,6 +147,19 @@ SET GLOBAL max_allowed_packet = 2*1024*1024*10
 
 
 ------------------------------------------------------------------------------------------------------------------------
+
+
+SHOW FULL PROCESSLIST
+KILL 11108
+
+## 当前运行的所有事务
+SELECT * FROM information_schema.INNODB_TRX
+## 当前出现的锁
+SELECT * FROM  information_schema.INNODB_LOCKS;
+## 锁等待的对应关系
+SELECT * FROM  information_schema.INNODB_LOCK_WAITS
+
+------------------------------------------------------------------------------------------------------------------------
 =               等于
 <>              不等于
 <               小于
