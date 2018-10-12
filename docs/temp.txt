@@ -159,6 +159,11 @@ SELECT * FROM  information_schema.INNODB_LOCKS;
 ## 锁等待的对应关系
 SELECT * FROM  information_schema.INNODB_LOCK_WAITS
 
+SHOW VARIABLES LIKE  '%innodb_lock_wait_timeout%'
+SHOW GLOBAL VARIABLES LIKE  '%innodb_lock_wait_timeout%'
+
+SET GLOBAL INNODB_LOCK_WAIT_TIMEOUT = 300;
+
 ------------------------------------------------------------------------------------------------------------------------
 =               等于
 <>              不等于
