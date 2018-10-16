@@ -186,17 +186,20 @@ SET GLOBAL max_allowed_packet = 2*1024*1024*10
 
 
 ------------------------------------------------------------------------------------------------------------------------
+## 查询是否锁表
+SHOW OPEN TABLES WHERE IN_USE > 0;
 
-
+## 查询进程
 SHOW FULL PROCESSLIST
+## KILL 进程
 KILL 11108
 
 ## 当前运行的所有事务
-SELECT * FROM information_schema.INNODB_TRX
+SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX
 ## 当前出现的锁
-SELECT * FROM  information_schema.INNODB_LOCKS;
+SELECT * FROM  INFORMATION_SCHEMA.INNODB_LOCKS;
 ## 锁等待的对应关系
-SELECT * FROM  information_schema.INNODB_LOCK_WAITS
+SELECT * FROM  INFORMATION_SCHEMA.INNODB_LOCK_WAITS
 
 SHOW VARIABLES LIKE  '%innodb_lock_wait_timeout%'
 SHOW GLOBAL VARIABLES LIKE  '%innodb_lock_wait_timeout%'
