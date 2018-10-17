@@ -289,11 +289,14 @@ Read Committed（读取提交）        X        V              V
 Repeatable Read（可重复读）       X           X           V
 Serializable（可串行化）          X       X               X
 
+MySQL 已移除
 innodb_locks_unsafe_for_binlog=1
 
 
 ## 查看当前二进制日志记录格式
 show variables like 'binlog_format';
+
+@Transactional(isolation = Isolation.READ_UNCOMMITTED)
 
 ------------------------------------------------------------------------------------------------------------------------、
 # Other default tuning values
@@ -442,7 +445,7 @@ secure-file-priv="C:/ProgramData/MySQL/MySQL Server 8.0/Uploads"
 # SUPER privileges to allow the administrator to login even if the
 # connection limit has been reached.
 # 151
-max_connections=1500
+max_connections=1000
 
 # The number of open tables for all threads. Increasing this value
 # increases the number of file descriptors that mysqld requires.
