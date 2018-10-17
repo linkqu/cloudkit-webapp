@@ -11,8 +11,6 @@
 4、分配权限
     rabbitmqctl.bat set_permissions -p / root ".*" ".*" ".*"
 
-
-
 * 其他命令
 
     查看状态：rabbitmqctl.bat status
