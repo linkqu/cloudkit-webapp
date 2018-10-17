@@ -376,6 +376,7 @@ no-beep
 #
 # server_type=2
 [mysqld]
+innodb_lock_wait_timeout=50
 
 # The next three options are mutually exclusive to SERVER_PORT below.
 # skip-networking
