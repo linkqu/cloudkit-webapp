@@ -292,6 +292,9 @@ Serializable（可串行化）          X       X               X
 innodb_locks_unsafe_for_binlog=1
 
 
+## 查看当前二进制日志记录格式
+show variables like 'binlog_format';
+
 ------------------------------------------------------------------------------------------------------------------------、
 # Other default tuning values
 # MySQL Server Instance Configuration File
