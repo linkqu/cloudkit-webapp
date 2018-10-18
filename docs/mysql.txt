@@ -665,7 +665,7 @@ SELECT * FROM information_schema.INNODB_LOCKS;
 ## 锁等待的对应关系
 SELECT * FROM information_schema.INNODB_LOCK_WAITS
 ## 查询是否锁表
-SHOW OPEN TABLES WHERE IN_USE > 0;
+SHOW OPEN TABLES WHERE `DATABASE` = 'test' AND IN_USE > 0;
 
 SELECT * FROM performance_schema.DATA_LOCKS;
 SELECT * FROM performance_schema.DATA_LOCK_WAITS;
