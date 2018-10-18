@@ -695,7 +695,10 @@ purge master logs to 'mysql-bin.000002';
 ## 刷新时，新生成一个日志文件
 flush logs
 
-SELECT * FROM MYSQL.PROC WHERE DB = 'ecs' AND `TYPE` = 'PROCEDURE' AND BODY like '%START TRANSACTION%' AND body NOT LIKE '%COMMIT%'
+SHOW CREATE PROCEDURE proc_name;
+SHOW CREATE FUNCTION func_name;
+
+SELECT * FROM MYSQL.PROC WHERE DB = 'test' AND `TYPE` = 'PROCEDURE' AND BODY like '%START TRANSACTION%' AND body NOT LIKE '%COMMIT%'
 
 
 
