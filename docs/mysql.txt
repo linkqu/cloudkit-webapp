@@ -642,3 +642,60 @@ loose_mysqlx_port=33060
 
 # READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.
 transaction_isolation=REPEATABLE-READ
+
+
+
+-- SELECT @@AUTOCOMMIT;
+SHOW VARIABLES LIKE '%autocommit%';
+SHOW VARIABLES LIKE '%transaction_isolation%';
+SELECT CONNECTION_ID();
+SHOW ENGINE INNODB MUTEX;
+SHOW ENGINE INNODB STATUS;
+## 查询进程
+SHOW FULL PROCESSLIST;
+## KILL 进程
+KILL 11108
+## 当前运行的所有事务
+SELECT * FROM information_schema.INNODB_TRX;
+## 当前出现的锁
+SELECT * FROM information_schema.INNODB_LOCKS;
+## 锁等待的对应关系
+SELECT * FROM information_schema.INNODB_LOCK_WAITS
+## 查询是否锁表
+SHOW OPEN TABLES WHERE IN_USE > 0;
+
+SELECT * FROM performance_schema.DATA_LOCKS;
+SELECT * FROM performance_schema.DATA_LOCK_WAITS;
+
+SELECT CURRENT_TIMESTAMP()
+
+SHOW CREATE PROCEDURE proc_name;
+SHOW CREATE FUNCTION func_name;
+
+show variables like 'log_%';
+## 获取binlog文件列表
+show binary logs;
+## 只查看第一个binlog文件的内容
+show binlog events;
+## 查看指定binlog文件的内容
+show binlog events in 'LAPTOP-GKM89GLG-bin.000001';
+show binlog events in 'LAPTOP-GKM89GLG-bin.000001' from 8224 limit 2,10
+## 查看当前正在写入的binlog文件
+show master status
+
+-- 手动删除binlog
+## 删除master的binlog
+reset master;
+## 删除slave的中继日志
+reset slave;
+## 删除指定日期以前的日志索引中binlog日志文件
+purge master logs before '2012-03-30 17:20:00';
+## 删除指定日志文件的日志索引中binlog日志文件
+purge master logs to 'mysql-bin.000002';
+## 刷新时，新生成一个日志文件
+flush logs
+
+SELECT * FROM MYSQL.PROC WHERE DB = 'ecs' AND `TYPE` = 'PROCEDURE' AND BODY like '%START TRANSACTION%' AND body NOT LIKE '%COMMIT%'
+
+
+
