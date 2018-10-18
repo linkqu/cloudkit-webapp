@@ -206,6 +206,12 @@ SET GLOBAL max_allowed_packet = 2*1024*1024*10
 
 
 ------------------------------------------------------------------------------------------------------------------------
+
+SELECT @@AUTOCOMMIT;
+SELECT CONNECTION_ID();
+
+SET FOREIGN_KEY_CHECKS = 0;
+
 SHOW ENGINE INNODB MUTEX
 SHOW ENGINE INNODB STATUS
 
@@ -294,10 +300,13 @@ innodb_locks_unsafe_for_binlog=1
 
 
 ## 查看当前二进制日志记录格式
-show variables like 'binlog_format';
+SHOW VARIABLES LIKE 'binlog_format';
 
 @Transactional(isolation = Isolation.READ_UNCOMMITTED)
 
+
+
+autocommit=0
 ------------------------------------------------------------------------------------------------------------------------、
 # Other default tuning values
 # MySQL Server Instance Configuration File
@@ -632,5 +641,4 @@ sync_relay_log_info=10000
 loose_mysqlx_port=33060
 
 # READ-UNCOMMITTED, READ-COMMITTED, REPEATABLE-READ, SERIALIZABLE.
-transaction_isolation=READ-COMMITTED
-innodb_locks_unsafe_for_binlog=1
+transaction_isolation=REPEATABLE-READ
