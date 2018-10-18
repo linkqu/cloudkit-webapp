@@ -1,20 +1,17 @@
 配置环境变量
-    rabbitmq路径：RABBITMQ_HOME
+rabbitmq路径：RABBITMQ_HOME
 
 1、开启管理插件
-    rabbitmqctl start_app
-    rabbitmq-plugins enable rabbitmq_management
+rabbitmqctl start_app
+rabbitmq-plugins enable rabbitmq_management
 2、添加用户
-    rabbitmqctl.bat add_user root sz9KpaJt
+rabbitmqctl.bat add_user root sz9KpaJt
 3、设置管理员用户
-    rabbitmqctl.bat set_user_tags root administrator
+rabbitmqctl.bat set_user_tags root administrator
 4、分配权限
-    rabbitmqctl.bat set_permissions -p / root ".*" ".*" ".*"
+rabbitmqctl.bat set_permissions -p / root ".*" ".*" ".*"
 
 * 其他命令
-
-    查看状态：rabbitmqctl.bat status
-
-    查询用户：rabbitmqctl.bat list_users
-
-    查询vhosts： rabbitmqctl.bat list_vhosts
+查看状态：rabbitmqctl.bat status
+查询用户：rabbitmqctl.bat list_users
+查询vhosts： rabbitmqctl.bat list_vhosts
