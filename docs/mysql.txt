@@ -1,4 +1,7 @@
 MySQL8.0设置远程访问权限
+CREATE USER 'root'@'%' IDENTIFIED BY '';
+GRANT ALL ON *.* TO 'root'@'%';
+
 1.登录MySQL
 mysql -u root -p
 输入您的密码
