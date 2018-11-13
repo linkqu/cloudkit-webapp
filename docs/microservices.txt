@@ -1,0 +1,59 @@
+Service Discovery
+A dynamic directory that enables client side load balancing and smart routing
+
+Circuit Breaker
+Microservice fault tolerance with a monitoring dashboard
+
+Configuration Server
+Dynamic, centralized configuration management for your decentralized applications
+
+API Gateway
+Single entry point for API consumers (browsers, devices, other APIs)
+
+Distributed Tracing
+Automated application instrumentation and operational visibility for distributed systems
+
+Security
+Login/Signup
+Authentication
+Authorization
+
+OAuth2
+Support for single sign on, token relay and token exchange
+
+Consumer-Driven Contracts
+Service evolution patterns to support both HTTP based and message based APIs
+
+Distributed/versioned configuration
+Service registration and discovery
+Routing
+Service-to-service calls
+Load balancing
+Circuit Breakers
+Global locks
+Leadership election and cluster state
+Distributed messaging
+Registry
+
+Task
+Pipelines
+Connectors
+Function
+Cluster
+Transport
+Metrics
+Broker
+CLI
+Stream
+Monitoring
+Logging
+Message Bus
+
+Contract
+HTTP Requests validation
+
+Latency and Fault Tolerance for Distributed Systems
+Hystrix is a latency and fault tolerance library designed to isolate points of access to remote systems, services and 3rd party libraries, stop cascading failure and enable resilience in complex distributed systems where failure is inevitable.
+
+
+Dashboard
