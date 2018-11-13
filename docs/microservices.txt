@@ -1,7 +1,7 @@
-Service Discovery
+Dynamic Service Discovery
 A dynamic directory that enables client side load balancing and smart routing
 
-Circuit Breaker
+Circuit Breakers
 Microservice fault tolerance with a monitoring dashboard
 
 Configuration Server
@@ -34,6 +34,7 @@ Global locks
 Leadership election and cluster state
 Distributed messaging
 Registry
+Health checks
 
 Task
 Pipelines
@@ -49,11 +50,32 @@ Monitoring
 Logging
 Message Bus
 
+Distributed transaction
+
 Contract
 HTTP Requests validation
+
+Observability
+Proxy
 
 Latency and Fault Tolerance for Distributed Systems
 Hystrix is a latency and fault tolerance library designed to isolate points of access to remote systems, services and 3rd party libraries, stop cascading failure and enable resilience in complex distributed systems where failure is inevitable.
 
+Pilot provides service discovery for the Envoy sidecars, traffic management capabilities for intelligent routing (e.g., A/B tests, canary deployments, etc.), and resiliency (timeouts, retries, circuit breakers, etc.).
+
+Citadel provides strong service-to-service and end-user authentication with built-in identity and credential management. You can use Citadel to upgrade unencrypted traffic in the service mesh. Using Citadel, operators can enforce policies based on service identity rather than on network controls. Starting from release 0.5, you can use Istio’s authorization feature to control who can access your services.
 
 Dashboard
+
+
+discovery, load balancing, failure recovery, metrics, and monitoring
+A/B testing, canary releases, rate limiting, access control, and end-to-end authentication
+
+
+The term service mesh is used to describe the network of microservices that make up such applications and the interactions between them. As a service mesh grows in size and complexity, it can become harder to understand and manage. Its requirements can include discovery, load balancing, failure recovery, metrics, and monitoring. A service mesh also often has more complex operational requirements, like A/B testing, canary releases, rate limiting, access control, and end-to-end authentication.
+
+Automatic load balancing for HTTP, gRPC, WebSocket, and TCP traffic.
+Fine-grained control of traffic behavior with rich routing rules, retries, failovers, and fault injection.
+A pluggable policy layer and configuration API supporting access controls, rate limits and quotas.
+Automatic metrics, logs, and traces for all traffic within a cluster, including cluster ingress and egress.
+Secure service-to-service communication in a cluster with strong identity-based authentication and authorization.
