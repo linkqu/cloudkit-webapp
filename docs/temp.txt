@@ -12,25 +12,56 @@ consignee/assignee 受托人
 A network error (such as timeout, interrupted connection or unreachable host) has occurred.
 
 
-=               等于
-<>              不等于
+==              等于
+<>或!=          不等于
 <               小于
 <=              小于或等于
 >               大于
 >=              大于或等于
-LIKE            包含
-NOT LIKE        不包含
-START WITH      开始以
-END WITH        结束以
-IS NULL         是 NULL
-IS NOT NULL     不是 NULL
-IS EMPTY        是空的
-IS NOT EMPTY    不是空的
+LIKE/CONTAINS   包含
+NOT_LIKE        不包含
+STARTS_WITH     开始以
+ENDS WITH       结束以
+IS_NULL         是 NULL
+IS_NOT_NULL     不是 NULL
+IS_EMPTY        是空的
+IS_NOT_EMPTY    不是空的
 BETWEEN         介于
-NOT BETWEEN     非介于
+NOT_BETWEEN     非介于
 IN              在列表中
-NOT IN          不在列表中
+NOT_IN          不在列表中
+IS_NULL
+IS_NOT_NULL
+IS_EMPTY
+IS_NOT_EMPTY
 
+SUM 求和
+AVERAGE 平均数
+
+ROUND    四舍五入
+CEILING  向上取整
+FLOOR    向下取整
+
+MAX 取最大值
+MIN 取最小值
+
+&& AND  逻辑与
+|| OR   逻辑或
+!       逻辑非
+
++
+-
+*
+/
+%
+
+NAME
+GROUP
+DESCRIPTION
+EXPRESSION
+
+
+LOGIC_EXPRESSION
 
 rows
 
