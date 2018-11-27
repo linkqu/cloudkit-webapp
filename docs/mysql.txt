@@ -1,5 +1,5 @@
 MySQL8.0设置远程访问权限
-CREATE USER 'root'@'%' IDENTIFIED BY '';
+CREATE USER 'root'@'%' IDENTIFIED BY 'rootroot'; XedoVGCZ
 GRANT ALL ON *.* TO 'root'@'%';
 
 1.登录MySQL

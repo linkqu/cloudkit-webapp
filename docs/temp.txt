@@ -68,3 +68,9 @@ rows
 
 ------------------------------------------------------------------------------------------------------------------------
 document.querySelectorAll("ul span[mx-click]").forEach(function(item){item.click()});
+
+
+系统模块 Module
+功能 Function
+资源URL Resource
+菜单 Menu
