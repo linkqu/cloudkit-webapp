@@ -1,9 +1,10 @@
 [
     "button", {
-        class: "test", onclick: function() {
+        class: "test",
+        onclick: function() {
             alert("hello")
         }
     },"A button"，[
         // Child nodes
     ]
-]
+]s
