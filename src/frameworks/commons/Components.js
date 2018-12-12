@@ -94,7 +94,8 @@ class Components {
                 if(attributes.hasOwnProperty(attributeKey)) {
                     // console.log(typeof attributes[attributeKey]);
                     if(typeof attributes[attributeKey] === "function") {
-                        element.setAttribute(attributeKey, "javascript:" + attributes[attributeKey]);
+                        // events
+                        element.addEventListener(attributeKey, attributes[attributeKey]);
                     } else {
                         element.setAttribute(attributeKey, attributes[attributeKey]);
                     }

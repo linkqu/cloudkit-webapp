@@ -649,7 +649,7 @@ let element = [
     "button",
     {
         "class": "test",
-        "onclick": function() {
+        "click": function () {
             alert('hello');
         }
     },
