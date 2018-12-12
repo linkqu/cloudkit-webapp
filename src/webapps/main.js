@@ -648,6 +648,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let element = [
     "button",
     {
+        "id": "button",
         "class": "test",
         "click": function () {
             alert('hello');
@@ -656,7 +657,7 @@ let element = [
     [
         // Child nodes
         [
-            "i", {}, []
+            "i", {}, ["icon "]
         ],
         "A button"
     ]
