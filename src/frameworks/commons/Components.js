@@ -55,7 +55,7 @@ class Components {
     static VIEW_ID_KEY = "data-view-id";
 
     /**
-     * buildComponent
+     * Build component
      */
     static buildComponent(options: JSON) {
         try {
@@ -78,8 +78,45 @@ class Components {
 
     }
 
-    static buildDocumentObject() {
+    /**
+     *
+     * Build documentObject
+     *
+     * @param elements
+     * @returns {HTMLElement | HTMLSelectElement | HTMLLegendElement | HTMLTableCaptionElement | HTMLTextAreaElement | HTMLModElement | HTMLHRElement | HTMLOutputElement | HTMLPreElement | HTMLEmbedElement | HTMLCanvasElement | HTMLFrameSetElement | HTMLMarqueeElement | HTMLScriptElement | HTMLInputElement | HTMLUnknownElement | HTMLMetaElement | HTMLStyleElement | HTMLObjectElement | HTMLTemplateElement | MSHTMLWebViewElement | HTMLBRElement | HTMLAudioElement | HTMLIFrameElement | HTMLMapElement | HTMLTableElement | HTMLAnchorElement | HTMLMenuElement | HTMLPictureElement | HTMLParagraphElement | HTMLTableDataCellElement | HTMLTableSectionElement | HTMLQuoteElement | HTMLTableHeaderCellElement | HTMLProgressElement | HTMLLIElement | HTMLTableRowElement | HTMLFontElement | HTMLSpanElement | HTMLTableColElement | HTMLOptGroupElement | HTMLDataElement | HTMLDListElement | HTMLFieldSetElement | HTMLSourceElement | HTMLBodyElement | HTMLDirectoryElement | HTMLDivElement | HTMLUListElement | HTMLHtmlElement | HTMLAreaElement | HTMLMeterElement | HTMLAppletElement | HTMLFrameElement | HTMLOptionElement | HTMLImageElement | HTMLLinkElement | HTMLHeadingElement | HTMLVideoElement | HTMLBaseFontElement | HTMLTitleElement | HTMLButtonElement | HTMLHeadElement | HTMLParamElement | HTMLTrackElement | HTMLOListElement | HTMLDataListElement | HTMLLabelElement | HTMLFormElement | HTMLTimeElement | HTMLBaseElement}
+     */
+    static buildDocumentObject(elements: Array) {
+        let element = document.createElement(elements[0]);
 
+        let attributes = elements[1];
+        if(attributes) {
+            for (let attributeKey in attributes) {
+                if(attributes.hasOwnProperty(attributeKey)) {
+                    // console.log(typeof attributes[attributeKey]);
+                    if(typeof attributes[attributeKey] === "function") {
+                        element.setAttribute(attributeKey, "javascript:" + attributes[attributeKey]);
+                    } else {
+                        element.setAttribute(attributeKey, attributes[attributeKey]);
+                    }
+                }
+            }
+        }
+
+        let children = elements[2];
+        if(children) {
+            children.forEach(function (child) {
+                // console.log(typeof child);
+                if (typeof child === "object") {
+                    let childElement = Components.buildDocumentObject(child);
+                    element.appendChild(childElement);
+                } else {
+                    let text = document.createTextNode(child);
+                    element.appendChild(text);
+                }
+            });
+        }
+
+        return element;
     }
 }
 

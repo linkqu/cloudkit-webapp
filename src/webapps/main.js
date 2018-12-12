@@ -644,3 +644,24 @@ document.addEventListener("DOMContentLoaded", function () {
 //         }]
 //     }
 // });
+
+let element = [
+    "button",
+    {
+        "class": "test",
+        "onclick": function() {
+            alert('hello');
+        }
+    },
+    [
+        // Child nodes
+        [
+            "i", {}, []
+        ],
+        "A button"
+    ]
+];
+
+document.body.appendChild(
+    Components.buildDocumentObject(element)
+);
