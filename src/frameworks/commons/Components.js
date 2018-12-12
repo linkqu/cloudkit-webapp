@@ -77,6 +77,10 @@ class Components {
         }
 
     }
+
+    static buildDocumentObject() {
+
+    }
 }
 
 export {Components};

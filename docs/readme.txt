@@ -4,7 +4,9 @@
         onclick: function() {
             alert("hello")
         }
-    },"A button"，[
+    },
+    "A button",
+    [
         // Child nodes
     ]
-]s
+]
