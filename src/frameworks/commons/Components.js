@@ -119,6 +119,47 @@ class Components {
 
         return element;
     }
+
+    static buildDocumentElements(elements: JSON) {
+        let element = document.createElement(elements["type"]);
+
+        let attributes = elements["attributes"];
+        if(attributes) {
+            for (let attributeKey in attributes) {
+                if(attributes.hasOwnProperty(attributeKey)) {
+                    element.setAttribute(
+                        attributeKey, attributes[attributeKey]
+                    );
+                }
+            }
+        }
+
+        let text = elements["text"];
+        if(text) {
+            let textNode = document.createTextNode(text);
+            element.appendChild(textNode);
+        }
+
+        let events = elements["events"];
+        if(events) {
+            for (let eventKey in events) {
+                if(events.hasOwnProperty(eventKey)) {
+                    element.addEventListener(
+                        eventKey, events[eventKey]
+                    );
+                }
+            }
+        }
+
+        let children = elements["children"];
+        if(children) {
+            children.forEach(function (child) {
+                element.appendChild(Components.buildDocumentElements(child));
+            });
+        }
+
+        return element;
+    }
 }
 
 export {Components};

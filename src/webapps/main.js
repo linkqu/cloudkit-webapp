@@ -645,24 +645,55 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 // });
 
-let element = [
-    "button",
-    {
-        "id": "button",
-        "class": "test",
+// let element = [
+//     "button",
+//     {
+//         "id": "button",
+//         "class": "test",
+//         "click": function () {
+//             alert('hello');
+//         }
+//     },
+//     [
+//         // Child nodes
+//         [
+//             "i", {}, ["icon "]
+//         ],
+//         "A button"
+//     ]
+// ];
+//
+// document.body.appendChild(
+//     Components.buildDocumentObject(element)
+// );
+
+let element = {
+    "type": "div",
+    "attributes": {
+        "id": "simple",
+        "class": "simple"
+    },
+    "events": {
         "click": function () {
-            alert('hello');
+            alert("hello");
         }
     },
-    [
-        // Child nodes
-        [
-            "i", {}, ["icon "]
-        ],
-        "A button"
+    "children": [
+        {
+            "type": "a",
+            "text": "Link",
+            "attributes": {
+                "href": "http://www.baidu.com"
+            },
+            "events": {
+                "click": function () {
+                    alert("hello");
+                }
+            }
+        }
     ]
-];
+};
 
 document.body.appendChild(
-    Components.buildDocumentObject(element)
+    Components.buildDocumentElements(element)
 );

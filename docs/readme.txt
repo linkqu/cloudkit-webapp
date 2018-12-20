@@ -17,20 +17,19 @@
 ]
 
 {
-     "button" : {
-         "attributes": {
-            "id": "",
-            "name": "",
-            "class": ""
-         },
-         text: "",
-         "events": {
-             click: function() {
-                  alert("hello")
-             }
-         },
-         "children": {
-
+     "type": "button",
+     "text": "",
+     "attributes": {
+        "id": "",
+        "name": "",
+        "class": ""
+     },
+     "events": {
+         click: function() {
+              alert("hello");
          }
-     }
+     },
+     "children": [
+
+     ]
 }
