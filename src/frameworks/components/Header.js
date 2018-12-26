@@ -45,6 +45,8 @@ class Header implements Component {
 
     element: HTMLElement;
 
+    children: Map = new Map();
+
     /**
      * constructor
      *
@@ -69,7 +71,7 @@ class Header implements Component {
         let component = document.createElement("div");
         $this.element = component;
         component.setAttribute(Components.VIEW_ID_KEY, options["viewId"] ? options["viewId"] : uuid());
-        component.classList.add("");
+        // component.classList.add("");
 
         // renderTo
         if (options["parent"]) {
@@ -88,6 +90,30 @@ class Header implements Component {
 
     getElement() {
         return this.element;
+    }
+
+    getParent() {
+        return this.options["parent"];
+    }
+
+    getChildren() {
+        return this.childObjects;
+    }
+
+    setChildren(objects: Map<string, Component>) {
+        this.childObjects = objects;
+    }
+
+    getChild(key: string) {
+        return this.childObjects.get(key);
+    }
+
+    addChild(key: string, object: Component) {
+        this.childObjects.set(key, object);
+    }
+
+    removeChild(key: string) {
+        this.childObjects.delete(key)
     }
 }
 
