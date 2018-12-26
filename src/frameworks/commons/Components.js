@@ -78,87 +78,97 @@ class Components {
 
     }
 
-    /**
-     *
-     * Build documentObject
-     *
-     * @param elements
-     * @returns {HTMLElement | HTMLSelectElement | HTMLLegendElement | HTMLTableCaptionElement | HTMLTextAreaElement | HTMLModElement | HTMLHRElement | HTMLOutputElement | HTMLPreElement | HTMLEmbedElement | HTMLCanvasElement | HTMLFrameSetElement | HTMLMarqueeElement | HTMLScriptElement | HTMLInputElement | HTMLUnknownElement | HTMLMetaElement | HTMLStyleElement | HTMLObjectElement | HTMLTemplateElement | MSHTMLWebViewElement | HTMLBRElement | HTMLAudioElement | HTMLIFrameElement | HTMLMapElement | HTMLTableElement | HTMLAnchorElement | HTMLMenuElement | HTMLPictureElement | HTMLParagraphElement | HTMLTableDataCellElement | HTMLTableSectionElement | HTMLQuoteElement | HTMLTableHeaderCellElement | HTMLProgressElement | HTMLLIElement | HTMLTableRowElement | HTMLFontElement | HTMLSpanElement | HTMLTableColElement | HTMLOptGroupElement | HTMLDataElement | HTMLDListElement | HTMLFieldSetElement | HTMLSourceElement | HTMLBodyElement | HTMLDirectoryElement | HTMLDivElement | HTMLUListElement | HTMLHtmlElement | HTMLAreaElement | HTMLMeterElement | HTMLAppletElement | HTMLFrameElement | HTMLOptionElement | HTMLImageElement | HTMLLinkElement | HTMLHeadingElement | HTMLVideoElement | HTMLBaseFontElement | HTMLTitleElement | HTMLButtonElement | HTMLHeadElement | HTMLParamElement | HTMLTrackElement | HTMLOListElement | HTMLDataListElement | HTMLLabelElement | HTMLFormElement | HTMLTimeElement | HTMLBaseElement}
-     */
-    static buildDocumentObject(elements: Array) {
-        let element = document.createElement(elements[0]);
+    // /**
+    //  *
+    //  * Build documentObject
+    //  *
+    //  * @param elements
+    //  * @returns {HTMLElement | HTMLSelectElement | HTMLLegendElement | HTMLTableCaptionElement | HTMLTextAreaElement | HTMLModElement | HTMLHRElement | HTMLOutputElement | HTMLPreElement | HTMLEmbedElement | HTMLCanvasElement | HTMLFrameSetElement | HTMLMarqueeElement | HTMLScriptElement | HTMLInputElement | HTMLUnknownElement | HTMLMetaElement | HTMLStyleElement | HTMLObjectElement | HTMLTemplateElement | MSHTMLWebViewElement | HTMLBRElement | HTMLAudioElement | HTMLIFrameElement | HTMLMapElement | HTMLTableElement | HTMLAnchorElement | HTMLMenuElement | HTMLPictureElement | HTMLParagraphElement | HTMLTableDataCellElement | HTMLTableSectionElement | HTMLQuoteElement | HTMLTableHeaderCellElement | HTMLProgressElement | HTMLLIElement | HTMLTableRowElement | HTMLFontElement | HTMLSpanElement | HTMLTableColElement | HTMLOptGroupElement | HTMLDataElement | HTMLDListElement | HTMLFieldSetElement | HTMLSourceElement | HTMLBodyElement | HTMLDirectoryElement | HTMLDivElement | HTMLUListElement | HTMLHtmlElement | HTMLAreaElement | HTMLMeterElement | HTMLAppletElement | HTMLFrameElement | HTMLOptionElement | HTMLImageElement | HTMLLinkElement | HTMLHeadingElement | HTMLVideoElement | HTMLBaseFontElement | HTMLTitleElement | HTMLButtonElement | HTMLHeadElement | HTMLParamElement | HTMLTrackElement | HTMLOListElement | HTMLDataListElement | HTMLLabelElement | HTMLFormElement | HTMLTimeElement | HTMLBaseElement}
+    //  */
+    // static buildDocumentObject(elements: Array) {
+    //     let element = document.createElement(elements[0]);
+    //
+    //     let attributes = elements[1];
+    //     if(attributes) {
+    //         for (let attributeKey in attributes) {
+    //             if(attributes.hasOwnProperty(attributeKey)) {
+    //                 // console.log(typeof attributes[attributeKey]);
+    //                 if(typeof attributes[attributeKey] === "function") {
+    //                     // events
+    //                     element.addEventListener(attributeKey, attributes[attributeKey]);
+    //                 } else {
+    //                     element.setAttribute(attributeKey, attributes[attributeKey]);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     let children = elements[2];
+    //     if(children) {
+    //         children.forEach(function (child) {
+    //             // console.log(typeof child);
+    //             if (typeof child === "object") {
+    //                 let childElement = Components.buildDocumentObject(child);
+    //                 element.appendChild(childElement);
+    //             } else {
+    //                 let text = document.createTextNode(child);
+    //                 element.appendChild(text);
+    //             }
+    //         });
+    //     }
+    //
+    //     return element;
+    // }
 
-        let attributes = elements[1];
+    static buildElementObject(definition: JSON) {
+        let elementObject = document.createElement(definition["type"]);
+
+        let attributes = definition["attributes"];
         if(attributes) {
             for (let attributeKey in attributes) {
                 if(attributes.hasOwnProperty(attributeKey)) {
-                    // console.log(typeof attributes[attributeKey]);
-                    if(typeof attributes[attributeKey] === "function") {
-                        // events
-                        element.addEventListener(attributeKey, attributes[attributeKey]);
-                    } else {
-                        element.setAttribute(attributeKey, attributes[attributeKey]);
-                    }
-                }
-            }
-        }
-
-        let children = elements[2];
-        if(children) {
-            children.forEach(function (child) {
-                // console.log(typeof child);
-                if (typeof child === "object") {
-                    let childElement = Components.buildDocumentObject(child);
-                    element.appendChild(childElement);
-                } else {
-                    let text = document.createTextNode(child);
-                    element.appendChild(text);
-                }
-            });
-        }
-
-        return element;
-    }
-
-    static buildDocumentElements(elements: JSON) {
-        let element = document.createElement(elements["type"]);
-
-        let attributes = elements["attributes"];
-        if(attributes) {
-            for (let attributeKey in attributes) {
-                if(attributes.hasOwnProperty(attributeKey)) {
-                    element.setAttribute(
+                    elementObject.setAttribute(
                         attributeKey, attributes[attributeKey]
                     );
                 }
             }
         }
 
-        let text = elements["text"];
+        let text = definition["text"];
         if(text) {
             let textNode = document.createTextNode(text);
-            element.appendChild(textNode);
+            elementObject.appendChild(textNode);
         }
 
-        let events = elements["events"];
-        if(events) {
+        let events = definition["events"];
+        //
+        // if(events) {
+        //     for (let eventKey in events) {
+        //         if(events.hasOwnProperty(eventKey)) {
+        //             elementObject.addEventListener(
+        //                 eventKey, events[eventKey]
+        //             );
+        //         }
+        //     }
+        // }
+        events && function () {
             for (let eventKey in events) {
                 if(events.hasOwnProperty(eventKey)) {
-                    element.addEventListener(
+                    elementObject.addEventListener(
                         eventKey, events[eventKey]
                     );
                 }
             }
-        }
+        }();
 
-        let children = elements["children"];
+        let children = definition["children"];
         if(children) {
             children.forEach(function (child) {
-                element.appendChild(Components.buildDocumentElements(child));
+                elementObject.appendChild(Components.buildElementObject(child));
             });
         }
 
-        return element;
+        return elementObject;
     }
 }
 

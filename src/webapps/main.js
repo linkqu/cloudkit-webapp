@@ -695,5 +695,5 @@ let element = {
 };
 
 document.body.appendChild(
-    Components.buildDocumentElements(element)
+    Components.buildElementObject(element)
 );
