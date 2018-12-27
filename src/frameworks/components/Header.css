@@ -1,0 +1,37 @@
+.widget-header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 11;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    color: #999999;
+    height: 50px;
+    background-color: #F7F7F8;
+    padding-right: 20px;
+}
+
+.widget-header .brand {
+    display: flex;
+    align-items: center;
+    background: #ebebeb;
+    min-width: 205px;
+    padding-left: 20px;
+}
+
+.widget-header .brand .logo {
+    display: flex;
+    align-items: center;
+    min-width: 180px;
+}
+
+.widget-header .brand .logo .icon-logo {
+    height: 35px;
+}
+
+.widget-header .brand .logo .text {
+    margin: 0 0 0 5px;
+    color: #02303A;
+    font-size: 15px;
+}
