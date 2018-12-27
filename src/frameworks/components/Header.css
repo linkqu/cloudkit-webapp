@@ -20,6 +20,10 @@
     padding-left: 20px;
 }
 
+.widget-header .brand a {
+    text-decoration: none;
+}
+
 .widget-header .brand .logo {
     display: flex;
     align-items: center;

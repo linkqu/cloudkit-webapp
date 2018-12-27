@@ -79,6 +79,7 @@ class Header implements Component {
         component.appendChild(brandElement);
 
         let brandLinkElement = document.createElement("a");
+        brandLinkElement.href = "/";
         brandElement.appendChild(brandLinkElement);
 
         let brandLogoElement = document.createElement("div");
