@@ -38,20 +38,20 @@
  */
 class Icons {
 
-    static ICON_CLOSE_CIRCLE:string = "icon-close-circle";
-    static ICON_DOWNLOAD:string = "icon-download";
-    static ICON_EYE:string = "icon-eye";
-    static ICON_TRASH:string = "icon-trash";
-    static ICON_DOCUMENT:string = "icon-document";
-    static ICON_MENU:string = "icon-menu";
-    static ICON_PLUS:string = "icon-plus";
+    static ICON_CLOSE_CIRCLE: string = "icon-close-circle";
+    static ICON_DOWNLOAD: string = "icon-download";
+    static ICON_EYE: string = "icon-eye";
+    static ICON_TRASH: string = "icon-trash";
+    static ICON_DOCUMENT: string = "icon-document";
+    static ICON_MENU: string = "icon-menu";
+    static ICON_PLUS: string = "icon-plus";
 
-    static ICON_MODIFY:string = "icon-modify";
-    static ICON_ADD:string = "icon-add";
-    static ICON_MAGNIFIER:string = "icon-magnifier";
+    static ICON_MODIFY: string = "icon-modify";
+    static ICON_ADD: string = "icon-add";
+    static ICON_MAGNIFIER: string = "icon-magnifier";
 
     // symbolIcon glyphIcon
-    static reference(id:string) {
+    static reference(id: string) {
         return `<svg class="glyph-icon" style="width: 16px; height: 16px;"><use xlink:href="#${id}"/></svg>`;
     }
 
