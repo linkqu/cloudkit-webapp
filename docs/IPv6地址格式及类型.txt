@@ -57,3 +57,26 @@ FF02::1 链路本地范围所有节点多播地址
 FF01::2 节点本地范围所有路由器多播地址
 FF02::2 链路本地范围所有路由器多播地址
 FF05::2 站点本地范围所有路由器多播地址
+
+
+
+server {
+     listen       8080;
+     client_body_timeout 60000;
+     client_max_body_size 1024m;
+     send_timeout       60000;
+     client_header_buffer_size 16k;
+     large_client_header_buffers 4 64k;
+
+     proxy_headers_hash_bucket_size 1024;
+     proxy_headers_hash_max_size 4096;
+     proxy_read_timeout 60000;
+     proxy_send_timeout 60000;
+
+     location / {
+         auth_basic "Please enter your password:";
+         auth_basic_user_file /var/www/vhosts/htpasswd;
+         resolver 8.8.8.8;
+         proxy_pass http://$http_host$request_uri;
+     }
+ }

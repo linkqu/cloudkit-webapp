@@ -42,20 +42,61 @@ import uuid from "uuid/v1";
  */
 class Components {
 
-    // static COMPONENT_TYPE = {
-    //     Accordion: Accordion,
-    //     Button: Button,
-    //     Checkbox: Checkbox,
-    //     Toolbar: Toolbar,
-    //     Table: Table,
-    //     EditText: EditText,
-    //     Menu: Menu
-    // };
-
     static VIEW_ID_KEY = "data-view-id";
 
+    static buildElementObject(definition: JSON) {
+        let elementObject = document.createElement(definition["type"]);
+
+        let attributes = definition["attributes"];
+        if(attributes) {
+            for (let attributeKey in attributes) {
+                if(attributes.hasOwnProperty(attributeKey)) {
+                    elementObject.setAttribute(
+                        attributeKey, attributes[attributeKey]
+                    );
+                }
+            }
+        }
+
+        let text = definition["text"];
+        if(text) {
+            let textNode = document.createTextNode(text);
+            elementObject.appendChild(textNode);
+        }
+
+        let events = definition["events"];
+        //
+        // if(events) {
+        //     for (let eventKey in events) {
+        //         if(events.hasOwnProperty(eventKey)) {
+        //             elementObject.addEventListener(
+        //                 eventKey, events[eventKey]
+        //             );
+        //         }
+        //     }
+        // }
+        events && function () {
+            for (let eventKey in events) {
+                if(events.hasOwnProperty(eventKey)) {
+                    elementObject.addEventListener(
+                        eventKey, events[eventKey]
+                    );
+                }
+            }
+        }();
+
+        let children = definition["children"];
+        if(children) {
+            children.forEach(function (child) {
+                elementObject.appendChild(Components.buildElementObject(child));
+            });
+        }
+
+        return elementObject;
+    }
+
     /**
-     * buildComponent
+     * Build component
      */
     static buildComponent(options: JSON) {
         try {

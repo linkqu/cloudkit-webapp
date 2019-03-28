@@ -28,3 +28,45 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+import {Components} from "../frameworks/commons/Components";
+import {BorderLayout} from "../frameworks/layouts/BorderLayout";
+import {Header} from "../frameworks/components/Header";
+
+// let aLink = {
+//     "type": "div",
+//     "attributes": {
+//         "id": "simple",
+//         "class": "simple"
+//     },
+//     "events": {
+//         "click": function () {
+//             alert("hello");
+//         }
+//     },
+//     // Child nodes
+//     "children": [{
+//         "type": "a",
+//         "text": "Link",
+//         "attributes": {
+//             "href": "http://www.baidu.com"
+//         },
+//         "events": {
+//             "click": function () {
+//                 alert("hello");
+//             }
+//         }
+//     }]
+// };
+//
+// document.body.appendChild(
+//     Components.buildElementObject(aLink)
+// );
+
+let component = Components.buildComponent({
+    parent: document.body,
+    type: Header,
+    options: {
+
+    }
+});
