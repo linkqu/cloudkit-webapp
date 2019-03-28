@@ -34,6 +34,9 @@
      ]
 }
 
+https://reactjs.org/
 https://blueprintjs.com/
 https://vue.ant.design/
 https://vuejs.github.io/ui/
+https://semantic-ui.com/
+https://ant.design/
