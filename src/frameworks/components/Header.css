@@ -16,12 +16,12 @@
     display: flex;
     align-items: center;
     background: #ebebeb;
-    min-width: 200px;
-    padding-left: 20px;
+    width: 200px;
 }
 
 .widget-header .brand a {
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .widget-header .brand .logo {

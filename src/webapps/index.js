@@ -32,6 +32,8 @@
 import {Components} from "../frameworks/commons/Components";
 import {BorderLayout} from "../frameworks/layouts/BorderLayout";
 import {Header} from "../frameworks/components/Header";
+import {Accordion} from "../frameworks/components/Accordion";
+import {FlexLayout} from "../frameworks/layouts/FlexLayout";
 
 // let aLink = {
 //     "type": "div",
@@ -65,8 +67,104 @@ import {Header} from "../frameworks/components/Header";
 
 let component = Components.buildComponent({
     parent: document.body,
-    type: Header,
+    type: BorderLayout,
     options: {
-
+        items: [{
+            title: "North Panel",
+            region: "north",
+            items: [{
+                type: Header,
+                options: {}
+            }]
+        }, {
+            title: "West Panel",
+            region: "west",
+            width: 200,
+            css: {
+                "padding-top": "50px"
+            },
+            items: [{
+                type: Accordion,
+                options: {
+                    items: [{
+                        id: "bookmarks",
+                        title: "Bookmarks",
+                        children: [
+                            {title: "book report", text: "test"},
+                            {title: "alegrbra", text: "test"}
+                        ]
+                    }, {
+                        id: "downloads",
+                        title: "Downloads",
+                        children: [
+                            {title: "book report", text: ""},
+                            {title: "alegrbra", text: ""}
+                        ]
+                    }, {
+                        id: "history",
+                        title: "History",
+                        children: [
+                            {title: "book report", text: ""},
+                            {title: "alegrbra", text: ""}
+                        ]
+                    }, {
+                        id: "window",
+                        title: "Window",
+                        children: [
+                            {title: "book report", text: ""},
+                            {title: "alegrbra", text: ""}
+                        ]
+                    }]
+                }
+            }]
+        }, {
+            title: "South Panel",
+            region: "south"
+        }, {
+            title: "Center Panel",
+            region: "center",
+            items: [{
+                type: FlexLayout,
+                options: {
+                    css: {
+                        "padding-top": "50px",
+                        "display": "flex",
+                        "-webkit-box-orient": "vertical",
+                        "-webkit-flex-direction": "column",
+                        "-ms-flex-direction": "column",
+                        "flex-direction": "column",
+                        "width": "100%",
+                        "height": "100%"
+                    },
+                    items: [{
+                        css: {
+                            "flex": "0 0 auto",
+                            "height": "60px",
+                            "line-height": "40px",
+                            "padding": "8px"
+                        },
+                        content: "Header"
+                    }, {
+                        css: {
+                            "position": "relative",
+                            "flex": "1",
+                            "overflow": "auto",
+                            "padding": "8px"
+                        },
+                        content: "Content"
+                    }, {
+                        css: {
+                            "flex": "0 0 auto",
+                            "height": "50px",
+                            "line-height": "36px",
+                            "padding": "8px",
+                            "overflow": "hidden",
+                            "border-top": "1px solid #EDEEEF"
+                        },
+                        content: "Footer"
+                    }]
+                }
+            }]
+        }]
     }
 });
