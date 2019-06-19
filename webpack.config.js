@@ -31,11 +31,13 @@ module.exports = {
         // chunkFilename: "[name].chunk.js",
         chunkFilename: "[name].chunk.js?[chunkhash]",
         sourceMapFilename: "[file].map",
+        // libraryTarget: 'system',
         libraryTarget: "umd",
     },
     module: {
         rules: [
             {
+                // parser: { system: false },
                 // test: /\.(gif|png|jpe?g|svg)$/i,
                 test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
                 // "url-loader?limit=1024&name=[path][name].[ext]&outputPath=img/&publicPath=output/"
