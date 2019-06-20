@@ -2,13 +2,16 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-// const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
+const devMode = process.env.NODE_ENV !== 'production';
+
 module.exports = {
-    mode: "production",
+    // "production" | "development" | "none"
+    mode: 'production',
     // entry: "./src/main.js",
     entry: {
         index: "./src/webapps/index.js",
@@ -108,21 +111,19 @@ module.exports = {
             //     ]
             // },
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                modules: false
-                            }
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: process.env.NODE_ENV === 'development',
                         },
-                        {
-                            loader: "postcss-loader"
-                        }
-                    ]
-                })
+                    },
+                    'style-loader',
+                    'css-loader',
+                    // 'postcss-loader',
+                    // 'sass-loader',
+                ],
             },
             // {
             //     test: /\.css$/,
@@ -320,10 +321,11 @@ module.exports = {
             },
             chunks: ["manifest", "vendors", "commons", "accounts"]
         }),
-        new ExtractTextPlugin({
-            filename: "[name].css",
-            // filename: "bundle.[name].css",
-            ignoreOrder: true
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         }),
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, "./src/webapps/resources"),

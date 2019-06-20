@@ -1,6 +1,7 @@
 // rollup.config.js https://rollupjs.org/
 import resolve from "rollup-plugin-node-resolve";
 import postcss from "rollup-plugin-postcss";
+import css from "rollup-plugin-css";
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
 import json from "rollup-plugin-json";
@@ -27,9 +28,15 @@ export default {
             main: true,
             browser: true
         }),
+        /*
         postcss({
             extensions: [".css"],
+            plugins: []
 
+        }),
+        */
+        css({
+            extensions: [".css"],
         }),
         // http://babeljs.io
         babel({

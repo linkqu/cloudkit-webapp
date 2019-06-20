@@ -27,7 +27,7 @@ class Checkbox extends HTMLElement {
 
         // Insert icon
         let imgUrl;
-        if(this.hasAttribute('img')) {
+        if (this.hasAttribute('img')) {
             imgUrl = this.getAttribute('img');
         } else {
             imgUrl = 'resources/images/default.png';
@@ -66,7 +66,7 @@ class Checkbox extends HTMLElement {
             .icon:hover + .info, .icon:focus + .info {
                 opacity: 1;
             }
-        `;
+       `;
 
         // Attach the created elements to the shadow dom
         shadow.appendChild(style);
@@ -95,6 +95,6 @@ class Checkbox extends HTMLElement {
 }
 
 // Define the new element
-customElements.define('popup-info', Checkbox);
+customElements.define('ui-checkbox', Checkbox);
 
 // export default Checkbox;

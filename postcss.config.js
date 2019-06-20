@@ -1,12 +1,9 @@
 module.exports = {
-    plugins: [
-        require('autoprefixer')({
-            "browsers": [
-                "defaults",
-                "not ie < 11",
-                "last 2 versions",
-                "> 1%"
-            ]
-        })
-    ]
-};
+    parser: 'sugarss',
+    plugins: {
+        'postcss-plugin': {},
+        'postcss-import': {},
+        // 'postcss-preset-env': {},
+        'cssnano': {}
+    }
+}
