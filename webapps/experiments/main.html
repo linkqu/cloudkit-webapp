@@ -233,7 +233,7 @@
         <a class="item"><i class="settings icon"></i> Account Settings</a>
     </div>
     <div class="pusher">
-        <div class="ui breadcrumb">
+        <div class="ui breadcrumb" style="margin-top: 8px;">
             <a class="section">Home</a>
             <div class="divider"> /</div>
             <a class="section">Store</a>
@@ -383,6 +383,7 @@
             </tr>
             </tbody>
             <tfoot class="full-width">
+            <!--
             <tr>
                 <th></th>
                 <th colspan="4">
@@ -397,30 +398,36 @@
                     </div>
                 </th>
             </tr>
+            -->
+            <tr>
+                <th colspan="5">
+                    <div class="ui right floated pagination menu">
+                        <a class="item">
+                            <i class="angle left icon"></i> Previous
+                        </a>
+                        <a class="active item">1</a>
+                        <a class="item">2</a>
+                        <a class="item">3</a>
+                        <a class="item">4</a>
+                        <a class="item">5</a>
+                        <a class="item">6</a>
+                        <a class="item">
+                            Next <i class="angle right icon"></i>
+                        </a>
+                        <!--
+                        <div class="item">
+                            <div class="ui action input">
+                                <input type="text" placeholder="Navigate to...">
+                                <div class="ui button">Go</div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </th>
+            </tr>
             </tfoot>
         </table>
-        <div class="ui pagination menu">
-            <a class="item">
-                <i class="angle left icon"></i> Previous
-            </a>
-            <a class="active item">1</a>
-            <a class="item">2</a>
-            <a class="item">3</a>
-            <a class="item">4</a>
-            <a class="item">5</a>
-            <a class="item">6</a>
-            <a class="item">
-                Next <i class="angle right icon"></i>
-            </a>
-            <!--
-            <div class="item">
-                <div class="ui action input">
-                    <input type="text" placeholder="Navigate to...">
-                    <div class="ui button">Go</div>
-                </div>
-            </div>
-            -->
-        </div>
+
     </div>
 
 
